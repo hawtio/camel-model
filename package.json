@@ -23,7 +23,8 @@
     "build": "tsup --clean",
     "generate": "./mvnw compile",
     "test": "echo \"no tests to run\"",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "release": "yarn npm publish --tolerate-republish"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
