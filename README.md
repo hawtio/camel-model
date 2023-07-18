@@ -19,7 +19,14 @@ yarn add @hawtio/camel-model
 ## Usage
 
 ```javascript
-import { apacheCamelModelVersion, components, dataformats, definitions, languages, rests } from '@hawtio/camel-model'
+import {
+  apacheCamelModelVersion,
+  components,
+  dataformats,
+  definitions,
+  languages,
+  rests
+} from '@hawtio/camel-model'
 ```
 
 ## License
