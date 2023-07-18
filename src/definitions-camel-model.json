@@ -57,8 +57,8 @@
       "icon": "aggregate24.png",
       "description": "Aggregates many messages into a single message",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "correlationExpression": {
           "kind": "expression",
@@ -288,6 +288,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -447,6 +455,71 @@
         }
       }
     },
+    "beans": {
+      "type": "object",
+      "title": "Beans",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "A groupping POJO (and related XML root element) that\u0027s historically associated with entire application (or its distinguished fragment). This class is not meant to be used with Camel Java DSL, but it\u0027s needed to generate XML Schema and MX parser methods.",
+      "properties": {
+        "component-scan": {
+          "kind": "element",
+          "type": "array",
+          "description": "Component scanning definition(s). But unlike package/packageScan/contextScan, we\u0027re not scanning only for org.apache.camel.builder.RouteBuilder.",
+          "title": "Component-scan",
+          "required": false,
+          "deprecated": false
+        },
+        "bean": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Bean",
+          "required": false,
+          "deprecated": false
+        },
+        "rest": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Rest",
+          "required": false,
+          "deprecated": false
+        },
+        "routeConfiguration": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route Configuration",
+          "required": false,
+          "deprecated": false
+        },
+        "routeTemplate": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route Template",
+          "required": false,
+          "deprecated": false
+        },
+        "templatedRoute": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Templated Route",
+          "required": false,
+          "deprecated": false
+        },
+        "route": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "blacklistServiceFilter": {
       "type": "object",
       "title": "Blacklist Service Filter",
@@ -540,6 +613,71 @@
         }
       }
     },
+    "camel": {
+      "type": "object",
+      "title": "Camel",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "If beans reminds Spring application too much, we can use camel.",
+      "properties": {
+        "component-scan": {
+          "kind": "element",
+          "type": "array",
+          "description": "Component scanning definition(s). But unlike package/packageScan/contextScan, we\u0027re not scanning only for org.apache.camel.builder.RouteBuilder.",
+          "title": "Component-scan",
+          "required": false,
+          "deprecated": false
+        },
+        "bean": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Bean",
+          "required": false,
+          "deprecated": false
+        },
+        "rest": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Rest",
+          "required": false,
+          "deprecated": false
+        },
+        "routeConfiguration": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route Configuration",
+          "required": false,
+          "deprecated": false
+        },
+        "routeTemplate": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route Template",
+          "required": false,
+          "deprecated": false
+        },
+        "templatedRoute": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Templated Route",
+          "required": false,
+          "deprecated": false
+        },
+        "route": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Route",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "choice": {
       "type": "object",
       "title": "Choice",
@@ -609,9 +747,17 @@
       "icon": "generic24.png",
       "description": "Route messages in a fault tolerance way using Circuit Breaker",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
+        "configuration": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Refers to a circuit breaker configuration (such as resillience4j, or microprofile-fault-tolerance) to use for configuring the circuit breaker EIP.",
+          "title": "Configuration",
+          "required": false,
+          "deprecated": false
+        },
         "resilience4jConfiguration": {
           "kind": "element",
           "type": "object",
@@ -628,12 +774,20 @@
           "required": false,
           "deprecated": false
         },
-        "configuration": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Refers to a circuit breaker configuration (such as resillience4j, or microprofile-fault-tolerance) to use for configuring the circuit breaker EIP.",
-          "title": "Configuration",
+        "onFallback": {
+          "kind": "element",
+          "type": "object",
+          "description": "The fallback route path to execute that does not go over the network. This should be a static or cached result that can immediately be returned upon failure. If the fallback requires network connection then use onFallbackViaNetwork() .",
+          "title": "On Fallback",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -1429,31 +1583,6 @@
         }
       }
     },
-    "description": {
-      "type": "object",
-      "title": "Description",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "To provide comments about the node.",
-      "properties": {
-        "lang": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Language, such as en for english.",
-          "title": "Lang",
-          "required": false,
-          "deprecated": true
-        },
-        "text": {
-          "kind": "value",
-          "type": "string",
-          "description": "The description as human readable text",
-          "title": "Text",
-          "required": true,
-          "deprecated": false
-        }
-      }
-    },
     "dnsServiceDiscovery": {
       "type": "object",
       "title": "Dns Service Discovery",
@@ -1519,6 +1648,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -1553,6 +1690,14 @@
       "icon": "generic24.png",
       "description": "Path traversed when a try, catch, finally block exits",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -1587,6 +1732,14 @@
       "icon": "generic24.png",
       "description": "Marks the beginning of a try, catch, finally block",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -2036,6 +2189,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -2228,93 +2389,11 @@
           "required": false,
           "deprecated": false
         },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
+        "outputs": {
           "kind": "element",
-          "type": "object",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "inOnly": {
-      "type": "object",
-      "title": "In Only",
-      "group": "eip,routing",
-      "icon": "eventMessage24.png",
-      "description": "Marks the exchange pattern for the route to one way",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
-        "uri": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the uri of the endpoint to send to.",
-          "title": "Uri",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "object",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "inOut": {
-      "type": "object",
-      "title": "In Out",
-      "group": "eip,routing",
-      "icon": "requestReply24.png",
-      "description": "Marks the exchange pattern for the route to request/reply",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
-        "uri": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the uri of the endpoint to send to.",
-          "title": "Uri",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -2394,6 +2473,14 @@
       "icon": "generic24.png",
       "description": "Intercepts a message at each step in the route",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -2434,6 +2521,14 @@
           "description": "Intercept incoming messages from the uri or uri pattern. If this option is not configured, then all incoming messages is intercepted.",
           "title": "Uri",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -2492,6 +2587,14 @@
           "description": "After sending to the endpoint then send the message to this uri which allows to process its result.",
           "title": "After Uri",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -2677,14 +2780,22 @@
       "icon": "generic24.png",
       "description": "To call Kamelets in special situations",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "name": {
           "kind": "attribute",
           "type": "string",
           "description": "Name of the Kamelet (templateId/routeId) to call. Options for the kamelet can be specified using uri syntax, eg mynamecount\u003d4\u0026type\u003dgold.",
           "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -2906,14 +3017,22 @@
       "icon": "loadBalance24.png",
       "description": "Balances message processing among a number of nodes",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "loadBalancerType": {
           "kind": "element",
           "type": "object",
           "description": "The load balancer to be used",
           "title": "Load Balancer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -3109,6 +3228,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -3143,8 +3270,8 @@
       "icon": "multicast24.png",
       "description": "Routes the same message to multiple paths either sequentially or in parallel.",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "aggregationStrategy": {
           "kind": "attribute",
@@ -3248,6 +3375,14 @@
           "description": "Shares the org.apache.camel.spi.UnitOfWork with the parent and each of the sub messages. Multicast will by default not share unit of work between the parent exchange and each multicasted exchange. This means each sub exchange has its own individual unit of work.",
           "title": "Share Unit Of Work",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -3364,6 +3499,14 @@
           "description": "Sets an additional predicate that should be true before the onCompletion is triggered. To be used for fine grained controlling whether a completion callback should be invoked or not",
           "title": "On When",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -3490,6 +3633,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -3524,8 +3675,8 @@
       "icon": "generic24.png",
       "description": "Route to be executed when Circuit Breaker EIP executes fallback",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "fallbackViaNetwork": {
           "kind": "attribute",
@@ -3534,6 +3685,14 @@
           "description": "Whether the fallback goes over the network. If the fallback will go over the network it is another possible point of failure. It is important to execute the fallback command on a separate thread-pool, otherwise if the main command were to become latent and fill the thread-pool this would prevent the fallback from running if the two commands share the same pool.",
           "title": "Fallback Via Network",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -3623,9 +3782,17 @@
       "icon": "generic24.png",
       "description": "Route to be executed when all other choices evaluate to false",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -3813,9 +3980,17 @@
       "icon": "pipeline24.png",
       "description": "Routes the message to a sequence of processors.",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -4737,8 +4912,8 @@
       "icon": "resequence24.png",
       "description": "Resequences (re-order) messages based on an expression",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "expression": {
           "kind": "expression",
@@ -4753,6 +4928,14 @@
           "type": "object",
           "description": "To configure the resequencer in using either batch or stream configuration. Will by default use batch configuration.",
           "title": "Resequencer Config",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -4912,6 +5095,68 @@
           "required": false,
           "deprecated": false
         },
+        "bulkheadEnabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether bulkhead is enabled or not on the circuit breaker. Default is false.",
+          "title": "Bulkhead Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "bulkheadMaxConcurrentCalls": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "25",
+          "description": "Configures the max amount of concurrent calls the bulkhead will support.",
+          "title": "Bulkhead Max Concurrent Calls",
+          "required": false,
+          "deprecated": false
+        },
+        "bulkheadMaxWaitDuration": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Configures a maximum amount of time which the calling thread will wait to enter the bulkhead. If bulkhead has space available, entry is guaranteed and immediate. If bulkhead is full, calling threads will contest for space, if it becomes available. maxWaitDuration can be set to 0. Note: for threads running on an event-loop or equivalent (rx computation pool, etc), setting maxWaitDuration to 0 is highly recommended. Blocking an event-loop thread will most likely have a negative effect on application throughput.",
+          "title": "Bulkhead Max Wait Duration",
+          "required": false,
+          "deprecated": false
+        },
+        "timeoutEnabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether timeout is enabled or not on the circuit breaker. Default is false.",
+          "title": "Timeout Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "timeoutExecutorService": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "References to a custom thread pool to use when timeout is enabled (uses ForkJoinPool#commonPool() by default)",
+          "title": "Timeout Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "timeoutDuration": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Configures the thread execution timeout. Default value is 1 second.",
+          "title": "Timeout Duration",
+          "required": false,
+          "deprecated": false
+        },
+        "timeoutCancelRunningFuture": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Configures whether cancel is called on the running future. Defaults to true.",
+          "title": "Timeout Cancel Running Future",
+          "required": false,
+          "deprecated": false
+        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -4938,6 +5183,23 @@
           "description": "Sets the resume strategy to use",
           "title": "Resume Strategy",
           "required": true,
+          "deprecated": false
+        },
+        "loggingLevel": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "ERROR",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "",
+          "title": "Logging Level",
+          "required": false,
           "deprecated": false
         },
         "intermittent": {
@@ -5201,6 +5463,14 @@
           "type": "object",
           "description": "Input to the route.",
           "title": "Input",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "Outputs are processors that determines how messages are processed by this route.",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -5581,8 +5851,8 @@
       "icon": "generic24.png",
       "description": "Enables Sagas on the route",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "sagaService": {
           "kind": "attribute",
@@ -5652,6 +5922,14 @@
           "description": "Allows to save properties of the current exchange in order to re-use them in a compensation/completion callback route. Options are usually helpful e.g. to store and retrieve identifiers of objects that should be deleted in compensating actions. Option values will be transformed into input headers of the compensation/completion exchange.",
           "title": "Option",
           "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -5828,8 +6106,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the optional ExchangePattern used to invoke this endpoint",
           "title": "Pattern",
@@ -5972,8 +6249,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the optional ExchangePattern used to invoke this endpoint",
           "title": "Pattern",
@@ -6229,8 +6505,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the new exchange pattern of the Exchange to be used from this point forward",
           "title": "Pattern",
@@ -6554,6 +6829,14 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -6770,9 +7053,17 @@
       "icon": "generic24.png",
       "description": "Routes the message to a sequence of processors which is grouped together as one logical name",
       "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -6969,6 +7260,14 @@
           "required": false,
           "deprecated": false
         },
+        "properties": {
+          "kind": "element",
+          "type": "object",
+          "description": "Optional properties to set on the created local bean",
+          "title": "Properties",
+          "required": false,
+          "deprecated": false
+        },
         "script": {
           "kind": "element",
           "type": "string",
@@ -7106,6 +7405,14 @@
           "type": "array",
           "description": "Optional properties to set on the created local bean",
           "title": "Property",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "object",
+          "description": "Optional properties to set on the created local bean",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         },
@@ -7248,9 +7555,7 @@
           "type": "enum",
           "enum": [
             "Abort",
-            "CallerRuns",
-            "DiscardOldest",
-            "Discard"
+            "CallerRuns"
           ],
           "description": "Sets the handler for tasks which cannot be executed by the thread pool.",
           "title": "Rejected Policy",
@@ -7365,9 +7670,7 @@
           "type": "enum",
           "enum": [
             "Abort",
-            "CallerRuns",
-            "DiscardOldest",
-            "Discard"
+            "CallerRuns"
           ],
           "description": "Sets the handler for tasks which cannot be executed by the thread pool.",
           "title": "Rejected Policy",
@@ -7597,8 +7900,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the optional ExchangePattern used to invoke this endpoint",
           "title": "Pattern",
@@ -7646,8 +7948,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the optional ExchangePattern used to invoke this endpoint",
           "title": "Pattern",
@@ -7991,6 +8292,14 @@
           "required": true,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        },
         "disabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -8030,6 +8339,14 @@
           "type": "object",
           "description": "Expression used as the predicate to evaluate whether the message should be sent or not to the endpoint",
           "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
           "required": true,
           "deprecated": false
         },
@@ -8117,8 +8434,7 @@
           "type": "enum",
           "enum": [
             "InOnly",
-            "InOut",
-            "InOptionalOut"
+            "InOut"
           ],
           "description": "Sets the optional ExchangePattern used to invoke this endpoint",
           "title": "Pattern",

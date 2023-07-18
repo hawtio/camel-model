@@ -1,64 +1,5 @@
 {
   "dataformats": {
-    "any23": {
-      "type": "object",
-      "title": "Any23",
-      "group": "dataformat,transformation",
-      "icon": "generic24.png",
-      "description": "Extract RDF data from HTML documents.",
-      "properties": {
-        "outputFormat": {
-          "kind": "attribute",
-          "type": "enum",
-          "defaultValue": "RDF4JMODEL",
-          "enum": [
-            "NTRIPLES",
-            "TURTLE",
-            "NQUADS",
-            "RDFXML",
-            "JSONLD",
-            "RDFJSON",
-            "RDF4JMODEL"
-          ],
-          "description": "What RDF syntax to unmarshal as, can be: NTRIPLES, TURTLE, NQUADS, RDFXML, JSONLD, RDFJSON, RDF4JMODEL. It is by default: RDF4JMODEL.",
-          "title": "Output Format",
-          "required": false,
-          "deprecated": false
-        },
-        "baseUri": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The URI to use as base for building RDF entities if only relative paths are provided.",
-          "title": "Base Uri",
-          "required": false,
-          "deprecated": false
-        },
-        "configuration": {
-          "kind": "element",
-          "type": "array",
-          "description": "Configurations for Apache Any23 as key-value pairs in order to customize the extraction process. The list of supported parameters can be found here. If not provided, a default configuration is used.",
-          "title": "Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "extractors": {
-          "kind": "element",
-          "type": "array",
-          "description": "List of Any23 extractors to be used in the unmarshal operation. A list of the available extractors can be found here here. If not provided, all the available extractors are used.",
-          "title": "Extractors",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
     "asn1": {
       "type": "object",
       "title": "ASN.1 File",
@@ -1913,8 +1854,7 @@
             "Gson",
             "Jackson",
             "Johnzon",
-            "Jsonb",
-            "XStream"
+            "Jsonb"
           ],
           "description": "Which json library to use.",
           "title": "Library",
@@ -2003,14 +1943,6 @@
           "required": false,
           "deprecated": false
         },
-        "permissions": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Adds permissions that controls which Java packages and classes XStream is allowed to use during unmarshal from xml/json to Java beans. A permission must be configured either here or globally using a JVM system property. The permission can be specified in a syntax where a plus sign is allow, and minus sign is deny. Wildcards is supported by using . as prefix. For example to allow com.foo and all subpackages then specfy com.foo.. Multiple permissions can be configured separated by comma, such as com.foo.,-com.foo.bar.MySecretBean. The following default permission is always included: -,java.lang.,java.util. unless its overridden by specifying a JVM system property with they key org.apache.camel.xstream.permissions.",
-          "title": "Permissions",
-          "required": false,
-          "deprecated": false
-        },
         "allowUnmarshallType": {
           "kind": "attribute",
           "type": "boolean",
@@ -2023,17 +1955,8 @@
         "timezone": {
           "kind": "attribute",
           "type": "string",
-          "description": "If set then Jackson will use the Timezone when marshalling/unmarshalling. This option will have no effect on the others Json DataFormat, like gson, fastjson and xstream.",
+          "description": "If set then Jackson will use the Timezone when marshalling/unmarshalling. This option will have no effect on the others Json DataFormat, like gson and fastjson.",
           "title": "Timezone",
-          "required": false,
-          "deprecated": false
-        },
-        "dropRootNode": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether XStream will drop the root node in the generated JSon. You may want to enable this when using POJOs; as then the written object will include the class name as root node, which is often not intended to be written in the JSON output.",
-          "title": "Drop Root Node",
           "required": false,
           "deprecated": false
         },
@@ -2238,6 +2161,31 @@
           "defaultValue": "false",
           "description": "Defines whether the content of binary parts in the MIME multipart is binary (true) or Base-64 encoded (false) Default is false.",
           "title": "Binary Content",
+          "required": false,
+          "deprecated": false
+        },
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "parquetAvro": {
+      "type": "object",
+      "title": "Parquet File",
+      "group": "dataformat,transformation,file",
+      "icon": "generic24.png",
+      "description": "Parquet Avro serialization and de-serialization.",
+      "properties": {
+        "unmarshalType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Class to use when unmarshalling.",
+          "title": "Unmarshal Type",
           "required": false,
           "deprecated": false
         },
@@ -3600,112 +3548,6 @@
           "defaultValue": "true",
           "description": "Whether to add the public key used to encrypt the session key as a KeyValue in the EncryptedKey structure or not.",
           "title": "Add Key Value For Encrypted Key",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "xstream": {
-      "type": "object",
-      "title": "XStream",
-      "group": "dataformat,transformation,xml,json",
-      "icon": "generic24.png",
-      "description": "Marshal and unmarshal POJOs to/from XML using XStream library.",
-      "properties": {
-        "permissions": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Adds permissions that controls which Java packages and classes XStream is allowed to use during unmarshal from xml/json to Java beans. A permission must be configured either here or globally using a JVM system property. The permission can be specified in a syntax where a plus sign is allow, and minus sign is deny. Wildcards is supported by using . as prefix. For example to allow com.foo and all subpackages then specify com.foo.. Multiple permissions can be configured separated by comma, such as com.foo.,-com.foo.bar.MySecretBean. The following default permission is always included: -,java.lang.,java.util. unless its overridden by specifying a JVM system property with they key org.apache.camel.xstream.permissions.",
-          "title": "Permissions",
-          "required": false,
-          "deprecated": false
-        },
-        "encoding": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the encoding to use",
-          "title": "Encoding",
-          "required": false,
-          "deprecated": false
-        },
-        "driver": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "To use a custom XStream driver. The instance must be of type com.thoughtworks.xstream.io.HierarchicalStreamDriver",
-          "title": "Driver",
-          "required": false,
-          "deprecated": false
-        },
-        "driverRef": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "To refer to a custom XStream driver to lookup in the registry. The instance must be of type com.thoughtworks.xstream.io.HierarchicalStreamDriver",
-          "title": "Driver Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "mode": {
-          "kind": "attribute",
-          "type": "enum",
-          "enum": [
-            "NO_REFERENCES",
-            "ID_REFERENCES",
-            "XPATH_RELATIVE_REFERENCES",
-            "XPATH_ABSOLUTE_REFERENCES",
-            "SINGLE_NODE_XPATH_RELATIVE_REFERENCES",
-            "SINGLE_NODE_XPATH_ABSOLUTE_REFERENCES"
-          ],
-          "description": "Mode for dealing with duplicate references The possible values are: NO_REFERENCES ID_REFERENCES XPATH_RELATIVE_REFERENCES XPATH_ABSOLUTE_REFERENCES SINGLE_NODE_XPATH_RELATIVE_REFERENCES SINGLE_NODE_XPATH_ABSOLUTE_REFERENCES",
-          "title": "Mode",
-          "required": false,
-          "deprecated": false
-        },
-        "contentTypeHeader": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
-          "title": "Content Type Header",
-          "required": false,
-          "deprecated": false
-        },
-        "converters": {
-          "kind": "element",
-          "type": "array",
-          "description": "List of class names for using custom XStream converters. The classes must be of type com.thoughtworks.xstream.converters.Converter",
-          "title": "Converters",
-          "required": false,
-          "deprecated": false
-        },
-        "aliases": {
-          "kind": "element",
-          "type": "array",
-          "description": "Alias a Class to a shorter name to be used in XML elements.",
-          "title": "Aliases",
-          "required": false,
-          "deprecated": false
-        },
-        "omitFields": {
-          "kind": "element",
-          "type": "array",
-          "description": "Prevents a field from being serialized. To omit a field you must always provide the declaring type and not necessarily the type that is converted. Multiple values can be separated by comma.",
-          "title": "Omit Fields",
-          "required": false,
-          "deprecated": false
-        },
-        "implicitCollections": {
-          "kind": "element",
-          "type": "array",
-          "description": "Adds a default implicit collection which is used for any unmapped XML tag. Multiple values can be separated by comma.",
-          "title": "Implicit Collections",
           "required": false,
           "deprecated": false
         },
