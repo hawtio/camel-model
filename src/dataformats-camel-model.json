@@ -113,8 +113,8 @@
           "type": "enum",
           "defaultValue": "ApacheAvro",
           "enum": [
-            "apache-avro",
-            "jackson"
+            "ApacheAvro",
+            "Jackson"
           ],
           "description": "Which Avro library to use.",
           "title": "Library",
@@ -1843,6 +1843,15 @@
           "required": false,
           "deprecated": false
         },
+        "accessExternalSchemaProtocols": {
+          "kind": "attribute",
+          "type": "string",
+          "defaultValue": "false",
+          "description": "Only in use if schema validation has been enabled. Restrict access to the protocols specified for external reference set by the schemaLocation attribute, Import and Include element. Examples of protocols are file, http, jar:file. false or none to deny all access to external references; a specific protocol, such as file, to give permission to only the protocol; the keyword all to grant permission to all protocols.",
+          "title": "Access External Schema Protocols",
+          "required": false,
+          "deprecated": false
+        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1900,12 +1909,12 @@
           "type": "enum",
           "defaultValue": "Jackson",
           "enum": [
-            "fastjson",
-            "gson",
-            "jackson",
-            "johnzon",
-            "jsonb",
-            "x-stream"
+            "Fastjson",
+            "Gson",
+            "Jackson",
+            "Johnzon",
+            "Jsonb",
+            "XStream"
           ],
           "description": "Which json library to use.",
           "title": "Library",
@@ -2059,6 +2068,14 @@
           "defaultValue": "true",
           "description": "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
           "title": "Content Type Header",
+          "required": false,
+          "deprecated": false
+        },
+        "dateFormatPattern": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To configure the date format while marshall or unmarshall Date fields in JSON using Gson",
+          "title": "Date Format Pattern",
           "required": false,
           "deprecated": false
         },
@@ -2411,8 +2428,8 @@
           "type": "enum",
           "defaultValue": "GoogleProtobuf",
           "enum": [
-            "google-protobuf",
-            "jackson"
+            "GoogleProtobuf",
+            "Jackson"
           ],
           "description": "Which Protobuf library to use.",
           "title": "Library",
@@ -3714,7 +3731,7 @@
           "type": "enum",
           "defaultValue": "SnakeYAML",
           "enum": [
-            "snake-yaml"
+            "SnakeYAML"
           ],
           "description": "Which yaml library to use. By default it is SnakeYAML",
           "title": "Library",

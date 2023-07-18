@@ -1041,7 +1041,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to include the tokens in the parts when using pairs The default value is false",
+          "description": "Whether to include the tokens in the parts when using pairs. When including tokens then the endToken property must also be configured (to use pair mode). The default value is false",
           "title": "Include Tokens",
           "required": false,
           "deprecated": false

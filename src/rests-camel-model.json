@@ -753,7 +753,7 @@
           "defaultValue": "path",
           "enum": [
             "body",
-            "form-data",
+            "formData",
             "header",
             "path",
             "query"
@@ -1836,9 +1836,9 @@
           "type": "enum",
           "defaultValue": "allLocalIp",
           "enum": [
-            "all-local-ip",
-            "local-host-name",
-            "local-ip"
+            "allLocalIp",
+            "localHostName",
+            "localIp"
           ],
           "description": "If no hostname has been explicit configured, then this resolver is used to compute the hostname the REST service will be using.",
           "title": "Host Name Resolver",
