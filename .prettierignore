@@ -1,0 +1,8 @@
+build
+coverage
+dist
+target
+.yarn
+
+# Ignore generated camel model (need to fix generator to fix all the linting errors)
+src/*.json

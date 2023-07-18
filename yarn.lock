@@ -262,6 +262,7 @@ __metadata:
   resolution: "@hawtio/camel-model@workspace:."
   dependencies:
     cz-conventional-changelog: ^3.3.0
+    prettier: 3.0.0
     tsup: ^7.1.0
     typescript: ^4.9.5
   languageName: unknown
@@ -2384,6 +2385,15 @@ __metadata:
     ts-node:
       optional: true
   checksum: b61f890499ed7dcda1e36c20a9582b17d745bad5e2b2c7bc96942465e406bc43ae03f270c08e60d1e29dab1ee50cb26970b5eb20c9aae30e066e20bd607ae4e4
+  languageName: node
+  linkType: hard
+
+"prettier@npm:3.0.0":
+  version: 3.0.0
+  resolution: "prettier@npm:3.0.0"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 6a832876a1552dc58330d2467874e5a0b46b9ccbfc5d3531eb69d15684743e7f83dc9fbd202db6270446deba9c82b79d24383d09924c462b457136a759425e33
   languageName: node
   linkType: hard
 
