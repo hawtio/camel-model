@@ -18,6 +18,7 @@ yarn add @hawtio/camel-model
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 ```javascript
 import {
   apacheCamelModelVersion,
@@ -28,6 +29,7 @@ import {
   rests
 } from '@hawtio/camel-model'
 ```
+<!-- prettier-ignore-end -->
 
 ## License
 
