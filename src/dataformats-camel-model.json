@@ -2181,10 +2181,19 @@
       "icon": "generic24.png",
       "description": "Parquet Avro serialization and de-serialization.",
       "properties": {
+        "compressionCodecName": {
+          "kind": "attribute",
+          "type": "string",
+          "defaultValue": "GZIP",
+          "description": "Compression codec to use when marshalling.",
+          "title": "Compression Codec Name",
+          "required": false,
+          "deprecated": false
+        },
         "unmarshalType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Class to use when unmarshalling.",
+          "description": "Class to use when (un)marshalling. If omitted, parquet files are converted into Avro\u0027s GenericRecords for unmarshalling and input objects are assumed as GenericRecords for marshalling.",
           "title": "Unmarshal Type",
           "required": false,
           "deprecated": false
