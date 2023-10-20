@@ -10,8 +10,8 @@
   <properties>
     <version.org.apache.camel>4.0.1</version.org.apache.camel>
 
-    <version.io.hawt.camel.catalog.maven.plugin>0.0.1</version.io.hawt.camel.catalog.maven.plugin>
-    <version.org.codehaus.gmaven.plugin>2.1.1</version.org.codehaus.gmaven.plugin>
+    <version.camel.catalog.maven.plugin>1.0.0</version.camel.catalog.maven.plugin>
+    <version.groovy.maven.plugin>2.1.1</version.groovy.maven.plugin>
 
     <schema-outdir>./src</schema-outdir>
     <schema-file>index.ts</schema-file>
@@ -31,8 +31,8 @@
     <plugins>
       <plugin>
         <groupId>io.hawt</groupId>
-        <artifactId>hawtio-camel-catalog-schema-generator-plugin</artifactId>
-        <version>${version.io.hawt.camel.catalog.maven.plugin}</version>
+        <artifactId>camel-catalog-schema-generator-plugin</artifactId>
+        <version>${version.camel.catalog.maven.plugin}</version>
         <executions>
           <execution>
             <id>generate-camel-model</id>
@@ -50,7 +50,7 @@
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>groovy-maven-plugin</artifactId>
-        <version>${version.org.codehaus.gmaven.plugin}</version>
+        <version>${version.groovy.maven.plugin}</version>
         <executions>
           <execution>
             <id>modify-camel-model</id>
