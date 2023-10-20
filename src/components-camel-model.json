@@ -21773,6 +21773,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableDocumentOnlyMode": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Indicates whether the body of the message contains only documents. By default, it is set to false to be able to do the same requests as what the Document API supports (see https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html for more details). To ease the migration of routes based on the legacy component camel-elasticsearch-rest, you should consider enabling the mode especially if your routes do update operations.",
+          "title": "Enable Document Only Mode",
+          "required": false,
+          "deprecated": false
+        },
         "from": {
           "kind": "parameter",
           "type": "integer",
@@ -45377,6 +45386,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -45447,14 +45464,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -45667,6 +45676,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -45737,14 +45754,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -45957,6 +45966,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -46027,14 +46044,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -46247,6 +46256,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -46317,14 +46334,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -46537,6 +46546,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -46607,14 +46624,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -46827,6 +46836,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -46897,14 +46914,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -47117,6 +47126,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -47187,14 +47204,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -47407,6 +47416,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -47477,14 +47494,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -47697,6 +47706,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "parameter",
           "type": "string",
@@ -47873,6 +47890,14 @@
           "type": "object",
           "description": "Default KubernetesClient to use if provided",
           "title": "Kubernetes Client",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -48055,6 +48080,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -48125,14 +48158,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -48345,6 +48370,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -48415,14 +48448,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -48635,6 +48660,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "parameter",
           "type": "string",
@@ -48811,6 +48844,14 @@
           "type": "object",
           "description": "Default KubernetesClient to use if provided",
           "title": "Kubernetes Client",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -48993,6 +49034,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "parameter",
           "type": "string",
@@ -49172,6 +49221,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -49242,14 +49299,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -56438,6 +56487,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "parameter",
           "type": "string",
@@ -56614,6 +56671,14 @@
           "type": "object",
           "description": "Default KubernetesClient to use if provided",
           "title": "Kubernetes Client",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -56796,6 +56861,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -56866,14 +56939,6 @@
           "type": "string",
           "description": "The Consumer Label value when watching at some resources",
           "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "namespace": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The namespace",
-          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
