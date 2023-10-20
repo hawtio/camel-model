@@ -3490,7 +3490,7 @@
       "title": "AWS Secrets Manager",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS Secrets Manager services using AWS SDK version 2.x.",
+      "description": "Manage secrets using AWS Secrets Manager.",
       "properties": {
         "label": {
           "kind": "path",
@@ -3666,7 +3666,7 @@
       "title": "AWS Athena",
       "group": "cloud,database",
       "icon": "generic24.png",
-      "description": "Access AWS Athena service using AWS SDK version 2.x.",
+      "description": "Access AWS Athena.",
       "properties": {
         "label": {
           "kind": "path",
@@ -3964,7 +3964,7 @@
       "title": "AWS CloudWatch",
       "group": "cloud,monitoring",
       "icon": "generic24.png",
-      "description": "Sending metrics to AWS CloudWatch using AWS SDK version 2.x.",
+      "description": "Sending metrics to AWS CloudWatch.",
       "properties": {
         "namespace": {
           "kind": "path",
@@ -4135,7 +4135,7 @@
       "title": "AWS DynamoDB",
       "group": "cloud,database",
       "icon": "generic24.png",
-      "description": "Store and retrieve data from AWS DynamoDB service using AWS SDK version 2.x.",
+      "description": "Store and retrieve data from AWS DynamoDB.",
       "properties": {
         "tableName": {
           "kind": "path",
@@ -4353,7 +4353,7 @@
       "title": "AWS DynamoDB Streams",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Receive messages from AWS DynamoDB Stream service using AWS SDK version 2.x.",
+      "description": "Receive messages from AWS DynamoDB Stream.",
       "properties": {
         "tableName": {
           "kind": "path",
@@ -4688,7 +4688,7 @@
       "title": "AWS Elastic Compute Cloud (EC2)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS EC2 instances using AWS SDK version 2.x.",
+      "description": "Manage AWS EC2 instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -4857,7 +4857,7 @@
       "title": "AWS Elastic Container Service (ECS)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS ECS cluster instances using AWS SDK version 2.x.",
+      "description": "Manage AWS ECS cluster instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -5019,7 +5019,7 @@
       "title": "AWS Elastic Kubernetes Service (EKS)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS EKS cluster instances using AWS SDK version 2.x.",
+      "description": "Manage AWS EKS cluster instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -5182,7 +5182,7 @@
       "title": "AWS Eventbridge",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS Eventbridge cluster instances using AWS SDK version 2.x.",
+      "description": "Send events to AWS Eventbridge cluster instances.",
       "properties": {
         "eventbusNameOrArn": {
           "kind": "path",
@@ -5360,7 +5360,7 @@
       "title": "AWS Identity and Access Management (IAM)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS IAM instances using AWS SDK version 2.x.",
+      "description": "Manage AWS IAM instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -5532,7 +5532,7 @@
       "title": "AWS Kinesis",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Consume and produce records from and to AWS Kinesis Streams using AWS SDK version 2.x.",
+      "description": "Consume and produce records from and to AWS Kinesis Streams.",
       "properties": {
         "streamName": {
           "kind": "path",
@@ -5929,7 +5929,7 @@
       "title": "AWS Kinesis Firehose",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Produce data to AWS Kinesis Firehose streams using AWS SDK version 2.x.",
+      "description": "Produce data to AWS Kinesis Firehose streams.",
       "properties": {
         "streamName": {
           "kind": "path",
@@ -6092,7 +6092,7 @@
       "title": "AWS Key Management Service (KMS)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage keys stored in AWS KMS instances using AWS SDK version 2.x.",
+      "description": "Manage keys stored in AWS KMS instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -6256,7 +6256,7 @@
       "title": "AWS Lambda",
       "group": "cloud,serverless",
       "icon": "generic24.png",
-      "description": "Manage and invoke AWS Lambda functions using AWS SDK version 2.x.",
+      "description": "Manage and invoke AWS Lambda functions.",
       "properties": {
         "function": {
           "kind": "path",
@@ -6433,7 +6433,7 @@
       "title": "AWS MQ",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Manage AWS MQ instances using AWS SDK version 2.x.",
+      "description": "Send messages to AWS MQ.",
       "properties": {
         "label": {
           "kind": "path",
@@ -6597,7 +6597,7 @@
       "title": "AWS Managed Streaming for Apache Kafka (MSK)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS MSK instances using AWS SDK version 2.x.",
+      "description": "Manage AWS MSK instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -6759,7 +6759,7 @@
       "title": "AWS S3 Storage Service",
       "group": "cloud,file",
       "icon": "generic24.png",
-      "description": "Store and retrieve objects from AWS S3 Storage Service using AWS SDK version 2.x.",
+      "description": "Store and retrieve objects from AWS S3 Storage Service.",
       "properties": {
         "bucketNameOrArn": {
           "kind": "path",
@@ -7434,7 +7434,7 @@
       "title": "AWS Simple Email Service (SES)",
       "group": "cloud,mail",
       "icon": "generic24.png",
-      "description": "Send e-mails through AWS SES service using AWS SDK version 2.x.",
+      "description": "Send e-mails through AWS SES service.",
       "properties": {
         "from": {
           "kind": "path",
@@ -7629,7 +7629,7 @@
       "title": "AWS Simple Notification System (SNS)",
       "group": "cloud,messaging,mobile",
       "icon": "generic24.png",
-      "description": "Send messages to an AWS Simple Notification Topic using AWS SDK version 2.x.",
+      "description": "Send messages to AWS Simple Notification Topic.",
       "properties": {
         "topicNameOrArn": {
           "kind": "path",
@@ -7715,11 +7715,11 @@
           "required": false,
           "deprecated": false
         },
-        "queueUrl": {
+        "queueArn": {
           "kind": "parameter",
           "type": "string",
-          "description": "The queueUrl to subscribe to",
-          "title": "Queue Url",
+          "description": "The ARN endpoint to subscribe to",
+          "title": "Queue Arn",
           "required": false,
           "deprecated": false
         },
@@ -7869,7 +7869,7 @@
       "title": "AWS Simple Queue Service (SQS)",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from AWS SQS service using AWS SDK version 2.x.",
+      "description": "Send and receive messages to/from AWS SQS.",
       "properties": {
         "queueNameOrArn": {
           "kind": "path",
@@ -8474,7 +8474,7 @@
       "title": "AWS StepFunctions",
       "group": "cloud,serverless",
       "icon": "generic24.png",
-      "description": "Manage and invoke AWS Step functions using AWS SDK version 2.x.",
+      "description": "Manage and invoke AWS Step functions.",
       "properties": {
         "label": {
           "kind": "path",
@@ -8648,7 +8648,7 @@
       "title": "AWS Security Token Service (STS)",
       "group": "cloud,management",
       "icon": "generic24.png",
-      "description": "Manage AWS STS cluster instances using AWS SDK version 2.x.",
+      "description": "Manage AWS STS cluster instances.",
       "properties": {
         "label": {
           "kind": "path",
@@ -9531,7 +9531,7 @@
       "title": "Azure Files",
       "group": "cloud,file",
       "icon": "generic24.png",
-      "description": "Camel Azure Files Component",
+      "description": "Send and receive files to Azure storage file share",
       "properties": {
         "account": {
           "kind": "path",
@@ -23035,6 +23035,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableDocumentOnlyMode": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Indicates whether the body of the message contains only documents. By default, it is set to false to be able to do the same requests as what the Document API supports (see https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html for more details). To ease the migration of routes based on the legacy component camel-elasticsearch-rest, you should consider enabling the mode especially if your routes do update operations.",
+          "title": "Enable Document Only Mode",
+          "required": false,
+          "deprecated": false
+        },
         "from": {
           "kind": "parameter",
           "type": "integer",
@@ -31225,7 +31234,7 @@
         "scopes": {
           "kind": "parameter",
           "type": "array",
-          "description": "Sheets scopes",
+          "description": "Specifies the level of permissions you want a sheets application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -31484,7 +31493,7 @@
         "applicationName": {
           "kind": "parameter",
           "type": "string",
-          "description": "Google sheets application name. Example would be camel-google-sheets/1.0",
+          "description": "Google Sheets application name. Example would be camel-google-sheets/1.0",
           "title": "Application Name",
           "required": false,
           "deprecated": false
@@ -31778,7 +31787,7 @@
         "refreshToken": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth 2 refresh token. Using this, the Google Calendar component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
+          "description": "OAuth 2 refresh token. Using this, the Google Sheets component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
           "title": "Refresh Token",
           "required": false,
           "deprecated": false
@@ -70695,6 +70704,15 @@
           "type": "object",
           "description": "Custom retry configuration to use. If this is configured then the other settings such as maximumRetryAttempts for retry are not in use.",
           "title": "Retry",
+          "required": false,
+          "deprecated": false
+        },
+        "allowNullBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow sending messages with no body. If this option is false and the message body is null, then an MessageConversionException is thrown.",
+          "title": "Allow Null Body",
           "required": false,
           "deprecated": false
         },

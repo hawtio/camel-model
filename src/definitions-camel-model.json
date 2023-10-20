@@ -460,7 +460,7 @@
       "title": "Beans",
       "group": "configuration",
       "icon": "generic24.png",
-      "description": "A groupping POJO (and related XML root element) that\u0027s historically associated with entire application (or its distinguished fragment). This class is not meant to be used with Camel Java DSL, but it\u0027s needed to generate XML Schema and MX parser methods.",
+      "description": "A grouping POJO (and related XML root element) that\u0027s historically associated with entire application (or its distinguished fragment). This class is not meant to be used with Camel Java DSL, but it\u0027s needed to generate XML Schema and MX parser methods.",
       "properties": {
         "component-scan": {
           "kind": "element",
