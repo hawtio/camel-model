@@ -10514,7 +10514,7 @@
       "title": "Azure ServiceBus",
       "group": "cloud,messaging",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from Azure Event Bus.",
+      "description": "Send and receive messages to/from Azure Service Bus.",
       "properties": {
         "topicOrQueueName": {
           "kind": "path",
@@ -44439,7 +44439,7 @@
         "consumerRequestTimeoutMs": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "40000",
+          "defaultValue": "30000",
           "description": "The configuration controls the maximum amount of time the client will wait for the response of a request. If the response is not received before the timeout elapses the client will resend the request if necessary or fail the request if retries are exhausted.",
           "title": "Consumer Request Timeout Ms",
           "required": false,
@@ -44606,7 +44606,7 @@
         "sessionTimeoutMs": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "10000",
+          "defaultValue": "45000",
           "description": "The timeout used to detect failures when using Kafka\u0027s group management facilities.",
           "title": "Session Timeout Ms",
           "required": false,

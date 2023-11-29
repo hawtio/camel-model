@@ -273,7 +273,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -427,7 +427,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -581,7 +581,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -994,7 +994,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1148,7 +1148,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1302,7 +1302,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1578,7 +1578,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1689,7 +1689,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2039,7 +2039,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
