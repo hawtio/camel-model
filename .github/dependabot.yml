@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: maven
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     reviewers:
       - tadayosi
       - phantomjinx
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: maven
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     target-branch: '3.x'
     reviewers:
       - tadayosi
@@ -24,7 +24,7 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     reviewers:
       - tadayosi
       - phantomjinx
@@ -34,7 +34,7 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     target-branch: '3.x'
     reviewers:
       - tadayosi
@@ -45,7 +45,7 @@ updates:
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     reviewers:
       - tadayosi
       - phantomjinx
@@ -55,7 +55,7 @@ updates:
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
     target-branch: '3.x'
     reviewers:
       - tadayosi
