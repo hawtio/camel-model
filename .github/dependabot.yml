@@ -1,0 +1,65 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: weekly
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: weekly
+    target-branch: '3.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    target-branch: '3.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    target-branch: '3.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
