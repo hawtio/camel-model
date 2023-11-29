@@ -14,6 +14,17 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
+    target-branch: '4.0.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: monthly
     target-branch: '3.x'
     reviewers:
       - tadayosi
@@ -31,32 +42,10 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
-  - package-ecosystem: npm
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '3.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - mmelko
-      - jsolovjo
-      - mmuzikar
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - mmelko
-      - jsolovjo
-      - mmuzikar
-  - package-ecosystem: github-actions
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '3.x'
     reviewers:
       - tadayosi
       - phantomjinx
