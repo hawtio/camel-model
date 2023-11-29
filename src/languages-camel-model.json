@@ -709,6 +709,15 @@
           "required": false,
           "deprecated": false
         },
+        "validate": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to validate the bean has the configured method.",
+          "title": "Validate",
+          "required": false,
+          "deprecated": false
+        },
         "resultType": {
           "kind": "attribute",
           "type": "string",

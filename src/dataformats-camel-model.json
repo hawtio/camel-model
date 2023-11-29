@@ -2105,7 +2105,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2977,7 +2977,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not the header must be read in the first line of the test document The default value is false",
+          "description": "Whether or not the header must be read in the first line of the test document. The default value is false",
           "title": "Header Extraction Enabled",
           "required": false,
           "deprecated": false
@@ -2993,7 +2993,7 @@
         "emptyValue": {
           "kind": "attribute",
           "type": "string",
-          "description": "The String representation of an empty value",
+          "description": "The String representation of an empty value.",
           "title": "Empty Value",
           "required": false,
           "deprecated": false
@@ -3001,7 +3001,7 @@
         "lineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "description": "The line separator of the files The default value is to use the JVM platform line separator",
+          "description": "The line separator of the files. The default value is to use the JVM platform line separator",
           "title": "Line Separator",
           "required": false,
           "deprecated": false
@@ -3009,8 +3009,7 @@
         "normalizedLineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "defaultValue": "\\n",
-          "description": "The normalized line separator of the files The default value is a new line character.",
+          "description": "The normalized line separator of the files. The default value is a new line character.",
           "title": "Normalized Line Separator",
           "required": false,
           "deprecated": false
@@ -3028,7 +3027,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at one. The default value is false",
+          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
           "title": "Lazy Load",
           "required": false,
           "deprecated": false
@@ -3133,7 +3132,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not the header must be read in the first line of the test document The default value is false",
+          "description": "Whether or not the header must be read in the first line of the test document. The default value is false",
           "title": "Header Extraction Enabled",
           "required": false,
           "deprecated": false
@@ -3149,7 +3148,7 @@
         "emptyValue": {
           "kind": "attribute",
           "type": "string",
-          "description": "The String representation of an empty value",
+          "description": "The String representation of an empty value.",
           "title": "Empty Value",
           "required": false,
           "deprecated": false
@@ -3157,7 +3156,7 @@
         "lineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "description": "The line separator of the files The default value is to use the JVM platform line separator",
+          "description": "The line separator of the files. The default value is to use the JVM platform line separator",
           "title": "Line Separator",
           "required": false,
           "deprecated": false
@@ -3165,8 +3164,7 @@
         "normalizedLineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "defaultValue": "\\n",
-          "description": "The normalized line separator of the files The default value is a new line character.",
+          "description": "The normalized line separator of the files. The default value is a new line character.",
           "title": "Normalized Line Separator",
           "required": false,
           "deprecated": false
@@ -3184,7 +3182,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at one. The default value is false",
+          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
           "title": "Lazy Load",
           "required": false,
           "deprecated": false
@@ -3297,7 +3295,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not the header must be read in the first line of the test document The default value is false",
+          "description": "Whether or not the header must be read in the first line of the test document. The default value is false",
           "title": "Header Extraction Enabled",
           "required": false,
           "deprecated": false
@@ -3313,7 +3311,7 @@
         "emptyValue": {
           "kind": "attribute",
           "type": "string",
-          "description": "The String representation of an empty value",
+          "description": "The String representation of an empty value.",
           "title": "Empty Value",
           "required": false,
           "deprecated": false
@@ -3321,7 +3319,7 @@
         "lineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "description": "The line separator of the files The default value is to use the JVM platform line separator",
+          "description": "The line separator of the files. The default value is to use the JVM platform line separator",
           "title": "Line Separator",
           "required": false,
           "deprecated": false
@@ -3329,8 +3327,7 @@
         "normalizedLineSeparator": {
           "kind": "attribute",
           "type": "string",
-          "defaultValue": "\\n",
-          "description": "The normalized line separator of the files The default value is a new line character.",
+          "description": "The normalized line separator of the files. The default value is a new line character.",
           "title": "Normalized Line Separator",
           "required": false,
           "deprecated": false
@@ -3348,7 +3345,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at one. The default value is false",
+          "description": "Whether the unmarshalling should produce an iterator that reads the lines on the fly or if all the lines must be read at once. The default value is false",
           "title": "Lazy Load",
           "required": false,
           "deprecated": false
@@ -3415,7 +3412,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,

@@ -237,6 +237,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -273,7 +282,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -391,6 +400,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -427,7 +445,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -545,6 +563,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -581,7 +608,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -958,6 +985,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -994,7 +1030,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1112,6 +1148,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -1148,7 +1193,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1266,6 +1311,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -1302,7 +1356,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1535,6 +1589,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "apiDocs": {
           "kind": "attribute",
           "type": "boolean",
@@ -1578,7 +1641,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1671,6 +1734,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "component": {
           "kind": "attribute",
           "type": "string",
@@ -1689,7 +1761,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1888,6 +1960,15 @@
           "required": false,
           "deprecated": false
         },
+        "enableNoContentResponse": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "title": "Enable No Content Response",
+          "required": false,
+          "deprecated": false
+        },
         "inlineRoutes": {
           "kind": "attribute",
           "type": "boolean",
@@ -2039,7 +2120,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,

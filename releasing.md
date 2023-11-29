@@ -8,6 +8,7 @@ Before performing a release, first ensure that the project is ready for release 
 
 ```console
 yarn install
+yarn generate
 yarn build
 yarn test
 ```

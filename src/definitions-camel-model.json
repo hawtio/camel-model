@@ -315,7 +315,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -447,82 +447,9 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "beans": {
-      "type": "object",
-      "title": "Beans",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "A grouping POJO (and related XML root element) that\u0027s historically associated with entire application (or its distinguished fragment). This class is not meant to be used with Camel Java DSL, but it\u0027s needed to generate XML Schema and MX parser methods.",
-      "properties": {
-        "component-scan": {
-          "kind": "element",
-          "type": "array",
-          "description": "Component scanning definition(s). But unlike package/packageScan/contextScan, we\u0027re not scanning only for org.apache.camel.builder.RouteBuilder.",
-          "title": "Component-scan",
-          "required": false,
-          "deprecated": false
-        },
-        "bean": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Bean",
-          "required": false,
-          "deprecated": false
-        },
-        "restConfiguration": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Rest Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "rest": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Rest",
-          "required": false,
-          "deprecated": false
-        },
-        "routeConfiguration": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "routeTemplate": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route Template",
-          "required": false,
-          "deprecated": false
-        },
-        "templatedRoute": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Templated Route",
-          "required": false,
-          "deprecated": false
-        },
-        "route": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route",
           "required": false,
           "deprecated": false
         }
@@ -621,79 +548,6 @@
         }
       }
     },
-    "camel": {
-      "type": "object",
-      "title": "Camel",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "If beans reminds Spring application too much, we can use camel.",
-      "properties": {
-        "component-scan": {
-          "kind": "element",
-          "type": "array",
-          "description": "Component scanning definition(s). But unlike package/packageScan/contextScan, we\u0027re not scanning only for org.apache.camel.builder.RouteBuilder.",
-          "title": "Component-scan",
-          "required": false,
-          "deprecated": false
-        },
-        "bean": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Bean",
-          "required": false,
-          "deprecated": false
-        },
-        "restConfiguration": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Rest Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "rest": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Rest",
-          "required": false,
-          "deprecated": false
-        },
-        "routeConfiguration": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "routeTemplate": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route Template",
-          "required": false,
-          "deprecated": false
-        },
-        "templatedRoute": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Templated Route",
-          "required": false,
-          "deprecated": false
-        },
-        "route": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Route",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
     "choice": {
       "type": "object",
       "title": "Choice",
@@ -748,7 +602,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -825,7 +679,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -909,7 +763,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1169,7 +1023,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1262,6 +1116,40 @@
           "required": false,
           "deprecated": false
         },
+        "redeliveryPolicy": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the redelivery settings",
+          "title": "Redelivery Policy",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalMessage": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Message",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalBody": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Body",
+          "required": false,
+          "deprecated": false
+        },
+        "redeliveryPolicyRef": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
+          "title": "Redelivery Policy Ref",
+          "required": false,
+          "deprecated": false
+        },
         "loggerRef": {
           "kind": "attribute",
           "type": "string",
@@ -1282,7 +1170,7 @@
             "ERROR",
             "OFF"
           ],
-          "description": "Logging level to use when using the logging error handler type.",
+          "description": "Logging level to use by error handler",
           "title": "Level",
           "required": false,
           "deprecated": false
@@ -1290,26 +1178,8 @@
         "logName": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of the logger to use for the logging error handler",
+          "description": "Name of the logger to use by the error handler",
           "title": "Log Name",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalMessage": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Message",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalBody": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Body",
           "required": false,
           "deprecated": false
         },
@@ -1345,27 +1215,11 @@
           "required": false,
           "deprecated": false
         },
-        "redeliveryPolicyRef": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
-          "title": "Redelivery Policy Ref",
-          "required": false,
-          "deprecated": false
-        },
         "executorServiceRef": {
           "kind": "attribute",
           "type": "object",
           "description": "Sets a reference to a thread pool to be used by the error handler",
           "title": "Executor Service Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "redeliveryPolicy": {
-          "kind": "element",
-          "type": "object",
-          "description": "Sets the redelivery settings",
-          "title": "Redelivery Policy",
           "required": false,
           "deprecated": false
         },
@@ -1386,6 +1240,40 @@
       "icon": "generic24.png",
       "description": "The default error handler.",
       "properties": {
+        "redeliveryPolicy": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the redelivery settings",
+          "title": "Redelivery Policy",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalMessage": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Message",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalBody": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Body",
+          "required": false,
+          "deprecated": false
+        },
+        "redeliveryPolicyRef": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
+          "title": "Redelivery Policy Ref",
+          "required": false,
+          "deprecated": false
+        },
         "loggerRef": {
           "kind": "attribute",
           "type": "string",
@@ -1406,7 +1294,7 @@
             "ERROR",
             "OFF"
           ],
-          "description": "Logging level to use when using the logging error handler type.",
+          "description": "Logging level to use by error handler",
           "title": "Level",
           "required": false,
           "deprecated": false
@@ -1414,26 +1302,8 @@
         "logName": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of the logger to use for the logging error handler",
+          "description": "Name of the logger to use by the error handler",
           "title": "Log Name",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalMessage": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Message",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalBody": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Body",
           "required": false,
           "deprecated": false
         },
@@ -1469,27 +1339,11 @@
           "required": false,
           "deprecated": false
         },
-        "redeliveryPolicyRef": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
-          "title": "Redelivery Policy Ref",
-          "required": false,
-          "deprecated": false
-        },
         "executorServiceRef": {
           "kind": "attribute",
           "type": "object",
           "description": "Sets a reference to a thread pool to be used by the error handler",
           "title": "Executor Service Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "redeliveryPolicy": {
-          "kind": "element",
-          "type": "object",
-          "description": "Sets the redelivery settings",
-          "title": "Redelivery Policy",
           "required": false,
           "deprecated": false
         },
@@ -1591,7 +1445,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1691,7 +1545,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1733,7 +1587,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1775,7 +1629,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1846,7 +1700,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -1959,7 +1813,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2232,7 +2086,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2268,7 +2122,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2432,7 +2286,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2474,7 +2328,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2516,7 +2370,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2566,7 +2420,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2632,7 +2486,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -2672,6 +2526,40 @@
           "required": false,
           "deprecated": false
         },
+        "redeliveryPolicy": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the redelivery settings",
+          "title": "Redelivery Policy",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalMessage": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Message",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalBody": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Body",
+          "required": false,
+          "deprecated": false
+        },
+        "redeliveryPolicyRef": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
+          "title": "Redelivery Policy Ref",
+          "required": false,
+          "deprecated": false
+        },
         "loggerRef": {
           "kind": "attribute",
           "type": "string",
@@ -2692,7 +2580,7 @@
             "ERROR",
             "OFF"
           ],
-          "description": "Logging level to use when using the logging error handler type.",
+          "description": "Logging level to use by error handler",
           "title": "Level",
           "required": false,
           "deprecated": false
@@ -2700,26 +2588,8 @@
         "logName": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of the logger to use for the logging error handler",
+          "description": "Name of the logger to use by the error handler",
           "title": "Log Name",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalMessage": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Message",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalBody": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Body",
           "required": false,
           "deprecated": false
         },
@@ -2755,27 +2625,11 @@
           "required": false,
           "deprecated": false
         },
-        "redeliveryPolicyRef": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
-          "title": "Redelivery Policy Ref",
-          "required": false,
-          "deprecated": false
-        },
         "executorServiceRef": {
           "kind": "attribute",
           "type": "object",
           "description": "Sets a reference to a thread pool to be used by the error handler",
           "title": "Executor Service Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "redeliveryPolicy": {
-          "kind": "element",
-          "type": "object",
-          "description": "Sets the redelivery settings",
-          "title": "Redelivery Policy",
           "required": false,
           "deprecated": false
         },
@@ -2834,7 +2688,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3080,7 +2934,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3191,7 +3045,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3271,7 +3125,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3420,7 +3274,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3544,7 +3398,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3676,7 +3530,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3730,7 +3584,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3828,7 +3682,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3870,7 +3724,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -3981,7 +3835,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4026,7 +3880,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4068,7 +3922,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4172,7 +4026,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4217,7 +4071,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4235,7 +4089,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Property key",
+          "description": "The name of the property",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -4243,7 +4097,7 @@
         "value": {
           "kind": "attribute",
           "type": "string",
-          "description": "Property value",
+          "description": "The property value.",
           "title": "Value",
           "required": true,
           "deprecated": false
@@ -4462,7 +4316,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4762,7 +4616,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4815,7 +4669,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4868,7 +4722,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4913,7 +4767,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -4974,7 +4828,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5246,7 +5100,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5309,7 +5163,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5509,7 +5363,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5615,7 +5469,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5646,7 +5500,24 @@
       "group": "configuration",
       "icon": "generic24.png",
       "description": "A series of route configurations",
-      "properties": {}
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        }
+      }
     },
     "routeContextRef": {
       "type": "object",
@@ -5706,7 +5577,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5748,7 +5619,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5781,7 +5652,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5852,7 +5723,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -5967,7 +5838,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6021,7 +5892,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6066,7 +5937,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6220,7 +6091,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6501,7 +6372,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6547,7 +6418,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6600,7 +6471,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6653,7 +6524,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6706,7 +6577,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6872,7 +6743,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -6912,6 +6783,40 @@
           "required": false,
           "deprecated": false
         },
+        "redeliveryPolicy": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the redelivery settings",
+          "title": "Redelivery Policy",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalMessage": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Message",
+          "required": false,
+          "deprecated": false
+        },
+        "useOriginalBody": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
+          "title": "Use Original Body",
+          "required": false,
+          "deprecated": false
+        },
+        "redeliveryPolicyRef": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
+          "title": "Redelivery Policy Ref",
+          "required": false,
+          "deprecated": false
+        },
         "loggerRef": {
           "kind": "attribute",
           "type": "string",
@@ -6932,7 +6837,7 @@
             "ERROR",
             "OFF"
           ],
-          "description": "Logging level to use when using the logging error handler type.",
+          "description": "Logging level to use by error handler",
           "title": "Level",
           "required": false,
           "deprecated": false
@@ -6940,26 +6845,8 @@
         "logName": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of the logger to use for the logging error handler",
+          "description": "Name of the logger to use by the error handler",
           "title": "Log Name",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalMessage": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message (original body and headers) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Message",
-          "required": false,
-          "deprecated": false
-        },
-        "useOriginalBody": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Will use the original input org.apache.camel.Message body (original body only) when an org.apache.camel.Exchange is moved to the dead letter queue. Notice: this only applies when all redeliveries attempt have failed and the org.apache.camel.Exchange is doomed for failure. Instead of using the current inprogress org.apache.camel.Exchange IN message we use the original IN message instead. This allows you to store the original input in the dead letter queue instead of the inprogress snapshot of the IN message. For instance if you route transform the IN body during routing and then failed. With the original exchange store in the dead letter queue it might be easier to manually re submit the org.apache.camel.Exchange again as the IN message is the same as when Camel received it. So you should be able to send the org.apache.camel.Exchange to the same input. The difference between useOriginalMessage and useOriginalBody is that the former includes both the original body and headers, where as the latter only includes the original body. You can use the latter to enrich the message with custom headers and include the original message body. The former wont let you do this, as its using the original message body and headers as they are. You cannot enable both useOriginalMessage and useOriginalBody. The original input message is defensively copied, and the copied message body is converted to org.apache.camel.StreamCache if possible (stream caching is enabled, can be disabled globally or on the original route), to ensure the body can be read when the original message is being used later. If the body is converted to org.apache.camel.StreamCache then the message body on the current org.apache.camel.Exchange is replaced with the org.apache.camel.StreamCache body. If the body is not converted to org.apache.camel.StreamCache then the body will not be able to re-read when accessed later. Important: The original input means the input message that are bounded by the current org.apache.camel.spi.UnitOfWork . An unit of work typically spans one route, or multiple routes if they are connected using internal endpoints such as direct or seda. When messages is passed via external endpoints such as JMS or HTTP then the consumer will create a new unit of work, with the message it received as input as the original input. Also some EIP patterns such as splitter, multicast, will create a new unit of work boundary for the messages in their sub-route (eg the splitted message); however these EIPs have an option named shareUnitOfWork which allows to combine with the parent unit of work in regard to error handling and therefore use the parent original message. By default this feature is off.",
-          "title": "Use Original Body",
           "required": false,
           "deprecated": false
         },
@@ -6995,27 +6882,11 @@
           "required": false,
           "deprecated": false
         },
-        "redeliveryPolicyRef": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "Sets a reference to a RedeliveryPolicy to be used for redelivery settings.",
-          "title": "Redelivery Policy Ref",
-          "required": false,
-          "deprecated": false
-        },
         "executorServiceRef": {
           "kind": "attribute",
           "type": "object",
           "description": "Sets a reference to a thread pool to be used by the error handler",
           "title": "Executor Service Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "redeliveryPolicy": {
-          "kind": "element",
-          "type": "object",
-          "description": "Sets the redelivery settings",
-          "title": "Redelivery Policy",
           "required": false,
           "deprecated": false
         },
@@ -7099,7 +6970,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7164,7 +7035,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7255,16 +7126,16 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "What type to use for creating the bean. Can be one of: #class,#type,bean,groovy,joor,language,mvel,ognl. #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean The others are scripting languages that gives more power to create the bean with an inlined code in the script section, such as using groovy.",
+          "description": "What type to use for creating the bean (FQN classname). Can be prefixed with: #class or #type #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean",
           "title": "Type",
           "required": true,
           "deprecated": false
         },
-        "beanType": {
+        "scriptLanguage": {
           "kind": "attribute",
           "type": "string",
-          "description": "To set the type (fully qualified class name) of the returned bean created by the script. Knowing the type of the bean can be needed when dependency injection by type is in use, or when looking in registry via class type.",
-          "title": "Bean Type",
+          "description": "The script language to use when using inlined script for creating the bean, such as groovy, java, javascript etc.",
+          "title": "Script Language",
           "required": false,
           "deprecated": false
         },
@@ -7403,16 +7274,16 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "What type to use for creating the bean. Can be one of: #class,#type,bean,groovy,joor,language,mvel,ognl. #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean The others are scripting languages that gives more power to create the bean with an inlined code in the script section, such as using groovy.",
+          "description": "What type to use for creating the bean (FQN classname). Can be prefixed with: #class or #type #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean",
           "title": "Type",
           "required": true,
           "deprecated": false
         },
-        "beanType": {
+        "scriptLanguage": {
           "kind": "attribute",
           "type": "string",
-          "description": "To set the type (fully qualified class name) of the returned bean created by the script. Knowing the type of the bean can be needed when dependency injection by type is in use, or when looking in registry via class type.",
-          "title": "Bean Type",
+          "description": "The script language to use when using inlined script for creating the bean, such as groovy, java, javascript etc.",
+          "title": "Script Language",
           "required": false,
           "deprecated": false
         },
@@ -7484,7 +7355,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7588,7 +7459,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7721,7 +7592,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7818,7 +7689,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7876,7 +7747,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -7933,7 +7804,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8025,7 +7896,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8087,7 +7958,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8148,7 +8019,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8218,7 +8089,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8351,7 +8222,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8401,7 +8272,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
@@ -8527,7 +8398,7 @@
         },
         "description": {
           "kind": "element",
-          "type": "object",
+          "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
