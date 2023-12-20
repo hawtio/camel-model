@@ -7,6 +7,14 @@
       "icon": "generic24.png",
       "description": "A fixed value set only once during the route startup.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -29,14 +37,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -49,6 +49,14 @@
       "icon": "generic24.png",
       "description": "Evaluate a compiled simple expression.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -73,14 +81,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -91,6 +91,14 @@
       "icon": "generic24.png",
       "description": "To use DataSonnet scripts for message transformations.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -131,14 +139,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -149,6 +149,14 @@
       "icon": "generic24.png",
       "description": "Gets a property from the Exchange.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -163,14 +171,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -183,6 +183,14 @@
       "icon": "generic24.png",
       "description": "A useful base class for an expression",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -199,14 +207,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -217,6 +217,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a Groovy script.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -241,14 +249,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -259,6 +259,14 @@
       "icon": "generic24.png",
       "description": "Gets a header from the Exchange.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -275,14 +283,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -293,6 +293,14 @@
       "icon": "generic24.png",
       "description": "Get the value of a HL7 message field specified by terse location specification syntax.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -333,7 +341,16 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
+        }
+      }
+    },
+    "java": {
+      "type": "object",
+      "title": "Java",
+      "group": "language",
+      "icon": "generic24.png",
+      "description": "Evaluates a Java (Java compiled once at runtime) expression.",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -341,16 +358,7 @@
           "title": "Id",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "joor": {
-      "type": "object",
-      "title": "jOOR",
-      "group": "language",
-      "icon": "generic24.png",
-      "description": "Evaluates a jOOR (Java compiled once at runtime) expression.",
-      "properties": {
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -393,12 +401,64 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
+        }
+      }
+    },
+    "joor": {
+      "type": "object",
+      "title": "jOOR",
+      "group": "language",
+      "icon": "generic24.png",
+      "description": "Evaluates a jOOR (Java compiled once at runtime) expression.",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "preCompile": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the expression should be pre compiled once during initialization phase. If this is turned off, then the expression is reloaded and compiled on each evaluation.",
+          "title": "Pre Compile",
+          "required": false,
+          "deprecated": false
+        },
+        "singleQuotes": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether single quotes can be used as replacement for double quotes. This is convenient when you need to work with strings inside strings.",
+          "title": "Single Quotes",
+          "required": false,
+          "deprecated": false
+        },
+        "resultType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
+          "required": false,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "title": "Trim",
           "required": false,
           "deprecated": false
         }
@@ -411,6 +471,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a JQ expression against a JSON message body.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -451,14 +519,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -469,6 +529,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a JavaScript expression.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -493,14 +561,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -511,6 +571,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a JSONPath expression against a JSON message body.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -611,14 +679,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -629,6 +689,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a custom language.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "language": {
           "kind": "attribute",
           "type": "string",
@@ -653,14 +721,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -671,6 +731,14 @@
       "icon": "generic24.png",
       "description": "Calls a Java bean method.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "ref": {
           "kind": "attribute",
           "type": "string",
@@ -734,14 +802,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -752,6 +812,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a MVEL template.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -774,14 +842,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -794,6 +854,14 @@
       "icon": "generic24.png",
       "description": "Evaluates an OGNL expression (Apache Commons OGNL).",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -816,14 +884,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -836,6 +896,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a Python expression.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -858,14 +926,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -878,6 +938,14 @@
       "icon": "generic24.png",
       "description": "Uses an existing expression from the registry.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -900,14 +968,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -920,6 +980,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a Camel simple expression.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -942,14 +1010,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
@@ -962,6 +1022,14 @@
       "icon": "generic24.png",
       "description": "Evaluates a Spring expression (SpEL).",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -986,14 +1054,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1004,6 +1064,14 @@
       "icon": "generic24.png",
       "description": "Tokenize text payloads using delimiter patterns.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "token": {
           "kind": "attribute",
           "type": "string",
@@ -1104,14 +1172,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1122,6 +1182,14 @@
       "icon": "generic24.png",
       "description": "Evaluates an XPath expression against an XML payload.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -1238,14 +1306,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1256,6 +1316,14 @@
       "icon": "generic24.png",
       "description": "Evaluates an XQuery expressions against an XML payload.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -1320,14 +1388,6 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1338,6 +1398,14 @@
       "icon": "generic24.png",
       "description": "Tokenize XML payloads.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
@@ -1399,14 +1467,6 @@
           "defaultValue": "true",
           "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
           "title": "Trim",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }

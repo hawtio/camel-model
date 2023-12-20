@@ -10,6 +10,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "A short description for security scheme.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -52,14 +60,6 @@
           "title": "In Cookie",
           "required": false,
           "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "A short description for security scheme.",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -73,20 +73,20 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "key": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Key used to refer to this security definition",
-          "title": "Key",
-          "required": true,
-          "deprecated": false
-        },
         "description": {
           "kind": "attribute",
           "type": "string",
           "description": "A short description for security scheme.",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "key": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Key used to refer to this security definition",
+          "title": "Key",
+          "required": true,
           "deprecated": false
         }
       }
@@ -101,6 +101,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "A short description for security scheme.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "key": {
           "kind": "attribute",
           "type": "string",
@@ -116,14 +124,6 @@
           "title": "Format",
           "required": false,
           "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "A short description for security scheme.",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -137,6 +137,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -166,15 +191,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -269,22 +285,6 @@
           "type": "string",
           "description": "Sets the id of the route",
           "title": "Route Id",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -300,6 +300,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -329,15 +354,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -432,22 +448,6 @@
           "type": "string",
           "description": "Sets the id of the route",
           "title": "Route Id",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -463,6 +463,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -492,15 +517,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -597,22 +613,6 @@
           "title": "Route Id",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -626,20 +626,20 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "key": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Key used to refer to this security definition",
-          "title": "Key",
-          "required": true,
-          "deprecated": false
-        },
         "description": {
           "kind": "attribute",
           "type": "string",
           "description": "A short description for security scheme.",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "key": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Key used to refer to this security definition",
+          "title": "Key",
+          "required": true,
           "deprecated": false
         }
       }
@@ -654,6 +654,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "A short description for security scheme.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "key": {
           "kind": "attribute",
           "type": "string",
@@ -709,14 +717,6 @@
           "title": "Scopes",
           "required": false,
           "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "A short description for security scheme.",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -730,6 +730,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "A short description for security scheme.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "key": {
           "kind": "attribute",
           "type": "string",
@@ -745,14 +753,6 @@
           "title": "Url",
           "required": true,
           "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "A short description for security scheme.",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -766,6 +766,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the parameter description.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -864,14 +872,6 @@
           "title": "Examples",
           "required": false,
           "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the parameter description.",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -885,6 +885,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -914,15 +939,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -1017,22 +1033,6 @@
           "type": "string",
           "description": "Sets the id of the route",
           "title": "Route Id",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -1048,6 +1048,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -1077,15 +1102,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -1180,22 +1196,6 @@
           "type": "string",
           "description": "Sets the id of the route",
           "title": "Route Id",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -1211,6 +1211,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -1240,15 +1265,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -1345,22 +1361,6 @@
           "title": "Route Id",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1374,6 +1374,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Description of the parameter.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -1437,14 +1445,6 @@
           "type": "string",
           "description": "Sets the example",
           "title": "Example",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Description of the parameter.",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -1513,6 +1513,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "path": {
           "kind": "attribute",
           "type": "string",
@@ -1534,15 +1559,6 @@
           "type": "string",
           "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
           "title": "Produces",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this REST service from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
           "required": false,
           "deprecated": false
         },
@@ -1630,7 +1646,19 @@
           "title": "Security Requirements",
           "required": false,
           "deprecated": false
-        },
+        }
+      }
+    },
+    "restBinding": {
+      "type": "object",
+      "title": "Rest Binding",
+      "group": "rest",
+      "icon": "generic24.png",
+      "description": "To configure rest binding",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1646,19 +1674,7 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "restBinding": {
-      "type": "object",
-      "title": "Rest Binding",
-      "group": "rest",
-      "icon": "generic24.png",
-      "description": "To configure rest binding",
-      "acceptInput": "false",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
         "consumes": {
           "kind": "attribute",
           "type": "string",
@@ -1748,22 +1764,6 @@
           "type": "string",
           "description": "Sets the component name that this definition will apply to",
           "title": "Component",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -2102,14 +2102,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "rests": {
-          "kind": "element",
-          "type": "array",
-          "description": "Contains the rest services defined using the rest-dsl",
-          "title": "Rests",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2123,6 +2115,14 @@
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "rests": {
+          "kind": "element",
+          "type": "array",
+          "description": "Contains the rest services defined using the rest-dsl",
+          "title": "Rests",
           "required": false,
           "deprecated": false
         }

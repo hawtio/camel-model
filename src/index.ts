@@ -4,6 +4,6 @@ import { dataformats } from './dataformats-camel-model.json'
 import { languages } from './languages-camel-model.json'
 import { components } from './components-camel-model.json'
 
-const apacheCamelModelVersion = '4.2.0'
+const apacheCamelModelVersion = '4.3.0'
 
 export { definitions, rests, dataformats, languages, components, apacheCamelModelVersion }

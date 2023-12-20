@@ -3560,6 +3560,211 @@
         }
       }
     },
+    "aws-config": {
+      "type": "object",
+      "title": "AWS Config Service",
+      "group": "cloud,management",
+      "icon": "generic24.png",
+      "description": "Manage AWS Config service.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "putConfigRule",
+            "removeConfigRule",
+            "describeRuleCompliance",
+            "putConformancePack",
+            "removeConformancePack"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overidding the endpoint. This option needs to be used in combination with uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "ap-south-2",
+            "ap-south-1",
+            "eu-south-1",
+            "eu-south-2",
+            "us-gov-east-1",
+            "me-central-1",
+            "il-central-1",
+            "ca-central-1",
+            "eu-central-1",
+            "us-iso-west-1",
+            "eu-central-2",
+            "us-west-1",
+            "us-west-2",
+            "af-south-1",
+            "eu-north-1",
+            "eu-west-3",
+            "eu-west-2",
+            "eu-west-1",
+            "ap-northeast-3",
+            "ap-northeast-2",
+            "ap-northeast-1",
+            "me-south-1",
+            "sa-east-1",
+            "ap-east-1",
+            "cn-north-1",
+            "us-gov-west-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "us-iso-east-1",
+            "ap-southeast-3",
+            "ap-southeast-4",
+            "us-east-1",
+            "us-east-2",
+            "cn-northwest-1",
+            "us-isob-east-1",
+            "aws-global",
+            "aws-cn-global",
+            "aws-us-gov-global",
+            "aws-iso-global",
+            "aws-iso-b-global"
+          ],
+          "description": "The region in which Config client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "configClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Amazon AWS Config Client instance",
+          "title": "Config Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Config client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Config client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Config client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Config client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Config client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "aws-secrets-manager": {
       "type": "object",
       "title": "AWS Secrets Manager",
@@ -11260,6 +11465,29 @@
           "required": false,
           "deprecated": false
         },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
+          "required": false,
+          "deprecated": false
+        },
         "fileExist": {
           "kind": "parameter",
           "type": "object",
@@ -12372,7 +12600,8 @@
           "enum": [
             "SHARED_ACCOUNT_KEY",
             "SHARED_KEY_CREDENTIAL",
-            "AZURE_IDENTITY"
+            "AZURE_IDENTITY",
+            "AZURE_SAS"
           ],
           "description": "Determines the credential strategy to adopt",
           "title": "Credential Type",
@@ -16155,6 +16384,7 @@
             "groovy",
             "header",
             "hl7terser",
+            "java",
             "joor",
             "jq",
             "jsonpath",
@@ -24894,6 +25124,141 @@
         }
       }
     },
+    "elasticsearch-rest-client": {
+      "type": "object",
+      "title": "Elasticsearch Low level Rest Client",
+      "group": "search",
+      "icon": "generic24.png",
+      "description": "Perform queries and other operations on Elasticsearch or OpenSearch (uses low-level client).",
+      "properties": {
+        "clusterName": {
+          "kind": "path",
+          "type": "string",
+          "description": "Cluster Name",
+          "title": "Cluster Name",
+          "required": true,
+          "deprecated": false
+        },
+        "connectionTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "Connection timeout",
+          "title": "Connection Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "hostAddressesList": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "List of host Addresses, multiple hosts can be separated by comma.",
+          "title": "Host Addresses List",
+          "required": false,
+          "deprecated": false
+        },
+        "indexName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Index Name",
+          "title": "Index Name",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "INDEX_OR_UPDATE",
+            "GET_BY_ID",
+            "DELETE",
+            "CREATE_INDEX",
+            "DELETE_INDEX",
+            "SEARCH"
+          ],
+          "description": "Operation",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "socketTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "Socket timeout",
+          "title": "Socket Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "enableSniffer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enabling Sniffer",
+          "title": "Enable Sniffer",
+          "required": false,
+          "deprecated": false
+        },
+        "restClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Rest Client of type org.elasticsearch.client.RestClient. This is only for advanced usage",
+          "title": "Rest Client",
+          "required": false,
+          "deprecated": false
+        },
+        "sniffAfterFailureDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "60000",
+          "description": "Sniffer after failure delay (in millis)",
+          "title": "Sniff After Failure Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "snifferInterval": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "60000",
+          "description": "Sniffer interval (in millis)",
+          "title": "Sniffer Interval",
+          "required": false,
+          "deprecated": false
+        },
+        "certificatePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Certificate Path",
+          "title": "Certificate Path",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "user": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Username",
+          "title": "User",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "etcd3": {
       "type": "object",
       "title": "Etcd v3",
@@ -26804,6 +27169,29 @@
           "required": false,
           "deprecated": false
         },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
+          "required": false,
+          "deprecated": false
+        },
         "fileExist": {
           "kind": "parameter",
           "type": "object",
@@ -28368,6 +28756,29 @@
           "required": false,
           "deprecated": false
         },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
+          "required": false,
+          "deprecated": false
+        },
         "fileExist": {
           "kind": "parameter",
           "type": "object",
@@ -29399,6 +29810,29 @@
           "defaultValue": "true",
           "description": "Whether to allow using LIST command when downloading a file. Default is true. In some use cases you may want to download a specific file and are not allowed to use the LIST command, and therefore you can set this option to false. Notice when using this option, then the specific file to download does not include meta-data information such as file size, timestamp, permissions etc, because those information is only possible to retrieve when LIST command is in use.",
           "title": "Use List",
+          "required": false,
+          "deprecated": false
+        },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
           "required": false,
           "deprecated": false
         },
@@ -42785,7 +43219,7 @@
       "title": "Jetty",
       "group": "http",
       "icon": "generic24.png",
-      "description": "Expose HTTP endpoints using Jetty 11.",
+      "description": "Expose HTTP endpoints using Jetty 12.",
       "properties": {
         "httpUri": {
           "kind": "path",
@@ -42999,6 +43433,22 @@
           "required": false,
           "deprecated": false
         },
+        "fileSizeThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The size threshold after which files will be written to disk for multipart/form-data requests. By default the files are not written to disk",
+          "title": "File Size Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "filesLocation": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The directory location where files will be store for multipart/form-data requests. By default the files are written in the system temporary folder",
+          "title": "Files Location",
+          "required": false,
+          "deprecated": false
+        },
         "filterInitParameters": {
           "kind": "parameter",
           "type": "object",
@@ -43020,6 +43470,15 @@
           "type": "array",
           "description": "Specifies a comma-delimited set of Handler instances to lookup in your Registry. These handlers are added to the Jetty servlet context (for example, to add security). Important: You can not use different handlers with different Jetty endpoints using the same port number. The handlers is associated to the port number. If you need different handlers, then use different port numbers.",
           "title": "Handlers",
+          "required": false,
+          "deprecated": false
+        },
+        "idleTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "The max idle time (in milli seconds) is applied to an HTTP request for IO operations and delayed dispatch. Idle time 0 implies an infinite timeout, -1 (default) implies no HTTP channel timeout and the connection timeout is used instead.",
+          "title": "Idle Timeout",
           "required": false,
           "deprecated": false
         },
@@ -43047,6 +43506,22 @@
           "defaultValue": "true",
           "description": "If this option is true then IN exchange Headers of the exchange will be mapped to HTTP headers. Setting this to false will avoid the HTTP Headers mapping.",
           "title": "Map Http Message Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "maxFileSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The maximum size allowed for uploaded files. -1 means no limit",
+          "title": "Max File Size",
+          "required": false,
+          "deprecated": false
+        },
+        "maxRequestSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The maximum size allowed for multipart/form-data requests. -1 means no limit",
+          "title": "Max Request Size",
           "required": false,
           "deprecated": false
         },
@@ -44620,15 +45095,6 @@
           "required": true,
           "deprecated": false
         },
-        "allowContextMapAll": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Sets whether the context map should allow access to all details. By default only the message body and headers can be accessed. This option can be enabled for full access to the current Exchange and CamelContext. Doing so impose a potential security risk as this opens access to the full power of CamelContext API.",
-          "title": "Allow Context Map All",
-          "required": false,
-          "deprecated": false
-        },
         "allowTemplateFromHeader": {
           "kind": "parameter",
           "type": "boolean",
@@ -46167,7 +46633,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "This options controls what happens when a consumer is processing an exchange and it fails. If the option is false then the consumer continues to the next message and processes it. If the option is true then the consumer breaks out, and will seek back to offset of the message that caused a failure, and then re-attempt to process this message. However this can lead to endless processing of the same message if its bound to fail every time, eg a poison message. Therefore it is recommended to deal with that for example by using Camel\u0027s error handler.",
+          "description": "This options controls what happens when a consumer is processing an exchange and it fails. If the option is false then the consumer continues to the next message and processes it. If the option is true then the consumer breaks out. Using the default NoopCommitManager will cause the consumer to not commit the offset so that the message is re-attempted. The consumer should use the KafkaManualCommit to determine the best way to handle the message. Using either the SynchCommitManager or the AsynchCommitManager the consumer will seek back to the offset of the message that caused a failure, and then re-attempt to process this message. However this can lead to endless processing of the same message if its bound to fail every time, eg a poison message. Therefore its recommended to deal with that for example by using Camel\u0027s error handler.",
           "title": "Break On First Error",
           "required": false,
           "deprecated": false
@@ -47571,6 +48037,193 @@
         }
       }
     },
+    "kubernetes-cronjob": {
+      "type": "object",
+      "title": "Kubernetes Cronjob",
+      "group": "container,cloud",
+      "icon": "generic24.png",
+      "description": "Perform operations on Kubernetes CronJob.",
+      "properties": {
+        "masterUrl": {
+          "kind": "path",
+          "type": "string",
+          "description": "Kubernetes Master url",
+          "title": "Master Url",
+          "required": true,
+          "deprecated": false
+        },
+        "apiVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kubernetes API Version to use",
+          "title": "Api Version",
+          "required": false,
+          "deprecated": false
+        },
+        "dnsDomain": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The dns domain, used for ServiceCall EIP",
+          "title": "Dns Domain",
+          "required": false,
+          "deprecated": false
+        },
+        "kubernetesClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Default KubernetesClient to use if provided",
+          "title": "Kubernetes Client",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The namespace",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Producer operation to do on Kubernetes",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "portName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The port name, used for ServiceCall EIP",
+          "title": "Port Name",
+          "required": false,
+          "deprecated": false
+        },
+        "portProtocol": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "tcp",
+          "description": "The port protocol, used for ServiceCall EIP",
+          "title": "Port Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "connectionTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Connection timeout in milliseconds to use when making requests to the Kubernetes API server.",
+          "title": "Connection Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "caCertData": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The CA Cert Data",
+          "title": "Ca Cert Data",
+          "required": false,
+          "deprecated": false
+        },
+        "caCertFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The CA Cert File",
+          "title": "Ca Cert File",
+          "required": false,
+          "deprecated": false
+        },
+        "clientCertData": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Client Cert Data",
+          "title": "Client Cert Data",
+          "required": false,
+          "deprecated": false
+        },
+        "clientCertFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Client Cert File",
+          "title": "Client Cert File",
+          "required": false,
+          "deprecated": false
+        },
+        "clientKeyAlgo": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Key Algorithm used by the client",
+          "title": "Client Key Algo",
+          "required": false,
+          "deprecated": false
+        },
+        "clientKeyData": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Client Key data",
+          "title": "Client Key Data",
+          "required": false,
+          "deprecated": false
+        },
+        "clientKeyFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Client Key file",
+          "title": "Client Key File",
+          "required": false,
+          "deprecated": false
+        },
+        "clientKeyPassphrase": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Client Key Passphrase",
+          "title": "Client Key Passphrase",
+          "required": false,
+          "deprecated": false
+        },
+        "oauthToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Auth Token",
+          "title": "Oauth Token",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password to connect to Kubernetes",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "trustCerts": {
+          "kind": "parameter",
+          "type": "boolean",
+          "description": "Define if the certs we used are trusted anyway or not",
+          "title": "Trust Certs",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Username to connect to Kubernetes",
+          "title": "Username",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "kubernetes-custom-resources": {
       "type": "object",
       "title": "Kubernetes Custom Resources",
@@ -48774,6 +49427,14 @@
           "required": false,
           "deprecated": false
         },
+        "operation": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Producer operation to do on Kubernetes",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
         "portName": {
           "kind": "parameter",
           "type": "string",
@@ -48788,116 +49449,6 @@
           "defaultValue": "tcp",
           "description": "The port protocol, used for ServiceCall EIP",
           "title": "Port Protocol",
-          "required": false,
-          "deprecated": false
-        },
-        "crdGroup": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer CRD Resource Group we would like to watch",
-          "title": "Crd Group",
-          "required": false,
-          "deprecated": false
-        },
-        "crdName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer CRD Resource name we would like to watch",
-          "title": "Crd Name",
-          "required": false,
-          "deprecated": false
-        },
-        "crdPlural": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer CRD Resource Plural we would like to watch",
-          "title": "Crd Plural",
-          "required": false,
-          "deprecated": false
-        },
-        "crdScope": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer CRD Resource Scope we would like to watch",
-          "title": "Crd Scope",
-          "required": false,
-          "deprecated": false
-        },
-        "crdVersion": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer CRD Resource Version we would like to watch",
-          "title": "Crd Version",
-          "required": false,
-          "deprecated": false
-        },
-        "labelKey": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer Label key when watching at some resources",
-          "title": "Label Key",
-          "required": false,
-          "deprecated": false
-        },
-        "labelValue": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer Label value when watching at some resources",
-          "title": "Label Value",
-          "required": false,
-          "deprecated": false
-        },
-        "poolSize": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "1",
-          "description": "The Consumer pool size",
-          "title": "Pool Size",
-          "required": false,
-          "deprecated": false
-        },
-        "resourceName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Consumer Resource Name we would like to watch",
-          "title": "Resource Name",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "object",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "operation": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Producer operation to do on Kubernetes",
-          "title": "Operation",
           "required": false,
           "deprecated": false
         },
@@ -51474,6 +52025,7 @@
             "groovy",
             "header",
             "hl7terser",
+            "java",
             "joor",
             "jq",
             "jsonpath",
@@ -51912,6 +52464,24 @@
           "defaultValue": "false",
           "description": "Show the exchange properties (only custom). Use showAllProperties to show both internal and custom properties.",
           "title": "Show Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "showRouteGroup": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Show route Group.",
+          "title": "Show Route Group",
+          "required": false,
+          "deprecated": false
+        },
+        "showRouteId": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Show route ID.",
+          "title": "Show Route Id",
           "required": false,
           "deprecated": false
         },
@@ -65407,6 +65977,29 @@
           "required": false,
           "deprecated": false
         },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
+          "required": false,
+          "deprecated": false
+        },
         "fileName": {
           "kind": "parameter",
           "type": "string",
@@ -66735,6 +67328,29 @@
           "defaultValue": "true",
           "description": "Whether to allow using LIST command when downloading a file. Default is true. In some use cases you may want to download a specific file and are not allowed to use the LIST command, and therefore you can set this option to false. Notice when using this option, then the specific file to download does not include meta-data information such as file size, timestamp, permissions etc, because those information is only possible to retrieve when LIST command is in use.",
           "title": "Use List",
+          "required": false,
+          "deprecated": false
+        },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
           "required": false,
           "deprecated": false
         },
@@ -68819,12 +69435,12 @@
       "title": "SMB",
       "group": "file",
       "icon": "generic24.png",
-      "description": "SMB component which consumes natively from file shares using the Server Message Block (SMB, also known as Common Internet File System - CIFS) protocol",
+      "description": "Receive files from SMB (Server Message Block) shares.",
       "properties": {
         "hostname": {
           "kind": "path",
           "type": "string",
-          "description": "The share name or IP address",
+          "description": "The share hostname or IP address",
           "title": "Hostname",
           "required": true,
           "deprecated": false
@@ -68833,7 +69449,7 @@
           "kind": "path",
           "type": "integer",
           "defaultValue": "445",
-          "description": "The share port",
+          "description": "The share port number",
           "title": "Port",
           "required": false,
           "deprecated": false
@@ -68841,24 +69457,16 @@
         "shareName": {
           "kind": "path",
           "type": "string",
-          "description": "The share path",
+          "description": "The name of the share to connect to.",
           "title": "Share Name",
           "required": false,
           "deprecated": false
         },
-        "domain": {
+        "idempotentRepository": {
           "kind": "parameter",
-          "type": "string",
-          "description": "The user domain",
-          "title": "Domain",
-          "required": false,
-          "deprecated": false
-        },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The password to access the share",
-          "title": "Password",
+          "type": "object",
+          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified.",
+          "title": "Idempotent Repository",
           "required": false,
           "deprecated": false
         },
@@ -68879,27 +69487,12 @@
           "required": false,
           "deprecated": false
         },
-        "smbIoBean": {
+        "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
-          "type": "object",
-          "description": "An optional SMB I/O bean to use to setup the file access attributes when reading/writing a file",
-          "title": "Smb Io Bean",
-          "required": false,
-          "deprecated": false
-        },
-        "username": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The username required to access the share",
-          "title": "Username",
-          "required": false,
-          "deprecated": false
-        },
-        "idempotentRepository": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified and idempotent is true.",
-          "title": "Idempotent Repository",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
           "required": false,
           "deprecated": false
         },
@@ -68932,12 +69525,181 @@
           "required": false,
           "deprecated": false
         },
-        "lazyStartProducer": {
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "smbIoBean": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "An optional SMB I/O bean to use to setup the file access attributes when reading/writing a file",
+          "title": "Smb Io Bean",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "domain": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The user domain",
+          "title": "Domain",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password to access the share",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The username required to access the share",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -73904,6 +74666,22 @@
           "required": false,
           "deprecated": false
         },
+        "clientBuilder": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Instance of ClientBuilder used by the producer or consumer to create a new SshClient",
+          "title": "Client Builder",
+          "required": false,
+          "deprecated": false
+        },
+        "compressions": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Whether to use compression, and if so which.",
+          "title": "Compressions",
+          "required": false,
+          "deprecated": false
+        },
         "shellPrompt": {
           "kind": "parameter",
           "type": "string",
@@ -74075,6 +74853,22 @@
           "required": false,
           "deprecated": false
         },
+        "ciphers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of allowed/supported ciphers in their order of preference.",
+          "title": "Ciphers",
+          "required": false,
+          "deprecated": false
+        },
+        "kex": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of allowed/supported key exchange algorithms in their order of preference.",
+          "title": "Kex",
+          "required": false,
+          "deprecated": false
+        },
         "keyPairProvider": {
           "kind": "parameter",
           "type": "object",
@@ -74091,11 +74885,27 @@
           "required": false,
           "deprecated": false
         },
+        "macs": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of allowed/supported message authentication code algorithms in their order of preference. The MAC algorithm is used for data integrity protection.",
+          "title": "Macs",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
           "description": "Sets the password to use in connecting to remote SSH server. Requires keyPairProvider to be set to null.",
           "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "signatures": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of allowed/supported signature algorithms in their order of preference.",
+          "title": "Signatures",
           "required": false,
           "deprecated": false
         },
@@ -74409,7 +75219,7 @@
         "httpHeaders": {
           "kind": "parameter",
           "type": "string",
-          "description": "When using stream:http format, this option specifies optional http headers, such as Accept: application/json. Multiple headers can be separated by comma.",
+          "description": "When using stream:http format, this option specifies optional http headers, such as Accept: application/json. Multiple headers can be separated by comma. The format of headers can be either HEADER\u003dVALUE or HEADER:VALUE. In accordance with the HTTP/1.1 specification, leading and/or trailing whitespace is ignored",
           "title": "Http Headers",
           "required": false,
           "deprecated": false
@@ -75606,6 +76416,23 @@
           "type": "object",
           "description": "To use a custom Timer",
           "title": "Timer",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
           "required": false,
           "deprecated": false
         }
@@ -77688,6 +78515,39 @@
         "httpMethod": {
           "kind": "parameter",
           "type": "object",
+          "enum": [
+            "OPTIONS",
+            "GET",
+            "HEAD",
+            "POST",
+            "PUT",
+            "DELETE",
+            "TRACE",
+            "CONNECT",
+            "PATCH",
+            "PROPFIND",
+            "PROPPATCH",
+            "MKCOL",
+            "COPY",
+            "MOVE",
+            "LOCK",
+            "UNLOCK",
+            "MKCALENDAR",
+            "VERSION_CONTROL",
+            "REPORT",
+            "CHECKIN",
+            "CHECKOUT",
+            "UNCHECKOUT",
+            "MKWORKSPACE",
+            "UPDATE",
+            "LABEL",
+            "MERGE",
+            "BASELINE_CONTROL",
+            "MKACTIVITY",
+            "ORDERPATCH",
+            "ACL",
+            "SEARCH"
+          ],
           "description": "The HTTP method to use. The HttpMethod header cannot override this option if set",
           "title": "Http Method",
           "required": false,

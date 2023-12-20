@@ -30,6 +30,7 @@
             "groovy",
             "header",
             "hl7terser",
+            "java",
             "joor",
             "jq",
             "js",
@@ -60,6 +61,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "correlationExpression": {
           "kind": "expression",
           "type": "object",
@@ -295,37 +321,12 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
-    "batch-config": {
+    "batchConfig": {
       "type": "object",
-      "title": "Batch-config",
+      "title": "Batch Config",
       "group": "configuration,eip",
       "icon": "generic24.png",
       "description": "Configures batch-processing resequence eip.",
@@ -390,6 +391,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "ref": {
           "kind": "attribute",
           "type": "string",
@@ -427,31 +453,6 @@
           "title": "Scope",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -462,6 +463,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "servers": {
           "kind": "element",
           "type": "array",
@@ -477,14 +486,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -495,6 +496,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "timeout": {
           "kind": "attribute",
           "type": "integer",
@@ -537,14 +546,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -558,6 +559,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "when": {
           "kind": "element",
           "type": "array",
@@ -582,16 +608,19 @@
           "title": "Precondition",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "circuitBreaker": {
+      "type": "object",
+      "title": "Circuit Breaker",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Route messages in a fault tolerance way using Circuit Breaker",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -607,19 +636,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "circuitBreaker": {
-      "type": "object",
-      "title": "Circuit Breaker",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Route messages in a fault tolerance way using Circuit Breaker",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "configuration": {
           "kind": "attribute",
           "type": "string",
@@ -659,16 +685,19 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "claimCheck": {
+      "type": "object",
+      "title": "Claim Check",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "The Claim Check EIP allows you to replace message content with a claim check (a unique key), which can be used to retrieve the message content at a later time.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -684,19 +713,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "claimCheck": {
-      "type": "object",
-      "title": "Claim Check",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "The Claim Check EIP allows you to replace message content with a claim check (a unique key), which can be used to retrieve the message content at a later time.",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "attribute",
           "type": "enum",
@@ -743,31 +769,6 @@
           "title": "Aggregation Strategy Method Name",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -778,6 +779,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "serviceDiscoveryConfigurations": {
           "kind": "element",
           "type": "array",
@@ -793,14 +802,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -811,6 +812,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "serviceFilterConfigurations": {
           "kind": "element",
           "type": "array",
@@ -826,14 +835,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -844,6 +845,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "url": {
           "kind": "attribute",
           "type": "string",
@@ -924,14 +933,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -979,6 +980,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "type": {
           "kind": "attribute",
           "type": "string",
@@ -1003,16 +1029,19 @@
           "title": "Charset",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "convertHeaderTo": {
+      "type": "object",
+      "title": "Convert Header To",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Converts the message header to another type",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1028,6 +1057,48 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of message header to convert its value The simple language can be used to define a dynamic evaluated header name to be used. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The java type to convert to",
+          "title": "Type",
+          "required": true,
+          "deprecated": false
+        },
+        "mandatory": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "When mandatory then the conversion must return a value (cannot be null), if this is not possible then NoTypeConversionAvailableException is thrown. Setting this to false could mean conversion is not possible and the value is null.",
+          "title": "Mandatory",
+          "required": false,
+          "deprecated": false
+        },
+        "charset": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a specific charset when converting",
+          "title": "Charset",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -1041,20 +1112,20 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Refers to the custom load balancer to lookup from the registry",
-          "title": "Ref",
-          "required": true,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
           "required": false,
+          "deprecated": false
+        },
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Refers to the custom load balancer to lookup from the registry",
+          "title": "Ref",
+          "required": true,
           "deprecated": false
         }
       }
@@ -1066,6 +1137,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "ref": {
           "kind": "attribute",
           "type": "string",
@@ -1081,14 +1160,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1099,6 +1170,14 @@
       "icon": "generic24.png",
       "description": "Error handler with dead letter queue.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "deadLetterUri": {
           "kind": "attribute",
           "type": "string",
@@ -1222,14 +1301,6 @@
           "title": "Executor Service Ref",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1240,6 +1311,14 @@
       "icon": "generic24.png",
       "description": "The default error handler.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "redeliveryPolicy": {
           "kind": "element",
           "type": "object",
@@ -1346,14 +1425,6 @@
           "title": "Executor Service Ref",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1364,19 +1435,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -1392,6 +1463,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -1425,31 +1521,6 @@
           "title": "Executor Service",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1460,6 +1531,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "proto": {
           "kind": "attribute",
           "type": "string",
@@ -1484,14 +1563,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1502,6 +1573,31 @@
       "icon": "generic24.png",
       "description": "Catches exceptions as part of a try, catch, finally block",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "exception": {
           "kind": "element",
           "type": "array",
@@ -1525,31 +1621,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1560,23 +1631,6 @@
       "icon": "generic24.png",
       "description": "Path traversed when a try, catch, finally block exits",
       "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1591,6 +1645,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         }
       }
@@ -1602,23 +1673,6 @@
       "icon": "generic24.png",
       "description": "Marks the beginning of a try, catch, finally block",
       "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1633,6 +1687,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         }
       }
@@ -1647,6 +1718,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -1680,16 +1776,19 @@
           "title": "Cache Size",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "enrich": {
+      "type": "object",
+      "title": "Enrich",
+      "group": "eip,transformation",
+      "icon": "enrich24.png",
+      "description": "Enriches a message with data from a secondary resource",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -1705,19 +1804,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "enrich": {
-      "type": "object",
-      "title": "Enrich",
-      "group": "eip,transformation",
-      "icon": "enrich24.png",
-      "description": "Enriches a message with data from a secondary resource",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -1793,31 +1889,6 @@
           "title": "Allow Optimised Components",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1828,20 +1899,20 @@
       "icon": "generic24.png",
       "description": "Camel error handling.",
       "properties": {
-        "errorHandlerType": {
-          "kind": "element",
-          "type": "object",
-          "description": "The specific error handler in use.",
-          "title": "Error Handler Type",
-          "required": true,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
           "required": false,
+          "deprecated": false
+        },
+        "errorHandlerType": {
+          "kind": "element",
+          "type": "object",
+          "description": "The specific error handler in use.",
+          "title": "Error Handler Type",
+          "required": true,
           "deprecated": false
         }
       }
@@ -1856,6 +1927,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "exception": {
           "kind": "element",
           "type": "array",
@@ -1888,14 +1967,6 @@
           "title": "Maximum Failover Attempts",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -1909,6 +1980,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "circuitBreaker": {
           "kind": "attribute",
           "type": "string",
@@ -2022,14 +2101,6 @@
           "title": "Bulkhead Executor Service",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -2043,6 +2114,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -2066,31 +2162,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -2104,14 +2175,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "uri": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the URI of the endpoint to use",
-          "title": "Uri",
-          "required": true,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2126,6 +2189,14 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the URI of the endpoint to use",
+          "title": "Uri",
+          "required": true,
           "deprecated": false
         }
       }
@@ -2179,19 +2250,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -2207,6 +2278,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -2266,16 +2362,16 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "inputType": {
+      "type": "object",
+      "title": "Input Type",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Set the expected data type of the input message. If the actual message type is different at runtime, camel look for a required Transformer and apply if exists. If validate attribute is true then camel applies Validator as well. Type name consists of two parts, \u0027scheme\u0027 and \u0027name\u0027 connected with \u0027:\u0027. For Java type \u0027name\u0027 is a fully qualified class name. For example {code java:java.lang.String} , {code json:ABCOrder} . It\u0027s also possible to specify only scheme part, so that it works like a wildcard. If only \u0027xml\u0027 is specified, all the XML message matches. It\u0027s handy to add only one transformer/validator for all the transformation from/to XML.",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2291,16 +2387,7 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "inputType": {
-      "type": "object",
-      "title": "Input Type",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Set the expected data type of the input message. If the actual message type is different at runtime, camel look for a required Transformer and apply if exists. If validate attribute is true then camel applies Validator as well. Type name consists of two parts, \u0027scheme\u0027 and \u0027name\u0027 connected with \u0027:\u0027. For Java type \u0027name\u0027 is a fully qualified class name. For example {code java:java.lang.String} , {code json:ABCOrder} . It\u0027s also possible to specify only scheme part, so that it works like a wildcard. If only \u0027xml\u0027 is specified, all the XML message matches. It\u0027s handy to add only one transformer/validator for all the transformation from/to XML.",
-      "properties": {
+        },
         "urn": {
           "kind": "attribute",
           "type": "string",
@@ -2317,7 +2404,16 @@
           "title": "Validate",
           "required": false,
           "deprecated": false
-        },
+        }
+      }
+    },
+    "intercept": {
+      "type": "object",
+      "title": "Intercept",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Intercepts a message at each step in the route",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2332,23 +2428,6 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "intercept": {
-      "type": "object",
-      "title": "Intercept",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Intercepts a message at each step in the route",
-      "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
           "deprecated": false
         },
         "disabled": {
@@ -2360,6 +2439,23 @@
           "required": false,
           "deprecated": false
         },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "interceptFrom": {
+      "type": "object",
+      "title": "Intercept From",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Intercepts incoming messages",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2375,16 +2471,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "interceptFrom": {
-      "type": "object",
-      "title": "Intercept From",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Intercepts incoming messages",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "uri": {
           "kind": "attribute",
           "type": "string",
@@ -2400,16 +2496,16 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "interceptSendToEndpoint": {
+      "type": "object",
+      "title": "Intercept Send To Endpoint",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Intercepts messages being sent to an endpoint",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2425,16 +2521,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "interceptSendToEndpoint": {
-      "type": "object",
-      "title": "Intercept Send To Endpoint",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Intercepts messages being sent to an endpoint",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "uri": {
           "kind": "attribute",
           "type": "string",
@@ -2466,31 +2562,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -2501,6 +2572,14 @@
       "icon": "generic24.png",
       "description": "JTA based transactional error handler (requires camel-jta).",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "transactedPolicyRef": {
           "kind": "attribute",
           "type": "object",
@@ -2632,14 +2711,6 @@
           "title": "Executor Service Ref",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -2653,31 +2724,6 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of the Kamelet (templateId/routeId) to call. Options for the kamelet can be specified using uri syntax, eg mynamecount\u003d4\u0026type\u003dgold.",
-          "title": "Name",
-          "required": true,
-          "deprecated": false
-        },
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -2693,6 +2739,31 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of the Kamelet (templateId/routeId) to call. Options for the kamelet can be specified using uri syntax, eg mynamecount\u003d4\u0026type\u003dgold.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
         }
       }
     },
@@ -2703,6 +2774,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "lookup": {
           "kind": "attribute",
           "type": "enum",
@@ -2869,14 +2948,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -2890,6 +2961,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "loadBalancerType": {
           "kind": "element",
           "type": "object",
@@ -2906,37 +3002,12 @@
           "required": true,
           "deprecated": false
         },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "inheritErrorHandler": {
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Sets whether or not to inherit the configured error handler. The default value is true. You can use this to disable using the inherited error handler for a given DSL such as a load balancer where you want to use a custom error handler strategy.",
           "title": "Inherit Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -2949,19 +3020,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -2977,6 +3048,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "message": {
           "kind": "attribute",
           "type": "string",
@@ -3025,16 +3121,19 @@
           "title": "Logger",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "loop": {
+      "type": "object",
+      "title": "Loop",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Processes a message multiple times",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3050,19 +3149,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "loop": {
-      "type": "object",
-      "title": "Loop",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Processes a message multiple times",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -3105,16 +3201,19 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "multicast": {
+      "type": "object",
+      "title": "Multicast",
+      "group": "eip,routing",
+      "icon": "multicast24.png",
+      "description": "Routes the same message to multiple paths either sequentially or in parallel.",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3130,19 +3229,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "multicast": {
-      "type": "object",
-      "title": "Multicast",
-      "group": "eip,routing",
-      "icon": "multicast24.png",
-      "description": "Routes the same message to multiple paths either sequentially or in parallel.",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "aggregationStrategy": {
           "kind": "attribute",
           "type": "object",
@@ -3254,31 +3350,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -3306,6 +3377,31 @@
       "icon": "generic24.png",
       "description": "Route to be executed when normal route processing completes",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "mode": {
           "kind": "attribute",
           "type": "enum",
@@ -3378,16 +3474,16 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "onException": {
+      "type": "object",
+      "title": "On Exception",
+      "group": "error",
+      "icon": "generic24.png",
+      "description": "Route to be executed when an exception is thrown",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3403,16 +3499,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "onException": {
-      "type": "object",
-      "title": "On Exception",
-      "group": "error",
-      "icon": "generic24.png",
-      "description": "Route to be executed when an exception is thrown",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "exception": {
           "kind": "element",
           "type": "array",
@@ -3510,16 +3606,19 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "onFallback": {
+      "type": "object",
+      "title": "On Fallback",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Route to be executed when Circuit Breaker EIP executes fallback",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3535,19 +3634,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "onFallback": {
-      "type": "object",
-      "title": "On Fallback",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Route to be executed when Circuit Breaker EIP executes fallback",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "fallbackViaNetwork": {
           "kind": "attribute",
           "type": "boolean",
@@ -3563,31 +3659,6 @@
           "description": "",
           "title": "Outputs",
           "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
           "deprecated": false
         }
       }
@@ -3655,23 +3726,6 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3687,6 +3741,23 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
         }
       }
     },
@@ -3697,6 +3768,22 @@
       "icon": "generic24.png",
       "description": "Set the expected data type of the output message. If the actual message type is different at runtime, camel look for a required Transformer and apply if exists. If validate attribute is true then camel applies Validator as well. Type name consists of two parts, \u0027scheme\u0027 and \u0027name\u0027 connected with \u0027:\u0027. For Java type \u0027name\u0027 is a fully qualified class name. For example {code java:java.lang.String} , {code json:ABCOrder} . It\u0027s also possible to specify only scheme part, so that it works like a wildcard. If only \u0027xml\u0027 is specified, all the XML message matches. It\u0027s handy to add only one transformer/validator for all the XML-Java transformation.",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "urn": {
           "kind": "attribute",
           "type": "string",
@@ -3711,22 +3798,6 @@
           "defaultValue": "false",
           "description": "Whether if validation is required for this output type.",
           "title": "Validate",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -3772,19 +3843,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -3800,6 +3871,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "consumerListener": {
           "kind": "attribute",
           "type": "object",
@@ -3815,31 +3911,6 @@
           "title": "Until Check",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -3853,23 +3924,6 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3884,6 +3938,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         }
       }
@@ -3895,23 +3966,6 @@
       "icon": "generic24.png",
       "description": "Defines a policy the route will use",
       "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets a reference to use for lookup the policy in the registry.",
-          "title": "Ref",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -3926,6 +3980,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets a reference to use for lookup the policy in the registry.",
+          "title": "Ref",
+          "required": true,
           "deprecated": false
         }
       }
@@ -3940,6 +4011,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -4006,31 +4102,6 @@
           "title": "Ignore Invalid Endpoint",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -4044,23 +4115,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Reference to the Processor to lookup in the registry to use. Can also be used for creating new beans by their class name by prefixing with #class, eg #class:com.foo.MyClassType. And it is also possible to refer to singleton beans by their type in the registry by prefixing with #type: syntax, eg #type:com.foo.MyClassType",
-          "title": "Ref",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -4075,6 +4129,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Reference to the Processor to lookup in the registry to use. Can also be used for creating new beans by their class name by prefixing with #class, eg #class:com.foo.MyClassType. And it is also possible to refer to singleton beans by their type in the registry by prefixing with #type: syntax, eg #type:com.foo.MyClassType",
+          "title": "Ref",
+          "required": true,
           "deprecated": false
         }
       }
@@ -4159,6 +4230,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -4296,31 +4392,6 @@
           "title": "Share Unit Of Work",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -4331,6 +4402,14 @@
       "icon": "generic24.png",
       "description": "To configure re-delivery for error handling",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "maximumRedeliveries": {
           "kind": "attribute",
           "type": "integer",
@@ -4543,14 +4622,6 @@
           "title": "Exchange Formatter Ref",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -4561,19 +4632,19 @@
       "icon": "generic24.png",
       "description": "References to an existing or custom error handler.",
       "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "References to an existing or custom error handler.",
-          "title": "Ref",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "ref": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "References to an existing or custom error handler.",
+          "title": "Ref",
           "required": false,
           "deprecated": false
         }
@@ -4589,23 +4660,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of header to remove",
-          "title": "Name",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -4621,6 +4675,23 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of header to remove",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
         }
       }
     },
@@ -4634,6 +4705,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "pattern": {
           "kind": "attribute",
           "type": "string",
@@ -4649,16 +4745,19 @@
           "title": "Exclude Pattern",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "removeProperties": {
+      "type": "object",
+      "title": "Remove Properties",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Removes message exchange properties whose name matches a specified pattern",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -4674,19 +4773,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "removeProperties": {
-      "type": "object",
-      "title": "Remove Properties",
-      "group": "eip,transformation",
-      "icon": "generic24.png",
-      "description": "Removes message exchange properties whose name matches a specified pattern",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "pattern": {
           "kind": "attribute",
           "type": "string",
@@ -4702,31 +4798,6 @@
           "title": "Exclude Pattern",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -4740,23 +4811,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of property to remove.",
-          "title": "Name",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -4771,6 +4825,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of property to remove.",
+          "title": "Name",
+          "required": true,
           "deprecated": false
         }
       }
@@ -4785,6 +4856,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -4808,31 +4904,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -4846,6 +4917,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "circuitBreaker": {
           "kind": "attribute",
           "type": "string",
@@ -5026,14 +5105,6 @@
           "title": "Timeout Cancel Running Future",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -5047,6 +5118,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "resumeStrategy": {
           "kind": "attribute",
           "type": "object",
@@ -5080,16 +5176,19 @@
           "title": "Intermittent",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "title": "Rollback",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Forces a rollback by stopping routing the message",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5105,19 +5204,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "rollback": {
-      "type": "object",
-      "title": "Rollback",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Forces a rollback by stopping routing the message",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "message": {
           "kind": "attribute",
           "type": "string",
@@ -5141,31 +5237,6 @@
           "defaultValue": "false",
           "description": "Mark only last sub transaction for rollback only. When using sub transactions (if the transaction manager support this)",
           "title": "Mark Rollback Only Last",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -5198,6 +5269,22 @@
       "icon": "route24.png",
       "description": "A Camel route",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "group": {
           "kind": "attribute",
           "type": "string",
@@ -5222,11 +5309,20 @@
           "required": false,
           "deprecated": false
         },
-        "precondition": {
+        "autoStartup": {
           "kind": "attribute",
           "type": "string",
-          "description": "The predicate of the precondition in simple language to evaluate in order to determine if this route should be included or not.",
-          "title": "Precondition",
+          "defaultValue": "true",
+          "description": "Whether to auto start this route",
+          "title": "Auto Startup",
+          "required": false,
+          "deprecated": false
+        },
+        "startupOrder": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "To configure the ordering of the routes being started",
+          "title": "Startup Order",
           "required": false,
           "deprecated": false
         },
@@ -5266,25 +5362,9 @@
         "delayer": {
           "kind": "attribute",
           "type": "duration",
+          "defaultValue": "advanced",
           "description": "Whether to slow down processing messages by a given delay in msec.",
           "title": "Delayer",
-          "required": false,
-          "deprecated": false
-        },
-        "autoStartup": {
-          "kind": "attribute",
-          "type": "string",
-          "defaultValue": "true",
-          "description": "Whether to auto start this route",
-          "title": "Auto Startup",
-          "required": false,
-          "deprecated": false
-        },
-        "startupOrder": {
-          "kind": "attribute",
-          "type": "integer",
-          "description": "To configure the ordering of the routes being started",
-          "title": "Startup Order",
           "required": false,
           "deprecated": false
         },
@@ -5328,6 +5408,30 @@
           "required": false,
           "deprecated": false
         },
+        "precondition": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The predicate of the precondition in simple language to evaluate in order to determine if this route should be included or not.",
+          "title": "Precondition",
+          "required": false,
+          "deprecated": false
+        },
+        "inputType": {
+          "kind": "element",
+          "type": "object",
+          "description": "Declare the expected data type of the input message. If the actual message type is different at runtime, camel look for a required org.apache.camel.spi.Transformer and apply if exists. The type name consists of two parts, \u0027scheme\u0027 and \u0027name\u0027 connected with \u0027:\u0027. For Java type \u0027name\u0027 is a fully qualified class name. For example {code java:java.lang.String} , {code json:ABCOrder} .",
+          "title": "Input Type",
+          "required": false,
+          "deprecated": false
+        },
+        "outputType": {
+          "kind": "element",
+          "type": "object",
+          "description": "Declare the expected data type of the output message. If the actual message type is different at runtime, camel look for a required org.apache.camel.spi.Transformer and apply if exists. The type name consists of two parts, \u0027scheme\u0027 and \u0027name\u0027 connected with \u0027:\u0027. For Java type \u0027name\u0027 is a fully qualified class name. For example {code java:java.lang.String} , {code json:ABCOrder} .",
+          "title": "Output Type",
+          "required": false,
+          "deprecated": false
+        },
         "input": {
           "kind": "element",
           "type": "object",
@@ -5343,16 +5447,41 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
+        }
+      }
+    },
+    "routeBuilder": {
+      "type": "object",
+      "title": "Route Builder",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "To refer to a Java org.apache.camel.builder.RouteBuilder instance to use.",
+      "properties": {
+        "id": {
           "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
           "required": false,
           "deprecated": false
         },
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Reference to the route builder instance",
+          "title": "Ref",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "routeConfiguration": {
+      "type": "object",
+      "title": "Route Configuration",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Reusable configuration for Camel route(s).",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5368,41 +5497,7 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "routeBuilder": {
-      "type": "object",
-      "title": "Route Builder",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "To refer to a Java org.apache.camel.builder.RouteBuilder instance to use.",
-      "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Reference to the route builder instance",
-          "title": "Ref",
-          "required": true,
-          "deprecated": false
         },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "routeConfiguration": {
-      "type": "object",
-      "title": "Route Configuration",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Reusable configuration for Camel route(s).",
-      "properties": {
         "errorHandler": {
           "kind": "element",
           "type": "object",
@@ -5456,22 +5551,6 @@
           "type": "string",
           "description": "The predicate of the precondition in simple language to evaluate in order to determine if this route configuration should be included or not.",
           "title": "Precondition",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -5543,6 +5622,22 @@
       "icon": "generic24.png",
       "description": "Defines a route template (parameterized routes)",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "templateParameter": {
           "kind": "element",
           "type": "array",
@@ -5565,22 +5660,6 @@
           "description": "To define the route in the template",
           "title": "Route",
           "required": true,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
           "deprecated": false
         }
       }
@@ -5634,14 +5713,6 @@
       "icon": "generic24.png",
       "description": "A series of Camel routes",
       "properties": {
-        "routes": {
-          "kind": "element",
-          "type": "array",
-          "description": "Contains the Camel routes",
-          "title": "Routes",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5657,6 +5728,14 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "routes": {
+          "kind": "element",
+          "type": "array",
+          "description": "Contains the Camel routes",
+          "title": "Routes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -5670,6 +5749,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -5703,16 +5807,19 @@
           "title": "Cache Size",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "saga": {
+      "type": "object",
+      "title": "Saga",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Enables Sagas on the route",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5728,19 +5835,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "saga": {
-      "type": "object",
-      "title": "Saga",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Enables Sagas on the route",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "sagaService": {
           "kind": "attribute",
           "type": "object",
@@ -5818,16 +5922,19 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "title": "Sample",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Extract a sample of the messages passing through a route",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5843,19 +5950,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "sample": {
-      "type": "object",
-      "title": "Sample",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Extract a sample of the messages passing through a route",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "samplePeriod": {
           "kind": "attribute",
           "type": "duration",
@@ -5872,31 +5976,6 @@
           "title": "Message Frequency",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -5910,23 +5989,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "expression": {
-          "kind": "expression",
-          "type": "object",
-          "description": "Expression to return the transformed message body (the new message body to use)",
-          "title": "Expression",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -5941,6 +6003,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression to return the transformed message body (the new message body to use)",
+          "title": "Expression",
+          "required": true,
           "deprecated": false
         }
       }
@@ -5955,6 +6034,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -6071,31 +6175,6 @@
           "title": "Load Balancer Configuration",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6106,6 +6185,14 @@
       "icon": "generic24.png",
       "description": "Remote service call configuration",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "element",
           "type": "object",
@@ -6206,14 +6293,6 @@
           "title": "Load Balancer Configuration",
           "required": true,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6224,19 +6303,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -6249,19 +6328,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -6274,6 +6353,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "hostHeader": {
           "kind": "attribute",
           "type": "string",
@@ -6299,14 +6386,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6317,19 +6396,19 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
-        "properties": {
-          "kind": "element",
-          "type": "array",
-          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "array",
+          "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
+          "title": "Properties",
           "required": false,
           "deprecated": false
         }
@@ -6345,23 +6424,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "expression": {
-          "kind": "expression",
-          "type": "object",
-          "description": "Expression that returns the new body to use",
-          "title": "Expression",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6376,6 +6438,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression that returns the new body to use",
+          "title": "Expression",
+          "required": true,
           "deprecated": false
         }
       }
@@ -6387,27 +6466,6 @@
       "icon": "generic24.png",
       "description": "Sets the exchange pattern on the message exchange",
       "properties": {
-        "pattern": {
-          "kind": "attribute",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the new exchange pattern of the Exchange to be used from this point forward",
-          "title": "Pattern",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6422,6 +6480,27 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "pattern": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the new exchange pattern of the Exchange to be used from this point forward",
+          "title": "Pattern",
+          "required": true,
           "deprecated": false
         }
       }
@@ -6436,6 +6515,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -6451,16 +6555,19 @@
           "title": "Expression",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "setHeaders": {
+      "type": "object",
+      "title": "Set Headers",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Allows to set multiple headers on the message at the same time.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6474,6 +6581,15 @@
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
           "required": false,
           "deprecated": false
         }
@@ -6489,6 +6605,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -6504,16 +6645,19 @@
           "title": "Expression",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "sort": {
+      "type": "object",
+      "title": "Sort",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Sorts the contents of the message",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6529,19 +6673,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "sort": {
-      "type": "object",
-      "title": "Sort",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Sorts the contents of the message",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -6557,16 +6698,19 @@
           "title": "Comparator",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "split": {
+      "type": "object",
+      "title": "Split",
+      "group": "eip,routing",
+      "icon": "split24.png",
+      "description": "Splits a single message into many sub-messages.",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6582,19 +6726,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "split": {
-      "type": "object",
-      "title": "Split",
-      "group": "eip,routing",
-      "icon": "split24.png",
-      "description": "Splits a single message into many sub-messages.",
-      "acceptInput": "true",
-      "acceptOutput": "true",
-      "nextSiblingAddedAsChild": "false",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -6723,31 +6864,6 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6758,6 +6874,14 @@
       "icon": "generic24.png",
       "description": "Spring based transactional error handler (requires camel-spring).",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "transactedPolicyRef": {
           "kind": "attribute",
           "type": "object",
@@ -6889,14 +7013,6 @@
           "title": "Executor Service Ref",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6907,6 +7023,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "servers": {
           "kind": "element",
           "type": "array",
@@ -6922,14 +7046,6 @@
           "title": "Properties",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -6943,23 +7059,6 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -6974,6 +7073,23 @@
           "description": "Sets the description of this node",
           "title": "Description",
           "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
           "deprecated": false
         }
       }
@@ -6988,20 +7104,20 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
-        "correlationExpression": {
-          "kind": "expression",
-          "type": "object",
-          "description": "The correlation expression to use to calculate the correlation key",
-          "title": "Correlation Expression",
-          "required": true,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
           "description": "The id of this node",
           "title": "Id",
           "required": false,
+          "deprecated": false
+        },
+        "correlationExpression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "The correlation expression to use to calculate the correlation key",
+          "title": "Correlation Expression",
+          "required": true,
           "deprecated": false
         }
       }
@@ -7016,15 +7132,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7040,12 +7147,21 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
         }
       }
     },
-    "stream-config": {
+    "streamConfig": {
       "type": "object",
-      "title": "Stream-config",
+      "title": "Stream Config",
       "group": "configuration,eip",
       "icon": "generic24.png",
       "description": "Configures stream-processing resequence eip.",
@@ -7172,6 +7288,14 @@
       "icon": "generic24.png",
       "description": "A route template parameter",
       "properties": {
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Description of the parameter",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "name": {
           "kind": "attribute",
           "type": "string",
@@ -7194,14 +7318,6 @@
           "type": "string",
           "description": "Default value of the parameter. If a default value is provided then the parameter is implied not to be required.",
           "title": "Default Value",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Description of the parameter",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -7370,6 +7486,22 @@
       "icon": "generic24.png",
       "description": "To configure thread pools",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
         "defaultProfile": {
           "kind": "attribute",
           "type": "boolean",
@@ -7448,7 +7580,19 @@
           "title": "Rejected Policy",
           "required": false,
           "deprecated": false
-        },
+        }
+      }
+    },
+    "threads": {
+      "type": "object",
+      "title": "Threads",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Specifies that all steps after this node are processed asynchronously",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7464,19 +7608,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "threads": {
-      "type": "object",
-      "title": "Threads",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Specifies that all steps after this node are processed asynchronously",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "executorService": {
           "kind": "attribute",
           "type": "object",
@@ -7572,16 +7713,19 @@
           "title": "Caller Runs When Rejected",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "throttle": {
+      "type": "object",
+      "title": "Throttle",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Controls the rate at which messages are passed to the next node in the route",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7597,19 +7741,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "throttle": {
-      "type": "object",
-      "title": "Throttle",
-      "group": "eip,routing",
-      "icon": "generic24.png",
-      "description": "Controls the rate at which messages are passed to the next node in the route",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -7631,15 +7772,6 @@
           "type": "object",
           "description": "To use a custom thread pool (ScheduledExecutorService) by the throttler.",
           "title": "Executor Service",
-          "required": false,
-          "deprecated": false
-        },
-        "timePeriodMillis": {
-          "kind": "attribute",
-          "type": "duration",
-          "defaultValue": "1000",
-          "description": "Sets the time period during which the maximum request count is valid for",
-          "title": "Time Period Millis",
           "required": false,
           "deprecated": false
         },
@@ -7669,16 +7801,16 @@
           "title": "Reject Execution",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "throwException": {
+      "type": "object",
+      "title": "Throw Exception",
+      "group": "error",
+      "icon": "generic24.png",
+      "description": "Throws an exception",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7694,16 +7826,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "throwException": {
-      "type": "object",
-      "title": "Throw Exception",
-      "group": "error",
-      "icon": "generic24.png",
-      "description": "Throws an exception",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "message": {
           "kind": "attribute",
           "type": "string",
@@ -7727,31 +7859,6 @@
           "title": "Ref",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -7765,35 +7872,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "uri": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the uri of the endpoint to send to.",
-          "title": "Uri",
-          "required": true,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "pattern": {
-          "kind": "attribute",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the optional ExchangePattern used to invoke this endpoint",
-          "title": "Pattern",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7807,6 +7885,35 @@
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the uri of the endpoint to send to.",
+          "title": "Uri",
+          "required": true,
+          "deprecated": false
+        },
+        "pattern": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the optional ExchangePattern used to invoke this endpoint",
+          "title": "Pattern",
           "required": false,
           "deprecated": false
         }
@@ -7822,6 +7929,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "uri": {
           "kind": "attribute",
           "type": "string",
@@ -7876,31 +8008,6 @@
           "title": "Auto Start Components",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -7931,23 +8038,6 @@
       "icon": "transactionalClient24.png",
       "description": "Enables transaction on the route",
       "properties": {
-        "ref": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets a reference to use for lookup the policy in the registry.",
-          "title": "Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -7963,6 +8053,23 @@
           "title": "Description",
           "required": false,
           "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets a reference to use for lookup the policy in the registry.",
+          "title": "Ref",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -7976,6 +8083,31 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -7997,31 +8129,6 @@
           "type": "string",
           "description": "To type used as a target data type in the transformation.",
           "title": "To Type",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
           "required": false,
           "deprecated": false
         }
@@ -8054,31 +8161,6 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
       "properties": {
-        "expression": {
-          "kind": "expression",
-          "type": "object",
-          "description": "Expression to use for validation as a predicate. The expression should return either true or false. If returning false the message is invalid and an exception is thrown.",
-          "title": "Expression",
-          "required": true,
-          "deprecated": false
-        },
-        "predicateExceptionFactory": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "The bean id of custom PredicateExceptionFactory to use for creating the exception when the validation fails. By default, Camel will throw PredicateValidationException. By using a custom factory you can control which exception to throw instead.",
-          "title": "Predicate Exception Factory",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -8092,6 +8174,31 @@
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression to use for validation as a predicate. The expression should return either true or false. If returning false the message is invalid and an exception is thrown.",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "predicateExceptionFactory": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "The bean id of custom PredicateExceptionFactory to use for creating the exception when the validation fails. By default, Camel will throw PredicateValidationException. By using a custom factory you can control which exception to throw instead.",
+          "title": "Predicate Exception Factory",
           "required": false,
           "deprecated": false
         }
@@ -8141,6 +8248,14 @@
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "distributionRatio": {
           "kind": "attribute",
           "type": "string",
@@ -8166,14 +8281,6 @@
           "title": "Round Robin",
           "required": false,
           "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -8187,6 +8294,31 @@
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -8202,16 +8334,16 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "whenSkipSendToEndpoint": {
+      "type": "object",
+      "title": "When Skip Send To Endpoint",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Predicate to determine if the message should be sent or not to the endpoint, when using interceptSentToEndpoint.",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -8227,16 +8359,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "whenSkipSendToEndpoint": {
-      "type": "object",
-      "title": "When Skip Send To Endpoint",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Predicate to determine if the message should be sent or not to the endpoint, when using interceptSentToEndpoint.",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
@@ -8252,16 +8384,19 @@
           "title": "Outputs",
           "required": true,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
+        }
+      }
+    },
+    "wireTap": {
+      "type": "object",
+      "title": "Wire Tap",
+      "group": "eip,routing",
+      "icon": "wireTap24.png",
+      "description": "Routes a copy of a message (or creates a new message) to a secondary destination while continue routing the original message.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
@@ -8277,19 +8412,16 @@
           "title": "Description",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "wireTap": {
-      "type": "object",
-      "title": "Wire Tap",
-      "group": "eip,routing",
-      "icon": "wireTap24.png",
-      "description": "Routes a copy of a message (or creates a new message) to a secondary destination while continue routing the original message.",
-      "acceptInput": "true",
-      "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
-      "properties": {
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "copy": {
           "kind": "attribute",
           "type": "boolean",
@@ -8378,31 +8510,6 @@
           "title": "Auto Start Components",
           "required": false,
           "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "element",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
         }
       }
     },
@@ -8413,6 +8520,14 @@
       "icon": "generic24.png",
       "description": "",
       "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
         "nodes": {
           "kind": "attribute",
           "type": "string",
@@ -8482,14 +8597,6 @@
           "type": "array",
           "description": "Set client properties to use. These properties are specific to what service call implementation are in use. For example if using a different one, then the client properties are defined according to the specific service in use.",
           "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node",
-          "title": "Id",
           "required": false,
           "deprecated": false
         }
