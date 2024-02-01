@@ -717,6 +717,7 @@ __metadata:
   resolution: "@hawtio/camel-model@workspace:."
   dependencies:
     "@types/jest": "npm:^29.5.3"
+    "@types/node": "npm:^20.11.14"
     cz-conventional-changelog: "npm:^3.3.0"
     jest: "npm:^29.6.2"
     jest-environment-jsdom: "npm:^29.6.2"
@@ -1377,6 +1378,15 @@ __metadata:
   version: 20.4.2
   resolution: "@types/node@npm:20.4.2"
   checksum: 10/d013c11ea228921ae319f7db5f2f65e9d3f58537919bca9e6409f6b380d1ef05625389e7d0dd0e8c4bbb90560a12b9ae6fab98b4722e19611b3de9052a0e2f94
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.11.14":
+  version: 20.11.14
+  resolution: "@types/node@npm:20.11.14"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10/129104b80a33b92ffcd139593b51d39b85e9dce0e7065a39eca23cd3c629da9f06a747509cdcbf0e6bd89349d944d1a4b112b598d122d0d33f10765d51a39334
   languageName: node
   linkType: hard
 
@@ -5704,6 +5714,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 10/0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
   languageName: node
   linkType: hard
 
