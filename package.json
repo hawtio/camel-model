@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "tsup --clean",
-    "generate": "./mvnw compile",
+    "generate:camel-model": "./mvnw compile",
     "test": "jest",
     "format:check": "yarn prettier --check .",
     "format:fix": "yarn prettier --write .",
