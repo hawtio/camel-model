@@ -315,6 +315,91 @@
         }
       }
     },
+    "beanio": {
+      "type": "object",
+      "title": "BeanIO",
+      "group": "dataformat,transformation,csv",
+      "icon": "generic24.png",
+      "description": "Marshal and unmarshal Java beans to and from flat files (such as CSV, delimited, or fixed length formats).",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "mapping": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The BeanIO mapping file. Is by default loaded from the classpath. You can prefix with file:, http:, or classpath: to denote from where to load the mapping file.",
+          "title": "Mapping",
+          "required": true,
+          "deprecated": false
+        },
+        "streamName": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The name of the stream to use.",
+          "title": "Stream Name",
+          "required": true,
+          "deprecated": false
+        },
+        "ignoreUnidentifiedRecords": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to ignore unidentified records.",
+          "title": "Ignore Unidentified Records",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreUnexpectedRecords": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to ignore unexpected records.",
+          "title": "Ignore Unexpected Records",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreInvalidRecords": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to ignore invalid records.",
+          "title": "Ignore Invalid Records",
+          "required": false,
+          "deprecated": false
+        },
+        "encoding": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The charset to use. Is by default the JVM platform default charset.",
+          "title": "Encoding",
+          "required": false,
+          "deprecated": false
+        },
+        "beanReaderErrorHandlerType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a custom org.apache.camel.dataformat.beanio.BeanIOErrorHandler as error handler while parsing. Configure the fully qualified class name of the error handler. Notice the options ignoreUnidentifiedRecords, ignoreUnexpectedRecords, and ignoreInvalidRecords may not be in use when you use a custom error handler.",
+          "title": "Bean Reader Error Handler Type",
+          "required": false,
+          "deprecated": false
+        },
+        "unmarshalSingleObject": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "This options controls whether to unmarshal as a list of objects or as a single object only. The former is the default mode, and the latter is only intended in special use-cases where beanio maps the Camel message to a single POJO bean.",
+          "title": "Unmarshal Single Object",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "bindy": {
       "type": "object",
       "title": "Bindy",
@@ -2110,6 +2195,22 @@
           "title": "Data Format Type",
           "required": true,
           "deprecated": false
+        },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -2191,8 +2292,18 @@
         },
         "compressionCodecName": {
           "kind": "attribute",
-          "type": "string",
+          "type": "enum",
           "defaultValue": "GZIP",
+          "enum": [
+            "UNCOMPRESSED",
+            "SNAPPY",
+            "GZIP",
+            "LZO",
+            "BROTLI",
+            "LZ4",
+            "ZSTD",
+            "LZ4_RAW"
+          ],
           "description": "Compression codec to use when marshalling.",
           "title": "Compression Codec Name",
           "required": false,
@@ -3416,6 +3527,22 @@
           "description": "The data format to be used",
           "title": "Data Format Type",
           "required": true,
+          "deprecated": false
+        },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Receive",
+          "required": false,
           "deprecated": false
         },
         "allowNullBody": {

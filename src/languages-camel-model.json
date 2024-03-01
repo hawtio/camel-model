@@ -123,6 +123,14 @@
           "required": false,
           "deprecated": false
         },
+        "source": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
+          "required": false,
+          "deprecated": false
+        },
         "resultType": {
           "kind": "attribute",
           "type": "string",
@@ -309,19 +317,11 @@
           "required": true,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
-          "required": false,
-          "deprecated": false
-        },
-        "propertyName": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
@@ -487,19 +487,11 @@
           "required": true,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
-          "required": false,
-          "deprecated": false
-        },
-        "propertyName": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
@@ -647,19 +639,11 @@
           "required": false,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
-          "required": false,
-          "deprecated": false
-        },
-        "propertyName": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
@@ -1148,19 +1132,103 @@
           "required": false,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
-        "propertyName": {
+        "resultType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
+          "required": false,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "title": "Trim",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "title": "Variable",
+      "group": "language,core",
+      "icon": "generic24.png",
+      "description": "Gets a variable",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "title": "Trim",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "wasm": {
+      "type": "object",
+      "title": "Wasm",
+      "group": "language",
+      "icon": "generic24.png",
+      "description": "Call a wasm (web assembly) function.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "module": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the module (the distributable, loadable, and executable unit of code in WebAssembly) resource that provides the expression function.",
+          "title": "Module",
+          "required": true,
+          "deprecated": false
+        },
+        "resultType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
           "required": false,
           "deprecated": false
         },
@@ -1206,7 +1274,7 @@
           "required": false,
           "deprecated": false
         },
-        "resultType": {
+        "resultQName": {
           "kind": "attribute",
           "type": "enum",
           "defaultValue": "NODESET",
@@ -1217,8 +1285,8 @@
             "NODESET",
             "NODE"
           ],
-          "description": "Sets the class name of the result type (type from output) The default result type is NodeSet",
-          "title": "Result Type",
+          "description": "Sets the output type supported by XPath.",
+          "title": "Result QName",
           "required": false,
           "deprecated": false
         },
@@ -1282,19 +1350,19 @@
           "required": false,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
-        "propertyName": {
+        "resultType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
           "required": false,
           "deprecated": false
         },
@@ -1332,22 +1400,6 @@
           "required": true,
           "deprecated": false
         },
-        "resultType": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the class of the result type (type from output)",
-          "title": "Result Type",
-          "required": false,
-          "deprecated": false
-        },
-        "type": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the class name of the result type (type from output) The default result type is NodeSet",
-          "title": "Type",
-          "required": false,
-          "deprecated": false
-        },
         "configurationRef": {
           "kind": "attribute",
           "type": "string",
@@ -1364,19 +1416,19 @@
           "required": false,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
-        "propertyName": {
+        "resultType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
           "required": false,
           "deprecated": false
         },
@@ -1445,19 +1497,19 @@
           "required": false,
           "deprecated": false
         },
-        "headerName": {
+        "source": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of header to use as input, instead of the message body It has as higher precedent than the propertyName if both are set.",
-          "title": "Header Name",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
-        "propertyName": {
+        "resultType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of property to use as input, instead of the message body. It has a lower precedent than the headerName if both are set.",
-          "title": "Property Name",
+          "description": "Sets the class of the result type (type from output)",
+          "title": "Result Type",
           "required": false,
           "deprecated": false
         },

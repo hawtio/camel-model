@@ -44,6 +44,8 @@
             "simple",
             "spel",
             "tokenize",
+            "variable",
+            "wasm",
             "xpath",
             "xquery",
             "xtokenize"
@@ -1083,6 +1085,92 @@
           "required": true,
           "deprecated": false
         },
+        "toName": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use another header to store the result. By default, the result is stored in the same header. This option allows to use another header. The simple language can be used to define a dynamic evaluated header name to be used. Otherwise a constant name will be used.",
+          "title": "To Name",
+          "required": false,
+          "deprecated": false
+        },
+        "mandatory": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "When mandatory then the conversion must return a value (cannot be null), if this is not possible then NoTypeConversionAvailableException is thrown. Setting this to false could mean conversion is not possible and the value is null.",
+          "title": "Mandatory",
+          "required": false,
+          "deprecated": false
+        },
+        "charset": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a specific charset when converting",
+          "title": "Charset",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "convertVariableTo": {
+      "type": "object",
+      "title": "Convert Variable To",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Converts the variable to another type",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of variable to convert its value The simple language can be used to define a dynamic evaluated header name to be used. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The java type to convert to",
+          "title": "Type",
+          "required": true,
+          "deprecated": false
+        },
+        "toName": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use another variable to store the result. By default, the result is stored in the same variable. This option allows to use another variable. The simple language can be used to define a dynamic evaluated variable name to be used. Otherwise a constant name will be used.",
+          "title": "To Name",
+          "required": false,
+          "deprecated": false
+        },
         "mandatory": {
           "kind": "attribute",
           "type": "boolean",
@@ -1822,6 +1910,22 @@
           "required": true,
           "deprecated": false
         },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
+        },
         "aggregationStrategy": {
           "kind": "attribute",
           "type": "object",
@@ -1887,6 +1991,15 @@
           "defaultValue": "true",
           "description": "Whether to allow components to optimise enricher if they are org.apache.camel.spi.SendDynamicAware .",
           "title": "Allow Optimised Components",
+          "required": false,
+          "deprecated": false
+        },
+        "autoStartComponents": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to auto startup components when enricher is starting up.",
+          "title": "Auto Start Components",
           "required": false,
           "deprecated": false
         }
@@ -2197,6 +2310,14 @@
           "description": "Sets the URI of the endpoint to use",
           "title": "Uri",
           "required": true,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store a copy of the received message body (only body, not headers). This is handy for easy access to the received message body via variables.",
+          "title": "Variable Receive",
+          "required": false,
           "deprecated": false
         }
       }
@@ -4044,6 +4165,14 @@
           "required": true,
           "deprecated": false
         },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
+        },
         "aggregationStrategy": {
           "kind": "attribute",
           "type": "object",
@@ -4100,6 +4229,15 @@
           "defaultValue": "false",
           "description": "Ignore the invalidate endpoint exception when try to create a producer with that endpoint",
           "title": "Ignore Invalid Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "autoStartComponents": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to auto startup components when poll enricher is starting up.",
+          "title": "Auto Start Components",
           "required": false,
           "deprecated": false
         }
@@ -4840,6 +4978,51 @@
           "kind": "attribute",
           "type": "string",
           "description": "Name of property to remove.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "removeVariable": {
+      "type": "object",
+      "title": "Remove Variable",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Removes a named variable",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of variable to remove.",
           "title": "Name",
           "required": true,
           "deprecated": false
@@ -6648,6 +6831,59 @@
         }
       }
     },
+    "setVariable": {
+      "type": "object",
+      "title": "Set Variable",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Sets the value of a variable",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "element",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of variable to set a new value The simple language can be used to define a dynamic evaluated variable name to be used. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression to return the value of the variable",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
     "sort": {
       "type": "object",
       "title": "Sort",
@@ -6748,7 +6984,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": ",",
-          "description": "Delimiter used in splitting messages. Can be turned off using the value false. The default value is ,",
+          "description": "Delimiter used in splitting messages. Can be turned off using the value false. To force not splitting then the delimiter can be set to single to use the value as a single list, this can be needed in some special situations. The default value is comma.",
           "title": "Delimiter",
           "required": false,
           "deprecated": false
@@ -7759,6 +7995,19 @@
           "required": true,
           "deprecated": false
         },
+        "mode": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "TotalRequests",
+          "enum": [
+            "TotalRequests",
+            "ConcurrentRequests"
+          ],
+          "description": "Sets the throttling mode to one of the available modes enumerated in ThrottlingMode",
+          "title": "Mode",
+          "required": false,
+          "deprecated": false
+        },
         "correlationExpression": {
           "kind": "expression",
           "type": "object",
@@ -7799,6 +8048,15 @@
           "defaultValue": "false",
           "description": "Whether or not throttler throws the ThrottlerRejectedExecutionException when the exchange exceeds the request limit Is by default false",
           "title": "Reject Execution",
+          "required": false,
+          "deprecated": false
+        },
+        "timePeriodMillis": {
+          "kind": "attribute",
+          "type": "duration",
+          "defaultValue": "1000",
+          "description": "Sets the time period during which the maximum request count is valid for",
+          "title": "Time Period Millis",
           "required": false,
           "deprecated": false
         }
@@ -7897,6 +8155,22 @@
           "required": false,
           "deprecated": false
         },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current Message , however the headers from the Message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
+        },
         "uri": {
           "kind": "attribute",
           "type": "string",
@@ -7960,6 +8234,22 @@
           "description": "The uri of the endpoint to send to. The uri can be dynamic computed using the org.apache.camel.language.simple.SimpleLanguage expression.",
           "title": "Uri",
           "required": true,
+          "deprecated": false
+        },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current Message , however the headers from the Message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
+          "title": "Variable Receive",
+          "required": false,
           "deprecated": false
         },
         "pattern": {
@@ -8462,6 +8752,22 @@
           "description": "The uri of the endpoint to send to. The uri can be dynamic computed using the org.apache.camel.language.simple.SimpleLanguage expression.",
           "title": "Uri",
           "required": true,
+          "deprecated": false
+        },
+        "variableSend": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "title": "Variable Send",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current Message , however the headers from the Message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
+          "title": "Variable Receive",
+          "required": false,
           "deprecated": false
         },
         "pattern": {
