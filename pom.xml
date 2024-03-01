@@ -8,7 +8,7 @@
   <version>1.0</version>
 
   <properties>
-    <version.org.apache.camel>4.0.3</version.org.apache.camel>
+    <version.org.apache.camel>4.4.0</version.org.apache.camel>
 
     <version.camel.catalog.maven.plugin>1.0.0</version.camel.catalog.maven.plugin>
     <version.groovy.maven.plugin>2.1.1</version.groovy.maven.plugin>
