@@ -4,4 +4,5 @@ export default defineConfig({
   dts: true,
   sourcemap: false,
   entry: ['src/index.ts'],
+  minify: true,
 })
