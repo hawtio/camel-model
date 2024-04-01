@@ -60,7 +60,7 @@
         "library": {
           "kind": "attribute",
           "type": "enum",
-          "defaultValue": "ApacheAvro",
+          "defaultValue": "avroJackson",
           "enum": [
             "ApacheAvro",
             "Jackson"
@@ -206,7 +206,7 @@
         },
         "schemaResolver": {
           "kind": "attribute",
-          "type": "string",
+          "type": "object",
           "description": "Optional schema resolver used to lookup schemas for the data in transit.",
           "title": "Schema Resolver",
           "required": false,
@@ -2055,7 +2055,7 @@
         },
         "schemaResolver": {
           "kind": "attribute",
-          "type": "string",
+          "type": "object",
           "description": "Optional schema resolver used to lookup schemas for the data in transit.",
           "title": "Schema Resolver",
           "required": false,

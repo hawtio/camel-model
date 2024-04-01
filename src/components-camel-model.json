@@ -806,6 +806,14 @@
           "required": false,
           "deprecated": false
         },
+        "temporaryQueueResolver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable TemporaryQueueResolver that allows you to use your own resolver for creating temporary queues (some messaging systems has special requirements for creating temporary queues).",
+          "title": "Temporary Queue Resolver",
+          "required": false,
+          "deprecated": false
+        },
         "transferException": {
           "kind": "parameter",
           "type": "boolean",
@@ -1742,6 +1750,14 @@
           "defaultValue": "false",
           "description": "Sets whether synchronous processing should be strictly used",
           "title": "Synchronous",
+          "required": false,
+          "deprecated": false
+        },
+        "temporaryQueueResolver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable TemporaryQueueResolver that allows you to use your own resolver for creating temporary queues (some messaging systems has special requirements for creating temporary queues).",
+          "title": "Temporary Queue Resolver",
           "required": false,
           "deprecated": false
         },
@@ -3182,6 +3198,820 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "aws-bedrock": {
+      "type": "object",
+      "title": "AWS Bedrock",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Invoke Model of AWS Bedrock service.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "modelId": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "amazon.titan-text-express-v1",
+            "amazon.titan-text-lite-v1",
+            "amazon.titan-image-generator-v1",
+            "amazon.titan-embed-text-v1",
+            "ai21.j2-ultra-v1",
+            "ai21.j2-mid-v1"
+          ],
+          "description": "Define the model Id we are going to use",
+          "title": "Model Id",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "invokeTextModel",
+            "invokeImageModel",
+            "invokeEmbeddingsModel"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with the uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "false",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "us-east-1",
+            "us-west-1",
+            "ap-southeast-1",
+            "ap-northeast-1",
+            "eu-central-1"
+          ],
+          "description": "The region in which Bedrock client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "bedrockRuntimeClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AWS Bedrock Runtime client",
+          "title": "Bedrock Runtime Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Bedrock client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Bedrock client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Bedrock client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in Bedrock.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "aws-bedrock-agent": {
+      "type": "object",
+      "title": "AWS Bedrock Agent",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Operate on AWS Bedrock through its Agent.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "dataSourceId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Define the Data source Id we are going to use",
+          "title": "Data Source Id",
+          "required": false,
+          "deprecated": false
+        },
+        "knowledgeBaseId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Define the Knowledge Base Id we are going to use",
+          "title": "Knowledge Base Id",
+          "required": false,
+          "deprecated": false
+        },
+        "modelId": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "anthropic.claude-instant-v1",
+            "anthropic.claude-v2",
+            "anthropic.claude-v2:1"
+          ],
+          "description": "Define the model Id we are going to use",
+          "title": "Model Id",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "startIngestionJob",
+            "listIngestionJobs",
+            "getIngestionJob"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with the uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "false",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "us-east-1",
+            "us-west-1",
+            "ap-southeast-1",
+            "ap-northeast-1",
+            "eu-central-1"
+          ],
+          "description": "The region in which Bedrock Agent client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "ingestionJobId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Define the Ingestion Job Id we want to track",
+          "title": "Ingestion Job Id",
+          "required": false,
+          "deprecated": false
+        },
+        "sendEmptyMessageWhenIdle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "bedrockAgentClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AWS Bedrock Agent client",
+          "title": "Bedrock Agent Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Bedrock Agent client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Bedrock Agent client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Bedrock Agent client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in Bedrock.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "aws-bedrock-agent-runtime": {
+      "type": "object",
+      "title": "AWS Bedrock Agent Runtime",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Invoke Model of AWS Bedrock Agent Runtime service.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "knowledgeBaseId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Define the Knowledge Base Id we are going to use",
+          "title": "Knowledge Base Id",
+          "required": true,
+          "deprecated": false
+        },
+        "modelId": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "anthropic.claude-instant-v1",
+            "anthropic.claude-v2",
+            "anthropic.claude-v2:1"
+          ],
+          "description": "Define the model Id we are going to use",
+          "title": "Model Id",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "retrieveAndGenerate"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with the uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "false",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "us-east-1",
+            "us-west-1",
+            "ap-southeast-1",
+            "ap-northeast-1",
+            "eu-central-1"
+          ],
+          "description": "The region in which Bedrock Agent Runtime client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent Runtime client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent Runtime client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "bedrockAgentRuntimeClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AWS Bedrock Agent Runtime client",
+          "title": "Bedrock Agent Runtime Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Bedrock Agent Runtime client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Bedrock Agent Runtime client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Bedrock Agent Runtime client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Bedrock Agent Runtime client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in Bedrock.",
+          "title": "Use Session Credentials",
           "required": false,
           "deprecated": false
         }
@@ -9297,7 +10127,7 @@
             "useExchangeId",
             "usePropertyValue"
           ],
-          "description": "Only for FIFO Topic. Strategy for setting the messageGroupId on the message. It can be one of the following options: useConstant, useExchangeId, usePropertyValue. For the usePropertyValue option, the value of property CamelAwsMessageGroupId will be used.",
+          "description": "Only for FIFO Topic. Strategy for setting the messageGroupId on the message. It can be one of the following options: useConstant, useExchangeId, usePropertyValue. For the usePropertyValue option, the value of property CamelAwsSnsMessageGroupId will be used.",
           "title": "Message Group Id Strategy",
           "required": false,
           "deprecated": false
@@ -12765,6 +13595,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter Service Bus application properties to and from Camel message headers.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "proxyOptions": {
           "kind": "parameter",
           "type": "object",
@@ -12805,6 +13643,15 @@
           "defaultValue": "false",
           "description": "Disables auto-complete and auto-abandon of received messages. By default, a successfully processed message is completed. If an error happens when the message is abandoned.",
           "title": "Disable Auto Complete",
+          "required": false,
+          "deprecated": false
+        },
+        "enableDeadLettering": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable application level deadlettering to the subscription deadletter subqueue if deadletter related headers are set.",
+          "title": "Enable Dead Lettering",
           "required": false,
           "deprecated": false
         },
@@ -13518,10 +14365,10 @@
     },
     "azure-storage-datalake": {
       "type": "object",
-      "title": "Azure Storage Datalake Service",
+      "title": "Azure Storage Data Lake Service",
       "group": "cloud,file,bigdata",
       "icon": "generic24.png",
-      "description": "Sends and receives files to/from Azure DataLake Storage.",
+      "description": "Sends and receives files to/from Azure Data Lake Storage.",
       "properties": {
         "accountName": {
           "kind": "path",
@@ -13590,7 +14437,7 @@
         "dataLakeServiceClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "service client of datalake",
+          "description": "service client of data lake",
           "title": "Data Lake Service Client",
           "required": false,
           "deprecated": false
@@ -13670,7 +14517,7 @@
         "path": {
           "kind": "parameter",
           "type": "string",
-          "description": "path in azure datalake for operations",
+          "description": "path in azure data lake for operations",
           "title": "Path",
           "required": false,
           "deprecated": false
@@ -13718,7 +14565,7 @@
         "serviceClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "datalake service client for azure storage datalake",
+          "description": "data lake service client for azure storage data lake",
           "title": "Service Client",
           "required": false,
           "deprecated": false
@@ -13726,7 +14573,7 @@
         "sharedKeyCredential": {
           "kind": "parameter",
           "type": "object",
-          "description": "shared key credential for azure datalake gen2",
+          "description": "shared key credential for azure data lake gen2",
           "title": "Shared Key Credential",
           "required": false,
           "deprecated": false
@@ -36197,15 +37044,6 @@
           "required": false,
           "deprecated": false
         },
-        "followRedirects": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to the HTTP request should follow redirects. By default the HTTP request does not follow redirects",
-          "title": "Follow Redirects",
-          "required": false,
-          "deprecated": false
-        },
         "httpMethod": {
           "kind": "parameter",
           "type": "object",
@@ -36221,6 +37059,24 @@
           ],
           "description": "Configure the HTTP method to use. The HttpMethod header cannot override this option if set.",
           "title": "Http Method",
+          "required": false,
+          "deprecated": false
+        },
+        "skipRequestHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "title": "Skip Request Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "skipResponseHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
         },
@@ -36284,6 +37140,15 @@
           "required": false,
           "deprecated": false
         },
+        "followRedirects": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to the HTTP request should follow redirects. By default the HTTP request does not follow redirects",
+          "title": "Follow Redirects",
+          "required": false,
+          "deprecated": false
+        },
         "getWithBody": {
           "kind": "parameter",
           "type": "boolean",
@@ -36326,24 +37191,6 @@
           "defaultValue": "false",
           "description": "If the option is true, HttpProducer will set the Host header to the value contained in the current exchange Host header, useful in reverse proxy applications where you want the Host header received by the downstream server to reflect the URL called by the upstream client, this allows applications which use the Host header to generate accurate URL\u0027s for a proxied service",
           "title": "Preserve Host Header",
-          "required": false,
-          "deprecated": false
-        },
-        "skipRequestHeaders": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
-          "title": "Skip Request Headers",
-          "required": false,
-          "deprecated": false
-        },
-        "skipResponseHeaders": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
-          "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
         },
@@ -36681,15 +37528,6 @@
           "required": false,
           "deprecated": false
         },
-        "followRedirects": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to the HTTP request should follow redirects. By default the HTTP request does not follow redirects",
-          "title": "Follow Redirects",
-          "required": false,
-          "deprecated": false
-        },
         "httpMethod": {
           "kind": "parameter",
           "type": "object",
@@ -36705,6 +37543,24 @@
           ],
           "description": "Configure the HTTP method to use. The HttpMethod header cannot override this option if set.",
           "title": "Http Method",
+          "required": false,
+          "deprecated": false
+        },
+        "skipRequestHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "title": "Skip Request Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "skipResponseHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
         },
@@ -36768,6 +37624,15 @@
           "required": false,
           "deprecated": false
         },
+        "followRedirects": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to the HTTP request should follow redirects. By default the HTTP request does not follow redirects",
+          "title": "Follow Redirects",
+          "required": false,
+          "deprecated": false
+        },
         "getWithBody": {
           "kind": "parameter",
           "type": "boolean",
@@ -36810,24 +37675,6 @@
           "defaultValue": "false",
           "description": "If the option is true, HttpProducer will set the Host header to the value contained in the current exchange Host header, useful in reverse proxy applications where you want the Host header received by the downstream server to reflect the URL called by the upstream client, this allows applications which use the Host header to generate accurate URL\u0027s for a proxied service",
           "title": "Preserve Host Header",
-          "required": false,
-          "deprecated": false
-        },
-        "skipRequestHeaders": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
-          "title": "Skip Request Headers",
-          "required": false,
-          "deprecated": false
-        },
-        "skipResponseHeaders": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
-          "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
         },
@@ -42097,14 +42944,6 @@
           "required": true,
           "deprecated": false
         },
-        "cacheConfiguration": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "A Configuration for the Cache",
-          "title": "Cache Configuration",
-          "required": false,
-          "deprecated": false
-        },
         "cacheConfigurationProperties": {
           "kind": "parameter",
           "type": "object",
@@ -42257,6 +43096,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "cacheConfiguration": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A Configuration for the Cache",
+          "title": "Cache Configuration",
           "required": false,
           "deprecated": false
         },
@@ -44045,6 +44892,14 @@
           "required": false,
           "deprecated": false
         },
+        "temporaryQueueResolver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable TemporaryQueueResolver that allows you to use your own resolver for creating temporary queues (some messaging systems has special requirements for creating temporary queues).",
+          "title": "Temporary Queue Resolver",
+          "required": false,
+          "deprecated": false
+        },
         "transferException": {
           "kind": "parameter",
           "type": "boolean",
@@ -45251,7 +46106,7 @@
       "title": "JSLT",
       "group": "transformation",
       "icon": "generic24.png",
-      "description": "Query or transform JSON payloads using an JSLT.",
+      "description": "Query or transform JSON payloads using JSLT.",
       "properties": {
         "resourceUri": {
           "kind": "path",
@@ -46027,6 +46882,24 @@
           "required": false,
           "deprecated": false
         },
+        "retryBackoffMaxMs": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "The maximum amount of time in milliseconds to wait when retrying a request to the broker that has repeatedly failed. If provided, the backoff per client will increase exponentially for each failed request, up to this maximum. To prevent all clients from being synchronized upon retry, a randomized jitter with a factor of 0.2 will be applied to the backoff, resulting in the backoff falling within a range between 20% below and 20% above the computed value. If retry.backoff.ms is set to be higher than retry.backoff.max.ms, then retry.backoff.max.ms will be used as a constant backoff from the beginning without any exponential increase",
+          "title": "Retry Backoff Max Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "retryBackoffMs": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "The amount of time to wait before attempting to retry a failed request to a given topic partition. This avoids repeatedly sending requests in a tight loop under some failure scenarios. This value is the initial backoff value and will increase exponentially for each failed request, up to the retry.backoff.max.ms value.",
+          "title": "Retry Backoff Ms",
+          "required": false,
+          "deprecated": false
+        },
         "shutdownTimeout": {
           "kind": "parameter",
           "type": "integer",
@@ -46634,15 +47507,6 @@
           "required": false,
           "deprecated": false
         },
-        "retryBackoffMs": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "100",
-          "description": "Before each retry, the producer refreshes the metadata of relevant topics to see if a new leader has been elected. Since the leader election takes a bit of time, this property specifies the amount of time that the producer waits before refreshing the metadata.",
-          "title": "Retry Backoff Ms",
-          "required": false,
-          "deprecated": false
-        },
         "sendBufferBytes": {
           "kind": "parameter",
           "type": "integer",
@@ -47092,7 +47956,8 @@
           "defaultValue": "1.0",
           "enum": [
             "1.0",
-            "1.0.1"
+            "1.0.1",
+            "1.0.2"
           ],
           "description": "Set the version of the cloudevents spec.",
           "title": "Cloud Events Spec Version",
@@ -51479,6 +52344,88 @@
         }
       }
     },
+    "langchain-chat": {
+      "type": "object",
+      "title": "langChain4j Chat",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "LangChain4j Chat component",
+      "properties": {
+        "chatId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The id",
+          "title": "Chat Id",
+          "required": true,
+          "deprecated": false
+        },
+        "chatOperation": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "CHAT_SINGLE_MESSAGE",
+          "enum": [
+            "CHAT_SINGLE_MESSAGE",
+            "CHAT_SINGLE_MESSAGE_WITH_PROMPT",
+            "CHAT_MULTIPLE_MESSAGES"
+          ],
+          "description": "Operation in case of Endpoint of type CHAT. The value is one of the values of org.apache.camel.component.langchain.LangChainChatOperations",
+          "title": "Chat Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "chatModel": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Chat Language Model of type dev.langchain4j.model.chat.ChatLanguageModel",
+          "title": "Chat Model",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "langchain-embeddings": {
+      "type": "object",
+      "title": "LangChain4j Embeddings",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "LangChain4j Embeddings",
+      "properties": {
+        "embeddingId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The id",
+          "title": "Embedding Id",
+          "required": true,
+          "deprecated": false
+        },
+        "embeddingModel": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The EmbeddingModel engine to use.",
+          "title": "Embedding Model",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "language": {
       "type": "object",
       "title": "Language",
@@ -52543,6 +53490,66 @@
           "type": "string",
           "description": "Value expression when using histogram type",
           "title": "Value",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "milvus": {
+      "type": "object",
+      "title": "Milvus",
+      "group": "database,ai",
+      "icon": "generic24.png",
+      "description": "Perform operations on the Milvus Vector Database.",
+      "properties": {
+        "collection": {
+          "kind": "path",
+          "type": "string",
+          "description": "The collection Name",
+          "title": "Collection",
+          "required": true,
+          "deprecated": false
+        },
+        "host": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "localhost",
+          "description": "The host to connect to.",
+          "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "port": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "19530",
+          "description": "The port to connect to.",
+          "title": "Port",
+          "required": false,
+          "deprecated": false
+        },
+        "timeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Sets a default timeout for all requests",
+          "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "token": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the API key to use for authentication",
+          "title": "Token",
           "required": false,
           "deprecated": false
         },
@@ -53890,6 +54897,9 @@
           "type": "object",
           "enum": [
             "findById",
+            "findOneAndDelete",
+            "findOneAndReplace",
+            "findOneAndUpdate",
             "findOneByQuery",
             "findAll",
             "findDistinct",
@@ -60539,6 +61549,63 @@
           "required": false,
           "deprecated": false
         },
+        "cookieDomain": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets which server can receive cookies.",
+          "title": "Cookie Domain",
+          "required": false,
+          "deprecated": false
+        },
+        "cookieHttpOnly": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether to prevent client side scripts from accessing created cookies.",
+          "title": "Cookie Http Only",
+          "required": false,
+          "deprecated": false
+        },
+        "cookieMaxAge": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Sets the maximum cookie age in seconds.",
+          "title": "Cookie Max Age",
+          "required": false,
+          "deprecated": false
+        },
+        "cookiePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "/",
+          "description": "Sets the URL path that must exist in the requested URL in order to send the Cookie.",
+          "title": "Cookie Path",
+          "required": false,
+          "deprecated": false
+        },
+        "cookieSameSite": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "Lax",
+          "enum": [
+            "STRICT",
+            "LAX",
+            "NONE"
+          ],
+          "description": "Sets whether to prevent the browser from sending cookies along with cross-site requests.",
+          "title": "Cookie Same Site",
+          "required": false,
+          "deprecated": false
+        },
+        "cookieSecure": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether the cookie is only sent to the server with an encrypted request over HTTPS.",
+          "title": "Cookie Secure",
+          "required": false,
+          "deprecated": false
+        },
         "httpMethodRestrict": {
           "kind": "parameter",
           "type": "string",
@@ -60570,6 +61637,15 @@
           "type": "string",
           "description": "The content type this endpoint produces, such as application/xml or application/json.",
           "title": "Produces",
+          "required": false,
+          "deprecated": false
+        },
+        "useCookieHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable the Cookie Handler that allows Cookie addition, expiry, and retrieval (currently only supported by camel-platform-http-vertx)",
+          "title": "Use Cookie Handler",
           "required": false,
           "deprecated": false
         },
@@ -62611,6 +63687,75 @@
         }
       }
     },
+    "qdrant": {
+      "type": "object",
+      "title": "Qdrant",
+      "group": "database,ai",
+      "icon": "generic24.png",
+      "description": "Perform operations on the Qdrant Vector Database.",
+      "properties": {
+        "collection": {
+          "kind": "path",
+          "type": "string",
+          "description": "The collection Name",
+          "title": "Collection",
+          "required": true,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the API key to use for authentication",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "host": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "localhost",
+          "description": "The host to connect to.",
+          "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "port": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "6334",
+          "description": "The port to connect to.",
+          "title": "Port",
+          "required": false,
+          "deprecated": false
+        },
+        "timeout": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Sets a default timeout for all requests",
+          "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "tls": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the client uses Transport Layer Security (TLS) to secure communications",
+          "title": "Tls",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "quartz": {
       "type": "object",
       "title": "Quartz",
@@ -63286,7 +64431,7 @@
       "title": "REST OpenApi",
       "group": "rest,api",
       "icon": "generic24.png",
-      "description": "Configure REST producers based on an OpenAPI specification document delegating to a component implementing the RestProducerFactory interface.",
+      "description": "To call REST services using OpenAPI specification as contract.",
       "acceptInput": "",
       "acceptOutput": "",
       "nextSiblingAddedAsChild": "false",
@@ -63311,7 +64456,7 @@
         "basePath": {
           "kind": "parameter",
           "type": "string",
-          "description": "API basePath, for example /v2. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
+          "description": "API basePath, for example /v3. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
           "title": "Base Path",
           "required": false,
           "deprecated": false
@@ -65044,7 +66189,7 @@
             "EXPANDED",
             "COMPACT"
           ],
-          "description": "EXPANDED: Apache Avro format but doesnt strictly adhere to the record complex type. COMPACT: Apache Avro, adheres to the specification for the record complex type. This parameter is available in API version 43.0 and later.",
+          "description": "EXPANDED: Apache Avro format but doesn\u0027t strictly adhere to the record complex type. COMPACT: Apache Avro, adheres to the specification for the record complex type. This parameter is available in API version 43.0 and later.",
           "title": "Event Schema Format",
           "required": false,
           "deprecated": false
@@ -72310,7 +73455,7 @@
       "title": "Splunk HEC",
       "group": "monitoring",
       "icon": "generic24.png",
-      "description": "The splunk component allows to publish events in Splunk using the HTTP Event Collector.",
+      "description": "The splunk component allows publishing events in Splunk using the HTTP Event Collector.",
       "properties": {
         "splunkURL": {
           "kind": "path",
@@ -72736,7 +73881,7 @@
       "title": "Spring RabbitMQ",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Send and receive messages from RabbitMQ using Spring RabbitMQ client.",
+      "description": "Send and receive messages from RabbitMQ using the Spring RabbitMQ client.",
       "properties": {
         "exchangeName": {
           "kind": "path",
@@ -72754,12 +73899,59 @@
           "required": false,
           "deprecated": false
         },
+        "deadLetterExchange": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the dead letter exchange",
+          "title": "Dead Letter Exchange",
+          "required": false,
+          "deprecated": false
+        },
+        "deadLetterExchangeType": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "direct",
+          "enum": [
+            "direct",
+            "fanout",
+            "headers",
+            "topic"
+          ],
+          "description": "The type of the dead letter exchange",
+          "title": "Dead Letter Exchange Type",
+          "required": false,
+          "deprecated": false
+        },
+        "deadLetterQueue": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the dead letter queue",
+          "title": "Dead Letter Queue",
+          "required": false,
+          "deprecated": false
+        },
+        "deadLetterRoutingKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The routing key for the dead letter exchange",
+          "title": "Dead Letter Routing Key",
+          "required": false,
+          "deprecated": false
+        },
         "disableReplyTo": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Specifies whether Camel ignores the ReplyTo header in messages. If true, Camel does not send a reply back to the destination specified in the ReplyTo header. You can use this option if you want Camel to consume from a route and you do not want Camel to automatically send back a reply message because another component in your code handles the reply message. You can also use this option if you want to use Camel as a proxy between different message brokers and you want to route message from one system to another.",
           "title": "Disable Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "queues": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The queue(s) to use for consuming or producing messages. Multiple queue names can be separated by comma. If none has been configured then Camel will generate an unique id as the queue name.",
+          "title": "Queues",
           "required": false,
           "deprecated": false
         },
@@ -72820,45 +74012,6 @@
           "required": false,
           "deprecated": false
         },
-        "deadLetterExchange": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The name of the dead letter exchange",
-          "title": "Dead Letter Exchange",
-          "required": false,
-          "deprecated": false
-        },
-        "deadLetterExchangeType": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "direct",
-          "enum": [
-            "direct",
-            "fanout",
-            "headers",
-            "topic"
-          ],
-          "description": "The type of the dead letter exchange",
-          "title": "Dead Letter Exchange Type",
-          "required": false,
-          "deprecated": false
-        },
-        "deadLetterQueue": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The name of the dead letter queue",
-          "title": "Dead Letter Queue",
-          "required": false,
-          "deprecated": false
-        },
-        "deadLetterRoutingKey": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The routing key for the dead letter exchange",
-          "title": "Dead Letter Routing Key",
-          "required": false,
-          "deprecated": false
-        },
         "exchangeType": {
           "kind": "parameter",
           "type": "string",
@@ -72898,14 +74051,6 @@
           "defaultValue": "false",
           "description": "Set to true for an no-local consumer",
           "title": "No Local",
-          "required": false,
-          "deprecated": false
-        },
-        "queues": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The queue(s) to use for consuming messages. Multiple queue names can be separated by comma. If none has been configured then Camel will generate an unique id as the queue name for the consumer.",
-          "title": "Queues",
           "required": false,
           "deprecated": false
         },
@@ -73007,6 +74152,15 @@
           "defaultValue": "false",
           "description": "Whether to allow sending messages with no body. If this option is false and the message body is null, then an MessageConversionException is thrown.",
           "title": "Allow Null Body",
+          "required": false,
+          "deprecated": false
+        },
+        "autoDeclareProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether the producer should auto declare binding between exchange, queue and routing key when starting.",
+          "title": "Auto Declare Producer",
           "required": false,
           "deprecated": false
         },
@@ -74581,7 +75735,7 @@
       "title": "Stomp",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Send and rececive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.",
+      "description": "Send and receive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.",
       "properties": {
         "destination": {
           "kind": "path",
@@ -75178,7 +76332,7 @@
       "title": "Telegram",
       "group": "cloud,api,chat",
       "icon": "generic24.png",
-      "description": "Send and receive messages acting as a Telegram Bot Telegram Bot API.",
+      "description": "Send and receive messages using the Telegram Bot API.",
       "properties": {
         "type": {
           "kind": "path",
@@ -76027,8 +77181,6 @@
             "AVAILABLE_PHONE_NUMBER_COUNTRY_LOCAL",
             "AVAILABLE_PHONE_NUMBER_COUNTRY_MOBILE",
             "AVAILABLE_PHONE_NUMBER_COUNTRY_TOLL_FREE",
-            "CALL_FEEDBACK",
-            "CALL_FEEDBACK_SUMMARY",
             "CALL_NOTIFICATION",
             "CALL_RECORDING",
             "CONFERENCE_PARTICIPANT",
@@ -79414,10 +80566,10 @@
     },
     "wordpress": {
       "type": "object",
-      "title": "Wordpress",
+      "title": "WordPress",
       "group": "cloud,api,cms",
       "icon": "generic24.png",
-      "description": "Manage posts and users using Wordpress API.",
+      "description": "Manage posts and users using the WordPress API.",
       "properties": {
         "operation": {
           "kind": "path",
@@ -81173,7 +82325,7 @@
       "title": "Zeebe",
       "group": "workflow,saas",
       "icon": "generic24.png",
-      "description": "Zeebe component which does integrage with Camunda Zeebe to interact with the API.",
+      "description": "Zeebe component which integrates with Camunda Zeebe to interact with the API.",
       "properties": {
         "operationName": {
           "kind": "path",
@@ -81447,6 +82599,7 @@
             "GET_HOLIDAYS_FOR_SCHEDULE",
             "GET_HOLIDAYS_FOR_SCHEDULE_1",
             "GET_INCREMENTAL_TICKETS_RESULT",
+            "GET_JIRA_LINKS",
             "GET_JOB_STATUS",
             "GET_JOB_STATUS_ASYNC",
             "GET_JOB_STATUSES",

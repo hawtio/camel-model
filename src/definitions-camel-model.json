@@ -421,7 +421,7 @@
         "ref": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets a reference to an exiting bean to use, which is looked up from the registry",
+          "description": "Sets a reference to an existing bean to use, which is looked up from the registry",
           "title": "Ref",
           "required": false,
           "deprecated": false
@@ -4343,7 +4343,7 @@
       "title": "Random",
       "group": "eip,routing",
       "icon": "generic24.png",
-      "description": "The destination endpoints are selected by random.",
+      "description": "The destination endpoints are selected randomly.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -4587,7 +4587,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Turn on exponential backk off",
+          "description": "Turn on exponential back off",
           "title": "Use Exponential Back Off",
           "required": false,
           "deprecated": false
@@ -4621,8 +4621,16 @@
         },
         "retriesExhaustedLogLevel": {
           "kind": "attribute",
-          "type": "object",
+          "type": "enum",
           "defaultValue": "ERROR",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
           "description": "Sets the logging level to use when retries have been exhausted",
           "title": "Retries Exhausted Log Level",
           "required": false,
@@ -4630,8 +4638,16 @@
         },
         "retryAttemptedLogLevel": {
           "kind": "attribute",
-          "type": "object",
+          "type": "enum",
           "defaultValue": "DEBUG",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
           "description": "Sets the logging level to use for logging retry attempts",
           "title": "Retry Attempted Log Level",
           "required": false,
@@ -5288,6 +5304,22 @@
           "title": "Timeout Cancel Running Future",
           "required": false,
           "deprecated": false
+        },
+        "recordException": {
+          "kind": "element",
+          "type": "array",
+          "description": "Configure a list of exceptions that are recorded as a failure and thus increase the failure rate. Any exception matching or inheriting from one of the list counts as a failure, unless explicitly ignored via ignoreExceptions.",
+          "title": "Record Exception",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreException": {
+          "kind": "element",
+          "type": "array",
+          "description": "Configure a list of exceptions that are ignored and neither count as a failure nor success. Any exception matching or inheriting from one of the list will not count as a failure nor success, even if the exceptions is part of recordExceptions.",
+          "title": "Ignore Exception",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -5430,7 +5462,7 @@
       "title": "Round Robin",
       "group": "eip,routing",
       "icon": "generic24.png",
-      "description": "The destination endpoints are selected in a round-robin fashion. This is a well known and classic policy, which spreads the load evenly.",
+      "description": "The destination endpoints are selected in a round-robin fashion. This is a well-known and classic policy, which spreads the load evenly.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -6746,7 +6778,7 @@
       "title": "Set Headers",
       "group": "eip,transformation",
       "icon": "generic24.png",
-      "description": "Allows to set multiple headers on the message at the same time.",
+      "description": "Allows setting multiple headers on the message at the same time.",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
