@@ -9297,7 +9297,7 @@
             "useExchangeId",
             "usePropertyValue"
           ],
-          "description": "Only for FIFO Topic. Strategy for setting the messageGroupId on the message. It can be one of the following options: useConstant, useExchangeId, usePropertyValue. For the usePropertyValue option, the value of property CamelAwsMessageGroupId will be used.",
+          "description": "Only for FIFO Topic. Strategy for setting the messageGroupId on the message. It can be one of the following options: useConstant, useExchangeId, usePropertyValue. For the usePropertyValue option, the value of property CamelAwsSnsMessageGroupId will be used.",
           "title": "Message Group Id Strategy",
           "required": false,
           "deprecated": false
@@ -12765,6 +12765,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter Service Bus application properties to and from Camel message headers.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "proxyOptions": {
           "kind": "parameter",
           "type": "object",
@@ -13518,10 +13526,10 @@
     },
     "azure-storage-datalake": {
       "type": "object",
-      "title": "Azure Storage Datalake Service",
+      "title": "Azure Storage Data Lake Service",
       "group": "cloud,file,bigdata",
       "icon": "generic24.png",
-      "description": "Sends and receives files to/from Azure DataLake Storage.",
+      "description": "Sends and receives files to/from Azure Data Lake Storage.",
       "properties": {
         "accountName": {
           "kind": "path",
@@ -13590,7 +13598,7 @@
         "dataLakeServiceClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "service client of datalake",
+          "description": "service client of data lake",
           "title": "Data Lake Service Client",
           "required": false,
           "deprecated": false
@@ -13670,7 +13678,7 @@
         "path": {
           "kind": "parameter",
           "type": "string",
-          "description": "path in azure datalake for operations",
+          "description": "path in azure data lake for operations",
           "title": "Path",
           "required": false,
           "deprecated": false
@@ -13718,7 +13726,7 @@
         "serviceClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "datalake service client for azure storage datalake",
+          "description": "data lake service client for azure storage data lake",
           "title": "Service Client",
           "required": false,
           "deprecated": false
@@ -13726,7 +13734,7 @@
         "sharedKeyCredential": {
           "kind": "parameter",
           "type": "object",
-          "description": "shared key credential for azure datalake gen2",
+          "description": "shared key credential for azure data lake gen2",
           "title": "Shared Key Credential",
           "required": false,
           "deprecated": false
@@ -45251,7 +45259,7 @@
       "title": "JSLT",
       "group": "transformation",
       "icon": "generic24.png",
-      "description": "Query or transform JSON payloads using an JSLT.",
+      "description": "Query or transform JSON payloads using JSLT.",
       "properties": {
         "resourceUri": {
           "kind": "path",
@@ -65044,7 +65052,7 @@
             "EXPANDED",
             "COMPACT"
           ],
-          "description": "EXPANDED: Apache Avro format but doesnt strictly adhere to the record complex type. COMPACT: Apache Avro, adheres to the specification for the record complex type. This parameter is available in API version 43.0 and later.",
+          "description": "EXPANDED: Apache Avro format but doesn\u0027t strictly adhere to the record complex type. COMPACT: Apache Avro, adheres to the specification for the record complex type. This parameter is available in API version 43.0 and later.",
           "title": "Event Schema Format",
           "required": false,
           "deprecated": false
@@ -71623,7 +71631,7 @@
           "kind": "parameter",
           "type": "duration",
           "defaultValue": "60000",
-          "description": "Sets update rate in seconds",
+          "description": "Milliseconds before the next poll.",
           "title": "Delay",
           "required": false,
           "deprecated": false
@@ -72310,7 +72318,7 @@
       "title": "Splunk HEC",
       "group": "monitoring",
       "icon": "generic24.png",
-      "description": "The splunk component allows to publish events in Splunk using the HTTP Event Collector.",
+      "description": "The splunk component allows publishing events in Splunk using the HTTP Event Collector.",
       "properties": {
         "splunkURL": {
           "kind": "path",
@@ -72736,7 +72744,7 @@
       "title": "Spring RabbitMQ",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Send and receive messages from RabbitMQ using Spring RabbitMQ client.",
+      "description": "Send and receive messages from RabbitMQ using the Spring RabbitMQ client.",
       "properties": {
         "exchangeName": {
           "kind": "path",
@@ -74581,7 +74589,7 @@
       "title": "Stomp",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Send and rececive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.",
+      "description": "Send and receive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.",
       "properties": {
         "destination": {
           "kind": "path",
@@ -75178,7 +75186,7 @@
       "title": "Telegram",
       "group": "cloud,api,chat",
       "icon": "generic24.png",
-      "description": "Send and receive messages acting as a Telegram Bot Telegram Bot API.",
+      "description": "Send and receive messages using the Telegram Bot API.",
       "properties": {
         "type": {
           "kind": "path",
@@ -79414,10 +79422,10 @@
     },
     "wordpress": {
       "type": "object",
-      "title": "Wordpress",
+      "title": "WordPress",
       "group": "cloud,api,cms",
       "icon": "generic24.png",
-      "description": "Manage posts and users using Wordpress API.",
+      "description": "Manage posts and users using the WordPress API.",
       "properties": {
         "operation": {
           "kind": "path",
@@ -81173,7 +81181,7 @@
       "title": "Zeebe",
       "group": "workflow,saas",
       "icon": "generic24.png",
-      "description": "Zeebe component which does integrage with Camunda Zeebe to interact with the API.",
+      "description": "Zeebe component which integrates with Camunda Zeebe to interact with the API.",
       "properties": {
         "operationName": {
           "kind": "path",
