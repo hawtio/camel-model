@@ -69329,7 +69329,7 @@
           "kind": "parameter",
           "type": "duration",
           "defaultValue": "60000",
-          "description": "Sets update rate in seconds",
+          "description": "Milliseconds before the next poll.",
           "title": "Delay",
           "required": false,
           "deprecated": false
