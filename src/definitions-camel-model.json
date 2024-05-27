@@ -72,7 +72,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -402,7 +402,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -453,6 +453,112 @@
           ],
           "description": "Scope of bean. When using singleton scope (default) the bean is created or looked up only once and reused for the lifetime of the endpoint. The bean should be thread-safe in case concurrent threads is calling the bean at the same time. When using request scope the bean is created or looked up once per request (exchange). This can be used if you want to store state on a bean while processing a request and you want to call the same bean instance multiple times while processing the request. The bean does not have to be thread-safe as the instance is only called from the same request. When using prototype scope, then the bean will be looked up or created per call. However in case of lookup then this is delegated to the bean registry such as Spring or CDI (if in use), which depends on their configuration can act as either singleton or prototype scope. So when using prototype scope then this depends on the bean registry implementation.",
           "title": "Scope",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "beanFactory": {
+      "type": "object",
+      "title": "Bean Factory",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "Define custom beans that can be used in your Camel routes and in general.",
+      "properties": {
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The name of the bean (bean id)",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The class name (fully qualified) of the bean",
+          "title": "Type",
+          "required": true,
+          "deprecated": false
+        },
+        "initMethod": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The name of the custom initialization method to invoke after setting bean properties. The method must have no arguments, but may throw any exception.",
+          "title": "Init Method",
+          "required": false,
+          "deprecated": false
+        },
+        "destroyMethod": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The name of the custom destroy method to invoke on bean shutdown, such as when Camel is shutting down. The method must have no arguments, but may throw any exception.",
+          "title": "Destroy Method",
+          "required": false,
+          "deprecated": false
+        },
+        "factoryMethod": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of method to invoke when creating the bean via a factory bean.",
+          "title": "Factory Method",
+          "required": false,
+          "deprecated": false
+        },
+        "factoryBean": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of factory bean (bean id) to use for creating the bean.",
+          "title": "Factory Bean",
+          "required": false,
+          "deprecated": false
+        },
+        "builderClass": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Fully qualified class name of builder class to use for creating and configuring the bean. The builder will use the properties values to configure the bean.",
+          "title": "Builder Class",
+          "required": false,
+          "deprecated": false
+        },
+        "builderMethod": {
+          "kind": "attribute",
+          "type": "string",
+          "defaultValue": "build",
+          "description": "Name of method when using builder class. This method is invoked after configuring to create the actual bean. This method is often named build (used by default).",
+          "title": "Builder Method",
+          "required": false,
+          "deprecated": false
+        },
+        "scriptLanguage": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The script language to use when using inlined script for creating the bean, such as groovy, java, javascript etc.",
+          "title": "Script Language",
+          "required": false,
+          "deprecated": false
+        },
+        "constructors": {
+          "kind": "element",
+          "type": "object",
+          "description": "Optional constructor arguments for creating the bean. Arguments correspond to specific index of the constructor argument list, starting from zero.",
+          "title": "Constructors",
+          "required": false,
+          "deprecated": false
+        },
+        "properties": {
+          "kind": "element",
+          "type": "object",
+          "description": "Optional properties to set on the created bean.",
+          "title": "Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "script": {
+          "kind": "element",
+          "type": "string",
+          "description": "The script to execute that creates the bean when using scripting languages. If the script use the prefix resource: such as resource:classpath:com/foo/myscript.groovy, resource:file:/var/myscript.groovy, then its loaded from the external resource.",
+          "title": "Script",
           "required": false,
           "deprecated": false
         }
@@ -570,7 +676,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -632,7 +738,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -709,7 +815,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -991,7 +1097,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1053,7 +1159,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1131,7 +1237,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1560,7 +1666,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1670,7 +1776,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1728,7 +1834,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1770,7 +1876,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1815,7 +1921,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1886,7 +1992,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2236,7 +2342,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2297,7 +2403,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2408,7 +2514,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2502,7 +2608,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2544,7 +2650,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2586,7 +2692,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2636,7 +2742,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -2854,7 +2960,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3091,7 +3197,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3161,10 +3267,10 @@
     },
     "log": {
       "type": "object",
-      "title": "Log",
+      "title": "Logger",
       "group": "eip,routing",
       "icon": "log24.png",
-      "description": "Logs the defined message to the logger",
+      "description": "Used for printing custom messages to the logger.",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -3178,7 +3284,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3264,7 +3370,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3344,7 +3450,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3507,7 +3613,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3614,7 +3720,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3749,7 +3855,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3856,7 +3962,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3898,7 +4004,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4001,7 +4107,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4054,7 +4160,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4096,7 +4202,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4141,7 +4247,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4262,7 +4368,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4377,7 +4483,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4823,7 +4929,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4868,7 +4974,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4921,7 +5027,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -4974,7 +5080,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5019,7 +5125,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5064,7 +5170,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5342,7 +5448,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5413,7 +5519,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5493,7 +5599,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5631,6 +5737,14 @@
           "required": false,
           "deprecated": false
         },
+        "errorHandler": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the error handler to use for this route",
+          "title": "Error Handler",
+          "required": false,
+          "deprecated": false
+        },
         "inputType": {
           "kind": "element",
           "type": "object",
@@ -5706,7 +5820,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5804,7 +5918,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5846,7 +5960,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5912,7 +6026,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5937,7 +6051,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -5973,7 +6087,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6044,7 +6158,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6159,7 +6273,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6213,7 +6327,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6258,7 +6372,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6648,7 +6762,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6690,7 +6804,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6739,7 +6853,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6792,7 +6906,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6829,7 +6943,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6882,7 +6996,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6916,6 +7030,43 @@
         }
       }
     },
+    "setVariables": {
+      "type": "object",
+      "title": "Set Variables",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Allows setting multiple variables at the same time.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "sort": {
       "type": "object",
       "title": "Sort",
@@ -6935,7 +7086,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -6988,7 +7139,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -7336,7 +7487,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -7409,7 +7560,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -7487,63 +7638,6 @@
           "type": "object",
           "description": "To use a custom comparator as a org.apache.camel.processor.resequencer.ExpressionResultComparator type.",
           "title": "Comparator",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "templateBean": {
-      "type": "object",
-      "title": "Template Bean",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "A route template bean (local bean)",
-      "properties": {
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Bean name",
-          "title": "Name",
-          "required": true,
-          "deprecated": false
-        },
-        "type": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "What type to use for creating the bean (FQN classname). Can be prefixed with: #class or #type #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean",
-          "title": "Type",
-          "required": true,
-          "deprecated": false
-        },
-        "scriptLanguage": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The script language to use when using inlined script for creating the bean, such as groovy, java, javascript etc.",
-          "title": "Script Language",
-          "required": false,
-          "deprecated": false
-        },
-        "property": {
-          "kind": "element",
-          "type": "array",
-          "description": "Optional properties to set on the created local bean",
-          "title": "Property",
-          "required": false,
-          "deprecated": false
-        },
-        "properties": {
-          "kind": "element",
-          "type": "object",
-          "description": "Optional properties to set on the created local bean",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
-        "script": {
-          "kind": "element",
-          "type": "string",
-          "description": "The script to execute that creates the bean when using scripting languages. If the script use the prefix resource: such as resource:classpath:com/foo/myscript.groovy, resource:file:/var/myscript.groovy, then its loaded from the external resource.",
-          "title": "Script",
           "required": false,
           "deprecated": false
         }
@@ -7640,63 +7734,6 @@
         }
       }
     },
-    "templatedRouteBean": {
-      "type": "object",
-      "title": "Templated Route Bean",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "A bean as input of a route template (local bean)",
-      "properties": {
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Bean name",
-          "title": "Name",
-          "required": true,
-          "deprecated": false
-        },
-        "type": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "What type to use for creating the bean (FQN classname). Can be prefixed with: #class or #type #class or #type then the bean is created via the fully qualified classname, such as #class:com.foo.MyBean",
-          "title": "Type",
-          "required": true,
-          "deprecated": false
-        },
-        "scriptLanguage": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The script language to use when using inlined script for creating the bean, such as groovy, java, javascript etc.",
-          "title": "Script Language",
-          "required": false,
-          "deprecated": false
-        },
-        "property": {
-          "kind": "element",
-          "type": "array",
-          "description": "Optional properties to set on the created local bean",
-          "title": "Property",
-          "required": false,
-          "deprecated": false
-        },
-        "properties": {
-          "kind": "element",
-          "type": "object",
-          "description": "Optional properties to set on the created local bean",
-          "title": "Properties",
-          "required": false,
-          "deprecated": false
-        },
-        "script": {
-          "kind": "element",
-          "type": "string",
-          "description": "The script to execute that creates the bean when using scripting languages. If the script use the prefix resource: such as resource:classpath:com/foo/myscript.groovy, resource:file:/var/myscript.groovy, then its loaded from the external resource.",
-          "title": "Script",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
     "templatedRouteParameter": {
       "type": "object",
       "title": "Templated Route Parameter",
@@ -7738,7 +7775,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -7763,7 +7800,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -7870,7 +7907,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8003,7 +8040,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8110,7 +8147,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8171,7 +8208,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8244,7 +8281,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8369,7 +8406,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8414,7 +8451,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8492,7 +8529,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8625,7 +8662,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8675,7 +8712,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -8728,7 +8765,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",

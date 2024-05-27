@@ -2172,7 +2172,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -3505,7 +3505,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",

@@ -146,7 +146,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -309,7 +309,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -472,7 +472,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -720,6 +720,82 @@
         }
       }
     },
+    "openApi": {
+      "type": "object",
+      "title": "Open Api",
+      "group": "rest",
+      "icon": "generic24.png",
+      "description": "To use OpenApi as contract-first with Camel Rest DSL.",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable all the REST services from the OpenAPI contract from the route during build time. Once an REST service has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "specification": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Path to the OpenApi specification file.",
+          "title": "Specification",
+          "required": true,
+          "deprecated": false
+        },
+        "routeId": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of the route",
+          "title": "Route Id",
+          "required": false,
+          "deprecated": false
+        },
+        "missingOperation": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "fail",
+          "enum": [
+            "fail",
+            "ignore",
+            "mock"
+          ],
+          "description": "Whether to fail, ignore or return a mock response for OpenAPI operations that are not mapped to a corresponding route.",
+          "title": "Missing Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "mockIncludePattern": {
+          "kind": "attribute",
+          "type": "string",
+          "defaultValue": "classpath:camel-mock/**",
+          "description": "Used for inclusive filtering of mock data from directories. The pattern is using Ant-path style pattern. Multiple patterns can be specified separated by comma.",
+          "title": "Mock Include Pattern",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "openIdConnect": {
       "type": "object",
       "title": "Open Id Connect",
@@ -894,7 +970,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1057,7 +1133,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1220,7 +1296,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1522,7 +1598,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1631,6 +1707,14 @@
           "required": false,
           "deprecated": false
         },
+        "openApi": {
+          "kind": "element",
+          "type": "object",
+          "description": "To use an existing OpenAPI specification as contract-first for Camel Rest DSL.",
+          "title": "Open Api",
+          "required": false,
+          "deprecated": false
+        },
         "securityDefinitions": {
           "kind": "element",
           "type": "object",
@@ -1668,7 +1752,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",
@@ -1881,7 +1965,7 @@
         "apiContextPath": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets a leading API context-path the REST API services will be using. This can be used when using components such as camel-servlet where the deployed web application is deployed using a context-path.",
+          "description": "Sets a leading context-path the REST API will be using. This can be used when using components such as camel-servlet where the deployed web application is deployed using a context-path.",
           "title": "Api Context Path",
           "required": false,
           "deprecated": false
@@ -1930,6 +2014,14 @@
           ],
           "description": "Sets the binding mode to use. The default value is off",
           "title": "Binding Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "bindingPackageScan": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Package name to use as base (offset) for classpath scanning of POJO classes are located when using binding mode is enabled for JSon or XML. Multiple package names can be separated by comma.",
+          "title": "Binding Package Scan",
           "required": false,
           "deprecated": false
         },
@@ -2111,7 +2203,7 @@
           "deprecated": false
         },
         "description": {
-          "kind": "element",
+          "kind": "attribute",
           "type": "string",
           "description": "Sets the description of this node",
           "title": "Description",

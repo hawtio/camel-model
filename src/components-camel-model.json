@@ -2035,7 +2035,8 @@
           "type": "object",
           "enum": [
             "CLIENT",
-            "SERVER"
+            "SERVER",
+            "RECEIPT"
           ],
           "description": "What kind of operation to perform",
           "title": "Api Name",
@@ -2094,6 +2095,14 @@
           ],
           "description": "The version of the AS2 protocol.",
           "title": "As2 Version",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncMdnPortNumber": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The port number of asynchronous MDN server.",
+          "title": "Async Mdn Port Number",
           "required": false,
           "deprecated": false
         },
@@ -2214,6 +2223,14 @@
           "type": "string",
           "description": "The template used to format MDN message",
           "title": "Mdn Message Template",
+          "required": false,
+          "deprecated": false
+        },
+        "receiptDeliveryOption": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The return URL that the message receiver should send an asynchronous MDN to. If not present the receipt is synchronous. (Client only)",
+          "title": "Receipt Delivery Option",
           "required": false,
           "deprecated": false
         },
@@ -3227,7 +3244,12 @@
             "amazon.titan-image-generator-v1",
             "amazon.titan-embed-text-v1",
             "ai21.j2-ultra-v1",
-            "ai21.j2-mid-v1"
+            "ai21.j2-mid-v1",
+            "anthropic.claude-instant-v1",
+            "anthropic.claude-v2",
+            "anthropic.claude-v2:1",
+            "anthropic.claude-3-sonnet-20240229-v1:0",
+            "anthropic.claude-3-haiku-20240307-v1:0"
           ],
           "description": "Define the model Id we are going to use",
           "title": "Model Id",
@@ -13624,28 +13646,6 @@
           "required": true,
           "deprecated": false
         },
-        "consumerOperation": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "receiveMessages",
-          "enum": [
-            "receiveMessages",
-            "peekMessages"
-          ],
-          "description": "Sets the desired operation to be used in the consumer",
-          "title": "Consumer Operation",
-          "required": false,
-          "deprecated": false
-        },
-        "disableAutoComplete": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Disables auto-complete and auto-abandon of received messages. By default, a successfully processed message is completed. If an error happens when the message is abandoned.",
-          "title": "Disable Auto Complete",
-          "required": false,
-          "deprecated": false
-        },
         "enableDeadLettering": {
           "kind": "parameter",
           "type": "boolean",
@@ -13664,11 +13664,12 @@
           "required": false,
           "deprecated": false
         },
-        "peekNumMaxMessages": {
+        "maxConcurrentCalls": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Set the max number of messages to be peeked during the peek operation.",
-          "title": "Peek Num Max Messages",
+          "defaultValue": "1",
+          "description": "Sets maximum number of concurrent calls",
+          "title": "Max Concurrent Calls",
           "required": false,
           "deprecated": false
         },
@@ -13680,11 +13681,11 @@
           "required": false,
           "deprecated": false
         },
-        "receiverAsyncClient": {
+        "processorClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets the receiverAsyncClient in order to consume messages by the consumer",
-          "title": "Receiver Async Client",
+          "description": "Sets the processorClient in order to consume messages by the consumer",
+          "title": "Processor Client",
           "required": false,
           "deprecated": false
         },
@@ -13748,15 +13749,6 @@
           ],
           "description": "Sets the exchange pattern when the consumer creates an exchange.",
           "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "reconnectDelay": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "5000",
-          "description": "If the consumer has connection failure to Azure ServiceBus, then delay (millis) some time before re-connecting.",
-          "title": "Reconnect Delay",
           "required": false,
           "deprecated": false
         },
@@ -19398,23 +19390,6 @@
           "required": false,
           "deprecated": false
         },
-        "loggingFeatureEnabled": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "This option enables CXF Logging Feature which writes inbound and outbound REST messages to log.",
-          "title": "Logging Feature Enabled",
-          "required": false,
-          "deprecated": false
-        },
-        "loggingSizeLimit": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "To limit the total size of number of bytes the logger will output when logging feature has been enabled.",
-          "title": "Logging Size Limit",
-          "required": false,
-          "deprecated": false
-        },
         "modelRef": {
           "kind": "parameter",
           "type": "string",
@@ -19658,6 +19633,24 @@
           "defaultValue": "false",
           "description": "When the option is true, JAXRS UriInfo, HttpHeaders, Request and SecurityContext contexts will be available to custom CXFRS processors as typed Camel exchange properties. These contexts can be used to analyze the current requests using JAX-RS API.",
           "title": "Propagate Contexts",
+          "required": false,
+          "deprecated": false
+        },
+        "loggingFeatureEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "This option enables CXF Logging Feature which writes inbound and outbound REST messages to log.",
+          "title": "Logging Feature Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "loggingSizeLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "49152",
+          "description": "To limit the total size of number of bytes the logger will output when logging feature has been enabled and -1 for no limit.",
+          "title": "Logging Size Limit",
           "required": false,
           "deprecated": false
         }
@@ -20588,6 +20581,59 @@
           "required": false,
           "deprecated": false
         },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
+          "required": false,
+          "deprecated": false
+        },
         "snapshotSelectStatementOverrides": {
           "kind": "parameter",
           "type": "string",
@@ -20975,15 +21021,6 @@
           "required": false,
           "deprecated": false
         },
-        "mongodbConnectionMode": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "sharded",
-          "description": "The method used to connect to MongoDB cluster. Options include: \u0027replica_set\u0027 to individually connect to each replica set / shard \u0027sharded\u0027 (the default) to connect via single connection obtained from connection string",
-          "title": "Mongodb Connection Mode",
-          "required": false,
-          "deprecated": false
-        },
         "mongodbConnectionString": {
           "kind": "parameter",
           "type": "string",
@@ -21231,6 +21268,59 @@
           "defaultValue": "initial",
           "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the oplog. \u0027never\u0027: The connector does not run a snapshot. Upon first startup, the connector immediately begins reading from the beginning of the oplog.",
           "title": "Snapshot Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -22055,12 +22145,82 @@
           "required": false,
           "deprecated": false
         },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
+          "required": false,
+          "deprecated": false
+        },
         "snapshotNewTables": {
           "kind": "parameter",
           "type": "string",
           "defaultValue": "off",
           "description": "BETA FEATURE: On connector restart, the connector will check if there have been any new tables added to the configuration, and snapshot them. There is presently only two options: \u0027off\u0027: Default behavior. Do not snapshot new tables. \u0027parallel\u0027: The snapshot of the new tables will occur in parallel to the continued binlog reading of the old tables. When the snapshot completes, an independent binlog reader will begin reading the events for the new tables until it catches up to present time. At this point, both old and new binlog readers will be momentarily halted and new binlog reader will start that will read the binlog for all configured tables. The parallel binlog reader will have a configured server id of 10000 the primary binlog reader\u0027s server id.",
           "title": "Snapshot New Tables",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotQueryMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "select_all",
+          "description": "Controls query used during the snapshot",
+          "title": "Snapshot Query Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotQueryModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.query.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027SnapshotterQuery\u0027 interface and is called to determine how to build queries during snapshot.",
+          "title": "Snapshot Query Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -22286,6 +22446,23 @@
           ],
           "description": "Sets the exchange pattern when the consumer creates an exchange.",
           "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "archiveDestinationName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the specific archive log destination as the source for reading archive logs.When not set, the connector will automatically select the first LOCAL and VALID destination.",
+          "title": "Archive Destination Name",
+          "required": false,
+          "deprecated": false
+        },
+        "archiveLogHours": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The number of hours in the past from SYSDATE to mine archive logs. Using 0 mines all available archive logs",
+          "title": "Archive Log Hours",
           "required": false,
           "deprecated": false
         },
@@ -22518,23 +22695,6 @@
           "required": false,
           "deprecated": false
         },
-        "logMiningArchiveDestinationName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets the specific archive log destination as the source for reading archive logs.When not set, the connector will automatically select the first LOCAL and VALID destination.",
-          "title": "Log Mining Archive Destination Name",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningArchiveLogHours": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "0",
-          "description": "The number of hours in the past from SYSDATE to mine archive logs. Using 0 mines all available archive logs",
-          "title": "Log Mining Archive Log Hours",
-          "required": false,
-          "deprecated": false
-        },
         "logMiningArchiveLogOnlyMode": {
           "kind": "parameter",
           "type": "boolean",
@@ -22653,6 +22813,15 @@
           "defaultValue": "LOG_MINING_FLUSH",
           "description": "The name of the flush table used by the connector, defaults to LOG_MINING_FLUSH.",
           "title": "Log Mining Flush Table Name",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningIncludeRedoSql": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, the transaction log REDO SQL will be included in the source information block.",
+          "title": "Log Mining Include Redo Sql",
           "required": false,
           "deprecated": false
         },
@@ -22986,6 +23155,15 @@
           "required": false,
           "deprecated": false
         },
+        "snapshotDatabaseErrorsMaxRetries": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The number of attempts to retry database errors during snapshots before failing.",
+          "title": "Snapshot Database Errors Max Retries",
+          "required": false,
+          "deprecated": false
+        },
         "snapshotDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -23052,6 +23230,59 @@
           "defaultValue": "initial",
           "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027always\u0027: The connector runs a snapshot every time that it starts. After the snapshot completes, the connector begins to stream changes from the redo logs.; \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the redo logs. \u0027initial_only\u0027: The connector performs a snapshot as it does for the \u0027initial\u0027 option, but after the connector completes the snapshot, it stops, and does not stream changes from the redo logs.; \u0027schema_only\u0027: If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures only the schema (table structures), but not any table data. After the snapshot completes, the connector begins to stream changes from the redo logs.; \u0027schema_only_recovery\u0027: The connector performs a snapshot that captures only the database schema history. The connector then transitions to streaming from the redo logs. Use this setting to restore a corrupted or lost database schema history topic. Do not use if the database schema was modified after the connector stopped.",
           "title": "Snapshot Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -23827,14 +24058,6 @@
           "required": false,
           "deprecated": false
         },
-        "snapshotCustomClass": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a fully qualified class name to load (via the default class loader). This class must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot and how to build queries.",
-          "title": "Snapshot Custom Class",
-          "required": false,
-          "deprecated": false
-        },
         "snapshotDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -23857,6 +24080,23 @@
           "type": "string",
           "description": "This setting must be set to specify a list of tables/collections whose snapshot must be taken on creating or restarting the connector.",
           "title": "Snapshot Include Collection List",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotLockingMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "none",
+          "description": "Controls how the connector holds locks on tables while performing the schema snapshot. The \u0027shared\u0027 which means the connector will hold a table lock that prevents exclusive table access for just the initial portion of the snapshot while the database schemas and other metadata are being read. The remaining work in a snapshot involves selecting all rows from each table, and this is done using a flashback query that requires no locks. However, in some cases it may be desirable to avoid locks entirely which can be done by specifying \u0027none\u0027. This mode is only safe to use if no schema changes are happening while the snapshot is taken.",
+          "title": "Snapshot Locking Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotLockingModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.locking.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027SnapshotterLocking\u0027 interface and is called to determine how to lock tables during schema snapshot.",
+          "title": "Snapshot Locking Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -23884,6 +24124,76 @@
           "defaultValue": "initial",
           "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027always\u0027: The connector runs a snapshot every time that it starts. After the snapshot completes, the connector begins to stream changes from the transaction log.; \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the transaction log. \u0027initial_only\u0027: The connector performs a snapshot as it does for the \u0027initial\u0027 option, but after the connector completes the snapshot, it stops, and does not stream changes from the transaction log.; \u0027never\u0027: The connector does not run a snapshot. Upon first startup, the connector immediately begins reading from the beginning of the transaction log. \u0027exported\u0027: This option is deprecated; use \u0027initial\u0027 instead.; \u0027custom\u0027: The connector loads a custom class to specify how the connector performs snapshots. For more information, see Custom snapshotter SPI in the PostgreSQL connector documentation.",
           "title": "Snapshot Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotQueryMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "select_all",
+          "description": "Controls query used during the snapshot",
+          "title": "Snapshot Query Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotQueryModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.query.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027SnapshotterQuery\u0027 interface and is called to determine how to build queries during snapshot.",
+          "title": "Snapshot Query Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -24237,6 +24547,15 @@
           "required": false,
           "deprecated": false
         },
+        "dataQueryMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "function",
+          "description": "Controls how the connector queries CDC data. The default is \u0027function\u0027, which means the data is queried by means of calling cdc.fn_cdc_get_all_changes_# function. The value of \u0027direct\u0027 makes the connector to query the change tables directly.",
+          "title": "Data Query Mode",
+          "required": false,
+          "deprecated": false
+        },
         "datatypePropagateSourceType": {
           "kind": "parameter",
           "type": "string",
@@ -24564,7 +24883,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "repeatable_read",
-          "description": "Controls which transaction isolation level is used and how long the connector locks the captured tables. The default is \u0027repeatable_read\u0027, which means that repeatable read isolation level is used. In addition, exclusive locks are taken only during schema snapshot. Using a value of \u0027exclusive\u0027 ensures that the connector holds the exclusive lock (and thus prevents any reads and updates) for all captured tables during the entire snapshot duration. When \u0027snapshot\u0027 is specified, connector runs the initial snapshot in SNAPSHOT isolation level, which guarantees snapshot consistency. In addition, neither table nor row-level locks are held. When \u0027read_committed\u0027 is specified, connector runs the initial snapshot in READ COMMITTED isolation level. No long-running locks are taken, so that initial snapshot does not prevent other transactions from updating table rows. Snapshot consistency is not guaranteed.In \u0027read_uncommitted\u0027 mode neither table nor row-level locks are acquired, but connector does not guarantee snapshot consistency.",
+          "description": "Controls which transaction isolation level is used and how long the connector locks the captured tables. The default is \u0027repeatable_read\u0027, which means that repeatable read isolation level is used. In addition, type of acquired lock during schema snapshot depends on snapshot.locking.mode property. Using a value of \u0027exclusive\u0027 ensures that the connector holds the type of lock specified with snapshot.locking.mode property (and thus prevents any reads and updates) for all captured tables during the entire snapshot duration. When \u0027snapshot\u0027 is specified, connector runs the initial snapshot in SNAPSHOT isolation level, which guarantees snapshot consistency. In addition, neither table nor row-level locks are held. When \u0027read_committed\u0027 is specified, connector runs the initial snapshot in READ COMMITTED isolation level. No long-running locks are taken, so that initial snapshot does not prevent other transactions from updating table rows. Snapshot consistency is not guaranteed.In \u0027read_uncommitted\u0027 mode neither table nor row-level locks are acquired, but connector does not guarantee snapshot consistency.",
           "title": "Snapshot Isolation Mode",
           "required": false,
           "deprecated": false
@@ -24593,6 +24912,59 @@
           "defaultValue": "initial",
           "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the transaction log.; \u0027initial_only\u0027: The connector performs a snapshot as it does for the \u0027initial\u0027 option, but after the connector completes the snapshot, it stops, and does not stream changes from the transaction log.; \u0027schema_only\u0027: If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures only the schema (table structures), but not any table data. After the snapshot completes, the connector begins to stream changes from the transaction log.",
           "title": "Snapshot Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotData": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Data",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnDataError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the data should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Data Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotOnSchemaError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not in case of error.",
+          "title": "Snapshot Mode Configuration Based Snapshot On Schema Error",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedSnapshotSchema": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the schema should be snapshotted or not.",
+          "title": "Snapshot Mode Configuration Based Snapshot Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeConfigurationBasedStartStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When \u0027snapshot.mode\u0027 is set as configuration_based, this setting permits to specify whenever the stream should start or not after snapshot.",
+          "title": "Snapshot Mode Configuration Based Start Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotModeCustomName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When \u0027snapshot.mode\u0027 is set as custom, this setting must be set to specify a the name of the custom implementation provided in the \u0027name()\u0027 method. The implementations must implement the \u0027Snapshotter\u0027 interface and is called on each app boot to determine whether to do a snapshot.",
+          "title": "Snapshot Mode Custom Name",
           "required": false,
           "deprecated": false
         },
@@ -33934,6 +34306,149 @@
         }
       }
     },
+    "google-pubsub-lite": {
+      "type": "object",
+      "title": "Google PubSub Lite",
+      "group": "cloud,messaging",
+      "icon": "generic24.png",
+      "description": "Send and receive messages to/from Google Cloud Platform PubSub Lite Service.",
+      "properties": {
+        "projectId": {
+          "kind": "path",
+          "type": "integer",
+          "description": "The Google Cloud PubSub Lite Project Id",
+          "title": "Project Id",
+          "required": true,
+          "deprecated": false
+        },
+        "location": {
+          "kind": "path",
+          "type": "string",
+          "description": "The Google Cloud PubSub Lite location",
+          "title": "Location",
+          "required": true,
+          "deprecated": false
+        },
+        "destinationName": {
+          "kind": "path",
+          "type": "string",
+          "description": "The Destination Name. For the consumer this will be the subscription name, while for the producer this will be the topic name.",
+          "title": "Destination Name",
+          "required": true,
+          "deprecated": false
+        },
+        "loggerId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Logger ID to use when a match to the parent route required",
+          "title": "Logger Id",
+          "required": false,
+          "deprecated": false
+        },
+        "ackMode": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "AUTO",
+          "enum": [
+            "AUTO",
+            "NONE"
+          ],
+          "description": "AUTO \u003d exchange gets ack\u0027ed/nack\u0027ed on completion. NONE \u003d downstream process has to ack/nack explicitly",
+          "title": "Ack Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "concurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "The number of parallel streams consuming from the subscription",
+          "title": "Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "maxAckExtensionPeriod": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3600",
+          "description": "Set the maximum period a message ack deadline will be extended. Value in seconds",
+          "title": "Max Ack Extension Period",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMessagesPerPoll": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "The max number of messages to receive from the server in a single API call",
+          "title": "Max Messages Per Poll",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "pubsubEndpoint": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Pub/Sub endpoint to use. Required when using message ordering, and ensures that messages are received in order even when multiple publishers are used",
+          "title": "Pubsub Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "serializer": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A custom GooglePubsubLiteSerializer to use for serializing message payloads in the producer",
+          "title": "Serializer",
+          "required": false,
+          "deprecated": false
+        },
+        "serviceAccountKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Service account key that can be used as credentials for the PubSub publisher/subscriber. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
+          "title": "Service Account Key",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "google-secret-manager": {
       "type": "object",
       "title": "Google Secret Manager",
@@ -34065,8 +34580,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "Specifies the level of permissions you want a sheets application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info.",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a sheets application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -35203,12 +35718,111 @@
           "required": false,
           "deprecated": false
         },
+        "initialFlowControlWindow": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1048576",
+          "description": "Sets the initial flow control window in bytes.",
+          "title": "Initial Flow Control Window",
+          "required": false,
+          "deprecated": false
+        },
+        "keepAliveTime": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "7200000",
+          "description": "Sets a custom keepalive time in milliseconds, the delay time for sending next keepalive ping. A value of Long.MAX_VALUE or a value greater or equal to NettyServerBuilder.AS_LARGE_AS_INFINITE will disable keepalive.",
+          "title": "Keep Alive Time",
+          "required": false,
+          "deprecated": false
+        },
+        "keepAliveTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20000",
+          "description": "Sets a custom keepalive timeout in milliseconds, the timeout for keepalive ping requests.",
+          "title": "Keep Alive Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "maxConcurrentCallsPerConnection": {
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "2147483647",
-          "description": "The maximum number of concurrent calls permitted for each incoming server connection",
+          "description": "The maximum number of concurrent calls permitted for each incoming server connection. Defaults to no limit.",
           "title": "Max Concurrent Calls Per Connection",
+          "required": false,
+          "deprecated": false
+        },
+        "maxConnectionAge": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "9223372036854775807",
+          "description": "Sets a custom max connection age in milliseconds. Connections lasting longer than which will be gracefully terminated. A random jitter of /-10% will be added to the value. A value of Long.MAX_VALUE (the default) or a value greater or equal to NettyServerBuilder.AS_LARGE_AS_INFINITE will disable max connection age.",
+          "title": "Max Connection Age",
+          "required": false,
+          "deprecated": false
+        },
+        "maxConnectionAgeGrace": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "9223372036854775807",
+          "description": "Sets a custom grace time in milliseconds for the graceful connection termination. A value of Long.MAX_VALUE (the default) or a value greater or equal to NettyServerBuilder.AS_LARGE_AS_INFINITE is considered infinite.",
+          "title": "Max Connection Age Grace",
+          "required": false,
+          "deprecated": false
+        },
+        "maxConnectionIdle": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "9223372036854775807",
+          "description": "Sets a custom max connection idle time in milliseconds. Connection being idle for longer than which will be gracefully terminated. A value of Long.MAX_VALUE (the default) or a value greater or equal to NettyServerBuilder.AS_LARGE_AS_INFINITE will disable max connection idle",
+          "title": "Max Connection Idle",
+          "required": false,
+          "deprecated": false
+        },
+        "maxInboundMetadataSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "8192",
+          "description": "Sets the maximum size of metadata allowed to be received. The default is 8 KiB.",
+          "title": "Max Inbound Metadata Size",
+          "required": false,
+          "deprecated": false
+        },
+        "maxRstFramesPerWindow": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Limits the rate of incoming RST_STREAM frames per connection to maxRstFramesPerWindow per maxRstPeriodSeconds. This option MUST be used in conjunction with maxRstPeriodSeconds for it to be effective.",
+          "title": "Max Rst Frames Per Window",
+          "required": false,
+          "deprecated": false
+        },
+        "maxRstPeriodSeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Limits the rate of incoming RST_STREAM frames per maxRstPeriodSeconds. This option MUST be used in conjunction with maxRstFramesPerWindow for it to be effective.",
+          "title": "Max Rst Period Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "permitKeepAliveTime": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "300000",
+          "description": "Sets the most aggressive keep-alive time in milliseconds that clients are permitted to configure. The server will try to detect clients exceeding this rate and will forcefully close the connection.",
+          "title": "Permit Keep Alive Time",
+          "required": false,
+          "deprecated": false
+        },
+        "permitKeepAliveWithoutCalls": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether to allow clients to send keep-alive HTTP/ 2 PINGs even if there are no outstanding RPCs on the connection.",
+          "title": "Permit Keep Alive Without Calls",
           "required": false,
           "deprecated": false
         },
@@ -52344,7 +52958,7 @@
         }
       }
     },
-    "langchain-chat": {
+    "langchain4j-chat": {
       "type": "object",
       "title": "langChain4j Chat",
       "group": "ai",
@@ -52368,7 +52982,7 @@
             "CHAT_SINGLE_MESSAGE_WITH_PROMPT",
             "CHAT_MULTIPLE_MESSAGES"
           ],
-          "description": "Operation in case of Endpoint of type CHAT. The value is one of the values of org.apache.camel.component.langchain.LangChainChatOperations",
+          "description": "Operation in case of Endpoint of type CHAT. The value is one of the values of org.apache.camel.component.langchain4j.chat.LangChain4jChatOperations",
           "title": "Chat Operation",
           "required": true,
           "deprecated": false
@@ -52392,7 +53006,7 @@
         }
       }
     },
-    "langchain-embeddings": {
+    "langchain4j-embeddings": {
       "type": "object",
       "title": "LangChain4j Embeddings",
       "group": "ai",
@@ -52639,10 +53253,10 @@
     },
     "log": {
       "type": "object",
-      "title": "Log",
+      "title": "Log Data",
       "group": "core,monitoring",
       "icon": "log24.png",
-      "description": "Log messages to the underlying logging mechanism.",
+      "description": "Prints data form the routed message (such as body and headers) to the logger.",
       "properties": {
         "loggerName": {
           "kind": "path",
@@ -61526,6 +62140,40 @@
         }
       }
     },
+    "pinecone": {
+      "type": "object",
+      "title": "Pinecone",
+      "group": "database,ai",
+      "icon": "generic24.png",
+      "description": "Perform operations on the Pinecone Vector Database.",
+      "properties": {
+        "collection": {
+          "kind": "path",
+          "type": "string",
+          "description": "The collection Name",
+          "title": "Collection",
+          "required": true,
+          "deprecated": false
+        },
+        "token": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the API key to use for authentication",
+          "title": "Token",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "platform-http": {
       "type": "object",
       "title": "Platform HTTP",
@@ -64448,24 +65096,25 @@
         "operationId": {
           "kind": "path",
           "type": "string",
-          "description": "ID of the operation from the OpenApi specification.",
+          "description": "ID of the operation from the OpenApi specification. This is required when using producer",
           "title": "Operation Id",
-          "required": true,
-          "deprecated": false
-        },
-        "basePath": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "API basePath, for example /v3. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
-          "title": "Base Path",
           "required": false,
           "deprecated": false
         },
-        "componentName": {
+        "apiContextPath": {
           "kind": "parameter",
           "type": "string",
-          "description": "Name of the Camel component that will perform the requests. The component must be present in Camel registry and it must implement RestProducerFactory service provider interface. If not set CLASSPATH is searched for single component that implements RestProducerFactory SPI. Overrides component configuration.",
-          "title": "Component Name",
+          "description": "Sets the context-path to use for servicing the OpenAPI specification",
+          "title": "Api Context Path",
+          "required": false,
+          "deprecated": false
+        },
+        "clientRequestValidation": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable validation of the client request to check if the incoming request is valid according to the OpenAPI specification",
+          "title": "Client Request Validation",
           "required": false,
           "deprecated": false
         },
@@ -64474,6 +65123,82 @@
           "type": "string",
           "description": "What payload type this component capable of consuming. Could be one type, like application/json or multiple types as application/json, application/xml; q\u003d0.5 according to the RFC7231. This equates to the value of Accept HTTP header. If set overrides any value found in the OpenApi specification and. in the component configuration",
           "title": "Consumes",
+          "required": false,
+          "deprecated": false
+        },
+        "missingOperation": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "fail",
+          "enum": [
+            "fail",
+            "ignore",
+            "mock"
+          ],
+          "description": "Whether the consumer should fail,ignore or return a mock response for OpenAPI operations that are not mapped to a corresponding route.",
+          "title": "Missing Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerComponentName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Name of the Camel component that will service the requests. The component must be present in Camel registry and it must implement RestOpenApiConsumerFactory service provider interface. If not set CLASSPATH is searched for single component that implements RestOpenApiConsumerFactory SPI. Overrides component configuration.",
+          "title": "Consumer Component Name",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "mockIncludePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "classpath:camel-mock/**",
+          "description": "Used for inclusive filtering of mock data from directories. The pattern is using Ant-path style pattern. Multiple patterns can be specified separated by comma.",
+          "title": "Mock Include Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "restOpenapiProcessorStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom strategy for how to process Rest DSL requests",
+          "title": "Rest Openapi Processor Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "basePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "API basePath, for example /v3. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
+          "title": "Base Path",
           "required": false,
           "deprecated": false
         },
@@ -64493,15 +65218,6 @@
           "required": false,
           "deprecated": false
         },
-        "requestValidationCustomizer": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "org.apache.camel.component.rest.openapi.validator.DefaultRequestValidationCustomizer",
-          "description": "If request validation is enabled, this option provides the capability to customize the creation of OpenApiInteractionValidator used to validate requests.",
-          "title": "Request Validation Customizer",
-          "required": false,
-          "deprecated": false
-        },
         "requestValidationEnabled": {
           "kind": "parameter",
           "type": "boolean",
@@ -64511,11 +65227,11 @@
           "required": false,
           "deprecated": false
         },
-        "requestValidationLevels": {
+        "componentName": {
           "kind": "parameter",
-          "type": "object",
-          "description": "Levels for specific OpenAPI request validation options. Multiple options can be specified as URI options prefixed by \u0027validation.\u0027. For example, validation.request.body\u003dERROR\u0026validation.request.body.unexpected\u003dIGNORED. Supported values are INFO, ERROR, WARN \u0026 IGNORE.",
-          "title": "Request Validation Levels",
+          "type": "string",
+          "description": "Name of the Camel component that will perform the requests. The component must be present in Camel registry and it must implement RestProducerFactory service provider interface. If not set CLASSPATH is searched for single component that implements RestProducerFactory SPI. Overrides component configuration.",
+          "title": "Component Name",
           "required": false,
           "deprecated": false
         },
@@ -70148,15 +70864,7 @@
           "type": "string",
           "description": "The name of the share to connect to.",
           "title": "Share Name",
-          "required": false,
-          "deprecated": false
-        },
-        "idempotentRepository": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified.",
-          "title": "Idempotent Repository",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "path": {
@@ -70219,6 +70927,22 @@
           "type": "object",
           "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
           "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified.",
+          "title": "Idempotent Repository",
+          "required": false,
+          "deprecated": false
+        },
+        "smbConfig": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "An optional SMB client configuration, can be used to configure client specific configurations, like timeouts",
+          "title": "Smb Config",
           "required": false,
           "deprecated": false
         },
@@ -72768,7 +73492,7 @@
           "kind": "parameter",
           "type": "duration",
           "defaultValue": "60000",
-          "description": "Sets update rate in seconds",
+          "description": "Milliseconds before the next poll.",
           "title": "Delay",
           "required": false,
           "deprecated": false
@@ -79001,7 +79725,7 @@
         "resourceResolverFactory": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a custom LSResourceResolver which depends on a dynamic endpoint resource URI. The default resource resolver factory resturns a resource resolver which can read files from the class path and file system. Do not use together with resourceResolver.",
+          "description": "To use a custom LSResourceResolver which depends on a dynamic endpoint resource URI. The default resource resolver factory returns a resource resolver which can read files from the class path and file system. Do not use together with resourceResolver.",
           "title": "Resource Resolver Factory",
           "required": false,
           "deprecated": false
@@ -79488,6 +80212,14 @@
           "defaultValue": "false",
           "description": "Whether the server consumer will create a message exchange when a new WebSocket peer connects or disconnects",
           "title": "Fire Web Socket Connection Events",
+          "required": false,
+          "deprecated": false
+        },
+        "handshakeHeaders": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Headers to send in the HTTP handshake request. When the endpoint is a consumer, it only works when it consumes a remote host as a client (i.e. consumeAsClient is true).",
+          "title": "Handshake Headers",
           "required": false,
           "deprecated": false
         },
