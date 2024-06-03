@@ -15988,23 +15988,6 @@
           "required": false,
           "deprecated": false
         },
-        "loggingFeatureEnabled": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "This option enables CXF Logging Feature which writes inbound and outbound REST messages to log.",
-          "title": "Logging Feature Enabled",
-          "required": false,
-          "deprecated": false
-        },
-        "loggingSizeLimit": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "To limit the total size of number of bytes the logger will output when logging feature has been enabled.",
-          "title": "Logging Size Limit",
-          "required": false,
-          "deprecated": false
-        },
         "modelRef": {
           "kind": "parameter",
           "type": "string",
@@ -16249,6 +16232,24 @@
           "defaultValue": "false",
           "description": "When the option is true, JAXRS UriInfo, HttpHeaders, Request and SecurityContext contexts will be available to custom CXFRS processors as typed Camel exchange properties. These contexts can be used to analyze the current requests using JAX-RS API.",
           "title": "Propagate Contexts",
+          "required": false,
+          "deprecated": false
+        },
+        "loggingFeatureEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "This option enables CXF Logging Feature which writes inbound and outbound REST messages to log.",
+          "title": "Logging Feature Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "loggingSizeLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "49152",
+          "description": "To limit the total size of number of bytes the logger will output when logging feature has been enabled and -1 for no limit.",
+          "title": "Logging Size Limit",
           "required": false,
           "deprecated": false
         }
