@@ -280,6 +280,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
+          "required": false,
+          "deprecated": false
+        },
         "routeId": {
           "kind": "attribute",
           "type": "string",
@@ -443,6 +452,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
+          "required": false,
+          "deprecated": false
+        },
         "routeId": {
           "kind": "attribute",
           "type": "string",
@@ -603,6 +621,15 @@
           "defaultValue": "false",
           "description": "Marks this rest operation as deprecated in OpenApi documentation.",
           "title": "Deprecated",
+          "required": false,
+          "deprecated": false
+        },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
           "required": false,
           "deprecated": false
         },
@@ -1104,6 +1131,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
+          "required": false,
+          "deprecated": false
+        },
         "routeId": {
           "kind": "attribute",
           "type": "string",
@@ -1267,6 +1303,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
+          "required": false,
+          "deprecated": false
+        },
         "routeId": {
           "kind": "attribute",
           "type": "string",
@@ -1427,6 +1472,15 @@
           "defaultValue": "false",
           "description": "Marks this rest operation as deprecated in OpenApi documentation.",
           "title": "Deprecated",
+          "required": false,
+          "deprecated": false
+        },
+        "streamCache": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether stream caching is enabled on this rest operation.",
+          "title": "Stream Cache",
           "required": false,
           "deprecated": false
         },
@@ -1994,7 +2048,8 @@
           "enum": [
             "allLocalIp",
             "localHostName",
-            "localIp"
+            "localIp",
+            "none"
           ],
           "description": "If no hostname has been explicit configured, then this resolver is used to compute the hostname the REST service will be using.",
           "title": "Host Name Resolver",

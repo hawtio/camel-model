@@ -2136,9 +2136,9 @@
         }
       }
     },
-    "failover": {
+    "failoverLoadBalancer": {
       "type": "object",
-      "title": "Failover",
+      "title": "Failover Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "In case of failures the exchange will be tried on the next endpoint.",
@@ -2182,7 +2182,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": "-1",
-          "description": "A value to indicate after X failover attempts we should exhaust (give up). Use -1 to indicate never give up and continuously try to failover. Use 0 to never failover. And use e.g. 3 to failover at most 3 times before giving up. his option can be used whether or not roundRobin is enabled or not.",
+          "description": "A value to indicate after X failover attempts we should exhaust (give up). Use -1 to indicate never give up and continuously try to failover. Use 0 to never failover. And use e.g. 3 to failover at most 3 times before giving up. This option can be used whether roundRobin is enabled or not.",
           "title": "Maximum Failover Attempts",
           "required": false,
           "deprecated": false
@@ -3498,7 +3498,7 @@
           "description": "If enabled then the aggregate method on AggregationStrategy can be called concurrently. Notice that this would require the implementation of AggregationStrategy to be implemented as thread-safe. By default this is false meaning that Camel synchronizes the call to the aggregate method. Though in some use-cases this can be used to archive higher performance when the AggregationStrategy is implemented as thread-safe.",
           "title": "Parallel Aggregate",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "parallelProcessing": {
           "kind": "attribute",
@@ -4387,7 +4387,7 @@
         "ref": {
           "kind": "attribute",
           "type": "string",
-          "description": "Reference to the Processor to lookup in the registry to use. Can also be used for creating new beans by their class name by prefixing with #class, eg #class:com.foo.MyClassType. And it is also possible to refer to singleton beans by their type in the registry by prefixing with #type: syntax, eg #type:com.foo.MyClassType",
+          "description": "Reference to the Processor to lookup in the registry to use. A Processor is a class of type org.apache.camel.Processor, which can are to be called by this EIP. In this processor you have custom Java code, that can work with the message, such as to do custom business logic, special message manipulations and so on. By default, the ref, will lookup the bean in the Camel registry. The ref can use prefix that controls how the processor is obtained. You can use #bean:myBean where myBean is the id of the Camel processor (lookup). Can also be used for creating new beans by their class name by prefixing with #class, eg #class:com.foo.MyClassType. And it is also possible to refer to singleton beans by their type in the registry by prefixing with #type: syntax, eg #type:com.foo.MyClassType",
           "title": "Ref",
           "required": true,
           "deprecated": false
@@ -4444,9 +4444,9 @@
         }
       }
     },
-    "random": {
+    "randomLoadBalancer": {
       "type": "object",
-      "title": "Random",
+      "title": "Random Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "The destination endpoints are selected randomly.",
@@ -4548,7 +4548,7 @@
           "description": "If enabled then the aggregate method on AggregationStrategy can be called concurrently. Notice that this would require the implementation of AggregationStrategy to be implemented as thread-safe. By default this is false meaning that Camel synchronizes the call to the aggregate method. Though in some use-cases this can be used to archive higher performance when the AggregationStrategy is implemented as thread-safe.",
           "title": "Parallel Aggregate",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "parallelProcessing": {
           "kind": "attribute",
@@ -5563,9 +5563,9 @@
         }
       }
     },
-    "roundRobin": {
+    "roundRobinLoadBalancer": {
       "type": "object",
-      "title": "Round Robin",
+      "title": "Round Robin Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "The destination endpoints are selected in a round-robin fashion. This is a well-known and classic policy, which spreads the load evenly.",
@@ -6921,6 +6921,14 @@
           "title": "Disabled",
           "required": false,
           "deprecated": false
+        },
+        "headers": {
+          "kind": "element",
+          "type": "array",
+          "description": "Contains the headers to be set",
+          "title": "Headers",
+          "required": true,
+          "deprecated": false
         }
       }
     },
@@ -7064,6 +7072,14 @@
           "title": "Disabled",
           "required": false,
           "deprecated": false
+        },
+        "variables": {
+          "kind": "element",
+          "type": "array",
+          "description": "Contains the variables to be set",
+          "title": "Variables",
+          "required": true,
+          "deprecated": false
         }
       }
     },
@@ -7204,7 +7220,7 @@
           "description": "If enabled then the aggregate method on AggregationStrategy can be called concurrently. Notice that this would require the implementation of AggregationStrategy to be implemented as thread-safe. By default this is false meaning that Camel synchronizes the call to the aggregate method. Though in some use-cases this can be used to archive higher performance when the AggregationStrategy is implemented as thread-safe.",
           "title": "Parallel Aggregate",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "parallelProcessing": {
           "kind": "attribute",
@@ -7513,9 +7529,9 @@
         }
       }
     },
-    "sticky": {
+    "stickyLoadBalancer": {
       "type": "object",
-      "title": "Sticky",
+      "title": "Sticky Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "Sticky load balancing using an expression to calculate a correlation key to perform the sticky load balancing.",
@@ -8370,9 +8386,9 @@
         }
       }
     },
-    "topic": {
+    "topicLoadBalancer": {
       "type": "object",
-      "title": "Topic",
+      "title": "Topic Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "Topic which sends to all destinations.",
@@ -8597,9 +8613,9 @@
         }
       }
     },
-    "weighted": {
+    "weightedLoadBalancer": {
       "type": "object",
-      "title": "Weighted",
+      "title": "Weighted Load Balancer",
       "group": "eip,routing",
       "icon": "generic24.png",
       "description": "Uses a weighted load distribution ratio for each server with respect to others.",

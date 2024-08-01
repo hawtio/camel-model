@@ -2,10 +2,10 @@
   "components": {
     "activemq": {
       "type": "object",
-      "title": "ActiveMQ",
+      "title": "ActiveMQ 5.x",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Send messages to (or consume from) Apache ActiveMQ. This component extends the Camel JMS component.",
+      "description": "Send messages to (or consume from) Apache ActiveMQ 5.x. This component extends the Camel JMS component.",
       "properties": {
         "destinationType": {
           "kind": "path",
@@ -856,6 +856,997 @@
           "defaultValue": "100",
           "description": "Interval in millis to sleep each time while waiting for provisional correlation id to be updated.",
           "title": "Wait For Provision Correlation To Be Updated Thread Sleeping Time",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedCounter": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "200",
+          "description": "Number of times to wait for temporary replyTo queue to be created and ready when doing request/reply over JMS.",
+          "title": "Wait For Temporary Reply To To Be Updated Counter",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedThreadSleepingTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "100",
+          "description": "Interval in millis to sleep each time while waiting for temporary replyTo queue to be ready.",
+          "title": "Wait For Temporary Reply To To Be Updated Thread Sleeping Time",
+          "required": false,
+          "deprecated": false
+        },
+        "errorHandlerLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "WARN",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "Allows to configure the default errorHandler logging level for logging uncaught exceptions.",
+          "title": "Error Handler Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "errorHandlerLogStackTrace": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Allows to control whether stack-traces should be logged or not, by the default errorHandler.",
+          "title": "Error Handler Log Stack Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password to use with the ConnectionFactory. You can also configure username/password directly on the ConnectionFactory.",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Username to use with the ConnectionFactory. You can also configure username/password directly on the ConnectionFactory.",
+          "title": "Username",
+          "required": false,
+          "deprecated": false
+        },
+        "transacted": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether to use transacted mode",
+          "title": "Transacted",
+          "required": false,
+          "deprecated": false
+        },
+        "transactedInOut": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether InOut operations (request reply) default to using transacted mode If this flag is set to true, then Spring JmsTemplate will have sessionTransacted set to true, and the acknowledgeMode as transacted on the JmsTemplate used for InOut operations. Note from Spring JMS: that within a JTA transaction, the parameters passed to createQueue, createTopic methods are not taken into account. Depending on the Java EE transaction context, the container makes its own decisions on these values. Analogously, these parameters are not taken into account within a locally managed transaction either, since Spring JMS operates on an existing JMS Session in this case. Setting this flag to true will use a short local JMS transaction when running outside of a managed transaction, and a synchronized local JMS transaction in case of a managed transaction (other than an XA transaction) being present. This has the effect of a local JMS transaction being managed alongside the main transaction (which might be a native JDBC transaction), with the JMS transaction committing right after the main transaction.",
+          "title": "Transacted In Out",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyCreateTransactionManager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If true, Camel will create a JmsTransactionManager, if there is no transactionManager injected when option transacted\u003dtrue.",
+          "title": "Lazy Create Transaction Manager",
+          "required": false,
+          "deprecated": false
+        },
+        "transactionManager": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Spring transaction manager to use.",
+          "title": "Transaction Manager",
+          "required": false,
+          "deprecated": false
+        },
+        "transactionName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the transaction to use.",
+          "title": "Transaction Name",
+          "required": false,
+          "deprecated": false
+        },
+        "transactionTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "The timeout value of the transaction (in seconds), if using transacted mode.",
+          "title": "Transaction Timeout",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "activemq6": {
+      "type": "object",
+      "title": "ActiveMQ 6.x",
+      "group": "messaging",
+      "icon": "generic24.png",
+      "description": "Send messages to (or consume from) Apache ActiveMQ 6.x. This component extends the Camel JMS component.",
+      "properties": {
+        "destinationType": {
+          "kind": "path",
+          "type": "string",
+          "defaultValue": "queue",
+          "enum": [
+            "queue",
+            "topic",
+            "temp-queue",
+            "temp-topic"
+          ],
+          "description": "The kind of destination to use",
+          "title": "Destination Type",
+          "required": false,
+          "deprecated": false
+        },
+        "destinationName": {
+          "kind": "path",
+          "type": "string",
+          "description": "Name of the queue or topic to use as destination",
+          "title": "Destination Name",
+          "required": true,
+          "deprecated": false
+        },
+        "clientId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the JMS client ID to use. Note that this value, if specified, must be unique and can only be used by a single JMS connection instance. It is typically only required for durable topic subscriptions with JMS 1.1.",
+          "title": "Client Id",
+          "required": false,
+          "deprecated": false
+        },
+        "connectionFactory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The connection factory to be use. A connection factory must be configured either on the component or endpoint.",
+          "title": "Connection Factory",
+          "required": false,
+          "deprecated": false
+        },
+        "disableReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether Camel ignores the JMSReplyTo header in messages. If true, Camel does not send a reply back to the destination specified in the JMSReplyTo header. You can use this option if you want Camel to consume from a route and you do not want Camel to automatically send back a reply message because another component in your code handles the reply message. You can also use this option if you want to use Camel as a proxy between different message brokers and you want to route message from one system to another.",
+          "title": "Disable Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "durableSubscriptionName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The durable subscriber name for specifying durable topic subscriptions. The clientId option must be configured as well.",
+          "title": "Durable Subscription Name",
+          "required": false,
+          "deprecated": false
+        },
+        "jmsMessageType": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "Bytes",
+            "Map",
+            "Object",
+            "Stream",
+            "Text"
+          ],
+          "description": "Allows you to force the use of a specific jakarta.jms.Message implementation for sending JMS messages. Possible values are: Bytes, Map, Object, Stream, Text. By default, Camel would determine which JMS message type to use from the In body type. This option allows you to specify it.",
+          "title": "Jms Message Type",
+          "required": false,
+          "deprecated": false
+        },
+        "replyTo": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Provides an explicit ReplyTo destination (overrides any incoming value of Message.getJMSReplyTo() in consumer).",
+          "title": "Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "testConnectionOnStartup": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether to test the connection on startup. This ensures that when Camel starts that all the JMS consumers have a valid connection to the JMS broker. If a connection cannot be granted then Camel throws an exception on startup. This ensures that Camel is not started with failed connections. The JMS producers is tested as well.",
+          "title": "Test Connection On Startup",
+          "required": false,
+          "deprecated": false
+        },
+        "acknowledgementModeName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "AUTO_ACKNOWLEDGE",
+          "enum": [
+            "SESSION_TRANSACTED",
+            "CLIENT_ACKNOWLEDGE",
+            "AUTO_ACKNOWLEDGE",
+            "DUPS_OK_ACKNOWLEDGE"
+          ],
+          "description": "The JMS acknowledgement name, which is one of: SESSION_TRANSACTED, CLIENT_ACKNOWLEDGE, AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE",
+          "title": "Acknowledgement Mode Name",
+          "required": false,
+          "deprecated": false
+        },
+        "artemisConsumerPriority": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Consumer priorities allow you to ensure that high priority consumers receive messages while they are active. Normally, active consumers connected to a queue receive messages from it in a round-robin fashion. When consumer priorities are in use, messages are delivered round-robin if multiple active consumers exist with the same high priority. Messages will only going to lower priority consumers when the high priority consumers do not have credit available to consume the message, or those high priority consumers have declined to accept the message (for instance because it does not meet the criteria of any selectors associated with the consumer).",
+          "title": "Artemis Consumer Priority",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncConsumer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously (Camel 3.0 may support async transactions).",
+          "title": "Async Consumer",
+          "required": false,
+          "deprecated": false
+        },
+        "autoStartup": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Specifies whether the consumer container should auto-startup.",
+          "title": "Auto Startup",
+          "required": false,
+          "deprecated": false
+        },
+        "cacheLevel": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Sets the cache level by ID for the underlying JMS resources. See cacheLevelName option for more details.",
+          "title": "Cache Level",
+          "required": false,
+          "deprecated": false
+        },
+        "cacheLevelName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "CACHE_AUTO",
+          "enum": [
+            "CACHE_AUTO",
+            "CACHE_CONNECTION",
+            "CACHE_CONSUMER",
+            "CACHE_NONE",
+            "CACHE_SESSION"
+          ],
+          "description": "Sets the cache level by name for the underlying JMS resources. Possible values are: CACHE_AUTO, CACHE_CONNECTION, CACHE_CONSUMER, CACHE_NONE, and CACHE_SESSION. The default setting is CACHE_AUTO. See the Spring documentation and Transactions Cache Levels for more information.",
+          "title": "Cache Level Name",
+          "required": false,
+          "deprecated": false
+        },
+        "concurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Specifies the default number of concurrent consumers when consuming from JMS (not for request/reply over JMS). See also the maxMessagesPerTask option to control dynamic scaling up/down of threads. When doing request/reply over JMS then the option replyToConcurrentConsumers is used to control number of concurrent consumers on the reply message listener.",
+          "title": "Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "maxConcurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Specifies the maximum number of concurrent consumers when consuming from JMS (not for request/reply over JMS). See also the maxMessagesPerTask option to control dynamic scaling up/down of threads. When doing request/reply over JMS then the option replyToMaxConcurrentConsumers is used to control number of concurrent consumers on the reply message listener.",
+          "title": "Max Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToDeliveryPersistent": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Specifies whether to use persistent delivery by default for replies.",
+          "title": "Reply To Delivery Persistent",
+          "required": false,
+          "deprecated": false
+        },
+        "selector": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the JMS selector to use",
+          "title": "Selector",
+          "required": false,
+          "deprecated": false
+        },
+        "subscriptionDurable": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether to make the subscription durable. The durable subscription name to be used can be specified through the subscriptionName property. Default is false. Set this to true to register a durable subscription, typically in combination with a subscriptionName value (unless your message listener class name is good enough as subscription name). Only makes sense when listening to a topic (pub-sub domain), therefore this method switches the pubSubDomain flag as well.",
+          "title": "Subscription Durable",
+          "required": false,
+          "deprecated": false
+        },
+        "subscriptionName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the name of a subscription to create. To be applied in case of a topic (pub-sub domain) with a shared or durable subscription. The subscription name needs to be unique within this client\u0027s JMS client id. Default is the class name of the specified message listener. Note: Only 1 concurrent consumer (which is the default of this message listener container) is allowed for each subscription, except for a shared subscription (which requires JMS 2.0).",
+          "title": "Subscription Name",
+          "required": false,
+          "deprecated": false
+        },
+        "subscriptionShared": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether to make the subscription shared. The shared subscription name to be used can be specified through the subscriptionName property. Default is false. Set this to true to register a shared subscription, typically in combination with a subscriptionName value (unless your message listener class name is good enough as subscription name). Note that shared subscriptions may also be durable, so this flag can (and often will) be combined with subscriptionDurable as well. Only makes sense when listening to a topic (pub-sub domain), therefore this method switches the pubSubDomain flag as well. Requires a JMS 2.0 compatible message broker.",
+          "title": "Subscription Shared",
+          "required": false,
+          "deprecated": false
+        },
+        "acceptMessagesWhileStopping": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether the consumer accept messages while it is stopping. You may consider enabling this option, if you start and stop JMS routes at runtime, while there are still messages enqueued on the queue. If this option is false, and you stop the JMS route, then messages may be rejected, and the JMS broker would have to attempt redeliveries, which yet again may be rejected, and eventually the message may be moved at a dead letter queue on the JMS broker. To avoid this its recommended to enable this option.",
+          "title": "Accept Messages While Stopping",
+          "required": false,
+          "deprecated": false
+        },
+        "allowReplyManagerQuickStop": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the DefaultMessageListenerContainer used in the reply managers for request-reply messaging allow the DefaultMessageListenerContainer.runningAllowed flag to quick stop in case JmsConfiguration#isAcceptMessagesWhileStopping is enabled, and org.apache.camel.CamelContext is currently being stopped. This quick stop ability is enabled by default in the regular JMS consumers but to enable for reply managers you must enable this flag.",
+          "title": "Allow Reply Manager Quick Stop",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerType": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "Default",
+          "enum": [
+            "Simple",
+            "Default",
+            "Custom"
+          ],
+          "description": "The consumer type to use, which can be one of: Simple, Default, or Custom. The consumer type determines which Spring JMS listener to use. Default will use org.springframework.jms.listener.DefaultMessageListenerContainer, Simple will use org.springframework.jms.listener.SimpleMessageListenerContainer. When Custom is specified, the MessageListenerContainerFactory defined by the messageListenerContainerFactory option will determine what org.springframework.jms.listener.AbstractMessageListenerContainer to use.",
+          "title": "Consumer Type",
+          "required": false,
+          "deprecated": false
+        },
+        "defaultTaskExecutorType": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "ThreadPool",
+            "SimpleAsync"
+          ],
+          "description": "Specifies what default TaskExecutor type to use in the DefaultMessageListenerContainer, for both consumer endpoints and the ReplyTo consumer of producer endpoints. Possible values: SimpleAsync (uses Spring\u0027s SimpleAsyncTaskExecutor) or ThreadPool (uses Spring\u0027s ThreadPoolTaskExecutor with optimal values - cached thread-pool-like). If not set, it defaults to the previous behaviour, which uses a cached thread pool for consumer endpoints and SimpleAsync for reply consumers. The use of ThreadPool is recommended to reduce thread trash in elastic configurations with dynamically increasing and decreasing concurrent consumers.",
+          "title": "Default Task Executor Type",
+          "required": false,
+          "deprecated": false
+        },
+        "destinationOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Destination Options are a way to provide extended configuration options to a JMS consumer without having to extend the JMS API. The options are encoded using URL query syntax in the destination name that the consumer is created on. See more details at https://activemq.apache.org/destination-options.",
+          "title": "Destination Options",
+          "required": false,
+          "deprecated": false
+        },
+        "eagerLoadingOfProperties": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enables eager loading of JMS properties and payload as soon as a message is loaded which generally is inefficient as the JMS properties may not be required but sometimes can catch early any issues with the underlying JMS provider and the use of JMS properties. See also the option eagerPoisonBody.",
+          "title": "Eager Loading Of Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "eagerPoisonBody": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Poison JMS message due to ${exception.message}",
+          "description": "If eagerLoadingOfProperties is enabled and the JMS message payload (JMS body or JMS properties) is poison (cannot be read/mapped), then set this text as the message body instead so the message can be processed (the cause of the poison are already stored as exception on the Exchange). This can be turned off by setting eagerPoisonBody\u003dfalse. See also the option eagerLoadingOfProperties.",
+          "title": "Eager Poison Body",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "exposeListenerSession": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether the listener session should be exposed when consuming messages.",
+          "title": "Expose Listener Session",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToConsumerType": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "Default",
+          "enum": [
+            "Simple",
+            "Default",
+            "Custom"
+          ],
+          "description": "The consumer type of the reply consumer (when doing request/reply), which can be one of: Simple, Default, or Custom. The consumer type determines which Spring JMS listener to use. Default will use org.springframework.jms.listener.DefaultMessageListenerContainer, Simple will use org.springframework.jms.listener.SimpleMessageListenerContainer. When Custom is specified, the MessageListenerContainerFactory defined by the messageListenerContainerFactory option will determine what org.springframework.jms.listener.AbstractMessageListenerContainer to use.",
+          "title": "Reply To Consumer Type",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToSameDestinationAllowed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a JMS consumer is allowed to send a reply message to the same destination that the consumer is using to consume from. This prevents an endless loop by consuming and sending back the same message to itself.",
+          "title": "Reply To Same Destination Allowed",
+          "required": false,
+          "deprecated": false
+        },
+        "taskExecutor": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows you to specify a custom task executor for consuming messages.",
+          "title": "Task Executor",
+          "required": false,
+          "deprecated": false
+        },
+        "deliveryDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "Sets delivery delay to use for send calls for JMS. This option requires JMS 2.0 compliant broker.",
+          "title": "Delivery Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "deliveryMode": {
+          "kind": "parameter",
+          "type": "integer",
+          "enum": [
+            "1",
+            "2"
+          ],
+          "description": "Specifies the delivery mode to be used. Possible values are those defined by jakarta.jms.DeliveryMode. NON_PERSISTENT \u003d 1 and PERSISTENT \u003d 2.",
+          "title": "Delivery Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "deliveryPersistent": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Specifies whether persistent delivery is used by default.",
+          "title": "Delivery Persistent",
+          "required": false,
+          "deprecated": false
+        },
+        "explicitQosEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set if the deliveryMode, priority or timeToLive qualities of service should be used when sending messages. This option is based on Spring\u0027s JmsTemplate. The deliveryMode, priority and timeToLive options are applied to the current endpoint. This contrasts with the preserveMessageQos option, which operates at message granularity, reading QoS properties exclusively from the Camel In message headers.",
+          "title": "Explicit Qos Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "formatDateHeadersToIso8601": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether JMS date properties should be formatted according to the ISO 8601 standard.",
+          "title": "Format Date Headers To Iso8601",
+          "required": false,
+          "deprecated": false
+        },
+        "preserveMessageQos": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set to true, if you want to send message using the QoS settings specified on the message, instead of the QoS settings on the JMS endpoint. The following three headers are considered JMSPriority, JMSDeliveryMode, and JMSExpiration. You can provide all or only some of them. If not provided, Camel will fall back to use the values from the endpoint instead. So, when using this option, the headers override the values from the endpoint. The explicitQosEnabled option, by contrast, will only use options set on the endpoint, and not values from the message header.",
+          "title": "Preserve Message Qos",
+          "required": false,
+          "deprecated": false
+        },
+        "priority": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "4",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "description": "Values greater than 1 specify the message priority when sending (where 1 is the lowest priority and 9 is the highest). The explicitQosEnabled option must also be enabled in order for this option to have any effect.",
+          "title": "Priority",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToConcurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Specifies the default number of concurrent consumers when doing request/reply over JMS. See also the maxMessagesPerTask option to control dynamic scaling up/down of threads.",
+          "title": "Reply To Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToMaxConcurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Specifies the maximum number of concurrent consumers when using request/reply over JMS. See also the maxMessagesPerTask option to control dynamic scaling up/down of threads.",
+          "title": "Reply To Max Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToOnTimeoutMaxConcurrentConsumers": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Specifies the maximum number of concurrent consumers for continue routing when timeout occurred when using request/reply over JMS.",
+          "title": "Reply To On Timeout Max Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Provides an explicit ReplyTo destination in the JMS message, which overrides the setting of replyTo. It is useful if you want to forward the message to a remote Queue and receive the reply message from the ReplyTo destination.",
+          "title": "Reply To Override",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToType": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "Temporary",
+            "Shared",
+            "Exclusive"
+          ],
+          "description": "Allows for explicitly specifying which kind of strategy to use for replyTo queues when doing request/reply over JMS. Possible values are: Temporary, Shared, or Exclusive. By default Camel will use temporary queues. However if replyTo has been configured, then Shared is used by default. This option allows you to use exclusive queues instead of shared ones. See Camel JMS documentation for more details, and especially the notes about the implications if running in a clustered environment, and the fact that Shared reply queues has lower performance than its alternatives Temporary and Exclusive.",
+          "title": "Reply To Type",
+          "required": false,
+          "deprecated": false
+        },
+        "requestTimeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "20000",
+          "description": "The timeout for waiting for a reply when using the InOut Exchange Pattern (in milliseconds). The default is 20 seconds. You can include the header CamelJmsRequestTimeout to override this endpoint configured timeout value, and thus have per message individual timeout values. See also the requestTimeoutCheckerInterval option.",
+          "title": "Request Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "timeToLive": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "When sending messages, specifies the time-to-live of the message (in milliseconds).",
+          "title": "Time To Live",
+          "required": false,
+          "deprecated": false
+        },
+        "allowAdditionalHeaders": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "This option is used to allow additional headers which may have values that are invalid according to JMS specification. For example, some message systems, such as WMQ, do this with header names using prefix JMS_IBM_MQMD_ containing values with byte array or other invalid types. You can specify multiple header names separated by comma, and use as suffix for wildcard matching.",
+          "title": "Allow Additional Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "allowNullBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to allow sending messages with no body. If this option is false and the message body is null, then an JMSException is thrown.",
+          "title": "Allow Null Body",
+          "required": false,
+          "deprecated": false
+        },
+        "alwaysCopyMessage": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If true, Camel will always make a JMS message copy of the message when it is passed to the producer for sending. Copying the message is needed in some situations, such as when a replyToDestinationSelectorName is set (incidentally, Camel will set the alwaysCopyMessage option to true, if a replyToDestinationSelectorName is set)",
+          "title": "Always Copy Message",
+          "required": false,
+          "deprecated": false
+        },
+        "correlationProperty": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When using InOut exchange pattern use this JMS property instead of JMSCorrelationID JMS property to correlate messages. If set messages will be correlated solely on the value of this property JMSCorrelationID property will be ignored and not set by Camel.",
+          "title": "Correlation Property",
+          "required": false,
+          "deprecated": false
+        },
+        "disableTimeToLive": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Use this option to force disabling time to live. For example when you do request/reply over JMS, then Camel will by default use the requestTimeout value as time to live on the message being sent. The problem is that the sender and receiver systems have to have their clocks synchronized, so they are in sync. This is not always so easy to archive. So you can use disableTimeToLive\u003dtrue to not set a time to live value on the sent message. Then the message will not expire on the receiver system. See below in section About time to live for more details.",
+          "title": "Disable Time To Live",
+          "required": false,
+          "deprecated": false
+        },
+        "forceSendOriginalMessage": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When using mapJmsMessage\u003dfalse Camel will create a new JMS message to send to a new JMS destination if you touch the headers (get or set) during the route. Set this option to true to force Camel to send the original JMS message that was received.",
+          "title": "Force Send Original Message",
+          "required": false,
+          "deprecated": false
+        },
+        "includeSentJMSMessageID": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Only applicable when sending to JMS destination using InOnly (eg fire and forget). Enabling this option will enrich the Camel Exchange with the actual JMSMessageID that was used by the JMS client when the message was sent to the JMS destination.",
+          "title": "Include Sent JMSMessage ID",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToCacheLevelName": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "CACHE_AUTO",
+            "CACHE_CONNECTION",
+            "CACHE_CONSUMER",
+            "CACHE_NONE",
+            "CACHE_SESSION"
+          ],
+          "description": "Sets the cache level by name for the reply consumer when doing request/reply over JMS. This option only applies when using fixed reply queues (not temporary). Camel will by default use: CACHE_CONSUMER for exclusive or shared w/ replyToSelectorName. And CACHE_SESSION for shared without replyToSelectorName. Some JMS brokers such as IBM WebSphere may require to set the replyToCacheLevelName\u003dCACHE_NONE to work. Note: If using temporary queues then CACHE_NONE is not allowed, and you must use a higher value such as CACHE_CONSUMER or CACHE_SESSION.",
+          "title": "Reply To Cache Level Name",
+          "required": false,
+          "deprecated": false
+        },
+        "replyToDestinationSelectorName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the JMS Selector using the fixed name to be used so you can filter out your own replies from the others when using a shared queue (that is, if you are not using a temporary reply queue).",
+          "title": "Reply To Destination Selector Name",
+          "required": false,
+          "deprecated": false
+        },
+        "streamMessageTypeEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether StreamMessage type is enabled or not. Message payloads of streaming kind such as files, InputStream, etc will either by sent as BytesMessage or StreamMessage. This option controls which kind will be used. By default BytesMessage is used which enforces the entire message payload to be read into memory. By enabling this option the message payload is read into memory in chunks and each chunk is then written to the StreamMessage until no more data.",
+          "title": "Stream Message Type Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "allowSerializedHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Controls whether or not to include serialized headers. Applies only when transferExchange is true. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level.",
+          "title": "Allow Serialized Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "artemisStreamingEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether optimizing for Apache Artemis streaming mode. This can reduce memory overhead when using Artemis with JMS StreamMessage types. This option must only be enabled if Apache Artemis is being used.",
+          "title": "Artemis Streaming Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncStartListener": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to startup the JmsConsumer message listener asynchronously, when starting a route. For example if a JmsConsumer cannot get a connection to a remote JMS broker, then it may block while retrying and/or fail-over. This will cause Camel to block while starting routes. By setting this option to true, you will let routes startup, while the JmsConsumer connects to the JMS broker using a dedicated thread in asynchronous mode. If this option is used, then beware that if the connection could not be established, then an exception is logged at WARN level, and the consumer will not be able to receive messages; You can then restart the route to retry.",
+          "title": "Async Start Listener",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncStopListener": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to stop the JmsConsumer message listener asynchronously, when stopping a route.",
+          "title": "Async Stop Listener",
+          "required": false,
+          "deprecated": false
+        },
+        "destinationResolver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.springframework.jms.support.destination.DestinationResolver that allows you to use your own resolver (for example, to lookup the real destination in a JNDI registry).",
+          "title": "Destination Resolver",
+          "required": false,
+          "deprecated": false
+        },
+        "errorHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Specifies a org.springframework.util.ErrorHandler to be invoked in case of any uncaught exceptions thrown while processing a Message. By default these exceptions will be logged at the WARN level, if no errorHandler has been configured. You can configure logging level and whether stack traces should be logged using errorHandlerLoggingLevel and errorHandlerLogStackTrace options. This makes it much easier to configure, than having to code a custom errorHandler.",
+          "title": "Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionListener": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Specifies the JMS Exception Listener that is to be notified of any underlying JMS exceptions.",
+          "title": "Exception Listener",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "idleConsumerLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Specify the limit for the number of consumers that are allowed to be idle at any given time.",
+          "title": "Idle Consumer Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "idleTaskExecutionLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Specifies the limit for idle executions of a receive task, not having received any message within its execution. If this limit is reached, the task will shut down and leave receiving to other executing tasks (in the case of dynamic scheduling; see the maxConcurrentConsumers setting). There is additional doc available from Spring.",
+          "title": "Idle Task Execution Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "includeAllJMSXProperties": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to include all JMSX prefixed properties when mapping from JMS to Camel Message. Setting this to true will include properties such as JMSXAppID, and JMSXUserID etc. Note: If you are using a custom headerFilterStrategy then this option does not apply.",
+          "title": "Include All JMSXProperties",
+          "required": false,
+          "deprecated": false
+        },
+        "jmsKeyFormatStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "default",
+            "passthrough"
+          ],
+          "description": "Pluggable strategy for encoding and decoding JMS keys so they can be compliant with the JMS specification. Camel provides two implementations out of the box: default and passthrough. The default strategy will safely marshal dots and hyphens (. and -). The passthrough strategy leaves the key as is. Can be used for JMS brokers which do not care whether JMS header keys contain illegal characters. You can provide your own implementation of the org.apache.camel.component.jms.JmsKeyFormatStrategy and refer to it using the # notation.",
+          "title": "Jms Key Format Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "mapJmsMessage": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Specifies whether Camel should auto map the received JMS message to a suited payload type, such as jakarta.jms.TextMessage to a String etc.",
+          "title": "Map Jms Message",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMessagesPerTask": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "The number of messages per task. -1 is unlimited. If you use a range for concurrent consumers (eg min max), then this option can be used to set a value to eg 100 to control how fast the consumers will shrink when less work is required.",
+          "title": "Max Messages Per Task",
+          "required": false,
+          "deprecated": false
+        },
+        "messageConverter": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom Spring org.springframework.jms.support.converter.MessageConverter so you can be in control how to map to/from a jakarta.jms.Message.",
+          "title": "Message Converter",
+          "required": false,
+          "deprecated": false
+        },
+        "messageCreatedStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use the given MessageCreatedStrategy which are invoked when Camel creates new instances of jakarta.jms.Message objects when Camel is sending a JMS message.",
+          "title": "Message Created Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "messageIdEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "When sending, specifies whether message IDs should be added. This is just an hint to the JMS broker. If the JMS provider accepts this hint, these messages must have the message ID set to null; if the provider ignores the hint, the message ID must be set to its normal unique value.",
+          "title": "Message Id Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "messageListenerContainerFactory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Registry ID of the MessageListenerContainerFactory used to determine what org.springframework.jms.listener.AbstractMessageListenerContainer to use to consume messages. Setting this will automatically set consumerType to Custom.",
+          "title": "Message Listener Container Factory",
+          "required": false,
+          "deprecated": false
+        },
+        "messageTimestampEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Specifies whether timestamps should be enabled by default on sending messages. This is just an hint to the JMS broker. If the JMS provider accepts this hint, these messages must have the timestamp set to zero; if the provider ignores the hint the timestamp must be set to its normal value.",
+          "title": "Message Timestamp Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "pubSubNoLocal": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether to inhibit the delivery of messages published by its own connection.",
+          "title": "Pub Sub No Local",
+          "required": false,
+          "deprecated": false
+        },
+        "receiveTimeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1000",
+          "description": "The timeout for receiving messages (in milliseconds).",
+          "title": "Receive Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "recoveryInterval": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "5000",
+          "description": "Specifies the interval between recovery attempts, i.e. when a connection is being refreshed, in milliseconds. The default is 5000 ms, that is, 5 seconds.",
+          "title": "Recovery Interval",
+          "required": false,
+          "deprecated": false
+        },
+        "requestTimeoutCheckerInterval": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1000",
+          "description": "Configures how often Camel should check for timed out Exchanges when doing request/reply over JMS. By default Camel checks once per second. But if you must react faster when a timeout occurs, then you can lower this interval, to check more frequently. The timeout is determined by the option requestTimeout.",
+          "title": "Request Timeout Checker Interval",
+          "required": false,
+          "deprecated": false
+        },
+        "synchronous": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether synchronous processing should be strictly used",
+          "title": "Synchronous",
+          "required": false,
+          "deprecated": false
+        },
+        "temporaryQueueResolver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable TemporaryQueueResolver that allows you to use your own resolver for creating temporary queues (some messaging systems has special requirements for creating temporary queues).",
+          "title": "Temporary Queue Resolver",
+          "required": false,
+          "deprecated": false
+        },
+        "transferException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If enabled and you are using Request Reply messaging (InOut) and an Exchange failed on the consumer side, then the caused Exception will be send back in response as a jakarta.jms.ObjectMessage. If the client is Camel, the returned Exception is rethrown. This allows you to use Camel JMS as a bridge in your routing - for example, using persistent queues to enable robust routing. Notice that if you also have transferExchange enabled, this option takes precedence. The caught exception is required to be serializable. The original Exception on the consumer side can be wrapped in an outer exception such as org.apache.camel.RuntimeCamelException when returned to the producer. Use this with caution as the data is using Java Object serialization and requires the received to be able to deserialize the data at Class level, which forces a strong coupling between the producers and consumer!",
+          "title": "Transfer Exception",
+          "required": false,
+          "deprecated": false
+        },
+        "transferExchange": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "You can transfer the exchange over the wire instead of just the body and headers. The following fields are transferred: In body, Out body, Fault body, In headers, Out headers, Fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level. You must enable this option on both the producer and consumer side, so Camel knows the payloads is an Exchange and not a regular payload. Use this with caution as the data is using Java Object serialization and requires the receiver to be able to deserialize the data at Class level, which forces a strong coupling between the producers and consumers having to use compatible Camel versions!",
+          "title": "Transfer Exchange",
+          "required": false,
+          "deprecated": false
+        },
+        "useMessageIDAsCorrelationID": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether JMSMessageID should always be used as JMSCorrelationID for InOut messages.",
+          "title": "Use Message IDAs Correlation ID",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForProvisionCorrelationToBeUpdatedCounter": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "50",
+          "description": "Number of times to wait for provisional correlation id to be updated to the actual correlation id when doing request/reply over JMS and when the option useMessageIDAsCorrelationID is enabled.",
+          "title": "Wait For Provision Correlation To Be Updated Counter",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForProvisionCorrelationToBeUpdatedThreadSleepingTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "100",
+          "description": "Interval in millis to sleep each time while waiting for provisional correlation id to be updated.",
+          "title": "Wait For Provision Correlation To Be Updated Thread Sleeping Time",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedCounter": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "200",
+          "description": "Number of times to wait for temporary replyTo queue to be created and ready when doing request/reply over JMS.",
+          "title": "Wait For Temporary Reply To To Be Updated Counter",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedThreadSleepingTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "100",
+          "description": "Interval in millis to sleep each time while waiting for temporary replyTo queue to be ready.",
+          "title": "Wait For Temporary Reply To To Be Updated Thread Sleeping Time",
           "required": false,
           "deprecated": false
         },
@@ -1806,6 +2797,24 @@
           "required": false,
           "deprecated": false
         },
+        "waitForTemporaryReplyToToBeUpdatedCounter": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "200",
+          "description": "Number of times to wait for temporary replyTo queue to be created and ready when doing request/reply over JMS.",
+          "title": "Wait For Temporary Reply To To Be Updated Counter",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedThreadSleepingTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "100",
+          "description": "Interval in millis to sleep each time while waiting for temporary replyTo queue to be ready.",
+          "title": "Wait For Temporary Reply To To Be Updated Thread Sleeping Time",
+          "required": false,
+          "deprecated": false
+        },
         "errorHandlerLoggingLevel": {
           "kind": "parameter",
           "type": "object",
@@ -2005,6 +3014,14 @@
           "required": false,
           "deprecated": false
         },
+        "vertx": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing Vertx instance in the ArangoDB client.",
+          "title": "Vertx",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
@@ -2068,9 +3085,11 @@
             "ENCRYPTED",
             "SIGNED_ENCRYPTED",
             "PLAIN_COMPRESSED",
+            "COMPRESSED_SIGNED",
             "SIGNED_COMPRESSED",
             "ENCRYPTED_COMPRESSED",
-            "ENCRYPTED_COMPRESSED_SIGNED"
+            "ENCRYPTED_COMPRESSED_SIGNED",
+            "ENCRYPTED_SIGNED_COMPRESSED"
           ],
           "description": "The structure of AS2 Message. One of: PLAIN - No encryption, no signature, SIGNED - No encryption, signature, ENCRYPTED - Encryption, no signature, ENCRYPTED_SIGNED - Encryption, signature",
           "title": "As2 Message Structure",
@@ -3249,7 +4268,8 @@
             "anthropic.claude-v2",
             "anthropic.claude-v2:1",
             "anthropic.claude-3-sonnet-20240229-v1:0",
-            "anthropic.claude-3-haiku-20240307-v1:0"
+            "anthropic.claude-3-haiku-20240307-v1:0",
+            "amazon.titan-text-premier-v1:0"
           ],
           "description": "Define the model Id we are going to use",
           "title": "Model Id",
@@ -4095,6 +5115,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -4109,6 +5130,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -4492,6 +5514,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -4506,6 +5529,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -4735,6 +5759,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -4749,6 +5774,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -5020,6 +6046,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -5034,6 +6061,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -5290,6 +6318,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -5304,6 +6333,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -5583,6 +6613,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -5597,6 +6628,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -5797,6 +6829,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -5811,6 +6844,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -6221,6 +7255,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -6235,6 +7270,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -6434,6 +7470,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -6448,6 +7485,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -6664,6 +7702,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -6678,6 +7717,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -6893,6 +7933,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -6907,6 +7948,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -7331,6 +8373,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -7345,6 +8388,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -7476,6 +8520,15 @@
           "required": false,
           "deprecated": false
         },
+        "shardMonitorInterval": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10000",
+          "description": "The interval in milliseconds to wait between shard polling",
+          "title": "Shard Monitor Interval",
+          "required": false,
+          "deprecated": false
+        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
@@ -7499,6 +8552,31 @@
           "defaultValue": "false",
           "description": "If we want to a KinesisAsyncClient instance set it to true",
           "title": "Async Client",
+          "required": false,
+          "deprecated": false
+        },
+        "cloudWatchAsyncClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "If we want to a KCL Consumer, we can pass an instance of CloudWatchAsyncClient",
+          "title": "Cloud Watch Async Client",
+          "required": false,
+          "deprecated": false
+        },
+        "dynamoDbAsyncClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "If we want to a KCL Consumer, we can pass an instance of DynamoDbAsyncClient",
+          "title": "Dynamo Db Async Client",
+          "required": false,
+          "deprecated": false
+        },
+        "useKclConsumers": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to a KCL Consumer set it to true",
+          "title": "Use Kcl Consumers",
           "required": false,
           "deprecated": false
         },
@@ -7810,6 +8888,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -7824,6 +8903,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -8025,6 +9105,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -8039,6 +9120,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -8261,6 +9343,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -8275,6 +9358,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -8484,6 +9568,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -8498,6 +9583,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -8705,6 +9791,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -8719,6 +9806,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -8940,6 +10028,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -8954,6 +10043,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -9181,6 +10271,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -9195,6 +10286,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -9395,6 +10487,14 @@
           ],
           "description": "Sets the exchange pattern when the consumer creates an exchange.",
           "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "inProgressRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable in-progress repository org.apache.camel.spi.IdempotentRepository. The in-progress repository is used to account the current in progress files being consumed. By default a memory based repository is used.",
+          "title": "In Progress Repository",
           "required": false,
           "deprecated": false
         },
@@ -9897,6 +10997,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -9911,6 +11012,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -10202,6 +11304,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -10216,6 +11319,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -10469,6 +11573,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -10483,6 +11588,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -11133,6 +12239,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -11147,6 +12254,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -11592,6 +12700,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -11606,6 +12715,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -11803,6 +12913,7 @@
             "eu-central-1",
             "us-iso-west-1",
             "eu-central-2",
+            "eu-isoe-west-1",
             "us-west-1",
             "us-west-2",
             "af-south-1",
@@ -11817,6 +12928,7 @@
             "sa-east-1",
             "ap-east-1",
             "cn-north-1",
+            "ca-west-1",
             "us-gov-west-1",
             "ap-southeast-1",
             "ap-southeast-2",
@@ -13046,6 +14158,15 @@
           "required": false,
           "deprecated": false
         },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent Eager",
+          "required": false,
+          "deprecated": false
+        },
         "idempotentKey": {
           "kind": "parameter",
           "type": "string",
@@ -13628,7 +14749,7 @@
         "proxyOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets the proxy configuration to use for ServiceBusSenderAsyncClient. When a proxy is configured, AMQP_WEB_SOCKETS must be used for the transport type.",
+          "description": "Sets the proxy configuration to use for ServiceBusSenderClient. When a proxy is configured, AMQP_WEB_SOCKETS must be used for the transport type.",
           "title": "Proxy Options",
           "required": false,
           "deprecated": false
@@ -13782,11 +14903,11 @@
           "required": false,
           "deprecated": false
         },
-        "senderAsyncClient": {
+        "senderClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets SenderAsyncClient to be used in the producer.",
-          "title": "Sender Async Client",
+          "description": "Sets senderClient to be used in the producer.",
+          "title": "Sender Client",
           "required": false,
           "deprecated": false
         },
@@ -16420,7 +17541,7 @@
       "title": "CoAP",
       "group": "iot",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from COAP capable devices.",
+      "description": "Send and receive messages to/from CoAP (Constrained Application Protocol) capable devices.",
       "properties": {
         "uri": {
           "kind": "path",
@@ -16599,7 +17720,7 @@
       "title": "CoAP",
       "group": "iot",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from COAP capable devices.",
+      "description": "Send and receive messages to/from CoAP (Constrained Application Protocol) capable devices.",
       "properties": {
         "uri": {
           "kind": "path",
@@ -16778,7 +17899,7 @@
       "title": "CoAP (Secure)",
       "group": "iot",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from COAP capable devices.",
+      "description": "Send and receive messages to/from CoAP (Constrained Application Protocol) capable devices.",
       "properties": {
         "uri": {
           "kind": "path",
@@ -16957,7 +18078,7 @@
       "title": "CoAP",
       "group": "iot",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from COAP capable devices.",
+      "description": "Send and receive messages to/from CoAP (Constrained Application Protocol) capable devices.",
       "properties": {
         "uri": {
           "kind": "path",
@@ -18364,6 +19485,15 @@
           "required": false,
           "deprecated": false
         },
+        "maxMessagesPerPoll": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "Gets the maximum number of messages as a limit to poll at each polling. Gets the maximum number of messages as a limit to poll at each polling. The default value is 10. Use 0 or a negative number to set it as unlimited.",
+          "title": "Max Messages Per Poll",
+          "required": false,
+          "deprecated": false
+        },
         "style": {
           "kind": "parameter",
           "type": "string",
@@ -18489,27 +19619,6 @@
           "required": false,
           "deprecated": false
         },
-        "consistencyLevel": {
-          "kind": "parameter",
-          "type": "object",
-          "enum": [
-            "ANY",
-            "ONE",
-            "TWO",
-            "THREE",
-            "QUORUM",
-            "ALL",
-            "LOCAL_ONE",
-            "LOCAL_QUORUM",
-            "EACH_QUORUM",
-            "SERIAL",
-            "LOCAL_SERIAL"
-          ],
-          "description": "Consistency level to use",
-          "title": "Consistency Level",
-          "required": false,
-          "deprecated": false
-        },
         "cql": {
           "kind": "parameter",
           "type": "string",
@@ -18527,60 +19636,12 @@
           "required": false,
           "deprecated": false
         },
-        "extraTypeCodecs": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "To use a specific comma separated list of Extra Type codecs. Possible values are: BLOB_TO_ARRAY, BOOLEAN_LIST_TO_ARRAY, BYTE_LIST_TO_ARRAY, SHORT_LIST_TO_ARRAY, INT_LIST_TO_ARRAY, LONG_LIST_TO_ARRAY, FLOAT_LIST_TO_ARRAY, DOUBLE_LIST_TO_ARRAY, TIMESTAMP_UTC, TIMESTAMP_MILLIS_SYSTEM, TIMESTAMP_MILLIS_UTC, ZONED_TIMESTAMP_SYSTEM, ZONED_TIMESTAMP_UTC, ZONED_TIMESTAMP_PERSISTED, LOCAL_TIMESTAMP_SYSTEM and LOCAL_TIMESTAMP_UTC",
-          "title": "Extra Type Codecs",
-          "required": false,
-          "deprecated": false
-        },
-        "loadBalancingPolicyClass": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "To use a specific LoadBalancingPolicyClass",
-          "title": "Load Balancing Policy Class",
-          "required": false,
-          "deprecated": false
-        },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Password for session authentication",
-          "title": "Password",
-          "required": false,
-          "deprecated": false
-        },
         "prepareStatements": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
           "description": "Whether to use PreparedStatements or regular Statements",
           "title": "Prepare Statements",
-          "required": false,
-          "deprecated": false
-        },
-        "resultSetConversionStrategy": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To use a custom class that implements logic for converting ResultSet into message body ALL, ONE, LIMIT_10, LIMIT_100...",
-          "title": "Result Set Conversion Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "session": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To use the Session instance (you would normally not use this option)",
-          "title": "Session",
-          "required": false,
-          "deprecated": false
-        },
-        "username": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Username for session authentication",
-          "title": "Username",
           "required": false,
           "deprecated": false
         },
@@ -18636,6 +19697,38 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "extraTypeCodecs": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To use a specific comma separated list of Extra Type codecs. Possible values are: BLOB_TO_ARRAY, BOOLEAN_LIST_TO_ARRAY, BYTE_LIST_TO_ARRAY, SHORT_LIST_TO_ARRAY, INT_LIST_TO_ARRAY, LONG_LIST_TO_ARRAY, FLOAT_LIST_TO_ARRAY, DOUBLE_LIST_TO_ARRAY, TIMESTAMP_UTC, TIMESTAMP_MILLIS_SYSTEM, TIMESTAMP_MILLIS_UTC, ZONED_TIMESTAMP_SYSTEM, ZONED_TIMESTAMP_UTC, ZONED_TIMESTAMP_PERSISTED, LOCAL_TIMESTAMP_SYSTEM and LOCAL_TIMESTAMP_UTC",
+          "title": "Extra Type Codecs",
+          "required": false,
+          "deprecated": false
+        },
+        "loadBalancingPolicyClass": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To use a specific LoadBalancingPolicyClass",
+          "title": "Load Balancing Policy Class",
+          "required": false,
+          "deprecated": false
+        },
+        "resultSetConversionStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom class that implements logic for converting ResultSet into message body ALL, ONE, LIMIT_10, LIMIT_100...",
+          "title": "Result Set Conversion Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "session": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use the Session instance (you would normally not use this option)",
+          "title": "Session",
           "required": false,
           "deprecated": false
         },
@@ -18774,6 +19867,22 @@
           "defaultValue": "true",
           "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
           "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password for session authentication",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Username for session authentication",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -19791,7 +20900,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used for example to assert that exactly a number of messages arrives. For example if expected count was set to 5, then the assertion is satisfied when 5 or more message arrives. To ensure that exactly 5 messages arrives, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default this period is disabled.",
+          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -19929,7 +21038,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used for example to assert that exactly a number of messages arrives. For example if expected count was set to 5, then the assertion is satisfied when 5 or more message arrives. To ensure that exactly 5 messages arrives, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default this period is disabled.",
+          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -20194,6 +21303,24 @@
           "required": false,
           "deprecated": false
         },
+        "cdcChangeTablesSchema": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "ASNCDC",
+          "description": "The name of the schema where CDC change tables are located; defaults to \u0027ASNCDC\u0027",
+          "title": "Cdc Change Tables Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "cdcControlSchema": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "ASNCDC",
+          "description": "The name of the schema where CDC control structures are located; defaults to \u0027ASNCDC\u0027",
+          "title": "Cdc Control Schema",
+          "required": false,
+          "deprecated": false
+        },
         "columnExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -20280,6 +21407,15 @@
           "type": "string",
           "description": "A comma-separated list of regular expressions matching the database-specific data type names that adds the data type\u0027s original type and original length as parameters to the corresponding field schemas in the emitted change records.",
           "title": "Datatype Propagate Source Type",
+          "required": false,
+          "deprecated": false
+        },
+        "db2Platform": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "LUW",
+          "description": "Informs connector which Db2 implementation platform it is connected to. The default is \u0027LUW\u0027, which means Windows, UNIX, Linux. Using a value of \u0027Z\u0027 ensures that the Db2 for z/OS specific SQL statements are used.",
+          "title": "Db2 Platform",
           "required": false,
           "deprecated": false
         },
@@ -20660,6 +21796,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
         "tableExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -20718,6 +21863,15 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
           "deprecated": false
         }
       }
@@ -21333,6 +22487,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
         "tombstonesOnDelete": {
           "kind": "parameter",
           "type": "boolean",
@@ -21357,6 +22520,15 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
           "deprecated": false
         }
       }
@@ -21507,20 +22679,11 @@
           "required": false,
           "deprecated": false
         },
-        "binaryHandlingMode": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "bytes",
-          "description": "Specify how binary (blob, binary, etc.) columns should be represented in change events, including: \u0027bytes\u0027 represents binary data as byte array (default); \u0027base64\u0027 represents binary data as base64-encoded string; \u0027base64-url-safe\u0027 represents binary data as base64-url-safe-encoded string; \u0027hex\u0027 represents binary data as hex-encoded (base16) string",
-          "title": "Binary Handling Mode",
-          "required": false,
-          "deprecated": false
-        },
         "binlogBufferSize": {
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "0",
-          "description": "The size of a look-ahead buffer used by the binlog reader to decide whether the transaction in progress is going to be committed or rolled back. Use 0 to disable look-ahead buffering. Defaults to 0 (i.e. buffering is disabled).",
+          "description": "The size of a look-ahead buffer used by the binlog reader to decide whether the transaction in progress is going to be committed or rolled back. Use 0 to disable look-ahead buffering. Defaults to 0 (i.e. buffering is disabled.",
           "title": "Binlog Buffer Size",
           "required": false,
           "deprecated": false
@@ -21564,15 +22727,6 @@
           "defaultValue": "1m",
           "description": "Interval for connection checking if keep alive thread is used, given in milliseconds Defaults to 1 minute (60,000 ms).",
           "title": "Connect Keep Alive Interval Ms",
-          "required": false,
-          "deprecated": false
-        },
-        "connectorAdapter": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "mysql",
-          "description": "Specifies the connection adapter to be used",
-          "title": "Connector Adapter",
           "required": false,
           "deprecated": false
         },
@@ -21659,10 +22813,28 @@
           "required": false,
           "deprecated": false
         },
+        "databaseProtocol": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "jdbc:mysql",
+          "description": "JDBC protocol to use with the driver.",
+          "title": "Database Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "databaseQueryTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "10m",
+          "description": "Time to wait for a query to execute, given in milliseconds. Defaults to 600 seconds (600,000 ms); zero means there is no limit.",
+          "title": "Database Query Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "databaseServerId": {
           "kind": "parameter",
           "type": "integer",
-          "description": "A numeric ID of this database client, which must be unique across all currently-running database processes in the cluster. This connector joins the MySQL database cluster as another server (with this unique ID) so it can read the binlog.",
+          "description": "A numeric ID of this database client, which must be unique across all currently-running database processes in the cluster. This connector joins the database cluster as another server (with this unique ID) so it can read the binlog.",
           "title": "Database Server Id",
           "required": false,
           "deprecated": false
@@ -21679,7 +22851,7 @@
         "databaseSslKeystore": {
           "kind": "parameter",
           "type": "string",
-          "description": "The location of the key store file. This is optional and can be used for two-way authentication between the client and the MySQL Server.",
+          "description": "The location of the key store file. This is optional and can be used for two-way authentication between the client and the database.",
           "title": "Database Ssl Keystore",
           "required": false,
           "deprecated": false
@@ -21696,7 +22868,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "preferred",
-          "description": "Whether to use an encrypted connection to MySQL. Options include: \u0027disabled\u0027 to use an unencrypted connection; \u0027preferred\u0027 (the default) to establish a secure (encrypted) connection if the server supports secure connections, but fall back to an unencrypted connection otherwise; \u0027required\u0027 to use a secure (encrypted) connection, and fail if one cannot be established; \u0027verify_ca\u0027 like \u0027required\u0027 but additionally verify the server TLS certificate against the configured Certificate Authority (CA) certificates, or fail if no valid matching CA certificates are found; or\u0027verify_identity\u0027 like \u0027verify_ca\u0027 but additionally verify that the server certificate matches the host to which the connection is attempted.",
+          "description": "Whether to use an encrypted connection to the database. Options include: \u0027disabled\u0027 to use an unencrypted connection; \u0027preferred\u0027 (the default) to establish a secure (encrypted) connection if the server supports secure connections, but fall back to an unencrypted connection otherwise; \u0027required\u0027 to use a secure (encrypted) connection, and fail if one cannot be established; \u0027verify_ca\u0027 like \u0027required\u0027 but additionally verify the server TLS certificate against the configured Certificate Authority (CA) certificates, or fail if no valid matching CA certificates are found; or \u0027verify_identity\u0027 like \u0027verify_ca\u0027 but additionally verify that the server certificate matches the host to which the connection is attempted.",
           "title": "Database Ssl Mode",
           "required": false,
           "deprecated": false
@@ -21746,7 +22918,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "MySQL allows user to insert year value as either 2-digit or 4-digit. In case of two digit the value is automatically mapped into 1970 - 2069.false - delegates the implicit conversion to the databasetrue - (the default) Debezium makes the conversion",
+          "description": "The database allows the user to insert year value as either 2-digit or 4-digit. In case of two digit the value is automatically mapped into 1970 - 2069.false - delegates the implicit conversion to the database; true - (the default) Debezium makes the conversion",
           "title": "Enable Time Adjuster",
           "required": false,
           "deprecated": false
@@ -21790,7 +22962,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "If set to true, we will only produce DML events into Kafka for transactions that were written on mysql servers with UUIDs matching the filters defined by the gtid.source.includes or gtid.source.excludes configuration options, if they are specified.",
+          "description": "When set to true, only produce DML events for transactions that were written on the server with matching GTIDs defined by the gtid.source.includes or gtid.source.excludes, if they were specified.",
           "title": "Gtid Source Filter Dml Events",
           "required": false,
           "deprecated": false
@@ -21833,7 +23005,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the connector should include the original SQL query that generated the change event. Note: This option requires MySQL be configured with the binlog_rows_query_log_events option set to ON. If using MariaDB, configure the binlog_annotate_row_events option must be set to ON. Query will not be present for events generated from snapshot. WARNING: Enabling this option may expose tables or fields explicitly excluded or masked by including the original SQL statement in the change event. For this reason the default value is \u0027false\u0027.",
+          "description": "Whether the connector should include the original SQL query that generated the change event. Note: This option requires the database to be configured using the server option binlog_rows_query_log_events (MySQL) or binlog_annotate_row_events (MariaDB) set to ON.Query will not be present for events generated from snapshot. WARNING: Enabling this option may expose tables or fields explicitly excluded or masked by including the original SQL statement in the change event. For this reason the default value is \u0027false\u0027.",
           "title": "Include Query",
           "required": false,
           "deprecated": false
@@ -22198,15 +23370,6 @@
           "required": false,
           "deprecated": false
         },
-        "snapshotNewTables": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "off",
-          "description": "BETA FEATURE: On connector restart, the connector will check if there have been any new tables added to the configuration, and snapshot them. There is presently only two options: \u0027off\u0027: Default behavior. Do not snapshot new tables. \u0027parallel\u0027: The snapshot of the new tables will occur in parallel to the continued binlog reading of the old tables. When the snapshot completes, an independent binlog reader will begin reading the events for the new tables until it catches up to present time. At this point, both old and new binlog readers will be momentarily halted and new binlog reader will start that will read the binlog for all configured tables. The parallel binlog reader will have a configured server id of 10000 the primary binlog reader\u0027s server id.",
-          "title": "Snapshot New Tables",
-          "required": false,
-          "deprecated": false
-        },
         "snapshotQueryMode": {
           "kind": "parameter",
           "type": "string",
@@ -22247,6 +23410,15 @@
           "defaultValue": "io.debezium.connector.mysql.MySqlSourceInfoStructMaker",
           "description": "The name of the SourceInfoStructMaker class that returns SourceInfo schema and struct.",
           "title": "Sourceinfo Struct Maker",
+          "required": false,
+          "deprecated": false
+        },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
           "required": false,
           "deprecated": false
         },
@@ -22308,6 +23480,24 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
+          "deprecated": false
+        },
+        "useNongracefulDisconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use socket.setSoLinger(true, 0) when BinaryLogClient keepalive thread triggers a disconnect for a stale connection.",
+          "title": "Use Nongraceful Disconnect",
+          "required": false,
           "deprecated": false
         }
       }
@@ -22570,6 +23760,15 @@
           "defaultValue": "1528",
           "description": "Port of the database server.",
           "title": "Database Port",
+          "required": false,
+          "deprecated": false
+        },
+        "databaseQueryTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "10m",
+          "description": "Time to wait for a query to execute, given in milliseconds. Defaults to 600 seconds (600,000 ms); zero means there is no limit.",
+          "title": "Database Query Timeout Ms",
           "required": false,
           "deprecated": false
         },
@@ -23173,14 +24372,6 @@
           "required": false,
           "deprecated": false
         },
-        "snapshotEnhancePredicateScn": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "A token to replace on snapshot predicate template",
-          "title": "Snapshot Enhance Predicate Scn",
-          "required": false,
-          "deprecated": false
-        },
         "snapshotFetchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -23312,6 +24503,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
         "tableExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -23361,6 +24561,15 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
           "deprecated": false
         },
         "unavailableValuePlaceholder": {
@@ -23598,6 +24807,15 @@
           "defaultValue": "5432",
           "description": "Port of the database server.",
           "title": "Database Port",
+          "required": false,
+          "deprecated": false
+        },
+        "databaseQueryTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "10m",
+          "description": "Time to wait for a query to execute, given in milliseconds. Defaults to 600 seconds (600,000 ms); zero means there is no limit.",
+          "title": "Database Query Timeout Ms",
           "required": false,
           "deprecated": false
         },
@@ -24232,6 +25450,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
         "tableExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -24290,6 +25517,15 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
           "deprecated": false
         },
         "unavailableValuePlaceholder": {
@@ -24539,6 +25775,15 @@
           "required": false,
           "deprecated": false
         },
+        "databaseQueryTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "10m",
+          "description": "Time to wait for a query to execute, given in milliseconds. Defaults to 600 seconds (600,000 ms); zero means there is no limit.",
+          "title": "Database Query Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "databaseUser": {
           "kind": "parameter",
           "type": "string",
@@ -24683,7 +25928,7 @@
         "maxIterationTransactions": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "0",
+          "defaultValue": "500",
           "description": "This property can be used to reduce the connector memory usage footprint when changes are streamed from multiple tables per database.",
           "title": "Max Iteration Transactions",
           "required": false,
@@ -24994,6 +26239,15 @@
           "required": false,
           "deprecated": false
         },
+        "streamingDelayMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "0ms",
+          "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
+          "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
         "tableExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -25052,6 +26306,15 @@
           "description": "Topic prefix that identifies and provides a namespace for the particular database server/cluster is capturing changes. The topic prefix should be unique across all other connectors, since it is used as a prefix for all Kafka topic names that receive events emitted by this connector. Only alphanumeric characters, hyphens, dots and underscores must be accepted.",
           "title": "Topic Prefix",
           "required": true,
+          "deprecated": false
+        },
+        "transactionMetadataFactory": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory",
+          "description": "Class to make transaction context \u0026 transaction struct/schemas",
+          "title": "Transaction Metadata Factory",
+          "required": false,
           "deprecated": false
         }
       }
@@ -27221,9 +28484,9 @@
         },
         "endpoints": {
           "kind": "parameter",
-          "type": "array",
-          "defaultValue": "Etcd3Constants.ETCD_DEFAULT_ENDPOINTS",
-          "description": "Configure etcd server endpoints using the IPNameResolver.",
+          "type": "string",
+          "defaultValue": "http://localhost:2379",
+          "description": "Configure etcd server endpoints using the IPNameResolver. Multiple endpoints can be separated by comma.",
           "title": "Endpoints",
           "required": false,
           "deprecated": false
@@ -28518,6 +29781,15 @@
           "defaultValue": "false",
           "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
           "title": "Idempotent",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
         },
@@ -30192,6 +31464,15 @@
           "required": false,
           "deprecated": false
         },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent Eager",
+          "required": false,
+          "deprecated": false
+        },
         "idempotentKey": {
           "kind": "parameter",
           "type": "string",
@@ -31246,6 +32527,15 @@
           "defaultValue": "false",
           "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
           "title": "Idempotent",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
         },
@@ -42347,7 +43637,7 @@
         "hosts": {
           "kind": "parameter",
           "type": "string",
-          "description": "Specifies the host of the cache on Infinispan instance",
+          "description": "Specifies the host of the cache on Infinispan instance. Multiple hosts can be separated by semicolon.",
           "title": "Hosts",
           "required": false,
           "deprecated": false
@@ -42357,15 +43647,6 @@
           "type": "object",
           "description": "Specifies the query builder.",
           "title": "Query Builder",
-          "required": false,
-          "deprecated": false
-        },
-        "secure": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Define if we are connecting to a secured Infinispan instance",
-          "title": "Secure",
           "required": false,
           "deprecated": false
         },
@@ -42556,6 +43837,15 @@
           "type": "string",
           "description": "Define the SASL Mechanism to access the infinispan instance",
           "title": "Sasl Mechanism",
+          "required": false,
+          "deprecated": false
+        },
+        "secure": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Define if we are connecting to a secured Infinispan instance",
+          "title": "Secure",
           "required": false,
           "deprecated": false
         },
@@ -43254,14 +44544,6 @@
           "required": true,
           "deprecated": false
         },
-        "client": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Reference to a io.iron.ironmq.Client in the Registry.",
-          "title": "Client",
-          "required": false,
-          "deprecated": false
-        },
         "ironMQCloud": {
           "kind": "parameter",
           "type": "string",
@@ -43285,14 +44567,6 @@
           "type": "string",
           "description": "IronMQ projectId",
           "title": "Project Id",
-          "required": false,
-          "deprecated": false
-        },
-        "token": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "IronMQ token",
-          "title": "Token",
           "required": false,
           "deprecated": false
         },
@@ -43400,6 +44674,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "client": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Reference to a io.iron.ironmq.Client in the Registry.",
+          "title": "Client",
           "required": false,
           "deprecated": false
         },
@@ -43538,6 +44820,14 @@
           "defaultValue": "true",
           "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
           "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "token": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "IronMQ token",
+          "title": "Token",
           "required": false,
           "deprecated": false
         }
@@ -45556,6 +46846,24 @@
           "defaultValue": "100",
           "description": "Interval in millis to sleep each time while waiting for provisional correlation id to be updated.",
           "title": "Wait For Provision Correlation To Be Updated Thread Sleeping Time",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedCounter": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "200",
+          "description": "Number of times to wait for temporary replyTo queue to be created and ready when doing request/reply over JMS.",
+          "title": "Wait For Temporary Reply To To Be Updated Counter",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTemporaryReplyToToBeUpdatedThreadSleepingTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "100",
+          "description": "Interval in millis to sleep each time while waiting for temporary replyTo queue to be ready.",
+          "title": "Wait For Temporary Reply To To Be Updated Thread Sleeping Time",
           "required": false,
           "deprecated": false
         },
@@ -48127,6 +49435,15 @@
           "defaultValue": "131072",
           "description": "Socket write buffer size",
           "title": "Send Buffer Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "useIterator": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether sending to kafka should send the message body as a single record, or use a java.util.Iterator to send multiple records to kafka (if the message body can be iterated).",
+          "title": "Use Iterator",
           "required": false,
           "deprecated": false
         },
@@ -52912,7 +54229,7 @@
           "type": "string",
           "description": "Host of the server to connect to",
           "title": "Host",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "port": {
@@ -52920,7 +54237,7 @@
           "type": "string",
           "description": "Port of the server to connect to",
           "title": "Port",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "tableName": {
@@ -54481,14 +55798,6 @@
           "required": false,
           "deprecated": false
         },
-        "customHttpClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Set custom HTTP client for authenticated access.",
-          "title": "Custom Http Client",
-          "required": false,
-          "deprecated": false
-        },
         "endpoint": {
           "kind": "parameter",
           "type": "string",
@@ -54544,22 +55853,6 @@
           "defaultValue": "false",
           "description": "Flag to indicate to use secure connection to minio service or not.",
           "title": "Secure",
-          "required": false,
-          "deprecated": false
-        },
-        "serverSideEncryption": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Server-side encryption.",
-          "title": "Server Side Encryption",
-          "required": false,
-          "deprecated": false
-        },
-        "serverSideEncryptionCustomerKey": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Server-side encryption for source object while copy/move objects.",
-          "title": "Server Side Encryption Customer Key",
           "required": false,
           "deprecated": false
         },
@@ -54884,6 +56177,14 @@
           "required": false,
           "deprecated": false
         },
+        "customHttpClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Set custom HTTP client for authenticated access.",
+          "title": "Custom Http Client",
+          "required": false,
+          "deprecated": false
+        },
         "backoffErrorThreshold": {
           "kind": "parameter",
           "type": "integer",
@@ -55035,6 +56336,22 @@
           "type": "string",
           "description": "Amazon AWS Access Key Id or Minio Secret Key. If not set camel will connect to service for anonymous access.",
           "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "serverSideEncryption": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Server-side encryption.",
+          "title": "Server Side Encryption",
+          "required": false,
+          "deprecated": false
+        },
+        "serverSideEncryptionCustomerKey": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Server-side encryption for source object while copy/move objects.",
+          "title": "Server Side Encryption Customer Key",
           "required": false,
           "deprecated": false
         }
@@ -55340,7 +56657,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used for example to assert that exactly a number of messages arrives. For example if expected count was set to 5, then the assertion is satisfied when 5 or more message arrives. To ensure that exactly 5 messages arrives, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default this period is disabled.",
+          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -55473,6 +56790,14 @@
           "required": false,
           "deprecated": false
         },
+        "connectionUriString": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the whole Connection String/Uri for mongodb endpoint.",
+          "title": "Connection Uri String",
+          "required": false,
+          "deprecated": false
+        },
         "createCollection": {
           "kind": "parameter",
           "type": "boolean",
@@ -55589,14 +56914,6 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "connectionUriString": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the whole Connection String/Uri for mongodb endpoint.",
-          "title": "Connection Uri String",
           "required": false,
           "deprecated": false
         },
@@ -56919,6 +58236,14 @@
           "required": false,
           "deprecated": false
         },
+        "credentialsFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If we use useCredentialsFile to true we\u0027ll need to set the credentialsFilePath option. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
+          "title": "Credentials File Path",
+          "required": false,
+          "deprecated": false
+        },
         "secure": {
           "kind": "parameter",
           "type": "boolean",
@@ -57341,15 +58666,6 @@
           "required": false,
           "deprecated": false
         },
-        "hostnameVerification": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "To enable/disable hostname verification on SSLEngine",
-          "title": "Hostname Verification",
-          "required": false,
-          "deprecated": false
-        },
         "allowSerializedHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -57540,6 +58856,15 @@
           "defaultValue": "TLSv1.2,TLSv1.3",
           "description": "Which protocols to enable when using SSL",
           "title": "Enabled Protocols",
+          "required": false,
+          "deprecated": false
+        },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To enable/disable hostname verification on SSLEngine",
+          "title": "Hostname Verification",
           "required": false,
           "deprecated": false
         },
@@ -58153,15 +59478,6 @@
           "required": false,
           "deprecated": false
         },
-        "hostnameVerification": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "To enable/disable hostname verification on SSLEngine",
-          "title": "Hostname Verification",
-          "required": false,
-          "deprecated": false
-        },
         "allowSerializedHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -58328,6 +59644,15 @@
           "defaultValue": "TLSv1.2,TLSv1.3",
           "description": "Which protocols to enable when using SSL",
           "title": "Enabled Protocols",
+          "required": false,
+          "deprecated": false
+        },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To enable/disable hostname verification on SSLEngine",
+          "title": "Hostname Verification",
           "required": false,
           "deprecated": false
         },
@@ -60944,6 +62269,14 @@
           "required": true,
           "deprecated": false
         },
+        "configFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If SolverManager is absent from the header OptaPlannerConstants.SOLVER_MANAGER then a SolverManager will be created using this Optaplanner config file.",
+          "title": "Config File",
+          "required": false,
+          "deprecated": false
+        },
         "problemId": {
           "kind": "parameter",
           "type": "integer",
@@ -61015,14 +62348,6 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "configFile": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "If SolverManager is absent from the header {OptaPlannerConstants.SOLVER_MANAGER} : A SolverManager will be created using this Optaplanner config file.",
-          "title": "Config File",
           "required": false,
           "deprecated": false
         },
@@ -62075,14 +63400,6 @@
           "required": true,
           "deprecated": false
         },
-        "datasource": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To connect using the given javax.sql.DataSource instead of using hostname and port.",
-          "title": "Datasource",
-          "required": false,
-          "deprecated": false
-        },
         "bridgeErrorHandler": {
           "kind": "parameter",
           "type": "boolean",
@@ -62118,6 +63435,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "datasource": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To connect using the given javax.sql.DataSource instead of using hostname and port.",
+          "title": "Datasource",
           "required": false,
           "deprecated": false
         },
@@ -63779,14 +65104,13 @@
           "type": "string",
           "enum": [
             "HERENOW",
-            "WHERENOW",
             "GETSTATE",
             "SETSTATE",
             "GETHISTORY",
             "PUBLISH",
             "FIRE"
           ],
-          "description": "The operation to perform. PUBLISH: Default. Send a message to all subscribers of a channel. FIRE: allows the client to send a message to BLOCKS Event Handlers. These messages will go directly to any Event Handlers registered on the channel. HERENOW: Obtain information about the current state of a channel including a list of unique user-ids currently subscribed to the channel and the total occupancy count. WHERENOW: Obtain information about the current list of channels to which a uuid is subscribed to. GETSTATE: Used to get key/value pairs specific to a subscriber uuid. State information is supplied as a JSON object of key/value pairs SETSTATE: Used to set key/value pairs specific to a subscriber uuid GETHISTORY: Fetches historical messages of a channel.",
+          "description": "The operation to perform. PUBLISH: Default. Send a message to all subscribers of a channel. FIRE: allows the client to send a message to BLOCKS Event Handlers. These messages will go directly to any Event Handlers registered on the channel. HERENOW: Obtain information about the current state of a channel including a list of unique user-ids currently subscribed to the channel and the total occupancy count. GETSTATE: Used to get key/value pairs specific to a subscriber uuid. State information is supplied as a JSON object of key/value pairs SETSTATE: Used to set key/value pairs specific to a subscriber uuid GETHISTORY: Fetches historical messages of a channel.",
           "title": "Operation",
           "required": false,
           "deprecated": false
@@ -65121,7 +66445,7 @@
         "consumes": {
           "kind": "parameter",
           "type": "string",
-          "description": "What payload type this component capable of consuming. Could be one type, like application/json or multiple types as application/json, application/xml; q\u003d0.5 according to the RFC7231. This equates to the value of Accept HTTP header. If set overrides any value found in the OpenApi specification and. in the component configuration",
+          "description": "What payload type this component capable of consuming. Could be one type, like application/json or multiple types as application/json, application/xml; q\u003d0.5 according to the RFC7231. This equates or multiple types as application/json, application/xml; q\u003d0.5 according to the RFC7231. This equates to the value of Accept HTTP header. If set overrides any value found in the OpenApi specification and. in the component configuration",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -69107,6 +70431,15 @@
           "required": false,
           "deprecated": false
         },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent Eager",
+          "required": false,
+          "deprecated": false
+        },
         "idempotentKey": {
           "kind": "parameter",
           "type": "string",
@@ -70884,6 +72217,15 @@
           "required": false,
           "deprecated": false
         },
+        "recursive": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If a directory, will look for files in all the sub-directories as well.",
+          "title": "Recursive",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -70927,6 +72269,50 @@
           "type": "object",
           "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
           "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "autoCreate": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to create parent directory if it does not exist",
+          "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "fileExist": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "Ignore",
+          "enum": [
+            "Override",
+            "Append",
+            "Fail",
+            "Ignore",
+            "Move",
+            "TryRename"
+          ],
+          "description": "What action to take if the SMB file already exists",
+          "title": "File Exist",
+          "required": false,
+          "deprecated": false
+        },
+        "readBufferSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "2048",
+          "description": "Read buffer size when for file being produced",
+          "title": "Read Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         },
@@ -71113,6 +72499,216 @@
           "type": "string",
           "description": "The username required to access the share",
           "title": "Username",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "smooks": {
+      "type": "object",
+      "title": "Smooks",
+      "group": "transformation",
+      "icon": "generic24.png",
+      "description": "EDI, XML, CSV, etc. based data transformation using Smooks.",
+      "properties": {
+        "smooksConfig": {
+          "kind": "path",
+          "type": "string",
+          "description": "Smooks XML configuration file",
+          "title": "Smooks Config",
+          "required": true,
+          "deprecated": false
+        },
+        "sendEmptyMessageWhenIdle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
           "required": false,
           "deprecated": false
         }
@@ -74764,7 +76360,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "5",
-          "description": "How many times a Rabbitmq consumer will retry the same message if Camel failed to process the message",
+          "description": "How many times a Rabbitmq consumer will try the same message if Camel failed to process the message (The number of attempts includes the initial try)",
           "title": "Maximum Retry Attempts",
           "required": false,
           "deprecated": false
@@ -77365,7 +78961,7 @@
           "type": "string",
           "description": "The Thrift server host name. This is localhost or 0.0.0.0 (if not defined) when being a consumer or remote server host name when using producer.",
           "title": "Host",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "port": {
@@ -77739,7 +79335,7 @@
           "kind": "parameter",
           "type": "duration",
           "defaultValue": "1000",
-          "description": "Delay before first event is triggered.",
+          "description": "The number of milliseconds to wait before the first event is generated. Should not be used in conjunction with the time option. The default value is 1000.",
           "title": "Delay",
           "required": false,
           "deprecated": false
@@ -77766,7 +79362,7 @@
           "kind": "parameter",
           "type": "duration",
           "defaultValue": "1000",
-          "description": "If greater than 0, generate periodic events every period.",
+          "description": "Generate periodic events every period. Must be zero or positive value. The default value is 1000.",
           "title": "Period",
           "required": false,
           "deprecated": false
@@ -83280,6 +84876,8 @@
             "GET_ARTICLES_1",
             "GET_ARTICLES_2",
             "GET_ARTICLES_3",
+            "GET_ARTICLES_4",
+            "GET_ARTICLES_5",
             "GET_ARTICLES_FROM_ALL_LABELS",
             "GET_ARTICLES_FROM_ANY_LABELS",
             "GET_ARTICLES_FROM_PAGE",
