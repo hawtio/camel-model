@@ -814,7 +814,7 @@
         "quote": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the quote which by default is",
+          "description": "Sets the quote to use which by default is double-quote character",
           "title": "Quote",
           "required": false,
           "deprecated": false
@@ -2159,9 +2159,12 @@
     "marshal": {
       "type": "object",
       "title": "Marshal",
-      "group": "dataformat,transformation",
+      "group": "eip,dataformat,transformation",
       "icon": "marshal24.png",
       "description": "Marshals data into a specified format for transmission over a transport or component",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
       "properties": {
         "id": {
           "kind": "attribute",
@@ -3492,9 +3495,12 @@
     "unmarshal": {
       "type": "object",
       "title": "Unmarshal",
-      "group": "dataformat,transformation",
+      "group": "eip,dataformat,transformation",
       "icon": "unmarshal24.png",
       "description": "Converts the message data received from the wire into a format that Apache Camel processors can consume",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
       "properties": {
         "id": {
           "kind": "attribute",

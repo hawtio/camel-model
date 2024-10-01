@@ -722,7 +722,7 @@
     "circuitBreaker": {
       "type": "object",
       "title": "Circuit Breaker",
-      "group": "eip,routing",
+      "group": "eip,routing,error",
       "icon": "generic24.png",
       "description": "Route messages in a fault tolerance way using Circuit Breaker",
       "acceptInput": "true",
@@ -1863,9 +1863,12 @@
     "doTry": {
       "type": "object",
       "title": "Do Try",
-      "group": "error",
+      "group": "eip,routing,error",
       "icon": "generic24.png",
       "description": "Marks the beginning of a try, catch, finally block",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "id": {
           "kind": "attribute",
@@ -2192,7 +2195,7 @@
     "faultToleranceConfiguration": {
       "type": "object",
       "title": "Fault Tolerance Configuration",
-      "group": "configuration,eip",
+      "group": "configuration,eip,error",
       "icon": "generic24.png",
       "description": "MicroProfile Fault Tolerance Circuit Breaker EIP configuration",
       "acceptInput": "false",
@@ -3178,6 +3181,72 @@
         }
       }
     },
+    "langChain4j": {
+      "type": "object",
+      "title": "LangChain4J Tokenizer",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "Tokenizer that uses LangChain4j for tokenization.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "tokenizerType": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "OPEN_AI",
+            "AZURE",
+            "QWEN"
+          ],
+          "description": "Sets the tokenizer type",
+          "title": "Tokenizer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens on each segment",
+          "title": "Max Tokens",
+          "required": true,
+          "deprecated": false
+        },
+        "maxOverlap": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens that can overlap in each segment",
+          "title": "Max Overlap",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
     "loadBalance": {
       "type": "object",
       "title": "Load Balance",
@@ -3328,7 +3397,7 @@
         "logName": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the name of the logger",
+          "description": "Sets the name of the logger. The name is default the routeId or the source:line if source location is enabled. You can also specify the name using tokens: ${class} - the logger class name (org.apache.camel.processor.LogProcessor) ${contextId} - the camel context id ${routeId} - the route id ${groupId} - the route group id ${nodeId} - the node id ${nodePrefixId} - the node prefix id ${source} - the source:line (source location must be enabled) ${source.name} - the source filename (source location must be enabled) ${source.line} - the source line number (source location must be enabled) For example to use the route and node id you can specify the name as: ${routeId}/${nodeId}",
           "title": "Log Name",
           "required": false,
           "deprecated": false
@@ -3839,7 +3908,7 @@
     "onFallback": {
       "type": "object",
       "title": "On Fallback",
-      "group": "eip,routing",
+      "group": "eip,routing,error",
       "icon": "generic24.png",
       "description": "Route to be executed when Circuit Breaker EIP executes fallback",
       "acceptInput": "true",
@@ -4224,6 +4293,68 @@
           "description": "Sets a reference to use for lookup the policy in the registry.",
           "title": "Ref",
           "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "poll": {
+      "type": "object",
+      "title": "Poll",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Polls a message from a static endpoint",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "variableReceive": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current Message .",
+          "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the uri of the endpoint to poll from.",
+          "title": "Uri",
+          "required": true,
+          "deprecated": false
+        },
+        "timeout": {
+          "kind": "attribute",
+          "type": "duration",
+          "defaultValue": "20000",
+          "description": "Timeout in millis when polling from the external service. The timeout has influence about the poll enrich behavior. It basically operations in three different modes: negative value - Waits until a message is available and then returns it. Warning that this method could block indefinitely if no messages are available. 0 - Attempts to receive a message exchange immediately without waiting and returning null if a message exchange is not available yet. positive value - Attempts to receive a message exchange, waiting up to the given timeout to expire if a message is not yet available. Returns null if timed out The default value is 20000 (20 seconds).",
+          "title": "Timeout",
+          "required": false,
           "deprecated": false
         }
       }
@@ -5215,7 +5346,7 @@
     "resilience4jConfiguration": {
       "type": "object",
       "title": "Resilience4j Configuration",
-      "group": "configuration,eip",
+      "group": "configuration,eip,error",
       "icon": "generic24.png",
       "description": "Resilience4j Circuit Breaker EIP configuration",
       "acceptInput": "false",
@@ -6013,7 +6144,7 @@
     "routeTemplates": {
       "type": "object",
       "title": "Route Templates",
-      "group": "routeTemplates",
+      "group": "configuration",
       "icon": "generic24.png",
       "description": "A series of route templates",
       "properties": {
@@ -7086,7 +7217,7 @@
     "sort": {
       "type": "object",
       "title": "Sort",
-      "group": "eip,routing",
+      "group": "eip,transformation",
       "icon": "generic24.png",
       "description": "Sorts the contents of the message",
       "acceptInput": "true",
