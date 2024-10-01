@@ -10,6 +10,19 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: monthly
+    target-branch: '4.8.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+      - grgrzybek
   - package-ecosystem: maven
     directory: '/'
     schedule:
@@ -21,6 +34,7 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
   - package-ecosystem: maven
     directory: '/'
     schedule:
@@ -32,6 +46,7 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
   - package-ecosystem: maven
     directory: '/'
     schedule:
@@ -43,6 +58,7 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
   - package-ecosystem: npm
     directory: '/'
     schedule:
@@ -53,6 +69,7 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
@@ -63,3 +80,4 @@ updates:
       - mmelko
       - jsolovjo
       - mmuzikar
+      - grgrzybek
