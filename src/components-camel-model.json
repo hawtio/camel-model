@@ -8548,6 +8548,15 @@
           "required": false,
           "deprecated": false
         },
+        "kclDisableCloudwatchMetricsExport": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a KCL Consumer and disable the CloudWatch Metrics Export",
+          "title": "Kcl Disable Cloudwatch Metrics Export",
+          "required": false,
+          "deprecated": false
+        },
         "useKclConsumers": {
           "kind": "parameter",
           "type": "boolean",
@@ -29665,6 +29674,15 @@
           "defaultValue": "true",
           "description": "Automatically create missing directories in the file\u0027s pathname. For the file consumer, that means creating the starting directory. For the file producer, it means the directory the files should be written to.",
           "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "autoCreateStepwise": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When auto-creating directories should each subdirectory be created one at a time. This may be needed due to security issues on some file-shares.",
+          "title": "Auto Create Stepwise",
           "required": false,
           "deprecated": false
         },
@@ -54634,15 +54652,6 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "enum": [
-            "string",
-            "integer",
-            "number",
-            "object",
-            "array",
-            "boolean",
-            "null"
-          ],
           "description": "List of Tool parameters in the form of parameter.\u003d",
           "title": "Parameters",
           "required": false,
@@ -64037,6 +64046,15 @@
           "defaultValue": "false",
           "description": "Sets whether the cookie is only sent to the server with an encrypted request over HTTPS.",
           "title": "Cookie Secure",
+          "required": false,
+          "deprecated": false
+        },
+        "handleWriteResponseError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When Camel is complete processing the message, and the HTTP server is writing response. This option controls whether Camel should catch any failure during writing response and store this on the Exchange, which allows onCompletion/UnitOfWork to regard the Exchange as failed and have access to the caused exception from the HTTP server.",
+          "title": "Handle Write Response Error",
           "required": false,
           "deprecated": false
         },
