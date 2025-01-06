@@ -45745,6 +45745,15 @@
           "required": false,
           "deprecated": false
         },
+        "useIterator": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether sending to kafka should send the message body as a single record, or use a java.util.Iterator to send multiple records to kafka (if the message body can be iterated).",
+          "title": "Use Iterator",
+          "required": false,
+          "deprecated": false
+        },
         "valueSerializer": {
           "kind": "parameter",
           "type": "string",
