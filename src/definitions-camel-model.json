@@ -2022,7 +2022,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false
@@ -2030,7 +2030,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false
@@ -3181,38 +3181,217 @@
         }
       }
     },
-    "langChain4j": {
+    "langChain4jCharacterTokenizer": {
       "type": "object",
-      "title": "LangChain4J Tokenizer",
+      "title": "LangChain4J Tokenizer with character splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "Tokenizer that uses LangChain4j for tokenization.",
-      "acceptInput": "true",
+      "description": "",
+      "acceptInput": "false",
       "acceptOutput": "false",
-      "nextSiblingAddedAsChild": "true",
+      "nextSiblingAddedAsChild": "false",
       "properties": {
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
         },
-        "description": {
+        "tokenizerType": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "OPEN_AI",
+            "AZURE",
+            "QWEN"
+          ],
+          "description": "Sets the tokenizer type",
+          "title": "Tokenizer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens on each segment",
+          "title": "Max Tokens",
+          "required": true,
+          "deprecated": false
+        },
+        "maxOverlap": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens that can overlap in each segment",
+          "title": "Max Overlap",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "langChain4jLineTokenizer": {
+      "type": "object",
+      "title": "LangChain4J Tokenizer with line splitter",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
+          "description": "The id of this node",
+          "title": "Id",
           "required": false,
           "deprecated": false
         },
-        "disabled": {
+        "tokenizerType": {
           "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
+          "type": "enum",
+          "enum": [
+            "OPEN_AI",
+            "AZURE",
+            "QWEN"
+          ],
+          "description": "Sets the tokenizer type",
+          "title": "Tokenizer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens on each segment",
+          "title": "Max Tokens",
+          "required": true,
+          "deprecated": false
+        },
+        "maxOverlap": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens that can overlap in each segment",
+          "title": "Max Overlap",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "langChain4jParagraphTokenizer": {
+      "type": "object",
+      "title": "LangChain4J Tokenizer with paragraph splitter",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "tokenizerType": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "OPEN_AI",
+            "AZURE",
+            "QWEN"
+          ],
+          "description": "Sets the tokenizer type",
+          "title": "Tokenizer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens on each segment",
+          "title": "Max Tokens",
+          "required": true,
+          "deprecated": false
+        },
+        "maxOverlap": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens that can overlap in each segment",
+          "title": "Max Overlap",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "langChain4jSentenceTokenizer": {
+      "type": "object",
+      "title": "LangChain4J Tokenizer with sentence splitter",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "tokenizerType": {
+          "kind": "attribute",
+          "type": "enum",
+          "enum": [
+            "OPEN_AI",
+            "AZURE",
+            "QWEN"
+          ],
+          "description": "Sets the tokenizer type",
+          "title": "Tokenizer Type",
+          "required": true,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens on each segment",
+          "title": "Max Tokens",
+          "required": true,
+          "deprecated": false
+        },
+        "maxOverlap": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of tokens that can overlap in each segment",
+          "title": "Max Overlap",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "langChain4jWordTokenizer": {
+      "type": "object",
+      "title": "LangChain4J Tokenizer with word splitter",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "",
+      "acceptInput": "false",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
           "required": false,
           "deprecated": false
         },
@@ -4335,7 +4514,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false
@@ -4405,7 +4584,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false
@@ -8374,7 +8553,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current Message , however the headers from the Message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false
@@ -8382,7 +8561,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false
@@ -8455,7 +8634,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false
@@ -8513,6 +8692,51 @@
           "description": "Whether to auto startup components when toD is starting up.",
           "title": "Auto Start Components",
           "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "tokenizer": {
+      "type": "object",
+      "title": "Specialized tokenizer for AI applications",
+      "group": "eip,transformation,ai",
+      "icon": "generic24.png",
+      "description": "Represents a Camel tokenizer for AI.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "tokenizerImplementation": {
+          "kind": "element",
+          "type": "object",
+          "description": "Sets the tokenizer implementation",
+          "title": "Tokenizer Implementation",
+          "required": true,
           "deprecated": false
         }
       }
@@ -8973,7 +9197,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false

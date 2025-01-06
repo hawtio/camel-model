@@ -1424,6 +1424,58 @@
         }
       }
     },
+    "fury": {
+      "type": "object",
+      "title": "Fury",
+      "group": "dataformat,transformation",
+      "icon": "generic24.png",
+      "description": "Serialize and deserialize messages using Apache Fury",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "unmarshalType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Class of the java type to use when unmarshalling",
+          "title": "Unmarshal Type",
+          "required": false,
+          "deprecated": false
+        },
+        "requireClassRegistration": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to require register classes",
+          "title": "Require Class Registration",
+          "required": false,
+          "deprecated": false
+        },
+        "threadSafe": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to use the threadsafe fury",
+          "title": "Thread Safe",
+          "required": false,
+          "deprecated": false
+        },
+        "allowAutoWiredFury": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to auto-discover Fury from the registry",
+          "title": "Allow Auto Wired Fury",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "grok": {
       "type": "object",
       "title": "Grok",
@@ -1753,7 +1805,7 @@
         "prettyPrint": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "To enable pretty printing output nicely formatted. Is by default false.",
           "title": "Pretty Print",
           "required": false,
@@ -1762,7 +1814,7 @@
         "objectFactory": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Whether to allow using ObjectFactory classes to create the POJO classes during marshalling. This only applies to POJO classes that has not been annotated with JAXB and providing jaxb.index descriptor files.",
           "title": "Object Factory",
           "required": false,
@@ -1771,7 +1823,7 @@
         "ignoreJAXBElement": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Whether to ignore JAXBElement elements - only needed to be set to false in very special use-cases.",
           "title": "Ignore JAXBElement",
           "required": false,
@@ -1951,6 +2003,15 @@
           ],
           "description": "Which json library to use.",
           "title": "Library",
+          "required": false,
+          "deprecated": false
+        },
+        "combineUnicodeSurrogates": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Force generator that outputs JSON content to combine surrogate pairs (if any) into 4-byte characters. This should be preferred when using 4-byte characters such as Japanese.",
+          "title": "Combine Unicode Surrogates",
           "required": false,
           "deprecated": false
         },
@@ -2202,7 +2263,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false
@@ -2210,7 +2271,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false
@@ -2677,6 +2738,31 @@
           "description": "The id of this node",
           "title": "Id",
           "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "smooks": {
+      "type": "object",
+      "title": "Smooks",
+      "group": "dataformat,transformation",
+      "icon": "generic24.png",
+      "description": "Transform and bind XML as well as non-XML data, including EDI, CSV, JSON, and YAML using Smooks.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "smooksConfig": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Path to the Smooks configuration file.",
+          "title": "Smooks Config",
+          "required": true,
           "deprecated": false
         }
       }
@@ -3538,7 +3624,7 @@
         "variableSend": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable as the source for the message body to send. This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using send variable then the message body is taken from this variable instead of the current message, however the headers from the message will still be used as well. In other words, the variable is used instead of the message body, but everything else is as usual.",
           "title": "Variable Send",
           "required": false,
           "deprecated": false
@@ -3546,7 +3632,7 @@
         "variableReceive": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a variable to store the received message body (only body, not headers). This is handy for easy access to the received message body via variables. Important: When using receive variable then the received body is stored only in this variable and not on the current org.apache.camel.Message .",
+          "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving. Important: When using receive variable then the received body is stored only in this variable and not on the current message.",
           "title": "Variable Receive",
           "required": false,
           "deprecated": false

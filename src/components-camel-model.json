@@ -122,7 +122,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously (Camel 3.0 may support async transactions).",
+          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously.",
           "title": "Async Consumer",
           "required": false,
           "deprecated": false
@@ -630,6 +630,15 @@
           "required": false,
           "deprecated": false
         },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "destinationResolver": {
           "kind": "parameter",
           "type": "object",
@@ -668,6 +677,14 @@
           "defaultValue": "1",
           "description": "Specify the limit for the number of consumers that are allowed to be idle at any given time.",
           "title": "Idle Consumer Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "idleReceivesPerTaskLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Marks the consumer as idle after the specified number of idle receives have been reached. An idle receive is counted from the moment a null message is returned by the receiver after the potential setReceiveTimeout elapsed. This gives the opportunity to check if the idle task count exceeds setIdleTaskExecutionLimit and based on that decide if the task needs to be re-scheduled or not, saving resources that would otherwise be held. This setting differs from setMaxMessagesPerTask where the task is released and re-scheduled after this limit is reached, no matter if the received messages were null or non-null messages. This setting alone can be inflexible if one desires to have a large enough batch for each task but requires a quick(er) release from the moment there are no more messages to process. This setting differs from setIdleTaskExecutionLimit where this limit decides after how many iterations of being marked as idle, a task is released. For example: If setMaxMessagesPerTask is set to \u0027500\u0027 and #setIdleReceivesPerTaskLimit is set to \u002760\u0027 and setReceiveTimeout is set to \u00271000\u0027 and setIdleTaskExecutionLimit is set to \u00271\u0027, then 500 messages per task would be processed unless there is a subsequent number of 60 idle messages received, the task would be marked as idle and released. This also means that after the last message was processed, the task would be released after 60 seconds as long as no new messages appear.",
+          "title": "Idle Receives Per Task Limit",
           "required": false,
           "deprecated": false
         },
@@ -1095,7 +1112,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously (Camel 3.0 may support async transactions).",
+          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously.",
           "title": "Async Consumer",
           "required": false,
           "deprecated": false
@@ -1603,6 +1620,15 @@
           "required": false,
           "deprecated": false
         },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "destinationResolver": {
           "kind": "parameter",
           "type": "object",
@@ -1641,6 +1667,14 @@
           "defaultValue": "1",
           "description": "Specify the limit for the number of consumers that are allowed to be idle at any given time.",
           "title": "Idle Consumer Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "idleReceivesPerTaskLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Marks the consumer as idle after the specified number of idle receives have been reached. An idle receive is counted from the moment a null message is returned by the receiver after the potential setReceiveTimeout elapsed. This gives the opportunity to check if the idle task count exceeds setIdleTaskExecutionLimit and based on that decide if the task needs to be re-scheduled or not, saving resources that would otherwise be held. This setting differs from setMaxMessagesPerTask where the task is released and re-scheduled after this limit is reached, no matter if the received messages were null or non-null messages. This setting alone can be inflexible if one desires to have a large enough batch for each task but requires a quick(er) release from the moment there are no more messages to process. This setting differs from setIdleTaskExecutionLimit where this limit decides after how many iterations of being marked as idle, a task is released. For example: If setMaxMessagesPerTask is set to \u0027500\u0027 and #setIdleReceivesPerTaskLimit is set to \u002760\u0027 and setReceiveTimeout is set to \u00271000\u0027 and setIdleTaskExecutionLimit is set to \u00271\u0027, then 500 messages per task would be processed unless there is a subsequent number of 60 idle messages received, the task would be marked as idle and released. This also means that after the last message was processed, the task would be released after 60 seconds as long as no new messages appear.",
+          "title": "Idle Receives Per Task Limit",
           "required": false,
           "deprecated": false
         },
@@ -2068,7 +2102,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously (Camel 3.0 may support async transactions).",
+          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously.",
           "title": "Async Consumer",
           "required": false,
           "deprecated": false
@@ -2568,6 +2602,15 @@
           "required": false,
           "deprecated": false
         },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "destinationResolver": {
           "kind": "parameter",
           "type": "object",
@@ -2606,6 +2649,14 @@
           "defaultValue": "1",
           "description": "Specify the limit for the number of consumers that are allowed to be idle at any given time.",
           "title": "Idle Consumer Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "idleReceivesPerTaskLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Marks the consumer as idle after the specified number of idle receives have been reached. An idle receive is counted from the moment a null message is returned by the receiver after the potential setReceiveTimeout elapsed. This gives the opportunity to check if the idle task count exceeds setIdleTaskExecutionLimit and based on that decide if the task needs to be re-scheduled or not, saving resources that would otherwise be held. This setting differs from setMaxMessagesPerTask where the task is released and re-scheduled after this limit is reached, no matter if the received messages were null or non-null messages. This setting alone can be inflexible if one desires to have a large enough batch for each task but requires a quick(er) release from the moment there are no more messages to process. This setting differs from setIdleTaskExecutionLimit where this limit decides after how many iterations of being marked as idle, a task is released. For example: If setMaxMessagesPerTask is set to \u0027500\u0027 and #setIdleReceivesPerTaskLimit is set to \u002760\u0027 and setReceiveTimeout is set to \u00271000\u0027 and setIdleTaskExecutionLimit is set to \u00271\u0027, then 500 messages per task would be processed unless there is a subsequent number of 60 idle messages received, the task would be marked as idle and released. This also means that after the last message was processed, the task would be released after 60 seconds as long as no new messages appear.",
+          "title": "Idle Receives Per Task Limit",
           "required": false,
           "deprecated": false
         },
@@ -5683,12 +5734,14 @@
             "listSecrets",
             "createSecret",
             "getSecret",
+            "batchGetSecret",
             "describeSecret",
             "deleteSecret",
             "rotateSecret",
             "updateSecret",
             "restoreSecret",
-            "replicateSecretToRegions"
+            "replicateSecretToRegions",
+            "putSecretValue"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -8548,6 +8601,15 @@
           "required": false,
           "deprecated": false
         },
+        "kclDisableCloudwatchMetricsExport": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a KCL Consumer and disable the CloudWatch Metrics Export",
+          "title": "Kcl Disable Cloudwatch Metrics Export",
+          "required": false,
+          "deprecated": false
+        },
         "useKclConsumers": {
           "kind": "parameter",
           "type": "boolean",
@@ -10560,7 +10622,9 @@
             "listBuckets",
             "getObject",
             "getObjectRange",
-            "createDownloadLink"
+            "createDownloadLink",
+            "headBucket",
+            "headObject"
           ],
           "description": "The operation to do in case the user don\u0027t want to do only an upload",
           "title": "Operation",
@@ -10619,6 +10683,15 @@
           "type": "string",
           "description": "Define the id of KMS key to use in case KMS is enabled",
           "title": "Aws KMSKey Id",
+          "required": false,
+          "deprecated": false
+        },
+        "conditionalWritesEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Uploads the object only if the object key name does not already exist in the bucket specified.",
+          "title": "Conditional Writes Enabled",
           "required": false,
           "deprecated": false
         },
@@ -14025,6 +14098,15 @@
           "required": false,
           "deprecated": false
         },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "connectTimeout": {
           "kind": "parameter",
           "type": "duration",
@@ -16960,6 +17042,22 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "filter": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a predicate to filter whether to include the message for browsing. Return true to include, false to exclude.",
+          "title": "Filter",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -17465,6 +17563,84 @@
           "type": "object",
           "description": "Used for configuring additional properties on the bean",
           "title": "Parameters",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "clickup": {
+      "type": "object",
+      "title": "ClickUp",
+      "group": "cloud",
+      "icon": "generic24.png",
+      "description": "Receives events from ClickUp",
+      "properties": {
+        "workspaceId": {
+          "kind": "path",
+          "type": "integer",
+          "description": "The WorkspaceID.",
+          "title": "Workspace Id",
+          "required": true,
+          "deprecated": false
+        },
+        "events": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The comma separated list of events to which the webhook must subscribe",
+          "title": "Events",
+          "required": true,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "baseUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Can be used to set an alternative base URL, e.g. when you want to test the component against a mock ClickUp API",
+          "title": "Base Url",
+          "required": false,
+          "deprecated": false
+        },
+        "authorizationToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The authorization token for authenticating against the ClickUp API.",
+          "title": "Authorization Token",
+          "required": false,
+          "deprecated": false
+        },
+        "webhookSecret": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The shared secret obtained in the webhook creation response.",
+          "title": "Webhook Secret",
           "required": false,
           "deprecated": false
         }
@@ -21002,6 +21178,15 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -21155,6 +21340,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         }
@@ -23942,6 +24136,46 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningBufferEhcacheEventsConfig": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Specifies the inner body the Ehcache tag for the events cache, but should not include the nor the attributes as these are managed by Debezium.",
+          "title": "Log Mining Buffer Ehcache Events Config",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferEhcacheGlobalConfig": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Specifies any Ehcache global configurations such as services or persistence. This cannot include nor tags as these are managed by Debezium.",
+          "title": "Log Mining Buffer Ehcache Global Config",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferEhcacheProcessedtransactionsConfig": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Specifies the inner body the Ehcache tag for the processed transaction cache, but should not include the nor the attributes as these are managed by Debezium.",
+          "title": "Log Mining Buffer Ehcache Processedtransactions Config",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferEhcacheSchemachangesConfig": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Specifies the inner body the Ehcache tag for the schema changes cache, but should not include the nor the attributes as these are managed by Debezium.",
+          "title": "Log Mining Buffer Ehcache Schemachanges Config",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferEhcacheTransactionsConfig": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Specifies the inner body the Ehcache tag for the transaction cache, but should not include the nor the attributes as these are managed by Debezium.",
+          "title": "Log Mining Buffer Ehcache Transactions Config",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningBufferInfinispanCacheEvents": {
           "kind": "parameter",
           "type": "string",
@@ -23995,7 +24229,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "memory",
-          "description": "The buffer type controls how the connector manages buffering transaction data. memory - Uses the JVM process\u0027 heap to buffer all transaction data. infinispan_embedded - This option uses an embedded Infinispan cache to buffer transaction data and persist it to disk. infinispan_remote - This option uses a remote Infinispan cluster to buffer transaction data and persist it to disk.",
+          "description": "The buffer type controls how the connector manages buffering transaction data. memory - Uses the JVM process\u0027 heap to buffer all transaction data. infinispan_embedded - This option uses an embedded Infinispan cache to buffer transaction data and persist it to disk. infinispan_remote - This option uses a remote Infinispan cluster to buffer transaction data and persist it to disk. ehcache - Use ehcache in embedded mode to buffer transaction data and persist it to disk.",
           "title": "Log Mining Buffer Type",
           "required": false,
           "deprecated": false
@@ -24102,7 +24336,7 @@
         "logMiningStrategy": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": "redo_log_catalog",
+          "defaultValue": "online_catalog",
           "description": "There are strategies: Online catalog with faster mining but no captured DDL. Another - with data dictionary loaded into REDO LOG files",
           "title": "Log Mining Strategy",
           "required": false,
@@ -25292,6 +25526,15 @@
           "type": "string",
           "description": "This setting must be set to specify a list of tables/collections whose snapshot must be taken on creating or restarting the connector.",
           "title": "Snapshot Include Collection List",
+          "required": false,
+          "deprecated": false
+        },
+        "snapshotIsolationMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "serializable",
+          "description": "Controls which transaction isolation level is used. The default is \u0027serializable\u0027, which means that serializable isolation level is used. When \u0027repeatable_read\u0027 is specified, connector runs the initial snapshot in REPEATABLE READ isolation level. When \u0027read_committed\u0027 is specified, connector runs the initial snapshot in READ COMMITTED isolation level. In \u0027read_uncommitted\u0027 is specified, connector runs the initial snapshot in READ UNCOMMITTED isolation level.",
+          "title": "Snapshot Isolation Mode",
           "required": false,
           "deprecated": false
         },
@@ -29668,6 +29911,24 @@
           "required": false,
           "deprecated": false
         },
+        "autoCreateStepwise": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When auto-creating directories should each subdirectory be created one at a time. This may be needed due to security issues on some file-shares.",
+          "title": "Auto Create Stepwise",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "bufferSize": {
           "kind": "parameter",
           "type": "integer",
@@ -30649,6 +30910,61 @@
         }
       }
     },
+    "flowable": {
+      "type": "object",
+      "title": "Flowable",
+      "group": "workflow",
+      "icon": "generic24.png",
+      "description": "Send and receive messages from the Flowable BPMN and CMMN engines.",
+      "properties": {
+        "channelKey": {
+          "kind": "path",
+          "type": "string",
+          "description": "The channel key",
+          "title": "Channel Key",
+          "required": true,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "fop": {
       "type": "object",
       "title": "FOP",
@@ -31270,6 +31586,15 @@
           "defaultValue": "true",
           "description": "Automatically create missing directories in the file\u0027s pathname. For the file consumer, that means creating the starting directory. For the file producer, it means the directory the files should be written to.",
           "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
@@ -32336,6 +32661,15 @@
           "defaultValue": "true",
           "description": "Automatically create missing directories in the file\u0027s pathname. For the file consumer, that means creating the starting directory. For the file producer, it means the directory the files should be written to.",
           "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
@@ -36560,6 +36894,14 @@
           "required": false,
           "deprecated": false
         },
+        "prefix": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The prefix which is used in the BlobListOptions to only consume objects we are interested in",
+          "title": "Prefix",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -39343,6 +39685,33 @@
           "required": false,
           "deprecated": false
         },
+        "oauth2CachedTokensDefaultExpirySeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3600",
+          "description": "Default expiration time for cached OAuth2 tokens, in seconds. Used if token response does not contain \u0027expires_in\u0027 field.",
+          "title": "Oauth2 Cached Tokens Default Expiry Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2CachedTokensExpirationMarginSeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5",
+          "description": "Amount of time which is deducted from OAuth2 tokens expiry time to compensate for the time it takes OAuth2 Token Endpoint to send the token over http, in seconds. Set this parameter to high value if you OAuth2 Token Endpoint answers slowly or you tokens expire quickly. If you set this parameter to too small value, you can get 4xx http errors because camel will think that the received token is still valid, while in reality the token is expired for the Authentication server.",
+          "title": "Oauth2 Cached Tokens Expiration Margin Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2CacheTokens": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to cache OAuth2 client tokens.",
+          "title": "Oauth2 Cache Tokens",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2ClientId": {
           "kind": "parameter",
           "type": "string",
@@ -39832,6 +40201,33 @@
           "type": "string",
           "description": "Authentication username",
           "title": "Auth Username",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2CachedTokensDefaultExpirySeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3600",
+          "description": "Default expiration time for cached OAuth2 tokens, in seconds. Used if token response does not contain \u0027expires_in\u0027 field.",
+          "title": "Oauth2 Cached Tokens Default Expiry Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2CachedTokensExpirationMarginSeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5",
+          "description": "Amount of time which is deducted from OAuth2 tokens expiry time to compensate for the time it takes OAuth2 Token Endpoint to send the token over http, in seconds. Set this parameter to high value if you OAuth2 Token Endpoint answers slowly or you tokens expire quickly. If you set this parameter to too small value, you can get 4xx http errors because camel will think that the received token is still valid, while in reality the token is expired for the Authentication server.",
+          "title": "Oauth2 Cached Tokens Expiration Margin Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2CacheTokens": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to cache OAuth2 client tokens.",
+          "title": "Oauth2 Cache Tokens",
           "required": false,
           "deprecated": false
         },
@@ -46168,7 +46564,7 @@
       "title": "JMS",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Sent and receive messages to/from a JMS Queue or Topic.",
+      "description": "Send and receive messages to/from JMS message brokers.",
       "properties": {
         "destinationType": {
           "kind": "path",
@@ -46285,7 +46681,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously (Camel 3.0 may support async transactions).",
+          "description": "Whether the JmsConsumer processes the Exchange asynchronously. If enabled then the JmsConsumer may pickup the next message from the JMS queue, while the previous message is being processed asynchronously (by the Asynchronous Routing Engine). This means that messages may be processed not 100% strictly in order. If disabled (as default) then the Exchange is fully processed before the JmsConsumer will pickup the next message from the JMS queue. Note if transacted has been enabled, then asyncConsumer\u003dtrue does not run asynchronously, as transaction must be executed synchronously.",
           "title": "Async Consumer",
           "required": false,
           "deprecated": false
@@ -46785,6 +47181,15 @@
           "required": false,
           "deprecated": false
         },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
         "destinationResolver": {
           "kind": "parameter",
           "type": "object",
@@ -46823,6 +47228,14 @@
           "defaultValue": "1",
           "description": "Specify the limit for the number of consumers that are allowed to be idle at any given time.",
           "title": "Idle Consumer Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "idleReceivesPerTaskLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Marks the consumer as idle after the specified number of idle receives have been reached. An idle receive is counted from the moment a null message is returned by the receiver after the potential setReceiveTimeout elapsed. This gives the opportunity to check if the idle task count exceeds setIdleTaskExecutionLimit and based on that decide if the task needs to be re-scheduled or not, saving resources that would otherwise be held. This setting differs from setMaxMessagesPerTask where the task is released and re-scheduled after this limit is reached, no matter if the received messages were null or non-null messages. This setting alone can be inflexible if one desires to have a large enough batch for each task but requires a quick(er) release from the moment there are no more messages to process. This setting differs from setIdleTaskExecutionLimit where this limit decides after how many iterations of being marked as idle, a task is released. For example: If setMaxMessagesPerTask is set to \u0027500\u0027 and #setIdleReceivesPerTaskLimit is set to \u002760\u0027 and setReceiveTimeout is set to \u00271000\u0027 and setIdleTaskExecutionLimit is set to \u00271\u0027, then 500 messages per task would be processed unless there is a subsequent number of 60 idle messages received, the task would be marked as idle and released. This also means that after the last message was processed, the task would be released after 60 seconds as long as no new messages appear.",
+          "title": "Idle Receives Per Task Limit",
           "required": false,
           "deprecated": false
         },
@@ -54634,15 +55047,6 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "enum": [
-            "string",
-            "integer",
-            "number",
-            "object",
-            "array",
-            "boolean",
-            "null"
-          ],
           "description": "List of Tool parameters in the form of parameter.\u003d",
           "title": "Parameters",
           "required": false,
@@ -57216,6 +57620,15 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -59077,7 +59490,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Sets the cap on the number of objects that can be allocated by the pool (checked out to clients, or idle awaiting checkout) at a given time. Use a negative value for no limit.",
+          "description": "Sets the cap on the number of objects that can be allocated by the pool (checked out to clients, or idle awaiting checkout) at a given time. Use a negative value for no limit. Be careful to not set this value too low (such as 1) as the pool must have space to create a producer such as when performing retries. Be mindful that the option producerPoolBlockWhenExhausted is default true, and the pool will then block when there is no space, which can lead to the application to hang.",
           "title": "Producer Pool Max Total",
           "required": false,
           "deprecated": false
@@ -59441,9 +59854,10 @@
           "type": "string",
           "enum": [
             "http",
-            "https"
+            "https",
+            "proxy"
           ],
-          "description": "The protocol to use which is either http, https or proxy - a consumer only option.",
+          "description": "The protocol to use which is either http, https or proxy (consumer only).",
           "title": "Protocol",
           "required": true,
           "deprecated": false
@@ -59898,7 +60312,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Sets the cap on the number of objects that can be allocated by the pool (checked out to clients, or idle awaiting checkout) at a given time. Use a negative value for no limit.",
+          "description": "Sets the cap on the number of objects that can be allocated by the pool (checked out to clients, or idle awaiting checkout) at a given time. Use a negative value for no limit. Be careful to not set this value too low (such as 1) as the pool must have space to create a producer such as when performing retries. Be mindful that the option producerPoolBlockWhenExhausted is default true, and the pool will then block when there is no space, which can lead to the application to hang.",
           "title": "Producer Pool Max Total",
           "required": false,
           "deprecated": false
@@ -61433,6 +61847,14 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerifier": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The class to use as HostnameVerifier. By default there is no HostnameVerifier.",
+          "title": "Hostname Verifier",
+          "required": false,
+          "deprecated": false
+        },
         "sniffAfterFailureDelay": {
           "kind": "parameter",
           "type": "integer",
@@ -61472,7 +61894,7 @@
     },
     "openshift-build-configs": {
       "type": "object",
-      "title": "Openshift Build Config",
+      "title": "OpenShift Build Config",
       "group": "container,cloud",
       "icon": "generic24.png",
       "description": "Perform operations on OpenShift Build Configs.",
@@ -61659,7 +62081,7 @@
     },
     "openshift-builds": {
       "type": "object",
-      "title": "Openshift Builds",
+      "title": "OpenShift Builds",
       "group": "container,cloud",
       "icon": "generic24.png",
       "description": "Perform operations on OpenShift Builds.",
@@ -61846,10 +62268,10 @@
     },
     "openshift-deploymentconfigs": {
       "type": "object",
-      "title": "Openshift Deployment Configs",
+      "title": "OpenShift Deployment Configs",
       "group": "container,cloud",
       "icon": "generic24.png",
-      "description": "Perform operations on Openshift Deployment Configs and get notified on Deployment Config changes.",
+      "description": "Perform operations on OpenShift Deployment Configs and get notified on Deployment Config changes.",
       "properties": {
         "masterUrl": {
           "kind": "path",
@@ -64040,6 +64462,15 @@
           "required": false,
           "deprecated": false
         },
+        "handleWriteResponseError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When Camel is complete processing the message, and the HTTP server is writing response. This option controls whether Camel should catch any failure during writing response and store this on the Exchange, which allows onCompletion/UnitOfWork to regard the Exchange as failed and have access to the caused exception from the HTTP server.",
+          "title": "Handle Write Response Error",
+          "required": false,
+          "deprecated": false
+        },
         "httpMethodRestrict": {
           "kind": "parameter",
           "type": "string",
@@ -65605,18 +66036,10 @@
         "authKey": {
           "kind": "parameter",
           "type": "string",
-          "description": "If Access Manager is utilized, client will use this authKey in all restricted requests.",
+          "description": "If Access Manager is utilized, client will use this authKey in all restricted requests. Default value notice: This setting is deprecated because it relates to deprecated Access Manager (PAM V2) and will be removed in the future. Please, migrate to new Access Manager (PAM V3) https://www.pubnub.com/docs/general/resources/migration-guides/pam-v3-migration",
           "title": "Auth Key",
           "required": false,
-          "deprecated": false
-        },
-        "cipherKey": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "If cipher is passed, all communications to/from PubNub will be encrypted.",
-          "title": "Cipher Key",
-          "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "publishKey": {
           "kind": "parameter",
@@ -69134,24 +69557,6 @@
           "required": false,
           "deprecated": false
         },
-        "chmod": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "664",
-          "description": "Allows you to set chmod on the stored file. For example chmod\u003d664.",
-          "title": "Chmod",
-          "required": false,
-          "deprecated": false
-        },
-        "disconnect": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether or not to disconnect from remote FTP server right after use. Disconnect will only disconnect the current connection to the FTP server. If you have a consumer which you want to stop, then you need to stop the consumer/route instead.",
-          "title": "Disconnect",
-          "required": false,
-          "deprecated": false
-        },
         "checksumFileAlgorithm": {
           "kind": "parameter",
           "type": "string",
@@ -69172,6 +69577,24 @@
           ],
           "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
           "title": "Checksum File Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "chmod": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "664",
+          "description": "Allows you to set chmod on the stored file. For example chmod\u003d664.",
+          "title": "Chmod",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote FTP server right after use. Disconnect will only disconnect the current connection to the FTP server. If you have a consumer which you want to stop, then you need to stop the consumer/route instead.",
+          "title": "Disconnect",
           "required": false,
           "deprecated": false
         },
@@ -69246,6 +69669,15 @@
           "type": "object",
           "description": "Strategy (Custom Strategy) used to move file with special naming token to use when fileExist\u003dMove is configured. By default, there is an implementation used if no custom strategy is provided",
           "title": "Move Existing File Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
@@ -69522,6 +69954,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
@@ -70678,6 +71119,15 @@
           "type": "string",
           "description": "Specifies the address of the local interface against which the connection should bind.",
           "title": "Bind Address",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
@@ -72675,7 +73125,7 @@
           "type": "string",
           "description": "The path, within the share, to consume the files from",
           "title": "Path",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "searchPattern": {
@@ -72748,6 +73198,15 @@
           "defaultValue": "false",
           "description": "Whether to create parent directory if it does not exist",
           "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote SMB server right after use. Disconnect will only disconnect the current connection to the SMB server. If you have a consumer which you want to stop, then you need to stop the consumer route instead.",
+          "title": "Disconnect",
           "required": false,
           "deprecated": false
         },
@@ -72979,59 +73438,21 @@
       "title": "Smooks",
       "group": "transformation",
       "icon": "generic24.png",
-      "description": "EDI, XML, CSV, etc. based data transformation using Smooks.",
+      "description": "Use Smooks to transform, route, and bind both XML and non-XML data, including EDI, CSV, JSON, and YAML.",
       "properties": {
         "smooksConfig": {
           "kind": "path",
           "type": "string",
-          "description": "Smooks XML configuration file",
+          "description": "Path to the Smooks configuration file",
           "title": "Smooks Config",
           "required": true,
           "deprecated": false
         },
-        "sendEmptyMessageWhenIdle": {
+        "reportPath": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
-          "title": "Send Empty Message When Idle",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "object",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "pollStrategy": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
-          "title": "Poll Strategy",
+          "type": "string",
+          "description": "File path to place the generated HTML execution report. The report is a useful tool in the developers arsenal for diagnosing issues or comprehending a transformation. Do not set in production since this is a major performance drain",
+          "title": "Report Path",
           "required": false,
           "deprecated": false
         },
@@ -73044,141 +73465,12 @@
           "required": false,
           "deprecated": false
         },
-        "backoffErrorThreshold": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
-          "title": "Backoff Error Threshold",
-          "required": false,
-          "deprecated": false
-        },
-        "backoffIdleThreshold": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
-          "title": "Backoff Idle Threshold",
-          "required": false,
-          "deprecated": false
-        },
-        "backoffMultiplier": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
-          "title": "Backoff Multiplier",
-          "required": false,
-          "deprecated": false
-        },
-        "delay": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "500",
-          "description": "Milliseconds before the next poll.",
-          "title": "Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "greedy": {
+        "allowExecutionContextFromHeader": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
-          "title": "Greedy",
-          "required": false,
-          "deprecated": false
-        },
-        "initialDelay": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "1000",
-          "description": "Milliseconds before the first poll starts.",
-          "title": "Initial Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "repeatCount": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "0",
-          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
-          "title": "Repeat Count",
-          "required": false,
-          "deprecated": false
-        },
-        "runLoggingLevel": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "TRACE",
-          "enum": [
-            "TRACE",
-            "DEBUG",
-            "INFO",
-            "WARN",
-            "ERROR",
-            "OFF"
-          ],
-          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
-          "title": "Run Logging Level",
-          "required": false,
-          "deprecated": false
-        },
-        "scheduledExecutorService": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
-          "title": "Scheduled Executor Service",
-          "required": false,
-          "deprecated": false
-        },
-        "scheduler": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "none",
-          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
-          "title": "Scheduler",
-          "required": false,
-          "deprecated": false
-        },
-        "schedulerProperties": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
-          "title": "Scheduler Properties",
-          "required": false,
-          "deprecated": false
-        },
-        "startScheduler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the scheduler should be auto started.",
-          "title": "Start Scheduler",
-          "required": false,
-          "deprecated": false
-        },
-        "timeUnit": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "MILLISECONDS",
-          "enum": [
-            "NANOSECONDS",
-            "MICROSECONDS",
-            "MILLISECONDS",
-            "SECONDS",
-            "MINUTES",
-            "HOURS",
-            "DAYS"
-          ],
-          "description": "Time unit for initialDelay and delay options.",
-          "title": "Time Unit",
-          "required": false,
-          "deprecated": false
-        },
-        "useFixedDelay": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
-          "title": "Use Fixed Delay",
+          "description": "Allow execution context to be set from the CamelSmooksExecutionContext header",
+          "title": "Allow Execution Context From Header",
           "required": false,
           "deprecated": false
         }
@@ -79667,6 +79959,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
           "required": false,
           "deprecated": false
         },
