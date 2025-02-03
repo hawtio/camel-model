@@ -1753,7 +1753,7 @@
         "prettyPrint": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "To enable pretty printing output nicely formatted. Is by default false.",
           "title": "Pretty Print",
           "required": false,
@@ -1762,7 +1762,7 @@
         "objectFactory": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Whether to allow using ObjectFactory classes to create the POJO classes during marshalling. This only applies to POJO classes that has not been annotated with JAXB and providing jaxb.index descriptor files.",
           "title": "Object Factory",
           "required": false,
@@ -1771,7 +1771,7 @@
         "ignoreJAXBElement": {
           "kind": "attribute",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Whether to ignore JAXBElement elements - only needed to be set to false in very special use-cases.",
           "title": "Ignore JAXBElement",
           "required": false,

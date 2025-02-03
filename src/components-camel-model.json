@@ -8421,6 +8421,14 @@
           "required": false,
           "deprecated": false
         },
+        "messageTimestamp": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The message timestamp to start polling from. Required if iteratorType is set to AT_TIMESTAMP",
+          "title": "Message Timestamp",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -56153,10 +56161,10 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level.",
+          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level. Also make sure to configure objectCodecPattern to (star) to allow transferring java objects.",
           "title": "Transfer Exchange",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "allowDefaultCodec": {
           "kind": "parameter",
@@ -56206,6 +56214,14 @@
           "type": "array",
           "description": "You can set a list of Mina IoFilters to use.",
           "title": "Filters",
+          "required": false,
+          "deprecated": false
+        },
+        "objectCodecPattern": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Accept the wildcard specified classes for Object deserialization, unless they are otherwise rejected. Multiple patterns can be separated by comma.",
+          "title": "Object Codec Pattern",
           "required": false,
           "deprecated": false
         },
@@ -72693,7 +72709,7 @@
           "type": "string",
           "description": "The path, within the share, to consume the files from",
           "title": "Path",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "searchPattern": {
@@ -72766,6 +72782,15 @@
           "defaultValue": "false",
           "description": "Whether to create parent directory if it does not exist",
           "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote SMB server right after use. Disconnect will only disconnect the current connection to the SMB server. If you have a consumer which you want to stop, then you need to stop the consumer route instead.",
+          "title": "Disconnect",
           "required": false,
           "deprecated": false
         },
