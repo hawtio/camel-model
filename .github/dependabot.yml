@@ -15,43 +15,19 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
+    target-branch: '4.10.x'
+    reviewers:
+      - tadayosi
+      - phantomjinx
+      - mmelko
+      - jsolovjo
+      - mmuzikar
+      - grgrzybek
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: monthly
     target-branch: '4.8.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - mmelko
-      - jsolovjo
-      - mmuzikar
-      - grgrzybek
-  - package-ecosystem: maven
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '4.4.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - mmelko
-      - jsolovjo
-      - mmuzikar
-      - grgrzybek
-  - package-ecosystem: maven
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '4.0.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - mmelko
-      - jsolovjo
-      - mmuzikar
-      - grgrzybek
-  - package-ecosystem: maven
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '3.x'
     reviewers:
       - tadayosi
       - phantomjinx
