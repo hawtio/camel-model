@@ -985,7 +985,7 @@
     "fhirJson": {
       "type": "object",
       "title": "FHIR JSon",
-      "group": "dataformat,transformation,hl7,json",
+      "group": "dataformat,transformation,health,json",
       "icon": "generic24.png",
       "description": "Marshall and unmarshall FHIR objects to/from JSON.",
       "properties": {
@@ -1163,7 +1163,7 @@
     "fhirXml": {
       "type": "object",
       "title": "FHIR XML",
-      "group": "dataformat,transformation,hl7,xml",
+      "group": "dataformat,transformation,health,xml",
       "icon": "generic24.png",
       "description": "Marshall and unmarshall FHIR objects to/from XML.",
       "properties": {
@@ -1548,7 +1548,7 @@
     "hl7": {
       "type": "object",
       "title": "HL7",
-      "group": "dataformat,transformation,hl7",
+      "group": "dataformat,transformation,health",
       "icon": "generic24.png",
       "description": "Marshal and unmarshal HL7 (Health Care) model objects using the HL7 MLLP codec.",
       "properties": {

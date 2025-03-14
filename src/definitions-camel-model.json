@@ -762,6 +762,15 @@
           "required": false,
           "deprecated": false
         },
+        "inheritErrorHandler": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To turn on or off Camel error handling during circuit breaker. If this is enabled then Camel error handler will first trigger if there is an error in the circuit breaker, which allows to let Camel handle redeliveries. If all attempts is failed, then after the circuit breaker is finished, then Camel error handler can handle the error as well such as the dead letter channel. By default, Camel error handler is turned off.",
+          "title": "Inherit Error Handler",
+          "required": false,
+          "deprecated": false
+        },
         "resilience4jConfiguration": {
           "kind": "element",
           "type": "object",
@@ -1803,7 +1812,7 @@
         "onWhen": {
           "kind": "element",
           "type": "object",
-          "description": "Sets an additional predicate that should be true before the onCatch is triggered. To be used for fine grained controlling whether a thrown exception should be intercepted by this exception type or not.",
+          "description": "Used for triggering doCatch in specific situations",
           "title": "On When",
           "required": false,
           "deprecated": false
@@ -1901,6 +1910,22 @@
           "description": "",
           "title": "Outputs",
           "required": true,
+          "deprecated": false
+        },
+        "doCatch": {
+          "kind": "element",
+          "type": "array",
+          "description": "Catches exceptions as part of a try, catch, finally block",
+          "title": "Do Catch",
+          "required": false,
+          "deprecated": false
+        },
+        "doFinally": {
+          "kind": "element",
+          "type": "object",
+          "description": "Path traversed when a try, catch, finally block exits",
+          "title": "Do Finally",
+          "required": false,
           "deprecated": false
         }
       }
@@ -2187,6 +2212,15 @@
           "defaultValue": "-1",
           "description": "A value to indicate after X failover attempts we should exhaust (give up). Use -1 to indicate never give up and continuously try to failover. Use 0 to never failover. And use e.g. 3 to failover at most 3 times before giving up. This option can be used whether roundRobin is enabled or not.",
           "title": "Maximum Failover Attempts",
+          "required": false,
+          "deprecated": false
+        },
+        "inheritErrorHandler": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "To turn off Camel error handling during load balancing. By default, Camel error handler will attempt calling a service, which means you can specify retires and other fine-grained settings. And only when Camel error handler have failed all attempts, then this load balancer will fail over to the next endpoint and try again. You can turn this off, and then this load balancer will fail over immediately on an error.",
+          "title": "Inherit Error Handler",
           "required": false,
           "deprecated": false
         }
@@ -2669,6 +2703,14 @@
           "required": false,
           "deprecated": false
         },
+        "onWhen": {
+          "kind": "element",
+          "type": "object",
+          "description": "To use an expression to only trigger intercepting in specific situations",
+          "title": "On When",
+          "required": false,
+          "deprecated": false
+        },
         "outputs": {
           "kind": "element",
           "type": "array",
@@ -2716,6 +2758,14 @@
           "type": "string",
           "description": "Intercept incoming messages from the uri or uri pattern. If this option is not configured, then all incoming messages is intercepted.",
           "title": "Uri",
+          "required": false,
+          "deprecated": false
+        },
+        "onWhen": {
+          "kind": "element",
+          "type": "object",
+          "description": "To use an expression to only trigger intercepting in specific situations",
+          "title": "On When",
           "required": false,
           "deprecated": false
         },
@@ -2782,6 +2832,14 @@
           "type": "string",
           "description": "After sending to the endpoint then send the message to this uri which allows to process its result.",
           "title": "After Uri",
+          "required": false,
+          "deprecated": false
+        },
+        "onWhen": {
+          "kind": "element",
+          "type": "object",
+          "description": "To use an expression to only trigger intercepting sending to an endpoint in specific situations",
+          "title": "On When",
           "required": false,
           "deprecated": false
         },
@@ -3186,7 +3244,7 @@
       "title": "LangChain4J Tokenizer with character splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "",
+      "description": "Camel AI: Tokenizer for splitting by character.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -3235,7 +3293,7 @@
       "title": "LangChain4J Tokenizer with line splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "",
+      "description": "Camel AI: Tokenizer for splitting line by line.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -3284,7 +3342,7 @@
       "title": "LangChain4J Tokenizer with paragraph splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "",
+      "description": "Camel AI: Tokenizer for splitting by paragraphs.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -3333,7 +3391,7 @@
       "title": "LangChain4J Tokenizer with sentence splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "",
+      "description": "Camel AI: Tokenizer for splitting by sentences.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -3382,7 +3440,7 @@
       "title": "LangChain4J Tokenizer with word splitter",
       "group": "eip,transformation,ai",
       "icon": "generic24.png",
-      "description": "",
+      "description": "Camel AI: Tokenizer for splitting by word.",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -3475,15 +3533,6 @@
           "description": "",
           "title": "Outputs",
           "required": true,
-          "deprecated": false
-        },
-        "inheritErrorHandler": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Sets whether or not to inherit the configured error handler. The default value is true. You can use this to disable using the inherited error handler for a given DSL such as a load balancer where you want to use a custom error handler strategy.",
-          "title": "Inherit Error Handler",
-          "required": false,
           "deprecated": false
         }
       }
@@ -3596,6 +3645,14 @@
           "title": "Logger",
           "required": false,
           "deprecated": false
+        },
+        "logLanguage": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "To configure the language to use. By default, the simple language is used. However, Camel also supports other languages such as groovy.",
+          "title": "Log Language",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -3666,6 +3723,14 @@
           "defaultValue": "false",
           "description": "If the breakOnShutdown attribute is true, then the loop will not iterate until it reaches the end when Camel is shut down.",
           "title": "Break On Shutdown",
+          "required": false,
+          "deprecated": false
+        },
+        "onPrepare": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Uses the Processor when preparing the org.apache.camel.Exchange for each loop iteration. This can be used to deep-clone messages, or any custom logic needed before the looping executes.",
+          "title": "On Prepare",
           "required": false,
           "deprecated": false
         },
@@ -3752,7 +3817,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If enabled then sending messages to the multicasts occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the multicasts which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the multicast, then make sure to enable the synchronous option as well.",
+          "description": "If enabled then sending messages to the multicasts occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the multicasts which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the multicast, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous \u003d true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous \u003d false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "title": "Parallel Processing",
           "required": false,
           "deprecated": false
@@ -3937,7 +4002,7 @@
         "onWhen": {
           "kind": "element",
           "type": "object",
-          "description": "Sets an additional predicate that should be true before the onCompletion is triggered. To be used for fine grained controlling whether a completion callback should be invoked or not",
+          "description": "To use an expression to only trigger routing this completion steps in specific situations",
           "title": "On When",
           "required": false,
           "deprecated": false
@@ -3995,7 +4060,7 @@
         "onWhen": {
           "kind": "element",
           "type": "object",
-          "description": "Sets an additional predicate that should be true before the onException is triggered. To be used for fine grained controlling whether a thrown exception should be intercepted by this exception type or not.",
+          "description": "To use an expression to only trigger this in specific situations",
           "title": "On When",
           "required": false,
           "deprecated": false
@@ -4110,15 +4175,6 @@
           "required": false,
           "deprecated": false
         },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
         "fallbackViaNetwork": {
           "kind": "attribute",
           "type": "boolean",
@@ -4133,6 +4189,39 @@
           "type": "array",
           "description": "",
           "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "onWhen": {
+      "type": "object",
+      "title": "On When",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "To use a predicate to determine when to trigger this.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "",
+          "title": "Expression",
           "required": true,
           "deprecated": false
         }
@@ -4221,7 +4310,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4864,7 +4953,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If enabled then sending messages to the recipients occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the recipients which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the recipient list, then make sure to enable the synchronous option as well.",
+          "description": "If enabled then sending messages to the recipients occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. Its only the sending and processing the replies from the recipients which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the recipient list, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous \u003d true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous \u003d false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "title": "Parallel Processing",
           "required": false,
           "deprecated": false
@@ -5919,7 +6008,7 @@
         "group": {
           "kind": "attribute",
           "type": "string",
-          "description": "The group that this route belongs to; could be the name of the RouteBuilder class or be explicitly configured in the XML. May be null.",
+          "description": "The group name for this route. Multiple routes can belong to the same group.",
           "title": "Group",
           "required": false,
           "deprecated": false
@@ -7536,7 +7625,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If enabled then processing each split messages occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. It\u0027s only processing the sub messages from the splitter which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the splitter, then make sure to enable the synchronous option as well.",
+          "description": "If enabled then processing each split messages occurs concurrently. Note the caller thread will still wait until all messages has been fully processed, before it continues. It\u0027s only processing the sub messages from the splitter which happens concurrently. When parallel processing is enabled, then the Camel routing engin will continue processing using last used thread from the parallel thread pool. However, if you want to use the original thread that called the splitter, then make sure to enable the synchronous option as well. In parallel processing mode, you may want to also synchronous \u003d true to force this EIP to process the sub-tasks using the upper bounds of the thread-pool. If using synchronous \u003d false then Camel will allow its reactive routing engine to use as many threads as possible, which may be available due to sub-tasks using other thread-pools such as CompletableFuture.runAsync or others.",
           "title": "Parallel Processing",
           "required": false,
           "deprecated": false
@@ -9044,7 +9133,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9104,14 +9193,6 @@
           "type": "object",
           "description": "Expression used as the predicate to evaluate whether the message should be sent or not to the endpoint",
           "title": "Expression",
-          "required": true,
-          "deprecated": false
-        },
-        "outputs": {
-          "kind": "element",
-          "type": "array",
-          "description": "",
-          "title": "Outputs",
           "required": true,
           "deprecated": false
         }

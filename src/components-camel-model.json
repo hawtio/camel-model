@@ -8474,6 +8474,14 @@
           "required": false,
           "deprecated": false
         },
+        "messageTimestamp": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The message timestamp to start polling from. Required if iteratorType is set to AT_TIMESTAMP",
+          "title": "Message Timestamp",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -8568,11 +8576,27 @@
           "required": false,
           "deprecated": false
         },
+        "amazonKinesisAsyncClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Supply a pre-constructed Amazon Kinesis async client to use for the KCL Consumer",
+          "title": "Amazon Kinesis Async Client",
+          "required": false,
+          "deprecated": false
+        },
         "amazonKinesisClient": {
           "kind": "parameter",
           "type": "object",
           "description": "Amazon Kinesis client to use for all requests for this endpoint",
           "title": "Amazon Kinesis Client",
+          "required": false,
+          "deprecated": false
+        },
+        "applicationName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Name of the KCL application. This defaults to the stream name.",
+          "title": "Application Name",
           "required": false,
           "deprecated": false
         },
@@ -13962,6 +13986,15 @@
           "required": false,
           "deprecated": false
         },
+        "throwExceptionOnConnectFailed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
+          "title": "Throw Exception On Connect Failed",
+          "required": false,
+          "deprecated": false
+        },
         "checksumFileAlgorithm": {
           "kind": "parameter",
           "type": "string",
@@ -14133,15 +14166,6 @@
           "required": false,
           "deprecated": false
         },
-        "throwExceptionOnConnectFailed": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
-          "title": "Throw Exception On Connect Failed",
-          "required": false,
-          "deprecated": false
-        },
         "timeout": {
           "kind": "parameter",
           "type": "duration",
@@ -14237,8 +14261,8 @@
         "idempotentEager": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
-          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -14719,6 +14743,7 @@
           "enum": [
             "createSecret",
             "getSecret",
+            "updateSecretProperties",
             "deleteSecret",
             "purgeDeletedSecret"
           ],
@@ -14899,6 +14924,15 @@
           "required": false,
           "deprecated": false
         },
+        "sessionEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable session support",
+          "title": "Session Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "subQueue": {
           "kind": "parameter",
           "type": "object",
@@ -14992,6 +15026,14 @@
           "type": "object",
           "description": "Represents transaction in service. This object just contains transaction id.",
           "title": "Service Bus Transaction Context",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Session ID for session-enabled queues or topics.",
+          "title": "Session Id",
           "required": false,
           "deprecated": false
         },
@@ -23385,7 +23427,7 @@
         "schemaHistoryInternalStoreOnlyCapturedDatabasesDdl": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "true",
+          "defaultValue": "false",
           "description": "Controls what DDL will Debezium store in database schema history. By default (true) only DDL that manipulates a table from captured schema/database will be stored. If set to false, then Debezium will store all incoming DDL statements.",
           "title": "Schema History Internal Store Only Captured Databases Ddl",
           "required": false,
@@ -25466,6 +25508,15 @@
           "defaultValue": "false",
           "description": "Whether or not to drop the logical replication slot when the connector finishes orderly. By default the replication is kept so that on restart progress can resume from the last recorded location",
           "title": "Slot Drop On Stop",
+          "required": false,
+          "deprecated": false
+        },
+        "slotFailover": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to create a failover slot. This is only supported when connecting to a primary server of a Postgres cluster, version 17 or newer. When not specified, or when not connecting to a Postgres 17 primary, no failover slot will be created.",
+          "title": "Slot Failover",
           "required": false,
           "deprecated": false
         },
@@ -28631,7 +28682,7 @@
           ],
           "description": "Operation",
           "title": "Operation",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "socketTimeout": {
@@ -30051,8 +30102,8 @@
         "idempotentEager": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
-          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -31411,6 +31462,15 @@
           "required": false,
           "deprecated": false
         },
+        "throwExceptionOnConnectFailed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
+          "title": "Throw Exception On Connect Failed",
+          "required": false,
+          "deprecated": false
+        },
         "useList": {
           "kind": "parameter",
           "type": "boolean",
@@ -31691,15 +31751,6 @@
           "required": false,
           "deprecated": false
         },
-        "throwExceptionOnConnectFailed": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
-          "title": "Throw Exception On Connect Failed",
-          "required": false,
-          "deprecated": false
-        },
         "timeout": {
           "kind": "parameter",
           "type": "duration",
@@ -31795,8 +31846,8 @@
         "idempotentEager": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
-          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -32486,6 +32537,15 @@
           "required": false,
           "deprecated": false
         },
+        "throwExceptionOnConnectFailed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
+          "title": "Throw Exception On Connect Failed",
+          "required": false,
+          "deprecated": false
+        },
         "useList": {
           "kind": "parameter",
           "type": "boolean",
@@ -32766,15 +32826,6 @@
           "required": false,
           "deprecated": false
         },
-        "throwExceptionOnConnectFailed": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
-          "title": "Throw Exception On Connect Failed",
-          "required": false,
-          "deprecated": false
-        },
         "timeout": {
           "kind": "parameter",
           "type": "duration",
@@ -32870,8 +32921,8 @@
         "idempotentEager": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
-          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -33488,6 +33539,15 @@
           "required": false,
           "deprecated": false
         },
+        "sendEmptyMessageWhenIdle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
+          "required": false,
+          "deprecated": false
+        },
         "type": {
           "kind": "parameter",
           "type": "object",
@@ -33530,6 +33590,14 @@
           "required": false,
           "deprecated": false
         },
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "allowEmpty": {
           "kind": "parameter",
           "type": "boolean",
@@ -33543,35 +33611,30 @@
           "kind": "parameter",
           "type": "string",
           "enum": [
-            "clone",
-            "init",
             "add",
-            "remove",
+            "cherryPick",
+            "clean",
+            "clone",
             "commit",
             "commitAll",
             "createBranch",
-            "deleteBranch",
             "createTag",
+            "deleteBranch",
             "deleteTag",
-            "status",
+            "gc",
+            "init",
             "log",
-            "push",
             "pull",
-            "showBranches",
-            "cherryPick",
+            "push",
             "remoteAdd",
-            "remoteList"
+            "remoteList",
+            "remove",
+            "showBranches",
+            "showTags",
+            "status"
           ],
           "description": "The operation to do on the repository",
           "title": "Operation",
-          "required": false,
-          "deprecated": false
-        },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Remote repository password",
-          "title": "Password",
           "required": false,
           "deprecated": false
         },
@@ -33608,14 +33671,6 @@
           "required": false,
           "deprecated": false
         },
-        "username": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Remote repository username",
-          "title": "Username",
-          "required": false,
-          "deprecated": false
-        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
@@ -33630,6 +33685,160 @@
           "type": "string",
           "description": "A String with path to a .gitconfig file",
           "title": "Git Config File",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Remote repository password",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Remote repository username",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -33684,6 +33893,15 @@
           "description": "GitHub repository owner (organization)",
           "title": "Repo Owner",
           "required": true,
+          "deprecated": false
+        },
+        "commitMessageAsBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the commit consumer should store the commit message or the raw org.eclipse.egit.github.core.RepositoryCommit object as the message body.",
+          "title": "Commit Message As Body",
+          "required": false,
           "deprecated": false
         },
         "sendEmptyMessageWhenIdle": {
@@ -35923,6 +36141,14 @@
           "required": false,
           "deprecated": false
         },
+        "retry": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A custom RetrySettings to control how the publisher handles retry-able failures",
+          "title": "Retry",
+          "required": false,
+          "deprecated": false
+        },
         "serializer": {
           "kind": "parameter",
           "type": "object",
@@ -37775,11 +38001,28 @@
           "required": false,
           "deprecated": false
         },
+        "cloud": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Determine if the Hashicorp Vault is deployed on Hashicorp Cloud or not",
+          "title": "Cloud",
+          "required": false,
+          "deprecated": false
+        },
         "host": {
           "kind": "parameter",
           "type": "string",
           "description": "Hashicorp Vault instance host to be used",
           "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If the Hashicorp Vault instance is deployed on Hashicorp Cloud, this field will determine the namespace",
+          "title": "Namespace",
           "required": false,
           "deprecated": false
         },
@@ -39311,6 +39554,15 @@
           "required": false,
           "deprecated": false
         },
+        "logHttpActivity": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To enable logging HTTP request and response. You can use a custom LoggingHttpActivityListener as httpActivityListener to control logging options.",
+          "title": "Log Http Activity",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -39404,6 +39656,14 @@
           "defaultValue": "false",
           "description": "Whether the HTTP GET should include the message body or not. By default HTTP GET do not include any HTTP body. However in some rare cases users may need to be able to include the message body.",
           "title": "Get With Body",
+          "required": false,
+          "deprecated": false
+        },
+        "httpActivityListener": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom activity listener",
+          "title": "Http Activity Listener",
           "required": false,
           "deprecated": false
         },
@@ -39529,7 +39789,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "To use System Properties as fallback for configuration",
+          "description": "To use System Properties as fallback for configuration for configuring HTTP Client",
           "title": "Use System Properties",
           "required": false,
           "deprecated": false
@@ -39830,6 +40090,15 @@
           "required": false,
           "deprecated": false
         },
+        "logHttpActivity": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To enable logging HTTP request and response. You can use a custom LoggingHttpActivityListener as httpActivityListener to control logging options.",
+          "title": "Log Http Activity",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -39923,6 +40192,14 @@
           "defaultValue": "false",
           "description": "Whether the HTTP GET should include the message body or not. By default HTTP GET do not include any HTTP body. However in some rare cases users may need to be able to include the message body.",
           "title": "Get With Body",
+          "required": false,
+          "deprecated": false
+        },
+        "httpActivityListener": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom activity listener",
+          "title": "Http Activity Listener",
           "required": false,
           "deprecated": false
         },
@@ -40048,7 +40325,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "To use System Properties as fallback for configuration",
+          "description": "To use System Properties as fallback for configuration for configuring HTTP Client",
           "title": "Use System Properties",
           "required": false,
           "deprecated": false
@@ -49360,7 +49637,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional properties for either kafka consumer or kafka producer in case they can\u0027t be set directly on the camel configurations (e.g.: new Kafka properties that are not reflected yet in Camel configurations), the properties have to be prefixed with additionalProperties.., e.g.: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Sets additional properties for either kafka consumer or kafka producer in case they can\u0027t be set directly on the camel configurations (e.g.: new Kafka properties that are not reflected yet in Camel configurations), the properties have to be prefixed with additionalProperties.., e.g.: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. If the properties are set in the application.properties file, they must be prefixed with camel.component.kafka.additional-properties and the property enclosed in square brackets, like this example: camel.component.kafka.additional-propertiesdelivery.timeout.ms\u003d15000.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -49470,8 +49747,16 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to use batching for processing or streaming. The default is false, which uses streaming",
+          "description": "Whether to use batching for processing or streaming. The default is false, which uses streaming. In streaming mode, then a single kafka record is processed per Camel exchange in the message body. In batching mode, then Camel groups many kafka records together as a List objects in the message body. The option maxPollRecords is used to define the number of records to group together in batching mode.",
           "title": "Batching",
+          "required": false,
+          "deprecated": false
+        },
+        "batchingIntervalMs": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "In consumer batching mode, then this option is specifying a time in millis, to trigger batch completion eager when the current batch size has not reached the maximum size defined by maxPollRecords. Notice the trigger is not exact at the given interval, as this can only happen between kafka polls (see pollTimeoutMs option). So for example setting this to 10000, then the trigger happens in the interval 10000 pollTimeoutMs. The default value for pollTimeoutMs is 5000, so this would mean a trigger interval at about every 15 seconds.",
+          "title": "Batching Interval Ms",
           "required": false,
           "deprecated": false
         },
@@ -49982,15 +50267,6 @@
           "required": false,
           "deprecated": false
         },
-        "recordMetadata": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the producer should store the RecordMetadata results from sending to Kafka. The results are stored in a List containing the RecordMetadata metadata\u0027s. The list is stored on a header with the key KafkaConstants#KAFKA_RECORDMETA",
-          "title": "Record Metadata",
-          "required": false,
-          "deprecated": false
-        },
         "requestRequiredAcks": {
           "kind": "parameter",
           "type": "string",
@@ -50082,6 +50358,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "recordMetadata": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should store the RecordMetadata results from sending to Kafka. The results are stored in a List containing the RecordMetadata metadata\u0027s. The list is stored on a header with the key KafkaConstants#KAFKA_RECORDMETA",
+          "title": "Record Metadata",
           "required": false,
           "deprecated": false
         },
@@ -50431,8 +50716,8 @@
         "noErrorHandler": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "true",
-          "description": "Kamelets, by default, will not do fine-grained error handling, but works in no-error-handler mode. This can be turned off, to use old behaviour in earlier versions of Camel.",
+          "defaultValue": "false",
+          "description": "Whether kamelets should use error handling or not. By default, the Kamelet uses the same error handler as from the calling route. This means that if the calling route has error handling that performs retries, or routing to a dead letter channel, then the kamelet route will use this also. This can be turned off by setting this option to true. If off then the kamelet route is not using error handling, and any exception thrown will for source kamelets be logged by the consumer, and the sink/action kamelets will fail processing.",
           "title": "No Error Handler",
           "required": false,
           "deprecated": false
@@ -50607,6 +50892,73 @@
           "type": "string",
           "description": "The name of the k8s resource referenced by the endpoint.",
           "title": "Name",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "kserve": {
+      "type": "object",
+      "title": "KServe",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Provide access to AI model servers with the KServe standard to run inference with remote models",
+      "properties": {
+        "api": {
+          "kind": "path",
+          "type": "string",
+          "enum": [
+            "infer",
+            "model/ready",
+            "model/metadata",
+            "server/ready",
+            "server/live",
+            "server/metadata"
+          ],
+          "description": "The KServe API",
+          "title": "Api",
+          "required": true,
+          "deprecated": false
+        },
+        "modelName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the model used for inference.",
+          "title": "Model Name",
+          "required": false,
+          "deprecated": false
+        },
+        "modelVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The version of the model used for inference.",
+          "title": "Model Version",
+          "required": false,
+          "deprecated": false
+        },
+        "target": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "localhost:8001",
+          "description": "The target URI of the client. See: https://grpc.github.io/grpc-java/javadoc/io/grpc/Grpc.html#newChannelBuilder%28java.lang.String,io.grpc.ChannelCredentials%29",
+          "title": "Target",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "credentials": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The credentials of the client.",
+          "title": "Credentials",
           "required": false,
           "deprecated": false
         }
@@ -54898,45 +55250,12 @@
           "required": true,
           "deprecated": false
         },
-        "description": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Tool description",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
-        },
-        "parameters": {
-          "kind": "parameter",
-          "type": "object",
-          "enum": [
-            "string",
-            "integer",
-            "number",
-            "object",
-            "array",
-            "boolean",
-            "null"
-          ],
-          "description": "List of Tool parameters in the form of parameter.\u003d",
-          "title": "Parameters",
-          "required": false,
-          "deprecated": false
-        },
         "bridgeErrorHandler": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
           "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "camelToolParameter": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Tool\u0027s Camel Parameters, programmatically define Tool description and parameters",
-          "title": "Camel Tool Parameter",
           "required": false,
           "deprecated": false
         },
@@ -56548,10 +56867,10 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level.",
+          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level. Also make sure to configure objectCodecPattern to (star) to allow transferring java objects.",
           "title": "Transfer Exchange",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "allowDefaultCodec": {
           "kind": "parameter",
@@ -56601,6 +56920,14 @@
           "type": "array",
           "description": "You can set a list of Mina IoFilters to use.",
           "title": "Filters",
+          "required": false,
+          "deprecated": false
+        },
+        "objectCodecPattern": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Accept the wildcard specified classes for Object deserialization, unless they are otherwise rejected. Multiple patterns can be separated by comma.",
+          "title": "Object Codec Pattern",
           "required": false,
           "deprecated": false
         },
@@ -57224,7 +57551,7 @@
     "mllp": {
       "type": "object",
       "title": "MLLP",
-      "group": "HEALTH",
+      "group": "health",
       "icon": "generic24.png",
       "description": "Communicate with external systems using the MLLP protocol.",
       "properties": {
@@ -57490,6 +57817,14 @@
           "defaultValue": "8192",
           "description": "Sets the SO_SNDBUF option to the specified value (in bytes)",
           "title": "Send Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "sslContextParameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Sets the SSLContextParameters for securing TCP connections. If set, the MLLP component will use SSL/TLS for securing both producer and consumer TCP connections. This allows the configuration of trust stores, key stores, protocols, and other SSL/TLS settings. If not set, the MLLP component will use plain TCP communication.",
+          "title": "Ssl Context Parameters",
           "required": false,
           "deprecated": false
         },
@@ -59131,6 +59466,168 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "neo4j": {
+      "type": "object",
+      "title": "Neo4j",
+      "group": "database,ai",
+      "icon": "generic24.png",
+      "description": "Perform operations on the Neo4j Graph Database",
+      "properties": {
+        "name": {
+          "kind": "path",
+          "type": "string",
+          "description": "The database name",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "alias": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Node alias",
+          "title": "Alias",
+          "required": false,
+          "deprecated": false
+        },
+        "databaseUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Url for connecting to Neo database",
+          "title": "Database Url",
+          "required": false,
+          "deprecated": false
+        },
+        "detachRelationship": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Detach a relationship - set true if want to delete a node and detach its relationships to other nodes at same time",
+          "title": "Detach Relationship",
+          "required": false,
+          "deprecated": false
+        },
+        "dimension": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Dimension of Vector Index",
+          "title": "Dimension",
+          "required": false,
+          "deprecated": false
+        },
+        "label": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Node Label",
+          "title": "Label",
+          "required": false,
+          "deprecated": false
+        },
+        "maxResults": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3",
+          "description": "Maximum results for Vector Similarity search",
+          "title": "Max Results",
+          "required": false,
+          "deprecated": false
+        },
+        "minScore": {
+          "kind": "parameter",
+          "type": "number",
+          "defaultValue": "0.0",
+          "description": "Minimum score for Vector Similarity search",
+          "title": "Min Score",
+          "required": false,
+          "deprecated": false
+        },
+        "query": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Cypher Query",
+          "title": "Query",
+          "required": false,
+          "deprecated": false
+        },
+        "similarityFunction": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "cosine",
+          "enum": [
+            "cosine",
+            "euclidean"
+          ],
+          "description": "Similarity Function of Vector Index",
+          "title": "Similarity Function",
+          "required": false,
+          "deprecated": false
+        },
+        "vectorIndexName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Vector Index Name",
+          "title": "Vector Index Name",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "driver": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Advanced - Driver",
+          "title": "Driver",
+          "required": false,
+          "deprecated": false
+        },
+        "kerberosAuthTicket": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Kerberos Authentication encoded base64 ticket",
+          "title": "Encoded base64 ticket",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Basic authentication database password",
+          "title": "Database password",
+          "required": false,
+          "deprecated": false
+        },
+        "realm": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Basic authentication database realm",
+          "title": "Database realm",
+          "required": false,
+          "deprecated": false
+        },
+        "token": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Bearer authentication database realm",
+          "title": "Realm",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Basic authentication database user",
+          "title": "Database user",
           "required": false,
           "deprecated": false
         }
@@ -63715,6 +64212,15 @@
           "required": false,
           "deprecated": false
         },
+        "manualAcksEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether to use manual acknowledgements for the client. By default, this is false and message will be automatically acknowledged upon received by Camel. If set to true, the acknowledgement is deferred to be acknowledged by Camel at the end of processing the message. This ensures that only successfully processed messages is acknowledged, and allows to rollback and retry the message in case of an error during routing in Camel.",
+          "title": "Manual Acks Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "bridgeErrorHandler": {
           "kind": "parameter",
           "type": "boolean",
@@ -64494,6 +65000,15 @@
           "defaultValue": "true",
           "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
           "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
+        "populateBodyWithForm": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to populate the message Body with a Map containing application/x-www-form-urlencoded form properties.",
+          "title": "Populate Body With Form",
           "required": false,
           "deprecated": false
         },
@@ -66584,6 +67099,15 @@
           "required": false,
           "deprecated": false
         },
+        "maxResults": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3",
+          "description": "Max results for similarity search",
+          "title": "Max Results",
+          "required": false,
+          "deprecated": false
+        },
         "port": {
           "kind": "parameter",
           "type": "integer",
@@ -66616,6 +67140,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "filter": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Filter of type io.qdrant.client.grpc.Points.Points.Filter for similarity search. This is for advanced usage.",
+          "title": "Filter",
           "required": false,
           "deprecated": false
         }
@@ -70936,6 +71468,15 @@
           "required": false,
           "deprecated": false
         },
+        "throwExceptionOnConnectFailed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
+          "title": "Throw Exception On Connect Failed",
+          "required": false,
+          "deprecated": false
+        },
         "useList": {
           "kind": "parameter",
           "type": "boolean",
@@ -71250,15 +71791,6 @@
           "required": false,
           "deprecated": false
         },
-        "throwExceptionOnConnectFailed": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Should an exception be thrown if connection failed (exhausted)By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the org.apache.camel.spi.PollingConsumerPollStrategy rollback method.",
-          "title": "Throw Exception On Connect Failed",
-          "required": false,
-          "deprecated": false
-        },
         "timeout": {
           "kind": "parameter",
           "type": "duration",
@@ -71354,8 +71886,8 @@
         "idempotentEager": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
-          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -73093,7 +73625,7 @@
       "title": "SMB",
       "group": "file",
       "icon": "generic24.png",
-      "description": "Receive files from SMB (Server Message Block) shares.",
+      "description": "Read and write files to Server Message Block (SMB) file shares.",
       "properties": {
         "hostname": {
           "kind": "path",
@@ -73115,25 +73647,92 @@
         "shareName": {
           "kind": "path",
           "type": "string",
-          "description": "The name of the share to connect to.",
+          "description": "The name of the share directory",
           "title": "Share Name",
           "required": true,
+          "deprecated": false
+        },
+        "charset": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "This option is used to specify the encoding of the file. You can use this on the consumer, to specify the encodings of the files, which allow Camel to know the charset it should load the file content in case the file content is being accessed. Likewise when writing a file, you can use this option to specify which charset to write the file as well. Do mind that when writing the file Camel may have to read the message content into memory to be able to convert the data into the configured charset, so do not use this if you have big messages.",
+          "title": "Charset",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote SMB share right after use. Disconnect will only disconnect the current connection to the SMB share. If you have a consumer which you want to stop, then you need to stop the consumer/route instead.",
+          "title": "Disconnect",
+          "required": false,
+          "deprecated": false
+        },
+        "doneFileName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Producer: If provided, then Camel will write a 2nd done file when the original file has been written. The done file will be empty. This option configures what file name to use. Either you can specify a fixed name. Or you can use dynamic placeholders. The done file will always be written in the same folder as the original file. Consumer: If provided, Camel will only consume files if a done file exists. This option configures what file name to use. Either you can specify a fixed name. Or you can use dynamic placeholders.The done file is always expected in the same folder as the original file. Only ${file.name} and ${file.name.next} is supported as dynamic placeholders.",
+          "title": "Done File Name",
+          "required": false,
+          "deprecated": false
+        },
+        "fileName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Use Expression such as File Language to dynamically set the filename. For consumers, it\u0027s used as a filename filter. For producers, it\u0027s used to evaluate the filename to write. If an expression is set, it take precedence over the CamelFileName header. (Note: The header itself can also be an Expression). The expression options support both String and Expression types. If the expression is a String type, it is always evaluated using the File Language. If the expression is an Expression type, the specified Expression type is used - this allows you, for instance, to use OGNL expressions. For the consumer, you can use it to filter filenames, so you can for instance consume today\u0027s file using the File Language syntax: mydata-${date:now:yyyyMMdd}.txt. The producers support the CamelOverruleFileName header which takes precedence over any existing CamelFileName header; the CamelOverruleFileName is a header that is used only once, and makes it easier as this avoids to temporary store CamelFileName and have to restore it afterwards.",
+          "title": "File Name",
+          "required": false,
           "deprecated": false
         },
         "path": {
           "kind": "parameter",
           "type": "string",
-          "description": "The path, within the share, to consume the files from",
+          "description": "The base directory within the share",
           "title": "Path",
           "required": false,
           "deprecated": false
         },
-        "searchPattern": {
+        "delete": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If true, the file will be deleted after it is processed successfully.",
+          "title": "Delete",
+          "required": false,
+          "deprecated": false
+        },
+        "moveFailed": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": "*.txt",
-          "description": "The search pattern used to list the files",
-          "title": "Search Pattern",
+          "description": "Sets the move failure expression based on Simple language. For example, to move files into a .error subdirectory use: .error. Note: When moving the files to the fail location Camel will handle the error and will not pick up the file again.",
+          "title": "Move Failed",
+          "required": false,
+          "deprecated": false
+        },
+        "noop": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If true, the file is not moved or deleted in any way. This option is good for readonly data, or for ETL type requirements. If noop\u003dtrue, Camel will set idempotent\u003dtrue as well, to avoid consuming the same files over and over again.",
+          "title": "Noop",
+          "required": false,
+          "deprecated": false
+        },
+        "preMove": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Expression (such as File Language) used to dynamically set the filename when moving it before processing. For example to move in-progress files into the order directory set this value to order.",
+          "title": "Pre Move",
+          "required": false,
+          "deprecated": false
+        },
+        "preSort": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "title": "Pre Sort",
           "required": false,
           "deprecated": false
         },
@@ -73146,6 +73745,14 @@
           "required": false,
           "deprecated": false
         },
+        "searchPattern": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The search pattern used to list the files (server side on SMB). This parameter can contain the name of a file (or multiple files, if wildcards are used) within this directory. When it is null all files are included. Two wild card characters are supported in the search pattern. The (question mark) character matches a single character. If a search pattern contains one or more characters, then exactly that number of characters is matched by the wildcards. For example, the criterion x matches abx but not abcx or ax, because the two file names do not have enough characters preceding the literal. When a file name criterion has characters trailing a literal, then the match is made with specified number of characters or less. For example, the criterion x matches xab, xa, and x, but not xabc. If only characters are present in the file name selection criterion, then the match is made as if the criterion contained characters trailing a literal. The (asterisk) character matches an entire file name. A null or empty specification criterion also selects all file names. For example, .abc or .abc match any file with an extension of abc. ., , or empty string match all files in a directory.",
+          "title": "Search Pattern",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -73155,12 +73762,30 @@
           "required": false,
           "deprecated": false
         },
+        "streamDownload": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets the download method to use when not using a local working directory. If set to true, the remote files are streamed to the route as they are read. When set to false, the remote files are loaded into memory before being sent into the route.",
+          "title": "Stream Download",
+          "required": false,
+          "deprecated": false
+        },
         "bridgeErrorHandler": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
           "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "download": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the SMB consumer should download the file. If this option is set to false, then the message body will be null, but the consumer will still trigger a Camel Exchange that has details about the file such as file name, file size, etc. It\u0027s just that the file will not be downloaded.",
+          "title": "Download",
           "required": false,
           "deprecated": false
         },
@@ -73184,6 +73809,30 @@
           "required": false,
           "deprecated": false
         },
+        "inProgressRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable in-progress repository org.apache.camel.spi.IdempotentRepository. The in-progress repository is used to account the current in progress files being consumed. By default a memory based repository is used.",
+          "title": "In Progress Repository",
+          "required": false,
+          "deprecated": false
+        },
+        "localWorkDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When consuming, a local work directory can be used to store the remote file content directly in local files, to avoid loading the content into memory. This is beneficial, if you consume a very big remote file and thus can conserve memory.",
+          "title": "Local Work Directory",
+          "required": false,
+          "deprecated": false
+        },
+        "onCompletionExceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom org.apache.camel.spi.ExceptionHandler to handle any thrown exceptions that happens during the file on completion process where the consumer does either a commit or rollback. The default implementation will log any exception at WARN level and ignore.",
+          "title": "On Completion Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
         "pollStrategy": {
           "kind": "parameter",
           "type": "object",
@@ -73192,28 +73841,59 @@
           "required": false,
           "deprecated": false
         },
-        "autoCreate": {
+        "processStrategy": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to create parent directory if it does not exist",
-          "title": "Auto Create",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.component.file.GenericFileProcessStrategy allowing you to implement your own readLock option or similar. Can also be used when special conditions must be met before a file can be consumed, such as a special ready file exists. If this option is set then the readLock option does not apply.",
+          "title": "Process Strategy",
           "required": false,
           "deprecated": false
         },
-        "disconnect": {
+        "startingDirectoryMustExist": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not to disconnect from remote SMB server right after use. Disconnect will only disconnect the current connection to the SMB server. If you have a consumer which you want to stop, then you need to stop the consumer route instead.",
-          "title": "Disconnect",
+          "description": "Whether the starting directory must exist. Mind that the autoCreate option is default enabled, which means the starting directory is normally auto created if it doesn\u0027t exist. You can disable autoCreate and enable this to ensure the starting directory must exist. Will throw an exception if the directory doesn\u0027t exist.",
+          "title": "Starting Directory Must Exist",
+          "required": false,
+          "deprecated": false
+        },
+        "throwExceptionOnConnectFailed": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Should an exception be thrown if connection failed (exhausted). By default exception is not thrown and a WARN is logged. You can use this to enable exception being thrown and handle the thrown exception from the PollingConsumerPollStrategy rollback method.",
+          "title": "Throw Exception On Connect Failed",
+          "required": false,
+          "deprecated": false
+        },
+        "checksumFileAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MD2",
+            "MD5",
+            "SHA_1",
+            "SHA_224",
+            "SHA_256",
+            "SHA_384",
+            "SHA_512",
+            "SHA_512_224",
+            "SHA_512_256",
+            "SHA3_224",
+            "SHA3_256",
+            "SHA3_384",
+            "SHA3_512"
+          ],
+          "description": "If provided, then Camel will write a checksum file when the original file has been written. The checksum file will contain the checksum created with the provided algorithm for the original file. The checksum file will always be written in the same folder as the original file.",
+          "title": "Checksum File Algorithm",
           "required": false,
           "deprecated": false
         },
         "fileExist": {
           "kind": "parameter",
           "type": "object",
-          "defaultValue": "Ignore",
+          "defaultValue": "Override",
           "enum": [
             "Override",
             "Append",
@@ -73222,17 +73902,86 @@
             "Move",
             "TryRename"
           ],
-          "description": "What action to take if the SMB file already exists",
+          "description": "What to do if a file already exists with the same name. Override, which is the default, replaces the existing file. - Append - adds content to the existing file. - Fail - throws a GenericFileOperationException, indicating that there is already an existing file. - Ignore - silently ignores the problem and does not override the existing file, but assumes everything is okay. - Move - option requires to use the moveExisting option to be configured as well. The option eagerDeleteTargetFile can be used to control what to do if an moving the file, and there exists already an existing file, otherwise causing the move operation to fail. The Move option will move any existing files, before writing the target file. - TryRename is only applicable if tempFileName option is in use. This allows to try renaming the file from the temporary name to the actual name, without doing any exists check. This check may be faster on some file systems and especially FTP servers.",
           "title": "File Exist",
           "required": false,
           "deprecated": false
         },
-        "readBufferSize": {
+        "flatten": {
           "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "2048",
-          "description": "Read buffer size when for file being produced",
-          "title": "Read Buffer Size",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
+          "title": "Flatten",
+          "required": false,
+          "deprecated": false
+        },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
+        "moveExisting": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Expression (such as File Language) used to compute file name to use when fileExist\u003dMove is configured. To move files into a backup subdirectory just enter backup. This option only supports the following File Language tokens: file:name, file:name.ext, file:name.noext, file:onlyname, file:onlyname.noext, file:ext, and file:parent. Notice the file:parent is not supported by the FTP component, as the FTP component can only move any existing files to a relative directory based on current dir as base.",
+          "title": "Move Existing",
+          "required": false,
+          "deprecated": false
+        },
+        "tempFileName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The same as tempPrefix option but offering a more fine grained control on the naming of the temporary filename as it uses the File Language. The location for tempFilename is relative to the final file location in the option \u0027fileName\u0027, not the target directory in the base uri. For example if option fileName includes a directory prefix: dir/finalFilename then tempFileName is relative to that subdirectory dir.",
+          "title": "Temp File Name",
+          "required": false,
+          "deprecated": false
+        },
+        "tempPrefix": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "This option is used to write the file using a temporary name and then, after the write is complete, rename it to the real name. Can be used to identify files being written and also avoid consumers (not using exclusive read locks) reading in progress files. Is often used by FTP when uploading big files.",
+          "title": "Temp Prefix",
+          "required": false,
+          "deprecated": false
+        },
+        "allowNullBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Used to specify if a null body is allowed during file writing. If set to true then an empty file will be created, when set to false, and attempting to send a null body to the file component, a GenericFileWriteException of \u0027Cannot write null body to file.\u0027 will be thrown. If the fileExist option is set to \u0027Override\u0027, then the file will be truncated, and if set to append the file will remain unchanged.",
+          "title": "Allow Null Body",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnectOnBatchComplete": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote SMB share right after a Batch upload is complete. disconnectOnBatchComplete will only disconnect the current connection to the SMB share.",
+          "title": "Disconnect On Batch Complete",
+          "required": false,
+          "deprecated": false
+        },
+        "eagerDeleteTargetFile": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether or not to eagerly delete any existing target file. This option only applies when you use fileExists\u003dOverride and the tempFileName option as well. You can use this to disable (set it to false) deleting the target file before the temp file is written. For example you may write big files and want the target file to exists during the temp file is being written. This ensure the target file is only deleted until the very last moment, just before the temp file is being renamed to the target filename. This option is also used to control whether to delete any existing files when fileExist\u003dMove is enabled, and an existing file exists. If this option copyAndDeleteOnRenameFails false, then an exception will be thrown if an existing file existed, if its true, then the existing file is deleted before the move operation.",
+          "title": "Eager Delete Target File",
+          "required": false,
+          "deprecated": false
+        },
+        "keepLastModified": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Will keep the last modified timestamp from the source file (if any). Will use the FileConstants.FILE_LAST_MODIFIED header to located the timestamp. This header can contain either a java.util.Date or long with the timestamp. If the timestamp exists and the option is enabled it will set this timestamp on the written file. Note: This option only applies to the file producer. You cannot use this option with any of the ftp producers.",
+          "title": "Keep Last Modified",
           "required": false,
           "deprecated": false
         },
@@ -73245,11 +73994,38 @@
           "required": false,
           "deprecated": false
         },
-        "idempotentRepository": {
+        "moveExistingFileStrategy": {
           "kind": "parameter",
           "type": "object",
-          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified.",
-          "title": "Idempotent Repository",
+          "description": "Strategy (Custom Strategy) used to move file with special naming token to use when fileExist\u003dMove is configured. By default, there is an implementation used if no custom strategy is provided",
+          "title": "Move Existing File Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "autoCreate": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Automatically create missing directories in the file\u0027s pathname. For the file consumer, that means creating the starting directory. For the file producer, it means the directory the files should be written to.",
+          "title": "Auto Create",
+          "required": false,
+          "deprecated": false
+        },
+        "browseLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of messages to keep in memory available for browsing. Use 0 for unlimited.",
+          "title": "Browse Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "bufferSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "131072",
+          "description": "Buffer size in bytes used for writing files (or in case of FTP for downloading and uploading files).",
+          "title": "Buffer Size",
           "required": false,
           "deprecated": false
         },
@@ -73261,11 +74037,276 @@
           "required": false,
           "deprecated": false
         },
-        "smbIoBean": {
+        "antExclude": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Ant style filter exclusion. If both antInclude and antExclude are used, antExclude takes precedence over antInclude. Multiple exclusions may be specified in comma-delimited format.",
+          "title": "Ant Exclude",
+          "required": false,
+          "deprecated": false
+        },
+        "antFilterCaseSensitive": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets case sensitive flag on ant filter.",
+          "title": "Ant Filter Case Sensitive",
+          "required": false,
+          "deprecated": false
+        },
+        "antInclude": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Ant style filter inclusion. Multiple inclusions may be specified in comma-delimited format.",
+          "title": "Ant Include",
+          "required": false,
+          "deprecated": false
+        },
+        "eagerMaxMessagesPerPoll": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Allows for controlling whether the limit from maxMessagesPerPoll is eager or not. If eager then the limit is during the scanning of files. Where as false would scan all files, and then perform sorting. Setting this option to false allows for sorting all files first, and then limit the poll. Mind that this requires a higher memory usage as all file details are in memory to perform the sorting.",
+          "title": "Eager Max Messages Per Poll",
+          "required": false,
+          "deprecated": false
+        },
+        "exclude": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Is used to exclude files, if filename matches the regex pattern (matching is case in-sensitive). Notice if you use symbols such as plus sign and others you would need to configure this using the RAW() syntax if configuring this as an endpoint uri. See more details at configuring endpoint uris",
+          "title": "Exclude",
+          "required": false,
+          "deprecated": false
+        },
+        "excludeExt": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Is used to exclude files matching file extension name (case insensitive). For example to exclude bak files, then use excludeExt\u003dbak. Multiple extensions can be separated by comma, for example to exclude bak and dat files, use excludeExt\u003dbak,dat. Note that the file extension includes all parts, for example having a file named mydata.tar.gz will have extension as tar.gz. For more flexibility then use the include/exclude options.",
+          "title": "Exclude Ext",
+          "required": false,
+          "deprecated": false
+        },
+        "filter": {
           "kind": "parameter",
           "type": "object",
-          "description": "An optional SMB I/O bean to use to setup the file access attributes when reading/writing a file",
-          "title": "Smb Io Bean",
+          "description": "Pluggable filter as a org.apache.camel.component.file.GenericFileFilter class. Will skip files if filter returns false in its accept() method.",
+          "title": "Filter",
+          "required": false,
+          "deprecated": false
+        },
+        "filterDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filters the directory based on Simple language. For example to filter on current date, you can use a simple date pattern such as ${date:now:yyyMMdd}",
+          "title": "Filter Directory",
+          "required": false,
+          "deprecated": false
+        },
+        "filterFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filters the file based on Simple language. For example to filter on file size, you can use ${file:size} 5000",
+          "title": "Filter File",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotent": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed files. Will by default use a memory based LRUCache that holds 1000 entries. If noop\u003dtrue then idempotent will be enabled as well to avoid consuming the same files over and over again.",
+          "title": "Idempotent",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentEager": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "title": "Idempotent Eager",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To use a custom idempotent key. By default the absolute path of the file is used. You can use the File Language, for example to use the file name and file size, you can do: idempotentKey\u003d${file:name}-${file:size}",
+          "title": "Idempotent Key",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified and idempotent is true.",
+          "title": "Idempotent Repository",
+          "required": false,
+          "deprecated": false
+        },
+        "include": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Is used to include files, if filename matches the regex pattern (matching is case in-sensitive). Notice if you use symbols such as plus sign and others you would need to configure this using the RAW() syntax if configuring this as an endpoint uri. See more details at configuring endpoint uris",
+          "title": "Include",
+          "required": false,
+          "deprecated": false
+        },
+        "includeExt": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Is used to include files matching file extension name (case insensitive). For example to include txt files, then use includeExt\u003dtxt. Multiple extensions can be separated by comma, for example to include txt and xml files, use includeExt\u003dtxt,xml. Note that the file extension includes all parts, for example having a file named mydata.tar.gz will have extension as tar.gz. For more flexibility then use the include/exclude options.",
+          "title": "Include Ext",
+          "required": false,
+          "deprecated": false
+        },
+        "maxDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "2147483647",
+          "description": "The maximum depth to traverse when recursively processing a directory.",
+          "title": "Max Depth",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMessagesPerPoll": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a maximum messages to gather per poll. By default no maximum is set. Can be used to set a limit of e.g. 1000 to avoid when starting up the server that there are thousands of files. Set a value of 0 or negative to disabled it. Notice: If this option is in use then the File and FTP components will limit before any sorting. For example if you have 100000 files and use maxMessagesPerPoll\u003d500, then only the first 500 files will be picked up, and then sorted. You can use the eagerMaxMessagesPerPoll option and set this to false to allow to scan all files first and then sort afterwards.",
+          "title": "Max Messages Per Poll",
+          "required": false,
+          "deprecated": false
+        },
+        "minDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The minimum depth to start processing when recursively processing a directory. Using minDepth\u003d1 means the base directory. Using minDepth\u003d2 means the first sub directory.",
+          "title": "Min Depth",
+          "required": false,
+          "deprecated": false
+        },
+        "move": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Expression (such as Simple Language) used to dynamically set the filename when moving it after processing. To move files into a .done subdirectory just enter .done.",
+          "title": "Move",
+          "required": false,
+          "deprecated": false
+        },
+        "exclusiveReadLockStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Pluggable read-lock as a org.apache.camel.component.file.GenericFileExclusiveReadLockStrategy implementation.",
+          "title": "Exclusive Read Lock Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "readLock": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "none",
+          "enum": [
+            "none",
+            "markerFile",
+            "fileLock",
+            "rename",
+            "changed",
+            "idempotent",
+            "idempotent-changed",
+            "idempotent-rename"
+          ],
+          "description": "Used by consumer, to only poll the files if it has exclusive read-lock on the file (i.e. the file is not in-progress or being written). Camel will wait until the file lock is granted. This option provides the build in strategies: - none - No read lock is in use - markerFile - Camel creates a marker file (fileName.camelLock) and then holds a lock on it. This option is not available for the FTP component - changed - Changed is using file length/modification timestamp to detect whether the file is currently being copied or not. Will at least use 1 sec to determine this, so this option cannot consume files as fast as the others, but can be more reliable as the JDK IO API cannot always determine whether a file is currently being used by another process. The option readLockCheckInterval can be used to set the check frequency. - fileLock - is for using java.nio.channels.FileLock. This option is not avail for Windows OS and the FTP component. This approach should be avoided when accessing a remote file system via a mount/share unless that file system supports distributed file locks. - rename - rename is for using a try to rename the file as a test if we can get exclusive read-lock. - idempotent - (only for file component) idempotent is for using a idempotentRepository as the read-lock. This allows to use read locks that supports clustering if the idempotent repository implementation supports that. - idempotent-changed - (only for file component) idempotent-changed is for using a idempotentRepository and changed as the combined read-lock. This allows to use read locks that supports clustering if the idempotent repository implementation supports that. - idempotent-rename - (only for file component) idempotent-rename is for using a idempotentRepository and rename as the combined read-lock. This allows to use read locks that supports clustering if the idempotent repository implementation supports that.Notice: The various read locks is not all suited to work in clustered mode, where concurrent consumers on different nodes is competing for the same files on a shared file system. The markerFile using a close to atomic operation to create the empty marker file, but its not guaranteed to work in a cluster. The fileLock may work better but then the file system need to support distributed file locks, and so on. Using the idempotent read lock can support clustering if the idempotent repository supports clustering, such as Hazelcast Component or Infinispan.",
+          "title": "Read Lock",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockCheckInterval": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Interval in millis for the read-lock, if supported by the read lock. This interval is used for sleeping between attempts to acquire the read lock. For example when using the changed read lock, you can set a higher interval period to cater for slow writes. The default of 1 sec. may be too fast if the producer is very slow writing the file. Notice: For FTP the default readLockCheckInterval is 5000. The readLockTimeout value must be higher than readLockCheckInterval, but a rule of thumb is to have a timeout that is at least 2 or more times higher than the readLockCheckInterval. This is needed to ensure that ample time is allowed for the read lock process to try to grab the lock before the timeout was hit.",
+          "title": "Read Lock Check Interval",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockDeleteOrphanLockFiles": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether or not read lock with marker files should upon startup delete any orphan read lock files, which may have been left on the file system, if Camel was not properly shutdown (such as a JVM crash). If turning this option to false then any orphaned lock file will cause Camel to not attempt to pickup that file, this could also be due another node is concurrently reading files from the same shared directory.",
+          "title": "Read Lock Delete Orphan Lock Files",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockLoggingLevel": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "DEBUG",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "Logging level used when a read lock could not be acquired. By default a DEBUG is logged. You can change this level, for example to OFF to not have any logging. This option is only applicable for readLock of types: changed, fileLock, idempotent, idempotent-changed, idempotent-rename, rename.",
+          "title": "Read Lock Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockMarkerFile": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to use marker file with the changed, rename, or exclusive read lock types. By default a marker file is used as well to guard against other processes picking up the same files. This behavior can be turned off by setting this option to false. For example if you do not want to write marker files to the file systems by the Camel application.",
+          "title": "Read Lock Marker File",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockMinAge": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "This option is applied only for readLock\u003dchanged. It allows to specify a minimum age the file must be before attempting to acquire the read lock. For example use readLockMinAge\u003d300s to require the file is at last 5 minutes old. This can speedup the changed read lock as it will only attempt to acquire files which are at least that given age.",
+          "title": "Read Lock Min Age",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockMinLength": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "This option is applied only for readLock\u003dchanged. It allows you to configure a minimum file length. By default Camel expects the file to contain data, and thus the default value is 1. You can set this option to zero, to allow consuming zero-length files.",
+          "title": "Read Lock Min Length",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockRemoveOnCommit": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "This option is applied only for readLock\u003didempotent. It allows to specify whether to remove the file name entry from the idempotent repository when processing the file is succeeded and a commit happens. By default the file is not removed which ensures that any race-condition do not occur so another active node may attempt to grab the file. Instead the idempotent repository may support eviction strategies that you can configure to evict the file name entry after X minutes - this ensures no problems with race conditions. See more details at the readLockIdempotentReleaseDelay option.",
+          "title": "Read Lock Remove On Commit",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockRemoveOnRollback": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "This option is applied only for readLock\u003didempotent. It allows to specify whether to remove the file name entry from the idempotent repository when processing the file failed and a rollback happens. If this option is false, then the file name entry is confirmed (as if the file did a commit).",
+          "title": "Read Lock Remove On Rollback",
+          "required": false,
+          "deprecated": false
+        },
+        "readLockTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10000",
+          "description": "Optional timeout in millis for the read-lock, if supported by the read-lock. If the read-lock could not be granted and the timeout triggered, then Camel will skip the file. At next poll Camel, will try the file again, and this time maybe the read-lock could be granted. Use a value of 0 or lower to indicate forever. Currently fileLock, changed and rename support the timeout. Notice: For FTP the default readLockTimeout value is 20000 instead of 10000. The readLockTimeout value must be higher than readLockCheckInterval, but a rule of thumb is to have a timeout that is at least 2 or more times higher than the readLockCheckInterval. This is needed to ensure that ample time is allowed for the read lock process to try to grab the lock before the timeout was hit.",
+          "title": "Read Lock Timeout",
           "required": false,
           "deprecated": false
         },
@@ -73428,6 +74469,31 @@
           "type": "string",
           "description": "The username required to access the share",
           "title": "Username",
+          "required": false,
+          "deprecated": false
+        },
+        "shuffle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To shuffle the list of files (sort in random order)",
+          "title": "Shuffle",
+          "required": false,
+          "deprecated": false
+        },
+        "sortBy": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Built-in sort by using the File Language. Supports nested sorts, so you can have a sort by file name and as a 2nd group sort by modified date.",
+          "title": "Sort By",
+          "required": false,
+          "deprecated": false
+        },
+        "sorter": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Pluggable sorter as a java.util.Comparator class.",
+          "title": "Sorter",
           "required": false,
           "deprecated": false
         }
@@ -76111,106 +77177,122 @@
     "solr": {
       "type": "object",
       "title": "Solr",
-      "group": "monitoring,search",
+      "group": "search,monitoring",
       "icon": "generic24.png",
       "description": "Perform operations against Apache Lucene Solr.",
       "properties": {
-        "url": {
+        "host": {
           "kind": "path",
           "type": "string",
-          "description": "Hostname and port for the Solr server(s). Multiple hosts can be specified, separated with a comma. See the solrClient parameter for more information on the SolrClient used to connect to Solr.",
-          "title": "Url",
+          "description": "The solr instance host name (set to \u0027default\u0027 to use the host name defined on component level)",
+          "title": "Host",
           "required": true,
+          "deprecated": false
+        },
+        "port": {
+          "kind": "path",
+          "type": "integer",
+          "defaultValue": "8983",
+          "description": "The solr instance port number",
+          "title": "Port",
+          "required": false,
+          "deprecated": false
+        },
+        "basePath": {
+          "kind": "path",
+          "type": "string",
+          "defaultValue": "/solr",
+          "description": "The solr instance base path (usually /solr)",
+          "title": "Base Path",
+          "required": false,
+          "deprecated": false
+        },
+        "async": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Use async request processing (when supported by the solr client)",
+          "title": "Async",
+          "required": false,
           "deprecated": false
         },
         "autoCommit": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If true, each producer operation will be automatically followed by a commit",
+          "description": "If true, each producer insert/delete operation will be automatically performing a commit",
           "title": "Auto Commit",
+          "required": false,
+          "deprecated": false
+        },
+        "collection": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the collection to act against",
+          "title": "Collection",
           "required": false,
           "deprecated": false
         },
         "connectionTimeout": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Sets the connection timeout on the SolrClient",
+          "description": "The time in ms to wait before connection will time out.",
           "title": "Connection Timeout",
           "required": false,
           "deprecated": false
         },
-        "defaultMaxConnectionsPerHost": {
+        "deleteByQuery": {
           "kind": "parameter",
-          "type": "integer",
-          "description": "maxConnectionsPerHost on the underlying HttpConnectionManager",
-          "title": "Default Max Connections Per Host",
-          "required": false,
-          "deprecated": true
-        },
-        "httpClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Sets the http client to be used by the solrClient. This is only applicable when solrClient is not set.",
-          "title": "Http Client",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "For the delete instruction, interprete body as query/queries instead of id/ids.",
+          "title": "Delete By Query",
           "required": false,
           "deprecated": false
         },
-        "maxRetries": {
+        "from": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Maximum number of retries to attempt in the event of transient errors",
-          "title": "Max Retries",
+          "description": "Starting index of the response.",
+          "title": "From",
           "required": false,
-          "deprecated": true
+          "deprecated": false
         },
-        "maxTotalConnections": {
+        "operation": {
           "kind": "parameter",
-          "type": "integer",
-          "description": "maxTotalConnection on the underlying HttpConnectionManager",
-          "title": "Max Total Connections",
+          "type": "object",
+          "enum": [
+            "DELETE",
+            "INSERT",
+            "PING",
+            "SEARCH"
+          ],
+          "description": "What operation to perform",
+          "title": "Operation",
           "required": false,
-          "deprecated": true
+          "deprecated": false
         },
         "requestHandler": {
           "kind": "parameter",
           "type": "string",
-          "description": "Set the request handler to be used",
+          "description": "The path of the update request handler (use for update requests / set solr parameter qt for search requests)",
           "title": "Request Handler",
           "required": false,
           "deprecated": false
         },
-        "solrClient": {
+        "requestTimeout": {
           "kind": "parameter",
-          "type": "object",
-          "description": "Uses the provided solr client to connect to solr. When this parameter is not specified, camel applies the following rules to determine the SolrClient: 1) when zkHost or zkChroot (\u003dzookeeper root) parameter is set, then the CloudSolrClient is used. 2) when multiple hosts are specified in the uri (separated with a comma), then the CloudSolrClient (uri scheme is \u0027solrCloud\u0027) or the LBHttpSolrClient (uri scheme is not \u0027solrCloud\u0027) is used. 3) when the solr operation is INSERT_STREAMING, then the ConcurrentUpdateSolrClient is used. 4) otherwise, the HttpSolrClient is used. Note: A CloudSolrClient should point to zookeeper endpoint(s); other clients point to Solr endpoint(s). The SolrClient can also be set via the exchange header \u0027CamelSolrClient\u0027.",
-          "title": "Solr Client",
+          "type": "integer",
+          "description": "The time in ms to wait before the request will time out (former soTimeout).",
+          "title": "Request Timeout",
           "required": false,
           "deprecated": false
         },
-        "soTimeout": {
+        "size": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Sets the socket timeout on the SolrClient",
-          "title": "So Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "streamingQueueSize": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "10",
-          "description": "Sets the queue size for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Queue Size",
-          "required": false,
-          "deprecated": false
-        },
-        "streamingThreadCount": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "2",
-          "description": "Sets the number of threads for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Thread Count",
+          "description": "Size of the response.",
+          "title": "Size",
           "required": false,
           "deprecated": false
         },
@@ -76223,223 +77305,35 @@
           "required": false,
           "deprecated": false
         },
-        "collection": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the default collection for SolrCloud",
-          "title": "Collection",
-          "required": false,
-          "deprecated": false
-        },
-        "zkChroot": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the chroot of the zookeeper connection (include the leading slash; e.g. \u0027/mychroot\u0027)",
-          "title": "Zk Chroot",
-          "required": false,
-          "deprecated": false
-        },
-        "zkHost": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the ZooKeeper host(s) urls which the CloudSolrClient uses, e.g. zkHost\u003dlocalhost:2181,localhost:2182. Optionally add the chroot, e.g. zkHost\u003dlocalhost:2181,localhost:2182/rootformysolr. In case the first part of the url path (\u003d\u0027contextroot\u0027) is set to \u0027solr\u0027 (e.g. \u0027localhost:2181/solr\u0027 or \u0027localhost:2181/solr/..\u0027), then that path is not considered as zookeeper chroot for backward compatibility reasons (this behaviour can be overridden via zkChroot parameter).",
-          "title": "Zk Host",
-          "required": false,
-          "deprecated": false
-        },
-        "allowCompression": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Server side must support gzip or deflate for this to have any effect",
-          "title": "Allow Compression",
-          "required": false,
-          "deprecated": false
-        },
-        "followRedirects": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Indicates whether redirects are used to get to the Solr server",
-          "title": "Follow Redirects",
-          "required": false,
-          "deprecated": false
-        },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets password for basic auth plugin enabled servers",
-          "title": "Password",
-          "required": false,
-          "deprecated": false
-        },
-        "username": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets username for basic auth plugin enabled servers",
-          "title": "Username",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "solrCloud": {
-      "type": "object",
-      "title": "Solr",
-      "group": "monitoring,search",
-      "icon": "generic24.png",
-      "description": "Perform operations against Apache Lucene Solr.",
-      "properties": {
-        "url": {
-          "kind": "path",
-          "type": "string",
-          "description": "Hostname and port for the Solr server(s). Multiple hosts can be specified, separated with a comma. See the solrClient parameter for more information on the SolrClient used to connect to Solr.",
-          "title": "Url",
-          "required": true,
-          "deprecated": false
-        },
-        "autoCommit": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If true, each producer operation will be automatically followed by a commit",
-          "title": "Auto Commit",
-          "required": false,
-          "deprecated": false
-        },
-        "connectionTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Sets the connection timeout on the SolrClient",
-          "title": "Connection Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "defaultMaxConnectionsPerHost": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "maxConnectionsPerHost on the underlying HttpConnectionManager",
-          "title": "Default Max Connections Per Host",
-          "required": false,
-          "deprecated": true
-        },
-        "httpClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Sets the http client to be used by the solrClient. This is only applicable when solrClient is not set.",
-          "title": "Http Client",
-          "required": false,
-          "deprecated": false
-        },
-        "maxRetries": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Maximum number of retries to attempt in the event of transient errors",
-          "title": "Max Retries",
-          "required": false,
-          "deprecated": true
-        },
-        "maxTotalConnections": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "maxTotalConnection on the underlying HttpConnectionManager",
-          "title": "Max Total Connections",
-          "required": false,
-          "deprecated": true
-        },
-        "requestHandler": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the request handler to be used",
-          "title": "Request Handler",
-          "required": false,
-          "deprecated": false
-        },
         "solrClient": {
           "kind": "parameter",
           "type": "object",
-          "description": "Uses the provided solr client to connect to solr. When this parameter is not specified, camel applies the following rules to determine the SolrClient: 1) when zkHost or zkChroot (\u003dzookeeper root) parameter is set, then the CloudSolrClient is used. 2) when multiple hosts are specified in the uri (separated with a comma), then the CloudSolrClient (uri scheme is \u0027solrCloud\u0027) or the LBHttpSolrClient (uri scheme is not \u0027solrCloud\u0027) is used. 3) when the solr operation is INSERT_STREAMING, then the ConcurrentUpdateSolrClient is used. 4) otherwise, the HttpSolrClient is used. Note: A CloudSolrClient should point to zookeeper endpoint(s); other clients point to Solr endpoint(s). The SolrClient can also be set via the exchange header \u0027CamelSolrClient\u0027.",
+          "description": "The solr client to connect to solr. When solrClient bean is provided, all connection properties will be used from that solrClient (host, port, username, password, connectionTimeout, requestTimeout, enableSSL, ...). When not explicitly configured, camel uses the HttpJdkSolrClient.",
           "title": "Solr Client",
           "required": false,
           "deprecated": false
         },
-        "soTimeout": {
+        "certificatePath": {
           "kind": "parameter",
-          "type": "integer",
-          "description": "Sets the socket timeout on the SolrClient",
-          "title": "So Timeout",
+          "type": "string",
+          "description": "The certificate that can be used to access the solr host. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
+          "title": "Certificate Path",
           "required": false,
           "deprecated": false
         },
-        "streamingQueueSize": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "10",
-          "description": "Sets the queue size for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Queue Size",
-          "required": false,
-          "deprecated": false
-        },
-        "streamingThreadCount": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "2",
-          "description": "Sets the number of threads for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Thread Count",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
+        "enableSSL": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "collection": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the default collection for SolrCloud",
-          "title": "Collection",
-          "required": false,
-          "deprecated": false
-        },
-        "zkChroot": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the chroot of the zookeeper connection (include the leading slash; e.g. \u0027/mychroot\u0027)",
-          "title": "Zk Chroot",
-          "required": false,
-          "deprecated": false
-        },
-        "zkHost": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the ZooKeeper host(s) urls which the CloudSolrClient uses, e.g. zkHost\u003dlocalhost:2181,localhost:2182. Optionally add the chroot, e.g. zkHost\u003dlocalhost:2181,localhost:2182/rootformysolr. In case the first part of the url path (\u003d\u0027contextroot\u0027) is set to \u0027solr\u0027 (e.g. \u0027localhost:2181/solr\u0027 or \u0027localhost:2181/solr/..\u0027), then that path is not considered as zookeeper chroot for backward compatibility reasons (this behaviour can be overridden via zkChroot parameter).",
-          "title": "Zk Host",
-          "required": false,
-          "deprecated": false
-        },
-        "allowCompression": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Server side must support gzip or deflate for this to have any effect",
-          "title": "Allow Compression",
-          "required": false,
-          "deprecated": false
-        },
-        "followRedirects": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Indicates whether redirects are used to get to the Solr server",
-          "title": "Follow Redirects",
+          "description": "Enable SSL",
+          "title": "Enable SSL",
           "required": false,
           "deprecated": false
         },
         "password": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets password for basic auth plugin enabled servers",
+          "description": "Password for authenticating",
           "title": "Password",
           "required": false,
           "deprecated": false
@@ -76447,180 +77341,7 @@
         "username": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets username for basic auth plugin enabled servers",
-          "title": "Username",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "solrs": {
-      "type": "object",
-      "title": "Solr (Secure)",
-      "group": "monitoring,search",
-      "icon": "generic24.png",
-      "description": "Perform operations against Apache Lucene Solr.",
-      "properties": {
-        "url": {
-          "kind": "path",
-          "type": "string",
-          "description": "Hostname and port for the Solr server(s). Multiple hosts can be specified, separated with a comma. See the solrClient parameter for more information on the SolrClient used to connect to Solr.",
-          "title": "Url",
-          "required": true,
-          "deprecated": false
-        },
-        "autoCommit": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If true, each producer operation will be automatically followed by a commit",
-          "title": "Auto Commit",
-          "required": false,
-          "deprecated": false
-        },
-        "connectionTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Sets the connection timeout on the SolrClient",
-          "title": "Connection Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "defaultMaxConnectionsPerHost": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "maxConnectionsPerHost on the underlying HttpConnectionManager",
-          "title": "Default Max Connections Per Host",
-          "required": false,
-          "deprecated": true
-        },
-        "httpClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Sets the http client to be used by the solrClient. This is only applicable when solrClient is not set.",
-          "title": "Http Client",
-          "required": false,
-          "deprecated": false
-        },
-        "maxRetries": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Maximum number of retries to attempt in the event of transient errors",
-          "title": "Max Retries",
-          "required": false,
-          "deprecated": true
-        },
-        "maxTotalConnections": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "maxTotalConnection on the underlying HttpConnectionManager",
-          "title": "Max Total Connections",
-          "required": false,
-          "deprecated": true
-        },
-        "requestHandler": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the request handler to be used",
-          "title": "Request Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "solrClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Uses the provided solr client to connect to solr. When this parameter is not specified, camel applies the following rules to determine the SolrClient: 1) when zkHost or zkChroot (\u003dzookeeper root) parameter is set, then the CloudSolrClient is used. 2) when multiple hosts are specified in the uri (separated with a comma), then the CloudSolrClient (uri scheme is \u0027solrCloud\u0027) or the LBHttpSolrClient (uri scheme is not \u0027solrCloud\u0027) is used. 3) when the solr operation is INSERT_STREAMING, then the ConcurrentUpdateSolrClient is used. 4) otherwise, the HttpSolrClient is used. Note: A CloudSolrClient should point to zookeeper endpoint(s); other clients point to Solr endpoint(s). The SolrClient can also be set via the exchange header \u0027CamelSolrClient\u0027.",
-          "title": "Solr Client",
-          "required": false,
-          "deprecated": false
-        },
-        "soTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Sets the socket timeout on the SolrClient",
-          "title": "So Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "streamingQueueSize": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "10",
-          "description": "Sets the queue size for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Queue Size",
-          "required": false,
-          "deprecated": false
-        },
-        "streamingThreadCount": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "2",
-          "description": "Sets the number of threads for the ConcurrentUpdateSolrClient",
-          "title": "Streaming Thread Count",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "collection": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the default collection for SolrCloud",
-          "title": "Collection",
-          "required": false,
-          "deprecated": false
-        },
-        "zkChroot": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the chroot of the zookeeper connection (include the leading slash; e.g. \u0027/mychroot\u0027)",
-          "title": "Zk Chroot",
-          "required": false,
-          "deprecated": false
-        },
-        "zkHost": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Set the ZooKeeper host(s) urls which the CloudSolrClient uses, e.g. zkHost\u003dlocalhost:2181,localhost:2182. Optionally add the chroot, e.g. zkHost\u003dlocalhost:2181,localhost:2182/rootformysolr. In case the first part of the url path (\u003d\u0027contextroot\u0027) is set to \u0027solr\u0027 (e.g. \u0027localhost:2181/solr\u0027 or \u0027localhost:2181/solr/..\u0027), then that path is not considered as zookeeper chroot for backward compatibility reasons (this behaviour can be overridden via zkChroot parameter).",
-          "title": "Zk Host",
-          "required": false,
-          "deprecated": false
-        },
-        "allowCompression": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Server side must support gzip or deflate for this to have any effect",
-          "title": "Allow Compression",
-          "required": false,
-          "deprecated": false
-        },
-        "followRedirects": {
-          "kind": "parameter",
-          "type": "boolean",
-          "description": "Indicates whether redirects are used to get to the Solr server",
-          "title": "Follow Redirects",
-          "required": false,
-          "deprecated": false
-        },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets password for basic auth plugin enabled servers",
-          "title": "Password",
-          "required": false,
-          "deprecated": false
-        },
-        "username": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets username for basic auth plugin enabled servers",
+          "description": "Basic authenticate user",
           "title": "Username",
           "required": false,
           "deprecated": false
@@ -78575,6 +79296,15 @@
           "required": false,
           "deprecated": false
         },
+        "batchAutoCommitDisabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to optimize batch by turning off auto-commit which can dramatic improve performance, and instead execute as a manual commit after the entire batch operation is complete",
+          "title": "Batch Auto Commit Disabled",
+          "required": false,
+          "deprecated": false
+        },
         "noop": {
           "kind": "parameter",
           "type": "boolean",
@@ -78608,6 +79338,14 @@
           "defaultValue": "false",
           "description": "If enabled then the populateStatement method from org.apache.camel.component.sql.SqlPrepareStatementStrategy is always invoked, also if there is no expected parameters to be prepared. When this is false then the populateStatement is only invoked if there is 1 or more expected parameters to be set; for example this avoids reading the message body/headers for SQL queries with no parameters.",
           "title": "Always Populate Statement",
+          "required": false,
+          "deprecated": false
+        },
+        "fetchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Gives the JDBC driver a hint as to the number of rows that should be fetched from the database when more rows are needed for ResultSet objects generated by this Statement. If the value specified is zero, then the hint is ignored. The default value is zero. This is important for processing large result sets: Setting this higher than the default value will increase processing speed at the cost of memory consumption; setting this lower can avoid transferring row data that will never be read by the application.",
+          "title": "Fetch Size",
           "required": false,
           "deprecated": false
         },
@@ -80564,6 +81302,88 @@
         }
       }
     },
+    "tensorflow-serving": {
+      "type": "object",
+      "title": "TensorFlow Serving",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Provide access to TensorFlow Serving model servers to run inference with TensorFlow saved models remotely",
+      "properties": {
+        "api": {
+          "kind": "path",
+          "type": "string",
+          "enum": [
+            "model-status",
+            "model-metadata",
+            "classify",
+            "regress",
+            "predict"
+          ],
+          "description": "The TensorFlow Serving API",
+          "title": "Api",
+          "required": true,
+          "deprecated": false
+        },
+        "modelName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Required servable name.",
+          "title": "Model Name",
+          "required": false,
+          "deprecated": false
+        },
+        "modelVersion": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Optional choice of which version of the model to use. Use this specific version number.",
+          "title": "Model Version",
+          "required": false,
+          "deprecated": false
+        },
+        "modelVersionLabel": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Optional choice of which version of the model to use. Use the version associated with the given label.",
+          "title": "Model Version Label",
+          "required": false,
+          "deprecated": false
+        },
+        "signatureName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "A named signature to evaluate. If unspecified, the default signature will be used.",
+          "title": "Signature Name",
+          "required": false,
+          "deprecated": false
+        },
+        "target": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "localhost:8500",
+          "description": "The target URI of the client. See: https://grpc.github.io/grpc-java/javadoc/io/grpc/Grpc.html#newChannelBuilder%28java.lang.String,io.grpc.ChannelCredentials%29",
+          "title": "Target",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "credentials": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The credentials of the client.",
+          "title": "Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "thrift": {
       "type": "object",
       "title": "Thrift",
@@ -81075,6 +81895,197 @@
           ],
           "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
           "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "torchserve": {
+      "type": "object",
+      "title": "TorchServe",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Provide access to PyTorch TorchServe servers to run inference with PyTorch models remotely",
+      "properties": {
+        "api": {
+          "kind": "path",
+          "type": "string",
+          "enum": [
+            "inference",
+            "management",
+            "metrics"
+          ],
+          "description": "The TorchServe API",
+          "title": "Api",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "path",
+          "type": "string",
+          "enum": [
+            "ping",
+            "predictions",
+            "explanations",
+            "register",
+            "scale-worker",
+            "describe",
+            "unregister",
+            "list",
+            "set-default",
+            "metrics"
+          ],
+          "description": "The API operation",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "modelName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of model.",
+          "title": "Model Name",
+          "required": false,
+          "deprecated": false
+        },
+        "modelVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The version of model.",
+          "title": "Model Version",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "inferenceAddress": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The address of the inference API endpoint.",
+          "title": "Inference Address",
+          "required": false,
+          "deprecated": false
+        },
+        "inferencePort": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "8080",
+          "description": "The port of the inference API endpoint.",
+          "title": "Inference Port",
+          "required": false,
+          "deprecated": false
+        },
+        "listLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "The maximum number of items to return for the list operation. When this value is present, TorchServe does not return more than the specified number of items, but it might return fewer. This value is optional. If you include a value, it must be between 1 and 1000, inclusive. If you do not include a value, it defaults to 100.",
+          "title": "List Limit",
+          "required": false,
+          "deprecated": false
+        },
+        "listNextPageToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The token to retrieve the next set of results for the list operation. TorchServe provides the token when the response from a previous call has more results than the maximum page size.",
+          "title": "List Next Page Token",
+          "required": false,
+          "deprecated": false
+        },
+        "managementAddress": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The address of the management API endpoint.",
+          "title": "Management Address",
+          "required": false,
+          "deprecated": false
+        },
+        "managementPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "8081",
+          "description": "The port of the management API endpoint.",
+          "title": "Management Port",
+          "required": false,
+          "deprecated": false
+        },
+        "registerOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Additional options for the register operation.",
+          "title": "Register Options",
+          "required": false,
+          "deprecated": false
+        },
+        "scaleWorkerOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Additional options for the scale-worker operation.",
+          "title": "Scale Worker Options",
+          "required": false,
+          "deprecated": false
+        },
+        "unregisterOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Additional options for the unregister operation.",
+          "title": "Unregister Options",
+          "required": false,
+          "deprecated": false
+        },
+        "url": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Model archive download url, support local file or HTTP(s) protocol. For S3, consider using pre-signed url.",
+          "title": "Url",
+          "required": false,
+          "deprecated": false
+        },
+        "metricsAddress": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The address of the metrics API endpoint.",
+          "title": "Metrics Address",
+          "required": false,
+          "deprecated": false
+        },
+        "metricsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Names of metrics to filter.",
+          "title": "Metrics Name",
+          "required": false,
+          "deprecated": false
+        },
+        "metricsPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "8082",
+          "description": "The port of the metrics API endpoint.",
+          "title": "Metrics Port",
+          "required": false,
+          "deprecated": false
+        },
+        "inferenceKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The token authorization key for accessing the inference API.",
+          "title": "Inference Key",
+          "required": false,
+          "deprecated": false
+        },
+        "managementKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The token authorization key for accessing the management API.",
+          "title": "Management Key",
           "required": false,
           "deprecated": false
         }
@@ -85348,7 +86359,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Indicator whether the XML signature elements (elements with local name Signature and namesapce http://www.w3.org/2000/09/xmldsig#) shall be removed from the document set to the output message. Normally, this is only necessary, if the XML signature is enveloped. The default value is Boolean#FALSE. This parameter is forwarded to XmlSignature2Message. This indicator has no effect if the output node search is of type DefaultXmlSignature2Message#OUTPUT_NODE_SEARCH_TYPE_DEFAULT.F",
+          "description": "Indicator whether the XML signature elements (elements with local name Signature and namespace http://www.w3.org/2000/09/xmldsig#) shall be removed from the document set to the output message. Normally, this is only necessary, if the XML signature is enveloped. The default value is Boolean#FALSE. This parameter is forwarded to XmlSignature2Message. This indicator has no effect if the output node search is of type DefaultXmlSignature2Message#OUTPUT_NODE_SEARCH_TYPE_DEFAULT.F",
           "title": "Remove Signature Elements",
           "required": false,
           "deprecated": false
@@ -86703,6 +87714,7 @@
             "TRUST_TICKET_AUDIT",
             "TRUST_TICKET_AUDIT_1",
             "TRUST_TICKET_AUDIT_2",
+            "UNASSIGN_ORGANIZATION_MEMBERSHIP",
             "UNSUSPEND_USER",
             "UPDATE_ARTICLE",
             "UPDATE_ARTICLE_TRANSLATION",

@@ -178,6 +178,30 @@
           "required": true,
           "deprecated": false
         },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
+          "deprecated": false
+        },
         "consumes": {
           "kind": "attribute",
           "type": "string",
@@ -350,6 +374,30 @@
           "required": true,
           "deprecated": false
         },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
+          "deprecated": false
+        },
         "consumes": {
           "kind": "attribute",
           "type": "string",
@@ -520,6 +568,30 @@
           "description": "The Camel endpoint this REST service will call, such as a direct endpoint to link to an existing route that handles this REST call.",
           "title": "To",
           "required": true,
+          "deprecated": false
+        },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
           "deprecated": false
         },
         "consumes": {
@@ -1029,6 +1101,30 @@
           "required": true,
           "deprecated": false
         },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
+          "deprecated": false
+        },
         "consumes": {
           "kind": "attribute",
           "type": "string",
@@ -1201,6 +1297,30 @@
           "required": true,
           "deprecated": false
         },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
+          "deprecated": false
+        },
         "consumes": {
           "kind": "attribute",
           "type": "string",
@@ -1371,6 +1491,30 @@
           "description": "The Camel endpoint this REST service will call, such as a direct endpoint to link to an existing route that handles this REST call.",
           "title": "To",
           "required": true,
+          "deprecated": false
+        },
+        "param": {
+          "kind": "element",
+          "type": "array",
+          "description": "Information about parameters for this REST operation",
+          "title": "Param",
+          "required": false,
+          "deprecated": false
+        },
+        "responseMessage": {
+          "kind": "element",
+          "type": "array",
+          "description": "Response details for this REST operation",
+          "title": "Response Message",
+          "required": false,
+          "deprecated": false
+        },
+        "security": {
+          "kind": "element",
+          "type": "array",
+          "description": "Security settings for this REST operation",
+          "title": "Security",
+          "required": false,
           "deprecated": false
         },
         "consumes": {
