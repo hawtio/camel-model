@@ -3409,6 +3409,14 @@
           "required": false,
           "deprecated": false
         },
+        "accessToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The access token that is used by the client for bearer authentication.",
+          "title": "Access Token",
+          "required": false,
+          "deprecated": false
+        },
         "decryptingPrivateKey": {
           "kind": "parameter",
           "type": "object",
@@ -3460,6 +3468,38 @@
           "type": "object",
           "description": "Set hostname verifier for SSL session.",
           "title": "Hostname Verifier",
+          "required": false,
+          "deprecated": false
+        },
+        "mdnAccessToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The access token that is used by the server when it sends an async MDN.",
+          "title": "Mdn Access Token",
+          "required": false,
+          "deprecated": false
+        },
+        "mdnPassword": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password that is used by the server for basic authentication when it sends an async MDN.",
+          "title": "Mdn Password",
+          "required": false,
+          "deprecated": false
+        },
+        "mdnUserName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The user-name that is used by the server for basic authentication when it sends an async MDN. If options for basic authentication and bearer authentication are both set then basic authentication takes precedence.",
+          "title": "Mdn User Name",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password that is used by the client for basic authentication.",
+          "title": "Password",
           "required": false,
           "deprecated": false
         },
@@ -3549,6 +3589,14 @@
           "type": "object",
           "description": "Set SSL context for connection to remote server.",
           "title": "Ssl Context",
+          "required": false,
+          "deprecated": false
+        },
+        "userName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The user-name that is used by the client for basic authentication. If options for basic authentication and bearer authentication are both set then basic authentication takes precedence.",
+          "title": "User Name",
           "required": false,
           "deprecated": false
         },
@@ -10521,6 +10569,15 @@
           "required": false,
           "deprecated": false
         },
+        "removePrefixOnMove": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Remove the contents of the prefix configuration string from the new S3Object key before copying. For example, if prefix is set to \u0027demo/notify\u0027 and the destinationBucketPrefix is set to \u0027demo/archive\u0027, an S3Object with a key of \u0027demo/notify/example.txt\u0027 will be copied to \u0027demo/archive/example.txt\u0027, rather than the default behavior where the new key is \u0027demo/archive/demo/notify/example.txt\u0027. Only applicable when moveAfterRead is true.",
+          "title": "Remove Prefix On Move",
+          "required": false,
+          "deprecated": false
+        },
         "sendEmptyMessageWhenIdle": {
           "kind": "parameter",
           "type": "boolean",
@@ -15217,6 +15274,24 @@
           "type": "string",
           "description": "The file directory where the downloaded blobs will be saved to, this can be used in both, producer and consumer",
           "title": "File Dir",
+          "required": false,
+          "deprecated": false
+        },
+        "leaseBlob": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether a lease should be acquired when accessing the blob. When set to true, the component will acquire a lease before performing blob operations that require exclusive access.",
+          "title": "Lease Blob",
+          "required": false,
+          "deprecated": false
+        },
+        "leaseDurationInSeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "60",
+          "description": "Sets the lease duration in seconds. Use -1 for infinite or a value between 15 and 60 for fixed leases.",
+          "title": "Lease Duration In Seconds",
           "required": false,
           "deprecated": false
         },
@@ -21001,6 +21076,235 @@
         }
       }
     },
+    "dapr": {
+      "type": "object",
+      "title": "Dapr",
+      "group": "cloud,saas",
+      "icon": "generic24.png",
+      "description": "Dapr component which interfaces with Dapr Building Blocks.",
+      "properties": {
+        "operation": {
+          "kind": "path",
+          "type": "object",
+          "enum": [
+            "invokeService",
+            "state"
+          ],
+          "description": "The Dapr building block operation to perform with this component",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "configKeys": {
+          "kind": "parameter",
+          "type": "array",
+          "description": "List of keys for configuration operation",
+          "title": "Config Keys",
+          "required": false,
+          "deprecated": false
+        },
+        "configStore": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the Dapr configuration store to interact with, defined in statestore.yaml config",
+          "title": "Config Store",
+          "required": false,
+          "deprecated": false
+        },
+        "contentType": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The contentType for the Pub/Sub component to use.",
+          "title": "Content Type",
+          "required": false,
+          "deprecated": false
+        },
+        "pubSubName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the Dapr Pub/Sub component to use. This identifies which underlying messaging system Dapr will interact with for publishing or subscribing to events.",
+          "title": "Pub Sub Name",
+          "required": false,
+          "deprecated": false
+        },
+        "topic": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the topic to subscribe to. The topic must exist in the Pub/Sub component configured under the given pubsubName.",
+          "title": "Topic",
+          "required": false,
+          "deprecated": false
+        },
+        "previewClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The client to consume messages by the consumer",
+          "title": "Preview Client",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "bindingName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the Dapr binding to invoke",
+          "title": "Binding Name",
+          "required": false,
+          "deprecated": false
+        },
+        "bindingOperation": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The operation to perform on the binding",
+          "title": "Binding Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "concurrency": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "FIRST_WRITE",
+            "LAST_WRITE"
+          ],
+          "description": "Concurrency mode to use with state operations",
+          "title": "Concurrency",
+          "required": false,
+          "deprecated": false
+        },
+        "consistency": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "EVENTUAL",
+            "STRONG"
+          ],
+          "description": "Consistency level to use with state operations",
+          "title": "Consistency",
+          "required": false,
+          "deprecated": false
+        },
+        "eTag": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The eTag for optimistic concurrency during state save or delete operations",
+          "title": "ETag",
+          "required": false,
+          "deprecated": false
+        },
+        "httpExtension": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "HTTP method to use when invoking the service. Accepts verbs like GET, POST, PUT, DELETE, etc. Creates a minimal HttpExtension with no headers or query params. Takes precedence over verb",
+          "title": "Http Extension",
+          "required": false,
+          "deprecated": false
+        },
+        "key": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The key used to identify the state/secret object within the specified state/secret store",
+          "title": "Key",
+          "required": false,
+          "deprecated": false
+        },
+        "methodToInvoke": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the method or route to invoke on the target service",
+          "title": "Method To Invoke",
+          "required": false,
+          "deprecated": false
+        },
+        "secretStore": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the Dapr secret store to interact with, defined in local-secret-store.yaml config",
+          "title": "Secret Store",
+          "required": false,
+          "deprecated": false
+        },
+        "serviceToInvoke": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Target service to invoke. Can be a Dapr App ID, a named HTTPEndpoint, or a FQDN/public URL",
+          "title": "Service To Invoke",
+          "required": false,
+          "deprecated": false
+        },
+        "stateOperation": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "get",
+          "enum": [
+            "save",
+            "saveBulk",
+            "get",
+            "getBulk",
+            "delete",
+            "executeTransaction"
+          ],
+          "description": "The state operation to perform on the state store. Required for DaprOperation.state operation",
+          "title": "State Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "stateStore": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the Dapr state store to interact with, defined in statestore.yaml config",
+          "title": "State Store",
+          "required": false,
+          "deprecated": false
+        },
+        "verb": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "POST",
+          "description": "The HTTP verb to use for invoking the method",
+          "title": "Verb",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "dataformat": {
       "type": "object",
       "title": "Data Format",
@@ -26566,6 +26870,15 @@
           "defaultValue": "0ms",
           "description": "A delay period after the snapshot is completed and the streaming begins, given in milliseconds. Defaults to 0 ms.",
           "title": "Streaming Delay Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "streamingFetchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies the maximum number of rows that should be read in one go from each table while streaming. The connector will read the table contents in multiple batches of this size. Defaults to 0 which means no limit.",
+          "title": "Streaming Fetch Size",
           "required": false,
           "deprecated": false
         },
@@ -34106,6 +34419,14 @@
           "required": false,
           "deprecated": false
         },
+        "pageToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Page token, returned by a previous call, to request the next page of results",
+          "title": "Page Token",
+          "required": false,
+          "deprecated": false
+        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
@@ -39418,6 +39739,24 @@
           "required": false,
           "deprecated": false
         },
+        "multipartUpload": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to force using multipart/form-data for easy file uploads. This is only to be used for uploading the message body as a single entity form-data. For uploading multiple entries then use org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder to build the form.",
+          "title": "Multipart Upload",
+          "required": false,
+          "deprecated": false
+        },
+        "multipartUploadName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "data",
+          "description": "The name of the multipart/form-data when multipartUpload is enabled.",
+          "title": "Multipart Upload Name",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -39652,10 +39991,10 @@
         "proxyAuthDomain": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication domain to use with NTML",
+          "description": "Proxy authentication domain to use with NTLM",
           "title": "Proxy Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthHost": {
           "kind": "parameter",
@@ -39670,7 +40009,7 @@
           "type": "string",
           "enum": [
             "Basic",
-            "Digest",
+            "Bearer",
             "NTLM"
           ],
           "description": "Proxy authentication method to use",
@@ -39681,10 +40020,10 @@
         "proxyAuthNtHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication domain (workstation name) to use with NTML",
+          "description": "Proxy authentication domain (workstation name) to use with NTLM",
           "title": "Proxy Auth Nt Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthPassword": {
           "kind": "parameter",
@@ -39738,13 +40077,21 @@
           "required": false,
           "deprecated": false
         },
+        "authBearerToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Authentication bearer token",
+          "title": "Auth Bearer Token",
+          "required": false,
+          "deprecated": false
+        },
         "authDomain": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication domain to use with NTML",
+          "description": "Authentication domain to use with NTLM",
           "title": "Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authenticationPreemptive": {
           "kind": "parameter",
@@ -39758,15 +40105,20 @@
         "authHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication host to use with NTML",
+          "description": "Authentication host to use with NTLM",
           "title": "Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authMethod": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM.",
+          "enum": [
+            "Basic",
+            "Bearer",
+            "NTLM"
+          ],
+          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
           "required": false,
           "deprecated": false
@@ -39776,10 +40128,10 @@
           "type": "string",
           "enum": [
             "Basic",
-            "Digest",
+            "Bearer",
             "NTLM"
           ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM.",
+          "description": "Which authentication method to prioritize to use, either as Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
@@ -39843,6 +40195,14 @@
           "required": false,
           "deprecated": false
         },
+        "oauth2ResourceIndicator": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth2 Token endpoint",
+          "title": "Oauth2 Resource Indicator",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2Scope": {
           "kind": "parameter",
           "type": "string",
@@ -39854,7 +40214,7 @@
         "oauth2TokenEndpoint": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth2 Token endpoint",
+          "description": "OAuth2 Resource Indicator",
           "title": "Oauth2 Token Endpoint",
           "required": false,
           "deprecated": false
@@ -39954,6 +40314,24 @@
           "required": false,
           "deprecated": false
         },
+        "multipartUpload": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to force using multipart/form-data for easy file uploads. This is only to be used for uploading the message body as a single entity form-data. For uploading multiple entries then use org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder to build the form.",
+          "title": "Multipart Upload",
+          "required": false,
+          "deprecated": false
+        },
+        "multipartUploadName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "data",
+          "description": "The name of the multipart/form-data when multipartUpload is enabled.",
+          "title": "Multipart Upload Name",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -40188,10 +40566,10 @@
         "proxyAuthDomain": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication domain to use with NTML",
+          "description": "Proxy authentication domain to use with NTLM",
           "title": "Proxy Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthHost": {
           "kind": "parameter",
@@ -40206,7 +40584,7 @@
           "type": "string",
           "enum": [
             "Basic",
-            "Digest",
+            "Bearer",
             "NTLM"
           ],
           "description": "Proxy authentication method to use",
@@ -40217,10 +40595,10 @@
         "proxyAuthNtHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication domain (workstation name) to use with NTML",
+          "description": "Proxy authentication domain (workstation name) to use with NTLM",
           "title": "Proxy Auth Nt Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthPassword": {
           "kind": "parameter",
@@ -40274,13 +40652,21 @@
           "required": false,
           "deprecated": false
         },
+        "authBearerToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Authentication bearer token",
+          "title": "Auth Bearer Token",
+          "required": false,
+          "deprecated": false
+        },
         "authDomain": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication domain to use with NTML",
+          "description": "Authentication domain to use with NTLM",
           "title": "Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authenticationPreemptive": {
           "kind": "parameter",
@@ -40294,15 +40680,20 @@
         "authHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication host to use with NTML",
+          "description": "Authentication host to use with NTLM",
           "title": "Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authMethod": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM.",
+          "enum": [
+            "Basic",
+            "Bearer",
+            "NTLM"
+          ],
+          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
           "required": false,
           "deprecated": false
@@ -40312,10 +40703,10 @@
           "type": "string",
           "enum": [
             "Basic",
-            "Digest",
+            "Bearer",
             "NTLM"
           ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM.",
+          "description": "Which authentication method to prioritize to use, either as Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
@@ -40379,6 +40770,14 @@
           "required": false,
           "deprecated": false
         },
+        "oauth2ResourceIndicator": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth2 Token endpoint",
+          "title": "Oauth2 Resource Indicator",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2Scope": {
           "kind": "parameter",
           "type": "string",
@@ -40390,7 +40789,7 @@
         "oauth2TokenEndpoint": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth2 Token endpoint",
+          "description": "OAuth2 Resource Indicator",
           "title": "Oauth2 Token Endpoint",
           "required": false,
           "deprecated": false
@@ -48411,6 +48810,14 @@
           "required": true,
           "deprecated": false
         },
+        "entityManagerFactory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The EntityManagerFactory to use.",
+          "title": "Entity Manager Factory",
+          "required": false,
+          "deprecated": false
+        },
         "joinTransaction": {
           "kind": "parameter",
           "type": "boolean",
@@ -49259,6 +49666,14 @@
           "required": false,
           "deprecated": false
         },
+        "dataQueueCcsid": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Sets the CCSID to use for the receiving data messages from the IBM i system.",
+          "title": "Data Queue Ccsid",
+          "required": false,
+          "deprecated": false
+        },
         "messageAction": {
           "kind": "parameter",
           "type": "object",
@@ -49594,7 +50009,7 @@
       "title": "Kafka",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Sent and receive messages to/from an Apache Kafka broker.",
+      "description": "Send and receive messages to/from an Apache Kafka broker.",
       "properties": {
         "topic": {
           "kind": "path",
@@ -56525,14 +56940,6 @@
           "required": true,
           "deprecated": false
         },
-        "tags": {
-          "kind": "path",
-          "type": "object",
-          "description": "Tags of metrics",
-          "title": "Tags",
-          "required": false,
-          "deprecated": false
-        },
         "action": {
           "kind": "parameter",
           "type": "string",
@@ -56566,6 +56973,14 @@
           "type": "string",
           "description": "Description of metrics",
           "title": "Metrics Description",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Tags of metrics",
+          "title": "Tags",
           "required": false,
           "deprecated": false
         },
@@ -60071,6 +60486,15 @@
           "required": false,
           "deprecated": false
         },
+        "shutdownTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Shutdown await timeout in milliseconds",
+          "title": "Shutdown Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "synchronous": {
           "kind": "parameter",
           "type": "boolean",
@@ -60914,6 +61338,15 @@
           "defaultValue": "65536",
           "description": "The TCP/UDP buffer sizes to be used during outbound communication. Size is bytes.",
           "title": "Send Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "shutdownTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Shutdown await timeout in milliseconds",
+          "title": "Shutdown Timeout",
           "required": false,
           "deprecated": false
         },
@@ -65078,6 +65511,15 @@
           "required": false,
           "deprecated": false
         },
+        "useBodyHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to use BodyHandler for the request. If set to false then the request will no be read and parsed.",
+          "title": "Use Body Handler",
+          "required": false,
+          "deprecated": false
+        },
         "useCookieHandler": {
           "kind": "parameter",
           "type": "boolean",
@@ -66503,6 +66945,176 @@
         }
       }
     },
+    "pqc": {
+      "type": "object",
+      "title": "PQC Algorithms",
+      "group": "security",
+      "icon": "generic24.png",
+      "description": "Post Quantum Computing Signature and Verification component.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "sign",
+            "verify",
+            "generateSecretKeyEncapsulation",
+            "extractSecretKeyEncapsulation",
+            "extractSecretKeyFromEncapsulation"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "keyEncapsulationAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MLKEM",
+            "BIKE",
+            "HQC",
+            "CMCE",
+            "SABER",
+            "FRODO",
+            "NTRU",
+            "NTRULPRime"
+          ],
+          "description": "In case there is no keyGenerator, we specify an algorithm to build the KeyGenerator",
+          "title": "Key Encapsulation Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "keyGenerator": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Key Generator to be used in encapsulation and extraction",
+          "title": "Key Generator",
+          "required": false,
+          "deprecated": false
+        },
+        "keyPair": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The KeyPair to be used",
+          "title": "Key Pair",
+          "required": false,
+          "deprecated": false
+        },
+        "keyPairAlias": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "A KeyPair alias to use in combination with KeyStore parameter",
+          "title": "Key Pair Alias",
+          "required": false,
+          "deprecated": false
+        },
+        "keyStore": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A KeyStore where we could get Cryptographic material",
+          "title": "Key Store",
+          "required": false,
+          "deprecated": false
+        },
+        "keyStorePassword": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The KeyStore password to use in combination with KeyStore Parameter",
+          "title": "Key Store Password",
+          "required": false,
+          "deprecated": false
+        },
+        "signatureAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "MLDSA",
+            "SLHDSA",
+            "LMS",
+            "XMSS",
+            "FALCON",
+            "PICNIC",
+            "RAINBOW"
+          ],
+          "description": "In case there is no signer, we specify an algorithm to build the KeyPair or the Signer",
+          "title": "Signature Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "signer": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Signer to be used",
+          "title": "Signer",
+          "required": false,
+          "deprecated": false
+        },
+        "storeExtractedSecretKeyAsHeader": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "In the context of extractSecretKeyFromEncapsulation operation, this option define if we want to have the key set as header",
+          "title": "Store Extracted Secret Key As Header",
+          "required": false,
+          "deprecated": false
+        },
+        "symmetricKeyAlgorithm": {
+          "kind": "parameter",
+          "type": "string",
+          "enum": [
+            "AES",
+            "ARIA",
+            "RC2",
+            "RC5",
+            "CAMELLIA",
+            "CAST5",
+            "CAST6",
+            "CHACHA7539",
+            "DSTU7624",
+            "GOST28147",
+            "GOST3412_2015",
+            "GRAIN128",
+            "HC128",
+            "HC256",
+            "SALSA20",
+            "SEED",
+            "SM4",
+            "DESEDE"
+          ],
+          "description": "In case we are using KEM operations, we need a Symmetric algorithm to be defined for the flow to work.",
+          "title": "Symmetric Key Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "symmetricKeyLength": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "128",
+          "description": "The required length of the symmetric key used",
+          "title": "Symmetric Key Length",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "pubnub": {
       "type": "object",
       "title": "PubNub",
@@ -67899,6 +68511,14 @@
           "required": false,
           "deprecated": false
         },
+        "basePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "API basePath, for example /v3. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
+          "title": "Base Path",
+          "required": false,
+          "deprecated": false
+        },
         "apiContextPath": {
           "kind": "parameter",
           "type": "string",
@@ -67989,14 +68609,6 @@
           "type": "object",
           "description": "To use a custom strategy for how to process Rest DSL requests",
           "title": "Rest Openapi Processor Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "basePath": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "API basePath, for example /v3. Default is unset, if set overrides the value present in OpenApi specification and in the component configuration.",
-          "title": "Base Path",
           "required": false,
           "deprecated": false
         },
@@ -72856,6 +73468,21 @@
           "required": false,
           "deprecated": false
         },
+        "jmsMessageType": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "Bytes",
+            "Map",
+            "Object",
+            "Stream",
+            "Text"
+          ],
+          "description": "Allows you to force the use of a specific jakarta.jms.Message implementation for sending JMS messages. Possible values are: Bytes, Map, Object, Stream, Text. By default, Camel would determine which JMS message type to use from the In body type. This option allows you to specify it.",
+          "title": "Jms Message Type",
+          "required": false,
+          "deprecated": false
+        },
         "mapJmsMessage": {
           "kind": "parameter",
           "type": "boolean",
@@ -73322,6 +73949,21 @@
           "required": false,
           "deprecated": false
         },
+        "jmsMessageType": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "Bytes",
+            "Map",
+            "Object",
+            "Stream",
+            "Text"
+          ],
+          "description": "Allows you to force the use of a specific jakarta.jms.Message implementation for sending JMS messages. Possible values are: Bytes, Map, Object, Stream, Text. By default, Camel would determine which JMS message type to use from the In body type. This option allows you to specify it.",
+          "title": "Jms Message Type",
+          "required": false,
+          "deprecated": false
+        },
         "mapJmsMessage": {
           "kind": "parameter",
           "type": "boolean",
@@ -73701,6 +74343,14 @@
           "required": true,
           "deprecated": false
         },
+        "path": {
+          "kind": "path",
+          "type": "string",
+          "description": "The base directory within the share",
+          "title": "Path",
+          "required": false,
+          "deprecated": false
+        },
         "charset": {
           "kind": "parameter",
           "type": "string",
@@ -73731,14 +74381,6 @@
           "type": "string",
           "description": "Use Expression such as File Language to dynamically set the filename. For consumers, it\u0027s used as a filename filter. For producers, it\u0027s used to evaluate the filename to write. If an expression is set, it take precedence over the CamelFileName header. (Note: The header itself can also be an Expression). The expression options support both String and Expression types. If the expression is a String type, it is always evaluated using the File Language. If the expression is an Expression type, the specified Expression type is used - this allows you, for instance, to use OGNL expressions. For the consumer, you can use it to filter filenames, so you can for instance consume today\u0027s file using the File Language syntax: mydata-${date:now:yyyyMMdd}.txt. The producers support the CamelOverruleFileName header which takes precedence over any existing CamelFileName header; the CamelOverruleFileName is a header that is used only once, and makes it easier as this avoids to temporary store CamelFileName and have to restore it afterwards.",
           "title": "File Name",
-          "required": false,
-          "deprecated": false
-        },
-        "path": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The base directory within the share",
-          "title": "Path",
           "required": false,
           "deprecated": false
         },
@@ -84185,6 +84827,15 @@
           "required": true,
           "deprecated": false
         },
+        "bridgeEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the option is true, the Exchange.HTTP_URI header will be ignored and the endpoint URI will be used for the HTTP request. You may also set option throwExceptionOnFailure to false to return the fault response back to the client.",
+          "title": "Bridge Endpoint",
+          "required": false,
+          "deprecated": false
+        },
         "connectTimeout": {
           "kind": "parameter",
           "type": "integer",
@@ -84250,6 +84901,24 @@
           ],
           "description": "The HTTP method to use. The HttpMethod header cannot override this option if set",
           "title": "Http Method",
+          "required": false,
+          "deprecated": false
+        },
+        "multipartUpload": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to force using multipart/form-data for easy file uploads. This is only to be used for uploading the message body as a single entity form-data. For uploading multiple entries then use io.vertx.ext.web.multipart.MultipartForm to build the form.",
+          "title": "Multipart Upload",
+          "required": false,
+          "deprecated": false
+        },
+        "multipartUploadName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "data",
+          "description": "The name of the multipart/form-data when multipartUpload is enabled.",
+          "title": "Multipart Upload Name",
           "required": false,
           "deprecated": false
         },
@@ -84459,15 +85128,6 @@
           "required": false,
           "deprecated": false
         },
-        "allowOriginHeader": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the WebSocket client should add the Origin header to the WebSocket handshake request.",
-          "title": "Allow Origin Header",
-          "required": false,
-          "deprecated": false
-        },
         "consumeAsClient": {
           "kind": "parameter",
           "type": "boolean",
@@ -84486,35 +85146,17 @@
           "required": false,
           "deprecated": false
         },
-        "handshakeHeaders": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Headers to send in the HTTP handshake request. When the endpoint is a consumer, it only works when it consumes a remote host as a client (i.e. consumeAsClient is true).",
-          "title": "Handshake Headers",
-          "required": false,
-          "deprecated": false
-        },
         "maxReconnectAttempts": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "0",
           "description": "When consumeAsClient is set to true this sets the maximum number of allowed reconnection attempts to a previously closed WebSocket. A value of 0 (the default) will attempt to reconnect indefinitely.",
           "title": "Max Reconnect Attempts",
-          "required": false,
-          "deprecated": false
-        },
-        "originHeaderUrl": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The value of the Origin header that the WebSocket client should use on the WebSocket handshake request. When not specified, the WebSocket client will automatically determine the value for the Origin from the request URL.",
-          "title": "Origin Header Url",
           "required": false,
           "deprecated": false
         },
         "reconnectInitialDelay": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "0",
           "description": "When consumeAsClient is set to true this sets the initial delay in milliseconds before attempting to reconnect to a previously closed WebSocket.",
           "title": "Reconnect Initial Delay",
           "required": false,
@@ -84526,22 +85168,6 @@
           "defaultValue": "1000",
           "description": "When consumeAsClient is set to true this sets the interval in milliseconds at which reconnecting to a previously closed WebSocket occurs.",
           "title": "Reconnect Interval",
-          "required": false,
-          "deprecated": false
-        },
-        "router": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To use an existing vertx router for the HTTP server",
-          "title": "Router",
-          "required": false,
-          "deprecated": false
-        },
-        "serverOptions": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Sets customized options for configuring the HTTP server hosting the WebSocket for the consumer",
-          "title": "Server Options",
           "required": false,
           "deprecated": false
         },
@@ -84574,11 +85200,19 @@
           "required": false,
           "deprecated": false
         },
-        "clientOptions": {
+        "router": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets customized options for configuring the WebSocket client used in the producer",
-          "title": "Client Options",
+          "description": "To use an existing vertx router for the HTTP server",
+          "title": "Router",
+          "required": false,
+          "deprecated": false
+        },
+        "serverOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Sets customized options for configuring the HTTP server hosting the WebSocket for the consumer",
+          "title": "Server Options",
           "required": false,
           "deprecated": false
         },
@@ -84599,12 +85233,45 @@
           "required": false,
           "deprecated": false
         },
+        "clientOptions": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Sets customized options for configuring the WebSocket client used in the producer",
+          "title": "Client Options",
+          "required": false,
+          "deprecated": false
+        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "allowOriginHeader": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the WebSocket client should add the Origin header to the WebSocket handshake request.",
+          "title": "Allow Origin Header",
+          "required": false,
+          "deprecated": false
+        },
+        "handshakeHeaders": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Headers to send in the HTTP handshake request. When the endpoint is a consumer, it only works when it consumes a remote host as a client (i.e. consumeAsClient is true).",
+          "title": "Handshake Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "originHeaderUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The value of the Origin header that the WebSocket client should use on the WebSocket handshake request. When not specified, the WebSocket client will automatically determine the value for the Origin from the request URL.",
+          "title": "Origin Header Url",
           "required": false,
           "deprecated": false
         },
@@ -85060,6 +85727,80 @@
           "description": "The geolocation service now needs to specify the IP associated to the accessKey you\u0027re using",
           "title": "Geolocation Request Host IP",
           "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "weaviate": {
+      "type": "object",
+      "title": "weaviate",
+      "group": "database,ai",
+      "icon": "generic24.png",
+      "description": "Perform operations on the Weaviate Vector Database.",
+      "properties": {
+        "collection": {
+          "kind": "path",
+          "type": "string",
+          "description": "The collection Name",
+          "title": "Collection",
+          "required": true,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "API Key to authenticate to weaviate with",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "host": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Weaviate server host to connect to",
+          "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Proxy host to connect to weaviate through",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Proxy port to connect to weaviate through",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyScheme": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Proxy scheme to connect to weaviate through",
+          "title": "Proxy Scheme",
+          "required": false,
+          "deprecated": false
+        },
+        "scheme": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Scheme used to connect to weaviate",
+          "title": "Scheme",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
           "deprecated": false
         }
       }
@@ -85946,6 +86687,14 @@
           ],
           "description": "Option to specify which output type to use. Possible values are: string, bytes, DOM, file. The first three options are all in memory based, where as file is streamed directly to a java.io.File. For file you must specify the filename in the IN header with the key XsltConstants.XSLT_FILE_NAME which is also CamelXsltFileName. Also any paths leading to the filename must be created beforehand, otherwise an exception is thrown at runtime.",
           "title": "Output",
+          "required": false,
+          "deprecated": false
+        },
+        "source": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
@@ -87055,6 +87804,14 @@
           "required": false,
           "deprecated": false
         },
+        "source": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
+          "required": false,
+          "deprecated": false
+        },
         "transformerCacheSize": {
           "kind": "parameter",
           "type": "integer",
@@ -87211,6 +87968,14 @@
           ],
           "description": "Option to specify which output type to use. Possible values are: string, bytes, DOM, file. The first three options are all in memory based, where as file is streamed directly to a java.io.File. For file you must specify the filename in the IN header with the key XsltConstants.XSLT_FILE_NAME which is also CamelXsltFileName. Also any paths leading to the filename must be created beforehand, otherwise an exception is thrown at runtime.",
           "title": "Output",
+          "required": false,
+          "deprecated": false
+        },
+        "source": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Source to use, instead of message body. You can prefix with variable:, header:, or property: to specify kind of source. Otherwise, the source is assumed to be a variable. Use empty or null to use default source, which is the message body.",
+          "title": "Source",
           "required": false,
           "deprecated": false
         },
@@ -87540,6 +88305,7 @@
             "DELETE_USER_SEGMENT",
             "DELETE_USER_SEGMENT_1",
             "DELETE_USERS",
+            "EXECUTE_VIEW",
             "GET_ACTIVE_TRIGGERS",
             "GET_ARTICLE",
             "GET_ARTICLE_FROM_SEARCH",

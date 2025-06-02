@@ -862,6 +862,14 @@
           "required": true,
           "deprecated": false
         },
+        "apiContextPath": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Whether to enable api-doc that exposes the OpenAPI specification file as a REST endpoint. This allows clients to obtain the specification from the running Camel application.",
+          "title": "Api Context Path",
+          "required": false,
+          "deprecated": false
+        },
         "routeId": {
           "kind": "attribute",
           "type": "string",

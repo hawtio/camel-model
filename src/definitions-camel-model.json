@@ -1366,6 +1366,96 @@
         }
       }
     },
+    "customTransformer": {
+      "type": "object",
+      "title": "Custom Transformer",
+      "group": "transformation",
+      "icon": "generic24.png",
+      "description": "To use a custom transformer on a route level.",
+      "properties": {
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a bean reference of the Transformer",
+          "title": "Ref",
+          "required": false,
+          "deprecated": false
+        },
+        "className": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a class name of the Transformer",
+          "title": "Class Name",
+          "required": false,
+          "deprecated": false
+        },
+        "scheme": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a scheme name supported by the transformer. If you specify \u0027csv\u0027, the transformer will be picked up for all of \u0027csv\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Scheme",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the transformer name under which the transformer gets referenced when specifying the input/output data type on routes. If you specify a transformer name that matches a data type scheme like \u0027csv\u0027 the transformer will be picked up for all of \u0027csv:\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Name",
+          "required": false,
+          "deprecated": false
+        },
+        "fromType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027from\u0027 data type name. If you specify \u0027xml:XYZ\u0027, the transformer will be picked up if source type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the transformer matches with all of \u0027xml\u0027 source type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "From Type",
+          "required": false,
+          "deprecated": false
+        },
+        "toType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027to\u0027 data type name. If you specify \u0027json:XYZ\u0027, the transformer will be picked up if destination type is \u0027json:XYZ\u0027. If you specify just \u0027json\u0027, the transformer matches with all of \u0027json\u0027 destination type like \u0027json:ABC\u0027 or \u0027json:DEF\u0027.",
+          "title": "To Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "customValidator": {
+      "type": "object",
+      "title": "Custom Validator",
+      "group": "validation",
+      "icon": "generic24.png",
+      "description": "To use a custom validator on the route level.",
+      "properties": {
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a bean reference of the Validator",
+          "title": "Ref",
+          "required": false,
+          "deprecated": false
+        },
+        "className": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a class name of the Validator",
+          "title": "Class Name",
+          "required": false,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the data type name. If you specify \u0027xml:XYZ\u0027, the validator will be picked up if message type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the validator matches with all of \u0027xml\u0027 message type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "deadLetterChannel": {
       "type": "object",
       "title": "Dead Letter Channel",
@@ -2001,6 +2091,96 @@
         }
       }
     },
+    "endpointTransformer": {
+      "type": "object",
+      "title": "Endpoint Transformer",
+      "group": "transformation",
+      "icon": "generic24.png",
+      "description": "To use a Camel endpoint to perform transformation on the route level.",
+      "properties": {
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the reference of the Endpoint.",
+          "title": "Ref",
+          "required": false,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the URI of the Endpoint.",
+          "title": "Uri",
+          "required": false,
+          "deprecated": false
+        },
+        "scheme": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a scheme name supported by the transformer. If you specify \u0027csv\u0027, the transformer will be picked up for all of \u0027csv\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Scheme",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the transformer name under which the transformer gets referenced when specifying the input/output data type on routes. If you specify a transformer name that matches a data type scheme like \u0027csv\u0027 the transformer will be picked up for all of \u0027csv:\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Name",
+          "required": false,
+          "deprecated": false
+        },
+        "fromType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027from\u0027 data type name. If you specify \u0027xml:XYZ\u0027, the transformer will be picked up if source type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the transformer matches with all of \u0027xml\u0027 source type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "From Type",
+          "required": false,
+          "deprecated": false
+        },
+        "toType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027to\u0027 data type name. If you specify \u0027json:XYZ\u0027, the transformer will be picked up if destination type is \u0027json:XYZ\u0027. If you specify just \u0027json\u0027, the transformer matches with all of \u0027json\u0027 destination type like \u0027json:ABC\u0027 or \u0027json:DEF\u0027.",
+          "title": "To Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "endpointValidator": {
+      "type": "object",
+      "title": "Endpoint Validator",
+      "group": "validation",
+      "icon": "generic24.png",
+      "description": "To use a Camel endpoint to perform validation on the route level.",
+      "properties": {
+        "ref": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the reference of the Endpoint.",
+          "title": "Ref",
+          "required": false,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the URI of the Endpoint.",
+          "title": "Uri",
+          "required": false,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the data type name. If you specify \u0027xml:XYZ\u0027, the validator will be picked up if message type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the validator matches with all of \u0027xml\u0027 message type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "enrich": {
       "type": "object",
       "title": "Enrich",
@@ -2244,11 +2424,11 @@
           "required": false,
           "deprecated": false
         },
-        "circuitBreaker": {
+        "typedGuard": {
           "kind": "attribute",
           "type": "string",
-          "description": "Refers to an existing io.smallrye.faulttolerance.core.circuit.breaker.CircuitBreaker instance to lookup and use from the registry. When using this, then any other circuit breaker options are not in use.",
-          "title": "Circuit Breaker",
+          "description": "Refers to an existing io.smallrye.faulttolerance.api.TypedGuard instance to lookup and use from the registry. When using this, then any other TypedGuard circuit breaker options are not in use.",
+          "title": "Typed Guard",
           "required": false,
           "deprecated": false
         },
@@ -2315,14 +2495,6 @@
           "required": false,
           "deprecated": false
         },
-        "timeoutScheduledExecutorService": {
-          "kind": "attribute",
-          "type": "object",
-          "description": "References to a custom thread pool to use when timeout is enabled",
-          "title": "Timeout Scheduled Executor Service",
-          "required": false,
-          "deprecated": false
-        },
         "bulkheadEnabled": {
           "kind": "attribute",
           "type": "boolean",
@@ -2350,11 +2522,11 @@
           "required": false,
           "deprecated": false
         },
-        "bulkheadExecutorService": {
+        "threadOffloadExecutorService": {
           "kind": "attribute",
           "type": "object",
-          "description": "References to a custom thread pool to use when bulkhead is enabled.",
-          "title": "Bulkhead Executor Service",
+          "description": "References a custom thread pool to use when offloading a guarded action to another thread.",
+          "title": "Thread Offload Executor Service",
           "required": false,
           "deprecated": false
         }
@@ -3562,6 +3734,64 @@
         }
       }
     },
+    "loadTransformer": {
+      "type": "object",
+      "title": "Load Transformer",
+      "group": "transformation",
+      "icon": "generic24.png",
+      "description": "To load custom transformers from classpath scanning to be used for route level transformations.",
+      "properties": {
+        "packageScan": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the classpath location to scan for annotated transformers.",
+          "title": "Package Scan",
+          "required": false,
+          "deprecated": false
+        },
+        "defaults": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable loading of default transformers.",
+          "title": "Defaults",
+          "required": false,
+          "deprecated": false
+        },
+        "scheme": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set a scheme name supported by the transformer. If you specify \u0027csv\u0027, the transformer will be picked up for all of \u0027csv\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Scheme",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the transformer name under which the transformer gets referenced when specifying the input/output data type on routes. If you specify a transformer name that matches a data type scheme like \u0027csv\u0027 the transformer will be picked up for all of \u0027csv:\u0027 from/to Java transformation. Note that the scheme matching is performed only when no exactly matched transformer exists.",
+          "title": "Name",
+          "required": false,
+          "deprecated": false
+        },
+        "fromType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027from\u0027 data type name. If you specify \u0027xml:XYZ\u0027, the transformer will be picked up if source type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the transformer matches with all of \u0027xml\u0027 source type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "From Type",
+          "required": false,
+          "deprecated": false
+        },
+        "toType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the \u0027to\u0027 data type name. If you specify \u0027json:XYZ\u0027, the transformer will be picked up if destination type is \u0027json:XYZ\u0027. If you specify just \u0027json\u0027, the transformer matches with all of \u0027json\u0027 destination type like \u0027json:ABC\u0027 or \u0027json:DEF\u0027.",
+          "title": "To Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "log": {
       "type": "object",
       "title": "Logger",
@@ -4757,6 +4987,31 @@
         }
       }
     },
+    "predicateValidator": {
+      "type": "object",
+      "title": "Predicate Validator",
+      "group": "validation",
+      "icon": "generic24.png",
+      "description": "To use a predicate to perform validation on the route level.",
+      "properties": {
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "type": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Set the data type name. If you specify \u0027xml:XYZ\u0027, the validator will be picked up if message type is \u0027xml:XYZ\u0027. If you specify just \u0027xml\u0027, the validator matches with all of \u0027xml\u0027 message type like \u0027xml:ABC\u0027 or \u0027xml:DEF\u0027.",
+          "title": "Type",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "process": {
       "type": "object",
       "title": "Process",
@@ -5892,7 +6147,7 @@
             "ERROR",
             "OFF"
           ],
-          "description": "",
+          "description": "The logging level to use in case of failures.",
           "title": "Logging Level",
           "required": false,
           "deprecated": false
