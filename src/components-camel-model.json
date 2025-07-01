@@ -39800,7 +39800,7 @@
           "description": "Proxy authentication domain to use with NTML",
           "title": "Proxy Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthHost": {
           "kind": "parameter",
@@ -39829,7 +39829,7 @@
           "description": "Proxy authentication domain (workstation name) to use with NTML",
           "title": "Proxy Auth Nt Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthPassword": {
           "kind": "parameter",
@@ -39889,7 +39889,7 @@
           "description": "Authentication domain to use with NTML",
           "title": "Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authenticationPreemptive": {
           "kind": "parameter",
@@ -39906,12 +39906,12 @@
           "description": "Authentication host to use with NTML",
           "title": "Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authMethod": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM.",
+          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
           "required": false,
           "deprecated": false
@@ -39924,7 +39924,7 @@
             "Digest",
             "NTLM"
           ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM.",
+          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM. (NTLM is deprecated)",
           "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
@@ -40336,7 +40336,7 @@
           "description": "Proxy authentication domain to use with NTML",
           "title": "Proxy Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthHost": {
           "kind": "parameter",
@@ -40365,7 +40365,7 @@
           "description": "Proxy authentication domain (workstation name) to use with NTML",
           "title": "Proxy Auth Nt Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthPassword": {
           "kind": "parameter",
@@ -40425,7 +40425,7 @@
           "description": "Authentication domain to use with NTML",
           "title": "Auth Domain",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authenticationPreemptive": {
           "kind": "parameter",
@@ -40442,12 +40442,12 @@
           "description": "Authentication host to use with NTML",
           "title": "Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "authMethod": {
           "kind": "parameter",
           "type": "string",
-          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM.",
+          "description": "Authentication methods allowed to use as a comma separated list of values Basic, Digest or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
           "required": false,
           "deprecated": false
@@ -40460,7 +40460,7 @@
             "Digest",
             "NTLM"
           ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM.",
+          "description": "Which authentication method to prioritize to use, either as Basic, Digest or NTLM. (NTLM is deprecated)",
           "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
@@ -48439,6 +48439,14 @@
           "description": "Entity class name",
           "title": "Entity Type",
           "required": true,
+          "deprecated": false
+        },
+        "entityManagerFactory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The EntityManagerFactory to use.",
+          "title": "Entity Manager Factory",
+          "required": false,
           "deprecated": false
         },
         "joinTransaction": {
@@ -56555,14 +56563,6 @@
           "required": true,
           "deprecated": false
         },
-        "tags": {
-          "kind": "path",
-          "type": "object",
-          "description": "Tags of metrics",
-          "title": "Tags",
-          "required": false,
-          "deprecated": false
-        },
         "action": {
           "kind": "parameter",
           "type": "string",
@@ -56596,6 +56596,14 @@
           "type": "string",
           "description": "Description of metrics",
           "title": "Metrics Description",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Tags of metrics",
+          "title": "Tags",
           "required": false,
           "deprecated": false
         },
@@ -65020,12 +65028,29 @@
           "required": false,
           "deprecated": false
         },
+        "requestTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The period in milliseconds after which the request should be timed out.",
+          "title": "Request Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "returnHttpRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Whether to include HTTP request headers (Accept, User-Agent, etc.) into HTTP response produced by this endpoint.",
           "title": "Return Http Request Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "useBodyHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to use BodyHandler for the request. If set to false then the request will no be read and parsed.",
+          "title": "Use Body Handler",
           "required": false,
           "deprecated": false
         },

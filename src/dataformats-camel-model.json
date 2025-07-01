@@ -1998,7 +1998,6 @@
             "Fastjson",
             "Gson",
             "Jackson",
-            "Johnzon",
             "Jsonb"
           ],
           "description": "Which json library to use.",
