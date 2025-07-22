@@ -267,7 +267,7 @@
         "destinationOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Destination Options are a way to provide extended configuration options to a JMS consumer without having to extend the JMS API. The options are encoded using URL query syntax in the destination name that the consumer is created on. See more details at https://activemq.apache.org/destination-options.",
+          "description": "Destination Options are a way to provide extended configuration options to a JMS consumer without having to extend the JMS API. The options are encoded using URL query syntax in the destination name that the consumer is created on. See more details at https://activemq.apache.org/destination-options. This is a multi-value option with prefix: destination.",
           "title": "Destination Options",
           "required": false,
           "deprecated": false
@@ -1257,7 +1257,7 @@
         "destinationOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Destination Options are a way to provide extended configuration options to a JMS consumer without having to extend the JMS API. The options are encoded using URL query syntax in the destination name that the consumer is created on. See more details at https://activemq.apache.org/destination-options.",
+          "description": "Destination Options are a way to provide extended configuration options to a JMS consumer without having to extend the JMS API. The options are encoded using URL query syntax in the destination name that the consumer is created on. See more details at https://activemq.apache.org/destination-options. This is a multi-value option with prefix: destination.",
           "title": "Destination Options",
           "required": false,
           "deprecated": false
@@ -4153,7 +4153,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -4860,7 +4860,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -5431,7 +5431,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -7160,7 +7160,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -8832,7 +8832,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -10969,7 +10969,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -12218,7 +12218,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -14626,7 +14626,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -15634,7 +15634,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -16105,7 +16105,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -16462,7 +16462,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -16570,7 +16570,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used for configuring additional properties on the bean",
+          "description": "Used for configuring additional properties on the bean. This is a multi-value option with prefix: bean.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -17596,7 +17596,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -17702,7 +17702,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used for configuring additional properties on the bean",
+          "description": "Used for configuring additional properties on the bean. This is a multi-value option with prefix: bean.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -19666,7 +19666,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -20140,7 +20140,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -20660,7 +20660,7 @@
         "properties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To set additional CXF options using the key/value pairs from the Map. For example to turn on stacktraces in SOAP faults, properties.faultStackTraceEnabled\u003dtrue",
+          "description": "To set additional CXF options using the key/value pairs from the Map. For example to turn on stacktraces in SOAP faults, properties.faultStackTraceEnabled\u003dtrue. This is a multi-value option with prefix: properties.",
           "title": "Properties",
           "required": false,
           "deprecated": false
@@ -21440,7 +21440,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
+          "description": "Sets a grace period after which the mock will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -21458,17 +21458,35 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies the expected number of message exchanges that should be received by this endpoint. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use setAssertPeriod(long). An alternative is to use NotifyBuilder, and use the notifier to know when Camel is done routing some messages, before you call the assertIsSatisfied() method on the mocks. This allows you to not use a fixed assert period, to speedup testing times. If you want to assert that exactly nth message arrives to this mock endpoint, then see also the setAssertPeriod(long) method for further details.",
+          "description": "Specifies the expected number of message exchanges that should be received by this mock. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use the assertPeriod option. If you want to assert that exactly nth message arrives to this mock, then see also the assertPeriod option for further details.",
           "title": "Expected Count",
+          "required": false,
+          "deprecated": false
+        },
+        "copyOnExchange": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint.",
+          "title": "Copy On Exchange",
           "required": false,
           "deprecated": false
         },
         "failFast": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether assertIsSatisfied() should fail fast at the first detected failed expectation while it may otherwise wait for all expected messages to arrive before performing expectations verifications. Is by default true. Set to false to use behavior as in Camel 2.x.",
           "title": "Fail Fast",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         },
@@ -21476,7 +21494,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
+          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging, then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
           "title": "Log",
           "required": false,
           "deprecated": false
@@ -21492,7 +21510,7 @@
         "resultMinimumWaitTime": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets the minimum expected amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "description": "Sets the minimum expected amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
           "title": "Result Minimum Wait Time",
           "required": false,
           "deprecated": false
@@ -21500,7 +21518,7 @@
         "resultWaitTime": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets the maximum amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "description": "Sets the maximum amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
           "title": "Result Wait Time",
           "required": false,
           "deprecated": false
@@ -21509,7 +21527,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
+          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
           "title": "Retain First",
           "required": false,
           "deprecated": false
@@ -21518,7 +21536,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
+          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
           "title": "Retain Last",
           "required": false,
           "deprecated": false
@@ -21526,26 +21544,8 @@
         "sleepForEmptyTest": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Allows a sleep to be specified to wait to check that this endpoint really is empty when expectedMessageCount(int) is called with zero",
+          "description": "Allows a sleep to be specified to wait to check that this mock really is empty when expectedMessageCount(int) is called with zero value",
           "title": "Sleep For Empty Test",
-          "required": false,
-          "deprecated": false
-        },
-        "copyOnExchange": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint. Is by default true.",
-          "title": "Copy On Exchange",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         },
@@ -21587,7 +21587,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
+          "description": "Sets a grace period after which the mock will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -21604,76 +21604,8 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies the expected number of message exchanges that should be received by this endpoint. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use setAssertPeriod(long). An alternative is to use NotifyBuilder, and use the notifier to know when Camel is done routing some messages, before you call the assertIsSatisfied() method on the mocks. This allows you to not use a fixed assert period, to speedup testing times. If you want to assert that exactly nth message arrives to this mock endpoint, then see also the setAssertPeriod(long) method for further details.",
+          "description": "Specifies the expected number of message exchanges that should be received by this mock. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use the assertPeriod option. If you want to assert that exactly nth message arrives to this mock, then see also the assertPeriod option for further details.",
           "title": "Expected Count",
-          "required": false,
-          "deprecated": false
-        },
-        "failFast": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Sets whether assertIsSatisfied() should fail fast at the first detected failed expectation while it may otherwise wait for all expected messages to arrive before performing expectations verifications. Is by default true. Set to false to use behavior as in Camel 2.x.",
-          "title": "Fail Fast",
-          "required": false,
-          "deprecated": false
-        },
-        "log": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
-          "title": "Log",
-          "required": false,
-          "deprecated": false
-        },
-        "reportGroup": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "A number that is used to turn on throughput logging based on groups of the size.",
-          "title": "Report Group",
-          "required": false,
-          "deprecated": false
-        },
-        "resultMinimumWaitTime": {
-          "kind": "parameter",
-          "type": "duration",
-          "description": "Sets the minimum expected amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
-          "title": "Result Minimum Wait Time",
-          "required": false,
-          "deprecated": false
-        },
-        "resultWaitTime": {
-          "kind": "parameter",
-          "type": "duration",
-          "description": "Sets the maximum amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
-          "title": "Result Wait Time",
-          "required": false,
-          "deprecated": false
-        },
-        "retainFirst": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "-1",
-          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
-          "title": "Retain First",
-          "required": false,
-          "deprecated": false
-        },
-        "retainLast": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "-1",
-          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
-          "title": "Retain Last",
-          "required": false,
-          "deprecated": false
-        },
-        "sleepForEmptyTest": {
-          "kind": "parameter",
-          "type": "duration",
-          "description": "Allows a sleep to be specified to wait to check that this endpoint really is empty when expectedMessageCount(int) is called with zero",
-          "title": "Sleep For Empty Test",
           "required": false,
           "deprecated": false
         },
@@ -21699,8 +21631,17 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint. Is by default true.",
+          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint.",
           "title": "Copy On Exchange",
+          "required": false,
+          "deprecated": false
+        },
+        "failFast": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether assertIsSatisfied() should fail fast at the first detected failed expectation while it may otherwise wait for all expected messages to arrive before performing expectations verifications. Is by default true. Set to false to use behavior as in Camel 2.x.",
+          "title": "Fail Fast",
           "required": false,
           "deprecated": false
         },
@@ -21710,6 +21651,65 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "log": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging, then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
+          "title": "Log",
+          "required": false,
+          "deprecated": false
+        },
+        "reportGroup": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "A number that is used to turn on throughput logging based on groups of the size.",
+          "title": "Report Group",
+          "required": false,
+          "deprecated": false
+        },
+        "resultMinimumWaitTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "Sets the minimum expected amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "title": "Result Minimum Wait Time",
+          "required": false,
+          "deprecated": false
+        },
+        "resultWaitTime": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "Sets the maximum amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "title": "Result Wait Time",
+          "required": false,
+          "deprecated": false
+        },
+        "retainFirst": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
+          "title": "Retain First",
+          "required": false,
+          "deprecated": false
+        },
+        "retainLast": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "-1",
+          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
+          "title": "Retain Last",
+          "required": false,
+          "deprecated": false
+        },
+        "sleepForEmptyTest": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "Allows a sleep to be specified to wait to check that this mock really is empty when expectedMessageCount(int) is called with zero value",
+          "title": "Sleep For Empty Test",
           "required": false,
           "deprecated": false
         },
@@ -21742,7 +21742,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -22452,7 +22452,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -23109,7 +23109,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -24078,7 +24078,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -25208,7 +25208,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -26191,7 +26191,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro",
+          "description": "Additional properties for debezium components in case they can\u0027t be set directly on the camel configurations (e.g: setting Kafka Connect properties needed by Debezium engine, for example setting KafkaOffsetBackingStore), the properties have to be prefixed with additionalProperties.. E.g: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -27214,7 +27214,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -29664,7 +29664,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -30587,7 +30587,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -31015,7 +31015,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -31282,7 +31282,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -31863,7 +31863,7 @@
         "ftpClientConfigParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used by FtpComponent to provide additional parameters for the FTPClientConfig",
+          "description": "Used by FtpComponent to provide additional parameters for the FTPClientConfig. This is a multi-value option with prefix: ftpClientConfig.",
           "title": "Ftp Client Config Parameters",
           "required": false,
           "deprecated": false
@@ -31871,7 +31871,7 @@
         "ftpClientParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used by FtpComponent to provide additional parameters for the FTPClient",
+          "description": "Used by FtpComponent to provide additional parameters for the FTPClient. This is a multi-value option with prefix: ftpClient.",
           "title": "Ftp Client Parameters",
           "required": false,
           "deprecated": false
@@ -32298,7 +32298,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -32938,7 +32938,7 @@
         "ftpClientConfigParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used by FtpComponent to provide additional parameters for the FTPClientConfig",
+          "description": "Used by FtpComponent to provide additional parameters for the FTPClientConfig. This is a multi-value option with prefix: ftpClientConfig.",
           "title": "Ftp Client Config Parameters",
           "required": false,
           "deprecated": false
@@ -32946,7 +32946,7 @@
         "ftpClientParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Used by FtpComponent to provide additional parameters for the FTPClient",
+          "description": "Used by FtpComponent to provide additional parameters for the FTPClient. This is a multi-value option with prefix: ftpClient.",
           "title": "Ftp Client Parameters",
           "required": false,
           "deprecated": false
@@ -33373,7 +33373,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -33450,7 +33450,7 @@
         "ftpClientKeyStoreParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Set the key store parameters",
+          "description": "Set the key store parameters. This is a multi-value option with prefix: ftpClient.keyStore.",
           "title": "Ftp Client Key Store Parameters",
           "required": false,
           "deprecated": false
@@ -33458,7 +33458,7 @@
         "ftpClientTrustStoreParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Set the trust store parameters",
+          "description": "Set the trust store parameters. This is a multi-value option with prefix: ftpClient.trustStore.",
           "title": "Ftp Client Trust Store Parameters",
           "required": false,
           "deprecated": false
@@ -33953,7 +33953,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -34271,7 +34271,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -34688,7 +34688,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -35030,7 +35030,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -35379,7 +35379,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -35781,7 +35781,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -36090,7 +36090,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -36188,31 +36188,6 @@
           "required": true,
           "deprecated": false
         },
-        "authenticate": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Use Credentials when interacting with PubSub service (no authentication is required when using emulator).",
-          "title": "Authenticate",
-          "required": false,
-          "deprecated": false
-        },
-        "loggerId": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Logger ID to use when a match to the parent route required",
-          "title": "Logger Id",
-          "required": false,
-          "deprecated": false
-        },
-        "serviceAccountKey": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Service account key that can be used as credentials for the PubSub publisher/subscriber. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
-          "title": "Service Account Key",
-          "required": false,
-          "deprecated": false
-        },
         "ackMode": {
           "kind": "parameter",
           "type": "object",
@@ -36226,12 +36201,41 @@
           "required": false,
           "deprecated": false
         },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
         "concurrentConsumers": {
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "1",
           "description": "The number of parallel streams consuming from the subscription",
           "title": "Concurrent Consumers",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "object",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
           "required": false,
           "deprecated": false
         },
@@ -36259,35 +36263,6 @@
           "defaultValue": "false",
           "description": "Synchronously pull batches of messages",
           "title": "Synchronous Pull",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "object",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
           "required": false,
           "deprecated": false
         },
@@ -36330,6 +36305,31 @@
           "type": "object",
           "description": "A custom GooglePubsubSerializer to use for serializing message payloads in the producer",
           "title": "Serializer",
+          "required": false,
+          "deprecated": false
+        },
+        "loggerId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To use a custom logger name",
+          "title": "Logger Id",
+          "required": false,
+          "deprecated": true
+        },
+        "authenticate": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Use Credentials when interacting with PubSub service (no authentication is required when using emulator).",
+          "title": "Authenticate",
+          "required": false,
+          "deprecated": false
+        },
+        "serviceAccountKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Service account key that can be used as credentials for the PubSub publisher/subscriber. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
+          "title": "Service Account Key",
           "required": false,
           "deprecated": false
         }
@@ -36776,7 +36776,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -37103,7 +37103,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -37481,7 +37481,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -39757,11 +39757,20 @@
           "required": false,
           "deprecated": false
         },
+        "skipControlHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip Camel control headers (CamelHttp... headers) to influence this endpoint. Control headers from previous HTTP components can influence how this Camel component behaves such as CamelHttpPath, CamelHttpQuery, etc.",
+          "title": "Skip Control Headers",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "description": "Whether to skip mapping the Camel headers as HTTP request headers. This is useful when you know that calling the HTTP service should not include any custom headers.",
           "title": "Skip Request Headers",
           "required": false,
           "deprecated": false
@@ -39770,7 +39779,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "description": "Whether to skip mapping all the HTTP response headers to Camel headers.",
           "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
@@ -39949,7 +39958,7 @@
         "httpClientOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure the HttpClient using the key/values from the Map.",
+          "description": "To configure the HttpClient using the key/values from the Map. This is a multi-value option with prefix: httpClient.",
           "title": "Http Client Options",
           "required": false,
           "deprecated": false
@@ -39957,7 +39966,7 @@
         "httpConnectionOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure the connection and the socket using the key/values from the Map.",
+          "description": "To configure the connection and the socket using the key/values from the Map. This is a multi-value option with prefix: httpConnection.",
           "title": "Http Connection Options",
           "required": false,
           "deprecated": false
@@ -40120,19 +40129,6 @@
           ],
           "description": "Authentication methods allowed to use as a comma separated list of values Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
-          "required": false,
-          "deprecated": false
-        },
-        "authMethodPriority": {
-          "kind": "parameter",
-          "type": "string",
-          "enum": [
-            "Basic",
-            "Bearer",
-            "NTLM"
-          ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Bearer, or NTLM. (NTLM is deprecated)",
-          "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
         },
@@ -40332,11 +40328,20 @@
           "required": false,
           "deprecated": false
         },
+        "skipControlHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to skip Camel control headers (CamelHttp... headers) to influence this endpoint. Control headers from previous HTTP components can influence how this Camel component behaves such as CamelHttpPath, CamelHttpQuery, etc.",
+          "title": "Skip Control Headers",
+          "required": false,
+          "deprecated": false
+        },
         "skipRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip mapping all the Camel headers as HTTP request headers. If there are no data from Camel headers needed to be included in the HTTP request then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "description": "Whether to skip mapping the Camel headers as HTTP request headers. This is useful when you know that calling the HTTP service should not include any custom headers.",
           "title": "Skip Request Headers",
           "required": false,
           "deprecated": false
@@ -40345,7 +40350,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip mapping all the HTTP response headers to Camel headers. If there are no data needed from HTTP headers then this can avoid parsing overhead with many object allocations for the JVM garbage collector.",
+          "description": "Whether to skip mapping all the HTTP response headers to Camel headers.",
           "title": "Skip Response Headers",
           "required": false,
           "deprecated": false
@@ -40524,7 +40529,7 @@
         "httpClientOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure the HttpClient using the key/values from the Map.",
+          "description": "To configure the HttpClient using the key/values from the Map. This is a multi-value option with prefix: httpClient.",
           "title": "Http Client Options",
           "required": false,
           "deprecated": false
@@ -40532,7 +40537,7 @@
         "httpConnectionOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure the connection and the socket using the key/values from the Map.",
+          "description": "To configure the connection and the socket using the key/values from the Map. This is a multi-value option with prefix: httpConnection.",
           "title": "Http Connection Options",
           "required": false,
           "deprecated": false
@@ -40695,19 +40700,6 @@
           ],
           "description": "Authentication methods allowed to use as a comma separated list of values Basic, Bearer, or NTLM. (NTLM is deprecated)",
           "title": "Auth Method",
-          "required": false,
-          "deprecated": false
-        },
-        "authMethodPriority": {
-          "kind": "parameter",
-          "type": "string",
-          "enum": [
-            "Basic",
-            "Bearer",
-            "NTLM"
-          ],
-          "description": "Which authentication method to prioritize to use, either as Basic, Bearer, or NTLM. (NTLM is deprecated)",
-          "title": "Auth Method Priority",
           "required": false,
           "deprecated": false
         },
@@ -41981,7 +41973,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -43669,7 +43661,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -43813,7 +43805,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -43915,7 +43907,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -44301,7 +44293,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -44445,7 +44437,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -44547,7 +44539,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -45843,7 +45835,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -46312,7 +46304,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Optional parameters to the java.sql.Statement. For example to set maxRows, fetchSize etc.",
+          "description": "Optional parameters to the java.sql.Statement. For example to set maxRows, fetchSize etc. This is a multi-value option with prefix: statement.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -46643,7 +46635,7 @@
         "filterInitParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Configuration of the filter init parameters. These parameters will be applied to the filter list before starting the jetty server.",
+          "description": "Configuration of the filter init parameters. These parameters will be applied to the filter list before starting the jetty server. This is a multi-value option with prefix: filter.",
           "title": "Filter Init Parameters",
           "required": false,
           "deprecated": false
@@ -47114,7 +47106,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -48317,7 +48309,7 @@
         "objectProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Properties for the object name. These values will be used if the objectName param is not set",
+          "description": "Properties for the object name. These values will be used if the objectName param is not set. This is a multi-value option with prefix: key.",
           "title": "Object Properties",
           "required": false,
           "deprecated": false
@@ -48487,7 +48479,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -48752,7 +48744,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -48997,7 +48989,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "This key/value mapping is used for building the query parameters. It is expected to be of the generic type java.util.Map where the keys are the named parameters of a given JPA query and the values are their corresponding effective values you want to select for. When it\u0027s used for producer, Simple expression can be used as a parameter value. It allows you to retrieve parameter values from the message body, header and etc.",
+          "description": "This key/value mapping is used for building the query parameters. It is expected to be of the generic type java.util.Map where the keys are the named parameters of a given JPA query and the values are their corresponding effective values you want to select for. When it\u0027s used for producer, Simple expression can be used as a parameter value. It allows you to retrieve parameter values from the message body, header and etc. . This is a multi-value option with prefix: parameters.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -49101,7 +49093,7 @@
         "entityManagerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Additional properties for the entity manager to use.",
+          "description": "Additional properties for the entity manager to use. This is a multi-value option with prefix: emf.",
           "title": "Entity Manager Properties",
           "required": false,
           "deprecated": false
@@ -49212,7 +49204,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -49291,7 +49283,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -49358,10 +49350,19 @@
           "required": false,
           "deprecated": false
         },
-        "contentCache": {
+        "allowTemplateFromHeader": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
+          "description": "Whether to allow to use resource template from header or not (default false). Enabling this allows to specify dynamic templates via message header. However this can be seen as a potential security vulnerability if the header is coming from a malicious user, so use this with care.",
+          "title": "Allow Template From Header",
+          "required": false,
+          "deprecated": false
+        },
+        "contentCache": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -49405,7 +49406,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -49512,10 +49513,19 @@
           "required": false,
           "deprecated": false
         },
-        "contentCache": {
+        "allowTemplateFromHeader": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
+          "description": "Whether to allow to use resource template from header or not (default false). Enabling this allows to specify dynamic templates via message header. However this can be seen as a potential security vulnerability if the header is coming from a malicious user, so use this with care.",
+          "title": "Allow Template From Header",
+          "required": false,
+          "deprecated": false
+        },
+        "contentCache": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -49544,6 +49554,15 @@
           ],
           "description": "Specifies if the output should be Jackson JsonNode or a JSON String.",
           "title": "Output Type",
+          "required": false,
+          "deprecated": false
+        },
+        "prettyPrint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to pretty print JSon output when using string as output type.",
+          "title": "Pretty Print",
           "required": false,
           "deprecated": false
         },
@@ -49899,7 +49918,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -49987,7 +50006,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -50022,7 +50041,7 @@
         "additionalProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional properties for either kafka consumer or kafka producer in case they can\u0027t be set directly on the camel configurations (e.g.: new Kafka properties that are not reflected yet in Camel configurations), the properties have to be prefixed with additionalProperties.., e.g.: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. If the properties are set in the application.properties file, they must be prefixed with camel.component.kafka.additional-properties and the property enclosed in square brackets, like this example: camel.component.kafka.additional-propertiesdelivery.timeout.ms\u003d15000.",
+          "description": "Sets additional properties for either kafka consumer or kafka producer in case they can\u0027t be set directly on the camel configurations (e.g.: new Kafka properties that are not reflected yet in Camel configurations), the properties have to be prefixed with additionalProperties.., e.g.: additionalProperties.transactional.id\u003d12345\u0026additionalProperties.schema.registry.url\u003dhttp://localhost:8811/avro. If the properties are set in the application.properties file, they must be prefixed with camel.component.kafka.additional-properties and the property enclosed in square brackets, like this example: camel.component.kafka.additional-propertiesdelivery.timeout.ms\u003d15000. This is a multi-value option with prefix: additionalProperties.",
           "title": "Additional Properties",
           "required": false,
           "deprecated": false
@@ -50690,6 +50709,23 @@
           "defaultValue": "131072",
           "description": "Socket write buffer size",
           "title": "Send Buffer Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "transacted": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Indicates to create a transactional.id kafka property by using the endpoint id and route id. This property is ignored in case there is transactional.id kafka property or the transactionalId parameter.",
+          "title": "Transacted",
+          "required": false,
+          "deprecated": false
+        },
+        "transactionalId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Enable the kafka producer to be a transactional one by setting the transactional.id property. In case this property is used, the transacted parameter is ignored.",
+          "title": "Transactional Id",
           "required": false,
           "deprecated": false
         },
@@ -55676,7 +55712,7 @@
         "chatModel": {
           "kind": "parameter",
           "type": "object",
-          "description": "Chat Language Model of type dev.langchain4j.model.chat.ChatLanguageModel",
+          "description": "Chat Model of type dev.langchain4j.model.chat.ChatModel",
           "title": "Chat Model",
           "required": false,
           "deprecated": false
@@ -55751,7 +55787,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "List of Tool parameters in the form of parameter.\u003d",
+          "description": "List of Tool parameters in the form of parameter.\u003d. This is a multi-value option with prefix: parameter.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -55805,7 +55841,7 @@
         "chatModel": {
           "kind": "parameter",
           "type": "object",
-          "description": "Chat Language Model of type dev.langchain4j.model.chat.ChatLanguageModel",
+          "description": "Chat Model of type dev.langchain4j.model.chat.ChatModel",
           "title": "Chat Model",
           "required": false,
           "deprecated": false
@@ -55948,14 +55984,17 @@
             "java",
             "joor",
             "jq",
+            "js",
             "jsonpath",
             "mvel",
             "ognl",
+            "python",
             "ref",
             "simple",
             "spel",
-            "sql",
             "tokenize",
+            "variable",
+            "wasm",
             "xpath",
             "xquery",
             "xtokenize"
@@ -55982,21 +56021,12 @@
           "required": false,
           "deprecated": false
         },
-        "binary": {
+        "allowTemplateFromHeader": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether the script is binary content or text content. By default the script is read as text content (eg java.lang.String)",
-          "title": "Binary",
-          "required": false,
-          "deprecated": false
-        },
-        "cacheScript": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to cache the compiled script and reuse Notice reusing the script can cause side effects from processing one Camel org.apache.camel.Exchange to the next org.apache.camel.Exchange.",
-          "title": "Cache Script",
+          "description": "Whether to allow to use resource template from header or not (default false). Enabling this allows to specify dynamic templates via message header. However this can be seen as a potential security vulnerability if the header is coming from a malicious user, so use this with care.",
+          "title": "Allow Template From Header",
           "required": false,
           "deprecated": false
         },
@@ -56040,6 +56070,24 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "binary": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the script is binary content or text content. By default the script is read as text content (eg java.lang.String)",
+          "title": "Binary",
+          "required": false,
+          "deprecated": false
+        },
+        "cacheScript": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to cache the compiled script and reuse Notice reusing the script can cause side effects from processing one Camel org.apache.camel.Exchange to the next org.apache.camel.Exchange.",
+          "title": "Cache Script",
           "required": false,
           "deprecated": false
         }
@@ -56979,7 +57027,7 @@
         "tags": {
           "kind": "parameter",
           "type": "object",
-          "description": "Tags of metrics",
+          "description": "Tags of metrics. This is a multi-value option with prefix: tags.",
           "title": "Tags",
           "required": false,
           "deprecated": false
@@ -57858,7 +57906,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -58241,7 +58289,7 @@
         "assertPeriod": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets a grace period after which the mock endpoint will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
+          "description": "Sets a grace period after which the mock will re-assert to ensure the preliminary assertion is still valid. This is used, for example, to assert that exactly a number of messages arrive. For example, if the expected count was set to 5, then the assertion is satisfied when five or more messages arrive. To ensure that exactly 5 messages arrive, then you would need to wait a little period to ensure no further message arrives. This is what you can use this method for. By default, this period is disabled.",
           "title": "Assert Period",
           "required": false,
           "deprecated": false
@@ -58250,17 +58298,35 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies the expected number of message exchanges that should be received by this endpoint. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use setAssertPeriod(long). An alternative is to use NotifyBuilder, and use the notifier to know when Camel is done routing some messages, before you call the assertIsSatisfied() method on the mocks. This allows you to not use a fixed assert period, to speedup testing times. If you want to assert that exactly nth message arrives to this mock endpoint, then see also the setAssertPeriod(long) method for further details.",
+          "description": "Specifies the expected number of message exchanges that should be received by this mock. Beware: If you want to expect that 0 messages, then take extra care, as 0 matches when the tests starts, so you need to set a assert period time to let the test run for a while to make sure there are still no messages arrived; for that use the assertPeriod option. If you want to assert that exactly nth message arrives to this mock, then see also the assertPeriod option for further details.",
           "title": "Expected Count",
+          "required": false,
+          "deprecated": false
+        },
+        "copyOnExchange": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint.",
+          "title": "Copy On Exchange",
           "required": false,
           "deprecated": false
         },
         "failFast": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether assertIsSatisfied() should fail fast at the first detected failed expectation while it may otherwise wait for all expected messages to arrive before performing expectations verifications. Is by default true. Set to false to use behavior as in Camel 2.x.",
           "title": "Fail Fast",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         },
@@ -58268,7 +58334,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
+          "description": "To turn on logging when the mock receives an incoming message. This will log only one time at INFO level for the incoming message. For more detailed logging, then set the logger to DEBUG level for the org.apache.camel.component.mock.MockEndpoint class.",
           "title": "Log",
           "required": false,
           "deprecated": false
@@ -58284,7 +58350,7 @@
         "resultMinimumWaitTime": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets the minimum expected amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "description": "Sets the minimum expected amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
           "title": "Result Minimum Wait Time",
           "required": false,
           "deprecated": false
@@ -58292,7 +58358,7 @@
         "resultWaitTime": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Sets the maximum amount of time (in millis) the assertIsSatisfied() will wait on a latch until it is satisfied",
+          "description": "Sets the maximum amount of time the assertIsSatisfied() will wait on a latch until it is satisfied",
           "title": "Result Wait Time",
           "required": false,
           "deprecated": false
@@ -58301,7 +58367,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
+          "description": "Specifies to only retain the first nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the first 10 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the first 10 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
           "title": "Retain First",
           "required": false,
           "deprecated": false
@@ -58310,7 +58376,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received Exchanges. For example if we have received 5000 Exchanges, and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both setRetainFirst(int) and setRetainLast(int) methods, to limit both the first and last received.",
+          "description": "Specifies to only retain the last nth number of received Exchanges. This is used when testing with big data, to reduce memory consumption by not storing copies of every Exchange this mock endpoint receives. Important: When using this limitation, then the getReceivedCounter() will still return the actual number of received message. For example if we have received 5000 messages and have configured to only retain the last 20 Exchanges, then the getReceivedCounter() will still return 5000 but there is only the last 20 Exchanges in the getExchanges() and getReceivedExchanges() methods. When using this method, then some of the other expectation methods is not supported, for example the expectedBodiesReceived(Object...) sets a expectation on the first number of bodies received. You can configure both retainFirst and retainLast options, to limit both the first and last received.",
           "title": "Retain Last",
           "required": false,
           "deprecated": false
@@ -58318,26 +58384,8 @@
         "sleepForEmptyTest": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Allows a sleep to be specified to wait to check that this endpoint really is empty when expectedMessageCount(int) is called with zero",
+          "description": "Allows a sleep to be specified to wait to check that this mock really is empty when expectedMessageCount(int) is called with zero value",
           "title": "Sleep For Empty Test",
-          "required": false,
-          "deprecated": false
-        },
-        "copyOnExchange": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Sets whether to make a deep copy of the incoming Exchange when received at this mock endpoint. Is by default true.",
-          "title": "Copy On Exchange",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         },
@@ -59102,7 +59150,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -59181,7 +59229,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -59473,7 +59521,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -59619,6 +59667,23 @@
           "defaultValue": "1000",
           "description": "Set the flush timeout (in milliseconds)",
           "title": "Flush Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "jetstreamEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether to enable JetStream support for this endpoint.",
+          "title": "Jetstream Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "jetstreamName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the name of the JetStream stream to use.",
+          "title": "Jetstream Name",
           "required": false,
           "deprecated": false
         },
@@ -59820,8 +59885,17 @@
         "headerFilterStrategy": {
           "kind": "parameter",
           "type": "object",
-          "description": "Define the header filtering strategy",
+          "description": "To use a custom header filter strategy.",
           "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "jetstreamAsync": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets whether to operate JetStream requests asynchronously.",
+          "title": "Jetstream Async",
           "required": false,
           "deprecated": false
         },
@@ -60037,7 +60111,7 @@
             "tcp",
             "udp"
           ],
-          "description": "The protocol to use which can be tcp or udp.",
+          "description": "The protocol to use which can be tcp or udp",
           "title": "Protocol",
           "required": true,
           "deprecated": false
@@ -60045,7 +60119,7 @@
         "host": {
           "kind": "path",
           "type": "string",
-          "description": "The hostname. For the consumer the hostname is localhost or 0.0.0.0. For the producer the hostname is the remote host to connect to",
+          "description": "The hostname. For the consumer the hostname is localhost or 0.0.0.0. For the producer the hostname is the remote host to connect to.",
           "title": "Host",
           "required": true,
           "deprecated": false
@@ -60062,7 +60136,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not to disconnect(close) from Netty Channel right after use. Can be used for both consumer and producer.",
+          "description": "Whether or not to disconnect(close) from Netty Channel right after use.",
           "title": "Disconnect",
           "required": false,
           "deprecated": false
@@ -60089,7 +60163,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "This option allows producers and consumers (in client mode) to reuse the same Netty Channel for the lifecycle of processing the Exchange. This is useful if you need to call a server multiple times in a Camel route and want to use the same network connection. When using this, the channel is not returned to the connection pool until the Exchange is done; or disconnected if the disconnect option is set to true. The reused Channel is stored on the Exchange as an exchange property with the key NettyConstants#NETTY_CHANNEL which allows you to obtain the channel during routing and use it as well.",
+          "description": "This option allows producers and consumers (in client mode) to reuse the same Netty Channel for the lifecycle of processing the Exchange. This is useful if you need to call a server multiple times in a Camel route and want to use the same network connection. When using this, the channel is not returned to the connection pool until the Exchange is done; or disconnected if the disconnect option is set to true. The reused Channel is stored on the Exchange as an exchange property with the key CamelNettyChannel which allows you to obtain the channel during routing and use it as well.",
           "title": "Reuse Channel",
           "required": false,
           "deprecated": false
@@ -60098,7 +60172,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Setting to set endpoint as one-way or request-response",
+          "description": "Setting to set endpoint as one-way (false) or request-response (true)",
           "title": "Sync",
           "required": false,
           "deprecated": false
@@ -60109,15 +60183,6 @@
           "defaultValue": "true",
           "description": "Setting to improve TCP protocol performance",
           "title": "Tcp No Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "broadcast": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Setting to choose Multicast over UDP",
-          "title": "Broadcast",
           "required": false,
           "deprecated": false
         },
@@ -60179,6 +60244,15 @@
           "defaultValue": "false",
           "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
           "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "broadcast": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Setting to choose Multicast over UDP",
+          "title": "Broadcast",
           "required": false,
           "deprecated": false
         },
@@ -60438,7 +60512,7 @@
         "channelGroup": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a explicit ChannelGroup.",
+          "description": "To use an explicit ChannelGroup.",
           "title": "Channel Group",
           "required": false,
           "deprecated": false
@@ -60455,7 +60529,7 @@
         "options": {
           "kind": "parameter",
           "type": "object",
-          "description": "Allows to configure additional netty options using option. as prefix. For example option.child.keepAlive\u003dfalse to set the netty option child.keepAlive\u003dfalse. See the Netty documentation for possible options that can be used.",
+          "description": "Allows to configure additional netty options using option. as prefix. For example option.child.keepAlive\u003dfalse. See the Netty documentation for possible options that can be used. This is a multi-value option with prefix: option.",
           "title": "Options",
           "required": false,
           "deprecated": false
@@ -60643,7 +60717,7 @@
           "description": "Client side certificate keystore to be used for encryption",
           "title": "Key Store File",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "keyStoreFormat": {
           "kind": "parameter",
@@ -60726,7 +60800,7 @@
           "description": "Server side certificate keystore to be used for encryption",
           "title": "Trust Store File",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "trustStoreResource": {
           "kind": "parameter",
@@ -60795,7 +60869,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether or not to disconnect(close) from Netty Channel right after use. Can be used for both consumer and producer.",
+          "description": "Whether or not to disconnect(close) from Netty Channel right after use.",
           "title": "Disconnect",
           "required": false,
           "deprecated": false
@@ -60822,7 +60896,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "This option allows producers and consumers (in client mode) to reuse the same Netty Channel for the lifecycle of processing the Exchange. This is useful if you need to call a server multiple times in a Camel route and want to use the same network connection. When using this, the channel is not returned to the connection pool until the Exchange is done; or disconnected if the disconnect option is set to true. The reused Channel is stored on the Exchange as an exchange property with the key NettyConstants#NETTY_CHANNEL which allows you to obtain the channel during routing and use it as well.",
+          "description": "This option allows producers and consumers (in client mode) to reuse the same Netty Channel for the lifecycle of processing the Exchange. This is useful if you need to call a server multiple times in a Camel route and want to use the same network connection. When using this, the channel is not returned to the connection pool until the Exchange is done; or disconnected if the disconnect option is set to true. The reused Channel is stored on the Exchange as an exchange property with the key CamelNettyChannel which allows you to obtain the channel during routing and use it as well.",
           "title": "Reuse Channel",
           "required": false,
           "deprecated": false
@@ -60831,7 +60905,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Setting to set endpoint as one-way or request-response",
+          "description": "Setting to set endpoint as one-way (false) or request-response (true)",
           "title": "Sync",
           "required": false,
           "deprecated": false
@@ -61260,7 +61334,7 @@
         "channelGroup": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a explicit ChannelGroup.",
+          "description": "To use an explicit ChannelGroup.",
           "title": "Channel Group",
           "required": false,
           "deprecated": false
@@ -61310,7 +61384,7 @@
         "options": {
           "kind": "parameter",
           "type": "object",
-          "description": "Allows to configure additional netty options using option. as prefix. For example option.child.keepAlive\u003dfalse to set the netty option child.keepAlive\u003dfalse. See the Netty documentation for possible options that can be used.",
+          "description": "Allows to configure additional netty options using option. as prefix. For example option.child.keepAlive\u003dfalse. See the Netty documentation for possible options that can be used. This is a multi-value option with prefix: option.",
           "title": "Options",
           "required": false,
           "deprecated": false
@@ -61441,7 +61515,7 @@
           "description": "Client side certificate keystore to be used for encryption",
           "title": "Key Store File",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "keyStoreFormat": {
           "kind": "parameter",
@@ -61487,7 +61561,7 @@
         "securityOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure NettyHttpSecurityConfiguration using key/value pairs from the map",
+          "description": "To configure NettyHttpSecurityConfiguration using key/value pairs from the map. This is a multi-value option with prefix: securityConfiguration.",
           "title": "Security Options",
           "required": false,
           "deprecated": false
@@ -61540,7 +61614,7 @@
           "description": "Server side certificate keystore to be used for encryption",
           "title": "Trust Store File",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "trustStoreResource": {
           "kind": "parameter",
@@ -61873,7 +61947,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -62221,7 +62295,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -62543,7 +62617,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -65002,7 +65076,7 @@
         "slotOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Slot options to be passed to the output plugin.",
+          "description": "Slot options to be passed to the output plugin. This is a multi-value option with prefix: slotOptions.",
           "title": "Slot Options",
           "required": false,
           "deprecated": false
@@ -65113,7 +65187,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -65223,6 +65297,41 @@
           ],
           "description": "Sets the exchange pattern when the consumer creates an exchange.",
           "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "reconnectDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5000",
+          "description": "When the consumer unexpected lose connection to the database, then this specifies the interval (millis) between re-connection attempts to establish a new connection.",
+          "title": "Reconnect Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "workerPool": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom worker pool for processing the events from the database.",
+          "title": "Worker Pool",
+          "required": false,
+          "deprecated": false
+        },
+        "workerPoolCoreSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Number of core threads in the worker pool for processing the events from the database.",
+          "title": "Worker Pool Core Size",
+          "required": false,
+          "deprecated": false
+        },
+        "workerPoolMaxSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "Maximum number of threads in the worker pool for processing the events from the database.",
+          "title": "Worker Pool Max Size",
           "required": false,
           "deprecated": false
         },
@@ -65502,6 +65611,14 @@
           "required": false,
           "deprecated": false
         },
+        "requestTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The period in milliseconds after which the request should be timed out.",
+          "title": "Request Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "returnHttpRequestHeaders": {
           "kind": "parameter",
           "type": "boolean",
@@ -65628,7 +65745,7 @@
         "tags": {
           "kind": "parameter",
           "type": "object",
-          "description": "Tags as key/values from the Map to use in query",
+          "description": "Tags as key/values from the Map to use in query. This is a multi-value option with prefix: tag.",
           "title": "Tags",
           "required": false,
           "deprecated": false
@@ -65992,7 +66109,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -66136,7 +66253,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -66238,7 +66355,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -66624,7 +66741,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -66768,7 +66885,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -66870,7 +66987,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -66950,7 +67067,7 @@
       "title": "PQC Algorithms",
       "group": "security",
       "icon": "generic24.png",
-      "description": "Post Quantum Computing Signature and Verification component.",
+      "description": "Post Quantum Cryptography Signature and Verification component.",
       "properties": {
         "label": {
           "kind": "path",
@@ -67940,7 +68057,7 @@
         "jobParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional options on the job.",
+          "description": "To configure additional options on the job. This is a multi-value option with prefix: job.",
           "title": "Job Parameters",
           "required": false,
           "deprecated": false
@@ -67957,7 +68074,7 @@
         "triggerParameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional options on the trigger. The parameter timeZone is supported if the cron option is present. Otherwise the parameters repeatInterval and repeatCount are supported. Note: When using repeatInterval values of 1000 or less, the first few events after starting the camel context may be fired more rapidly than expected.",
+          "description": "To configure additional options on the trigger. The parameter timeZone is supported if the cron option is present. Otherwise the parameters repeatInterval and repeatCount are supported. Note: When using repeatInterval values of 1000 or less, the first few events after starting the camel context may be fired more rapidly than expected. . This is a multi-value option with prefix: trigger.",
           "title": "Trigger Parameters",
           "required": false,
           "deprecated": false
@@ -68536,6 +68653,15 @@
           "required": false,
           "deprecated": false
         },
+        "clientResponseValidation": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable validation of the client request to check if the outgoing response from Camel is valid according to the OpenAPI specification",
+          "title": "Client Response Validation",
+          "required": false,
+          "deprecated": false
+        },
         "consumes": {
           "kind": "parameter",
           "type": "string",
@@ -68702,15 +68828,6 @@
           "type": "string",
           "description": "Creates combined statistics based on tags. Use the format tags:title List",
           "title": "Combined Tag Stats",
-          "required": false,
-          "deprecated": false
-        },
-        "contentCache": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Sets whether to use resource content cache or not",
-          "title": "Content Cache",
           "required": false,
           "deprecated": false
         },
@@ -69218,7 +69335,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -69276,6 +69393,36 @@
           "required": true,
           "deprecated": false
         },
+        "accessChannel": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "LOCAL",
+          "enum": [
+            "LOCAL",
+            "CLOUD"
+          ],
+          "description": "Access channel of RocketMQ cluster. LOCAL or CLOUD, LOCAL by default",
+          "title": "Access Channel",
+          "required": false,
+          "deprecated": false
+        },
+        "enableTrace": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable trace.",
+          "title": "Enable Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "namespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Namespace of RocketMQ cluster. You need to specify this if you are using serverless version of RocketMQ.",
+          "title": "Namespace",
+          "required": false,
+          "deprecated": false
+        },
         "namesrvAddr": {
           "kind": "parameter",
           "type": "string",
@@ -69290,6 +69437,28 @@
           "type": "string",
           "description": "Consumer group name.",
           "title": "Consumer Group",
+          "required": false,
+          "deprecated": false
+        },
+        "messageSelectorType": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "tag",
+          "enum": [
+            "tag",
+            "sql"
+          ],
+          "description": "Message Selector Type, TAG or SQL TAG by default",
+          "title": "Message Selector Type",
+          "required": false,
+          "deprecated": false
+        },
+        "subscribeSql": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "1 \u003d 1",
+          "description": "Subscribe SQL of consumer. See https://rocketmq.apache.org/docs/featureBehavior/07messagefilter/#attribute-based-sql-filtering for more details.",
+          "title": "Subscribe Sql",
           "required": false,
           "deprecated": false
         },
@@ -69611,7 +69780,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -70183,6 +70352,15 @@
           "required": false,
           "deprecated": false
         },
+        "fallbackToLatestReplayId": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the pub/sub consumer needs to fallback to the latest replay id when the provided id is not valid. If set to false, the component will keep retrying; in order to treat this as an exception you can use BridgeExceptionHandlerToErrorHandler and handle the exception in the route.",
+          "title": "Fallback To Latest Replay Id",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubBatchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -70625,7 +70803,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -70995,7 +71173,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "1000",
-          "description": "The maximum capacity of the SEDA queue (i.e., the number of messages it can hold). Will by default use the defaultSize set on the SEDA component.",
+          "description": "The maximum capacity of the SEDA queue (i.e., the number of messages it can hold). Will by default use the queueSize set on the SEDA component.",
           "title": "Size",
           "required": false,
           "deprecated": false
@@ -71074,6 +71252,29 @@
           "required": false,
           "deprecated": false
         },
+        "timeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "30000",
+          "description": "Timeout before a SEDA producer will stop waiting for an asynchronous task to complete. You can disable timeout by using 0 or a negative value.",
+          "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTaskToComplete": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "IfReplyExpected",
+          "enum": [
+            "Never",
+            "IfReplyExpected",
+            "Always"
+          ],
+          "description": "Option to specify whether the caller should wait for the async task to complete or not before continuing. The following three options are supported: Always, Never or IfReplyExpected. The first two values are self-explanatory. The last value, IfReplyExpected, will only wait if the message is Request Reply based. The default option is IfReplyExpected.",
+          "title": "Wait For Task To Complete",
+          "required": false,
+          "deprecated": false
+        },
         "blockWhenFull": {
           "kind": "parameter",
           "type": "boolean",
@@ -71110,43 +71311,20 @@
           "required": false,
           "deprecated": false
         },
-        "offerTimeout": {
-          "kind": "parameter",
-          "type": "duration",
-          "description": "Offer timeout (in milliseconds) can be added to the block case when queue is full. You can disable timeout by using 0 or a negative value.",
-          "title": "Offer Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "timeout": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "30000",
-          "description": "Timeout (in milliseconds) before a SEDA producer will stop waiting for an asynchronous task to complete. You can disable timeout by using 0 or a negative value.",
-          "title": "Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "waitForTaskToComplete": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "IfReplyExpected",
-          "enum": [
-            "Never",
-            "IfReplyExpected",
-            "Always"
-          ],
-          "description": "Option to specify whether the caller should wait for the async task to complete or not before continuing. The following three options are supported: Always, Never or IfReplyExpected. The first two values are self-explanatory. The last value, IfReplyExpected, will only wait if the message is Request Reply based. The default option is IfReplyExpected.",
-          "title": "Wait For Task To Complete",
-          "required": false,
-          "deprecated": false
-        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "offerTimeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "Offer timeout can be added to the block case when queue is full. You can disable timeout by using 0 or a negative value.",
+          "title": "Offer Timeout",
           "required": false,
           "deprecated": false
         },
@@ -71333,7 +71511,7 @@
         "models": {
           "kind": "parameter",
           "type": "object",
-          "description": "Defines both request and response models",
+          "description": "Defines both request and response models. This is a multi-value option with prefix: model.",
           "title": "Models",
           "required": false,
           "deprecated": false
@@ -71364,7 +71542,7 @@
         "requestModels": {
           "kind": "parameter",
           "type": "object",
-          "description": "Defines the request model",
+          "description": "Defines the request model. This is a multi-value option with prefix: request-model.",
           "title": "Request Models",
           "required": false,
           "deprecated": false
@@ -71380,7 +71558,7 @@
         "responseModels": {
           "kind": "parameter",
           "type": "object",
-          "description": "Defines the response model",
+          "description": "Defines the response model. This is a multi-value option with prefix: response-model.",
           "title": "Response Models",
           "required": false,
           "deprecated": false
@@ -72864,7 +73042,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -74268,7 +74446,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -75098,7 +75276,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -76536,7 +76714,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -76680,7 +76858,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -76782,7 +76960,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -77168,7 +77346,7 @@
         "additionalJavaMailProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is.",
+          "description": "Sets additional java mail properties, that will append/override any default properties that are set based on all the other options. This is useful if you need to add some special options but want to keep the others as is. This is a multi-value option with prefix: mail.",
           "title": "Additional Java Mail Properties",
           "required": false,
           "deprecated": false
@@ -77312,7 +77490,7 @@
         "searchTerm": {
           "kind": "parameter",
           "type": "object",
-          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc.",
+          "description": "Refers to a jakarta.mail.search.SearchTerm which allows to filter mails based on search criteria such as subject, body, from, sent after a certain date etc. This is a multi-value option with prefix: searchTerm.",
           "title": "Search Term",
           "required": false,
           "deprecated": false
@@ -77414,7 +77592,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -77764,7 +77942,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -78372,7 +78550,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -78757,7 +78935,7 @@
         "parameters": {
           "kind": "parameter",
           "type": "object",
-          "description": "Optional parameters to the java.sql.Statement. For example to set maxRows, fetchSize etc.",
+          "description": "This is a multi-value option with prefix: statement.",
           "title": "Parameters",
           "required": false,
           "deprecated": false
@@ -79274,7 +79452,7 @@
         "args": {
           "kind": "parameter",
           "type": "object",
-          "description": "Specify arguments for configuring the different RabbitMQ concepts, a different prefix is required for each element: arg.consumer. arg.exchange. arg.queue. arg.binding. arg.dlq.exchange. arg.dlq.queue. arg.dlq.binding. For example to declare a queue with message ttl argument: args\u003darg.queue.x-message-ttl\u003d60000",
+          "description": "Specify arguments for configuring the different RabbitMQ concepts, a different prefix is required for each element: arg.consumer. arg.exchange. arg.queue. arg.binding. arg.dlq.exchange. arg.dlq.queue. arg.dlq.binding. For example to declare a queue with message ttl argument: args\u003darg.queue.x-message-ttl\u003d60000. This is a multi-value option with prefix: arg.",
           "title": "Args",
           "required": false,
           "deprecated": false
@@ -80076,7 +80254,7 @@
         "templateOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Configures the Spring JdbcTemplate with the key/values from the Map",
+          "description": "Configures the Spring JdbcTemplate with the key/values from the Map. This is a multi-value option with prefix: template.",
           "title": "Template Options",
           "required": false,
           "deprecated": false
@@ -80187,7 +80365,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -80309,7 +80487,7 @@
         "templateOptions": {
           "kind": "parameter",
           "type": "object",
-          "description": "Configures the Spring JdbcTemplate with the key/values from the Map",
+          "description": "Configures the Spring JdbcTemplate with the key/values from the Map. This is a multi-value option with prefix: template.",
           "title": "Template Options",
           "required": false,
           "deprecated": false
@@ -80568,7 +80746,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -81182,7 +81360,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -81236,7 +81414,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "1000",
-          "description": "The maximum capacity of the SEDA queue (i.e., the number of messages it can hold). Will by default use the defaultSize set on the SEDA component.",
+          "description": "The maximum capacity of the SEDA queue (i.e., the number of messages it can hold). Will by default use the queueSize set on the SEDA component.",
           "title": "Size",
           "required": false,
           "deprecated": false
@@ -81315,6 +81493,29 @@
           "required": false,
           "deprecated": false
         },
+        "timeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "30000",
+          "description": "Timeout before a SEDA producer will stop waiting for an asynchronous task to complete. You can disable timeout by using 0 or a negative value.",
+          "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForTaskToComplete": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "IfReplyExpected",
+          "enum": [
+            "Never",
+            "IfReplyExpected",
+            "Always"
+          ],
+          "description": "Option to specify whether the caller should wait for the async task to complete or not before continuing. The following three options are supported: Always, Never or IfReplyExpected. The first two values are self-explanatory. The last value, IfReplyExpected, will only wait if the message is Request Reply based. The default option is IfReplyExpected.",
+          "title": "Wait For Task To Complete",
+          "required": false,
+          "deprecated": false
+        },
         "blockWhenFull": {
           "kind": "parameter",
           "type": "boolean",
@@ -81351,43 +81552,20 @@
           "required": false,
           "deprecated": false
         },
-        "offerTimeout": {
-          "kind": "parameter",
-          "type": "duration",
-          "description": "Offer timeout (in milliseconds) can be added to the block case when queue is full. You can disable timeout by using 0 or a negative value.",
-          "title": "Offer Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "timeout": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "30000",
-          "description": "Timeout (in milliseconds) before a SEDA producer will stop waiting for an asynchronous task to complete. You can disable timeout by using 0 or a negative value.",
-          "title": "Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "waitForTaskToComplete": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "IfReplyExpected",
-          "enum": [
-            "Never",
-            "IfReplyExpected",
-            "Always"
-          ],
-          "description": "Option to specify whether the caller should wait for the async task to complete or not before continuing. The following three options are supported: Always, Never or IfReplyExpected. The first two values are self-explanatory. The last value, IfReplyExpected, will only wait if the message is Request Reply based. The default option is IfReplyExpected.",
-          "title": "Wait For Task To Complete",
-          "required": false,
-          "deprecated": false
-        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "offerTimeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "Offer timeout can be added to the block case when queue is full. You can disable timeout by using 0 or a negative value.",
+          "title": "Offer Timeout",
           "required": false,
           "deprecated": false
         },
@@ -81942,7 +82120,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -82263,6 +82441,15 @@
           "required": false,
           "deprecated": false
         },
+        "allowTemplateFromHeader": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow to use resource template from header or not (default false). Enabling this allows to specify dynamic templates via message header. However this can be seen as a potential security vulnerability if the header is coming from a malicious user, so use this with care.",
+          "title": "Allow Template From Header",
+          "required": false,
+          "deprecated": false
+        },
         "cacheable": {
           "kind": "parameter",
           "type": "boolean",
@@ -82284,15 +82471,6 @@
           "type": "boolean",
           "description": "Whether a template resources will be checked for existence before being returned.",
           "title": "Check Existence",
-          "required": false,
-          "deprecated": false
-        },
-        "contentCache": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Sets whether to use resource content cache or not",
-          "title": "Content Cache",
           "required": false,
           "deprecated": false
         },
@@ -83028,7 +83206,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -83389,7 +83567,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -83791,7 +83969,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -84217,7 +84395,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -84435,7 +84613,7 @@
         "options": {
           "kind": "parameter",
           "type": "object",
-          "description": "Sets additional channel options. The options that can be used are defined in org.xnio.Options. To configure from endpoint uri, then prefix each option with option., such as option.close-abort\u003dtrue\u0026option.send-buffer\u003d8192",
+          "description": "Sets additional channel options. The options that can be used are defined in org.xnio.Options. To configure from endpoint uri, then prefix each option with option., such as option.close-abort\u003dtrue\u0026option.send-buffer\u003d8192. This is a multi-value option with prefix: option.",
           "title": "Options",
           "required": false,
           "deprecated": false
@@ -84707,7 +84885,7 @@
         "contentCache": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Sets whether to use resource content cache or not",
           "title": "Content Cache",
           "required": false,
@@ -85262,7 +85440,7 @@
         "handshakeHeaders": {
           "kind": "parameter",
           "type": "object",
-          "description": "Headers to send in the HTTP handshake request. When the endpoint is a consumer, it only works when it consumes a remote host as a client (i.e. consumeAsClient is true).",
+          "description": "Headers to send in the HTTP handshake request. When the endpoint is a consumer, it only works when it consumes a remote host as a client (i.e. consumeAsClient is true). This is a multi-value option with prefix: handshake.",
           "title": "Handshake Headers",
           "required": false,
           "deprecated": false
@@ -85672,7 +85850,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -86350,7 +86528,7 @@
         "criteria": {
           "kind": "parameter",
           "type": "object",
-          "description": "The criteria to use with complex searches.",
+          "description": "The criteria to use with complex searches. This is a multi-value option with prefix: criteria.",
           "title": "Criteria",
           "required": false,
           "deprecated": false
@@ -87695,7 +87873,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false
@@ -88743,7 +88921,7 @@
         "schedulerProperties": {
           "kind": "parameter",
           "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler.",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
           "title": "Scheduler Properties",
           "required": false,
           "deprecated": false

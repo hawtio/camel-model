@@ -1036,7 +1036,7 @@
       "title": "DFDL",
       "group": "dataformat,transformation",
       "icon": "generic24.png",
-      "description": "Handle DFDL (Data Format Description Language) transformation.",
+      "description": "Transforms fixed format data such as EDI message from/to XML using a Data Format Description Language (DFDL).",
       "properties": {
         "id": {
           "kind": "attribute",
@@ -1514,12 +1514,12 @@
         }
       }
     },
-    "fury": {
+    "fory": {
       "type": "object",
-      "title": "Fury",
+      "title": "Fory",
       "group": "dataformat,transformation",
       "icon": "generic24.png",
-      "description": "Serialize and deserialize messages using Apache Fury",
+      "description": "Serialize and deserialize messages using Apache Fory",
       "properties": {
         "id": {
           "kind": "attribute",
@@ -1550,17 +1550,17 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to use the threadsafe fury",
+          "description": "Whether to use the threadsafe Fory",
           "title": "Thread Safe",
           "required": false,
           "deprecated": false
         },
-        "allowAutoWiredFury": {
+        "allowAutoWiredFory": {
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to auto-discover Fury from the registry",
-          "title": "Allow Auto Wired Fury",
+          "description": "Whether to auto-discover Fory from the registry",
+          "title": "Allow Auto Wired Fory",
           "required": false,
           "deprecated": false
         }
