@@ -83,7 +83,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -413,7 +413,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -696,7 +696,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -758,7 +758,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -844,7 +844,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1126,7 +1126,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1188,7 +1188,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1266,7 +1266,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1785,7 +1785,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1895,7 +1895,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1953,7 +1953,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -1998,7 +1998,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2059,7 +2059,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2220,7 +2220,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2571,7 +2571,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2743,7 +2743,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2879,7 +2879,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2929,7 +2929,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2987,7 +2987,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -3213,7 +3213,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -3735,7 +3735,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -3871,7 +3871,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -3965,7 +3965,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4053,7 +4053,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4216,7 +4216,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4323,7 +4323,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4589,7 +4589,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4734,7 +4734,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4787,7 +4787,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4829,7 +4829,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4874,7 +4874,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -4936,7 +4936,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5091,7 +5091,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5206,7 +5206,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5652,7 +5652,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5697,7 +5697,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5750,7 +5750,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5803,7 +5803,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5848,7 +5848,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -5893,7 +5893,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -6171,7 +6171,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -6242,7 +6242,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -6810,7 +6810,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -6881,7 +6881,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -6996,7 +6996,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7050,7 +7050,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7095,7 +7095,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7485,7 +7485,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7527,7 +7527,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7576,7 +7576,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7629,7 +7629,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7674,7 +7674,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7727,7 +7727,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7780,7 +7780,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7825,7 +7825,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -7878,7 +7878,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8226,7 +8226,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8299,7 +8299,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8441,6 +8441,14 @@
           "type": "string",
           "description": "Sets a prefix to use for all node ids (not route id).",
           "title": "Prefix Id",
+          "required": false,
+          "deprecated": false
+        },
+        "group": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The group name for the route built from this template. Multiple routes can belong to the same group.",
+          "title": "Group",
           "required": false,
           "deprecated": false
         },
@@ -8646,7 +8654,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8779,7 +8787,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8886,7 +8894,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -8947,7 +8955,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9020,7 +9028,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9128,7 +9136,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9190,7 +9198,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9235,7 +9243,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9313,7 +9321,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9446,7 +9454,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Disables this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled late at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -9541,7 +9549,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false

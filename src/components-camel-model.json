@@ -10731,7 +10731,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "26214400",
-          "description": "Set up the partSize which is used in multipart upload, the default size is 25M. Camel will only do multipart uploads for files that are larger than the part-size thresholds. Files that are smaller will be uploaded in a single operation.",
+          "description": "Set up the partSize which is used in multipart upload, the default size is 25 MB. The minimum size in AWS is 5 MB. Camel will only do multipart uploads for files that are larger than the part-size thresholds. Files that are smaller will be uploaded in a single operation.",
           "title": "Part Size",
           "required": false,
           "deprecated": false
@@ -19092,8 +19092,8 @@
         },
         "nodeMeta": {
           "kind": "parameter",
-          "type": "array",
-          "description": "The note meta-data to use for queries.",
+          "type": "string",
+          "description": "The comma separated node meta-data to use for queries.",
           "title": "Node Meta",
           "required": false,
           "deprecated": false
@@ -21097,7 +21097,7 @@
         },
         "configKeys": {
           "kind": "parameter",
-          "type": "array",
+          "type": "string",
           "description": "List of keys for configuration operation",
           "title": "Config Keys",
           "required": false,
@@ -21903,6 +21903,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "converters": {
           "kind": "parameter",
           "type": "string",
@@ -22004,6 +22013,24 @@
           "required": false,
           "deprecated": false
         },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatIntervalMs": {
           "kind": "parameter",
           "type": "duration",
@@ -22097,6 +22124,57 @@
           "type": "string",
           "description": "The name of the topic for the notifications. This is required in case \u0027sink\u0027 is in the list of enabled channels",
           "title": "Notification Sink Topic Name",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
           "required": false,
           "deprecated": false
         },
@@ -22596,6 +22674,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "converters": {
           "kind": "parameter",
           "type": "string",
@@ -22651,6 +22738,24 @@
           "defaultValue": "fail",
           "description": "Specify how failures during processing of events (i.e. when encountering a corrupted event) should be handled, including: \u0027fail\u0027 (the default) an exception indicating the problematic event and its position is raised, causing the connector to be stopped; \u0027warn\u0027 the problematic event and its position will be logged and the event will be skipped; \u0027ignore\u0027 the problematic event will be skipped.",
           "title": "Event Processing Failure Handling Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
           "required": false,
           "deprecated": false
         },
@@ -22833,6 +22938,57 @@
           "type": "string",
           "description": "The name of the topic for the notifications. This is required in case \u0027sink\u0027 is in the list of enabled channels",
           "title": "Notification Sink Topic Name",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
           "required": false,
           "deprecated": false
         },
@@ -23270,6 +23426,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "connectKeepAlive": {
           "kind": "parameter",
           "type": "boolean",
@@ -23508,6 +23673,24 @@
           "required": false,
           "deprecated": false
         },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "gtidSourceExcludes": {
           "kind": "parameter",
           "type": "string",
@@ -23679,6 +23862,57 @@
           "type": "string",
           "description": "The name of the topic for the notifications. This is required in case \u0027sink\u0027 is in the list of enabled channels",
           "title": "Notification Sink Topic Name",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
           "required": false,
           "deprecated": false
         },
@@ -24247,6 +24481,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "converters": {
           "kind": "parameter",
           "type": "string",
@@ -24378,6 +24621,24 @@
           "defaultValue": "fail",
           "description": "Specify how failures during processing of events (i.e. when encountering a corrupted event) should be handled, including: \u0027fail\u0027 (the default) an exception indicating the problematic event and its position is raised, causing the connector to be stopped; \u0027warn\u0027 the problematic event and its position will be logged and the event will be skipped; \u0027ignore\u0027 the problematic event will be skipped.",
           "title": "Event Processing Failure Handling Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
           "required": false,
           "deprecated": false
         },
@@ -24613,6 +24874,22 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningClientidExcludeList": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma separated list of client ids to exclude from LogMiner query.",
+          "title": "Log Mining Clientid Exclude List",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningClientidIncludeList": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma separated list of client ids to include from LogMiner query.",
+          "title": "Log Mining Clientid Include List",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningFlushTableName": {
           "kind": "parameter",
           "type": "string",
@@ -24794,6 +25071,57 @@
           "type": "string",
           "description": "The name of the topic for the notifications. This is required in case \u0027sink\u0027 is in the list of enabled channels",
           "title": "Notification Sink Topic Name",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
           "required": false,
           "deprecated": false
         },
@@ -25360,6 +25688,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "converters": {
           "kind": "parameter",
           "type": "string",
@@ -25527,6 +25864,24 @@
           "required": false,
           "deprecated": false
         },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "flushLsnSource": {
           "kind": "parameter",
           "type": "boolean",
@@ -25616,6 +25971,24 @@
           "required": false,
           "deprecated": false
         },
+        "lsnFlushTimeoutAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "fail",
+          "description": "Action to take when an LSN flush timeout occurs. Options include: \u0027fail\u0027 (default) to fail the connector; \u0027warn\u0027 to log a warning and continue processing; \u0027ignore\u0027 to continue processing and ignore the timeout.",
+          "title": "Lsn Flush Timeout Action",
+          "required": false,
+          "deprecated": false
+        },
+        "lsnFlushTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "30s",
+          "description": "Maximum time in milliseconds to wait for LSN flush operation to complete. If the flush operation does not complete within this timeout, the action specified by lsn.flush.timeout.action will be taken. Defaults to 30 seconds.",
+          "title": "Lsn Flush Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "maxBatchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -25683,6 +26056,57 @@
           "required": false,
           "deprecated": false
         },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
+          "required": false,
+          "deprecated": false
+        },
         "pluginName": {
           "kind": "parameter",
           "type": "string",
@@ -25733,6 +26157,15 @@
           "defaultValue": "dbz_publication",
           "description": "The name of the Postgres 10 publication used for streaming changes from a plugin. Defaults to \u0027dbz_publication\u0027",
           "title": "Publication Name",
+          "required": false,
+          "deprecated": false
+        },
+        "publishViaPartitionRoot": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "A boolean that determines whether the connector should publish changes via the partition root. When true, changes are published through partition root. When false, changes are published directly.",
+          "title": "Publish Via Partition Root",
           "required": false,
           "deprecated": false
         },
@@ -26343,6 +26776,15 @@
           "required": false,
           "deprecated": false
         },
+        "connectionValidationTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "1m",
+          "description": "The maximum time in milliseconds to wait for connection validation to complete. Defaults to 60 seconds.",
+          "title": "Connection Validation Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
         "converters": {
           "kind": "parameter",
           "type": "string",
@@ -26458,6 +26900,24 @@
           "defaultValue": "fail",
           "description": "Specify how failures during processing of events (i.e. when encountering a corrupted event) should be handled, including: \u0027fail\u0027 (the default) an exception indicating the problematic event and its position is raised, causing the connector to be stopped; \u0027warn\u0027 the problematic event and its position will be logged and the event will be skipped; \u0027ignore\u0027 the problematic event will be skipped.",
           "title": "Event Processing Failure Handling Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "executorShutdownTimeoutMs": {
+          "kind": "parameter",
+          "type": "duration",
+          "defaultValue": "4s",
+          "description": "The maximum time in milliseconds to wait for task executor to shut down.",
+          "title": "Executor Shutdown Timeout Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "extendedHeadersEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
+          "title": "Extended Headers Enabled",
           "required": false,
           "deprecated": false
         },
@@ -26598,6 +27058,57 @@
           "type": "string",
           "description": "The name of the topic for the notifications. This is required in case \u0027sink\u0027 is in the list of enabled channels",
           "title": "Notification Sink Topic Name",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationConfigFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "./openlineage.yml",
+          "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
+          "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable Debezium to emit data lineage metadata through OpenLineage API",
+          "title": "Openlineage Integration Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Debezium change data capture job",
+          "description": "The job\u0027s description emitted by Debezium",
+          "title": "Openlineage Integration Job Description",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobNamespace": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s namespace emitted by Debezium",
+          "title": "Openlineage Integration Job Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobOwners": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s owners emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Owners",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationJobTags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The job\u0027s tags emitted by Debezium. A comma-separated list of key-value pairs.For example: k1\u003dv1,k2\u003dv2",
+          "title": "Openlineage Integration Job Tags",
           "required": false,
           "deprecated": false
         },
@@ -34529,9 +35040,9 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
+          "type": "string",
           "defaultValue": "https://www.googleapis.com/auth/calendar",
-          "description": "Specifies the level of permissions you want a calendar application to have to a user account. You can separate multiple scopes by comma. See https://developers.google.com/google-apps/calendar/auth for more info.",
+          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -34872,8 +35383,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/calendar/auth for more info.",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -35221,8 +35732,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "Specifies the level of permissions you want a drive application to have to a user account. See https://developers.google.com/drive/web/scopes for more info.",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -35439,7 +35950,7 @@
         "refreshToken": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth 2 refresh token. Using this, the Google Calendar component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
+          "description": "OAuth 2 refresh token. Using this, the Google Drive component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
           "title": "Refresh Token",
           "required": false,
           "deprecated": false
@@ -35623,8 +36134,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "GMail scopes",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -35841,7 +36352,7 @@
         "refreshToken": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth 2 refresh token. Using this, the Google Calendar component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
+          "description": "OAuth 2 refresh token. Using this, the Google Mail component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
           "title": "Refresh Token",
           "required": false,
           "deprecated": false
@@ -35941,8 +36452,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "GMail scopes",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a calendar application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -36150,7 +36661,7 @@
         "refreshToken": {
           "kind": "parameter",
           "type": "string",
-          "description": "OAuth 2 refresh token. Using this, the Google Calendar component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
+          "description": "OAuth 2 refresh token. Using this, the Google Mail component can obtain a new accessToken whenever the current one expires - a necessity if the application is long-lived.",
           "title": "Refresh Token",
           "required": false,
           "deprecated": false
@@ -36931,8 +37442,8 @@
         },
         "scopes": {
           "kind": "parameter",
-          "type": "array",
-          "description": "Specifies the level of permissions you want a sheets application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info.",
+          "type": "string",
+          "description": "Specifies the level of permissions you want a sheets application to have to a user account. See https://developers.google.com/identity/protocols/googlescopes for more info. Multiple scopes can be separated by comma.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -40008,10 +40519,10 @@
         "proxyAuthHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication host",
+          "description": "Proxy server host",
           "title": "Proxy Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthMethod": {
           "kind": "parameter",
@@ -40021,7 +40532,7 @@
             "Bearer",
             "NTLM"
           ],
-          "description": "Proxy authentication method to use",
+          "description": "Proxy authentication method to use (NTLM is deprecated)",
           "title": "Proxy Auth Method",
           "required": false,
           "deprecated": false
@@ -40037,7 +40548,7 @@
         "proxyAuthPassword": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication password",
+          "description": "Proxy server password",
           "title": "Proxy Auth Password",
           "required": false,
           "deprecated": false
@@ -40045,10 +40556,10 @@
         "proxyAuthPort": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Proxy authentication port",
+          "description": "Proxy server port",
           "title": "Proxy Auth Port",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthScheme": {
           "kind": "parameter",
@@ -40057,7 +40568,7 @@
             "http",
             "https"
           ],
-          "description": "Proxy authentication scheme to use",
+          "description": "Proxy server authentication protocol scheme to use",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -40065,7 +40576,7 @@
         "proxyAuthUsername": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication username",
+          "description": "Proxy server username",
           "title": "Proxy Auth Username",
           "required": false,
           "deprecated": false
@@ -40073,7 +40584,7 @@
         "proxyHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy hostname to use",
+          "description": "Proxy server host",
           "title": "Proxy Host",
           "required": false,
           "deprecated": false
@@ -40081,7 +40592,7 @@
         "proxyPort": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Proxy port to use",
+          "description": "Proxy server port",
           "title": "Proxy Port",
           "required": false,
           "deprecated": false
@@ -40579,10 +41090,10 @@
         "proxyAuthHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication host",
+          "description": "Proxy server host",
           "title": "Proxy Auth Host",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthMethod": {
           "kind": "parameter",
@@ -40592,7 +41103,7 @@
             "Bearer",
             "NTLM"
           ],
-          "description": "Proxy authentication method to use",
+          "description": "Proxy authentication method to use (NTLM is deprecated)",
           "title": "Proxy Auth Method",
           "required": false,
           "deprecated": false
@@ -40608,7 +41119,7 @@
         "proxyAuthPassword": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication password",
+          "description": "Proxy server password",
           "title": "Proxy Auth Password",
           "required": false,
           "deprecated": false
@@ -40616,10 +41127,10 @@
         "proxyAuthPort": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Proxy authentication port",
+          "description": "Proxy server port",
           "title": "Proxy Auth Port",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "proxyAuthScheme": {
           "kind": "parameter",
@@ -40628,7 +41139,7 @@
             "http",
             "https"
           ],
-          "description": "Proxy authentication scheme to use",
+          "description": "Proxy server authentication protocol scheme to use",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -40636,7 +41147,7 @@
         "proxyAuthUsername": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy authentication username",
+          "description": "Proxy server username",
           "title": "Proxy Auth Username",
           "required": false,
           "deprecated": false
@@ -40644,7 +41155,7 @@
         "proxyHost": {
           "kind": "parameter",
           "type": "string",
-          "description": "Proxy hostname to use",
+          "description": "Proxy server host",
           "title": "Proxy Host",
           "required": false,
           "deprecated": false
@@ -40652,7 +41163,7 @@
         "proxyPort": {
           "kind": "parameter",
           "type": "integer",
-          "description": "Proxy port to use",
+          "description": "Proxy server port",
           "title": "Proxy Port",
           "required": false,
           "deprecated": false
@@ -40837,8 +41348,8 @@
         },
         "availableZones": {
           "kind": "parameter",
-          "type": "array",
-          "description": "The ID of an available zone. This option is mandatory when creating an instance and it cannot be an empty array.",
+          "type": "string",
+          "description": "A comma separated String of Availability Zones. This option is mandatory when creating an instance and it cannot be an empty array.",
           "title": "Available zones",
           "required": false,
           "deprecated": false
@@ -55642,6 +56153,56 @@
         }
       }
     },
+    "langchain4j-agent": {
+      "type": "object",
+      "title": "LangChain4j Agent",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "LangChain4j Agent component",
+      "properties": {
+        "agentId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The Agent id",
+          "title": "Agent Id",
+          "required": true,
+          "deprecated": false
+        },
+        "agent": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The agent to use for the component",
+          "title": "Agent",
+          "required": false,
+          "deprecated": false
+        },
+        "agentFactory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The agent factory to use for creating agents if no Agent is provided",
+          "title": "Agent Factory",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Tags for discovering and calling Camel route tools",
+          "title": "Tags",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "langchain4j-chat": {
       "type": "object",
       "title": "LangChain4j Chat",
@@ -55763,7 +56324,7 @@
         "toolId": {
           "kind": "path",
           "type": "string",
-          "description": "The tool name",
+          "description": "The tool id",
           "title": "Tool Id",
           "required": true,
           "deprecated": false
@@ -55781,6 +56342,14 @@
           "type": "string",
           "description": "Tool description",
           "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Tool name",
+          "title": "Name",
           "required": false,
           "deprecated": false
         },
@@ -60186,6 +60755,14 @@
           "required": false,
           "deprecated": false
         },
+        "networkInterface": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When using UDP then this option can be used to specify a network interface by its name, such as eth0 to join a multicast group.",
+          "title": "Network Interface",
+          "required": false,
+          "deprecated": false
+        },
         "clientMode": {
           "kind": "parameter",
           "type": "boolean",
@@ -60290,14 +60867,6 @@
           "type": "object",
           "description": "To use a custom NettyServerBootstrapFactory",
           "title": "Netty Server Bootstrap Factory",
-          "required": false,
-          "deprecated": false
-        },
-        "networkInterface": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "When using UDP then this option can be used to specify a network interface by its name, such as eth0 to join a multicast group.",
-          "title": "Network Interface",
           "required": false,
           "deprecated": false
         },
@@ -67169,7 +67738,11 @@
             "XMSS",
             "FALCON",
             "PICNIC",
-            "RAINBOW"
+            "RAINBOW",
+            "SNOVA",
+            "MAYO",
+            "DILITHIUM",
+            "SPHINCSPLUS"
           ],
           "description": "In case there is no signer, we specify an algorithm to build the KeyPair or the Signer",
           "title": "Signature Algorithm",
@@ -86000,8 +86573,8 @@
         },
         "addresses": {
           "kind": "parameter",
-          "type": "array",
-          "description": "Contract address or a list of addresses.",
+          "type": "string",
+          "description": "Contract address or a comma separated list of addresses.",
           "title": "Addresses",
           "required": false,
           "deprecated": false
@@ -86042,8 +86615,8 @@
         },
         "privateFor": {
           "kind": "parameter",
-          "type": "array",
-          "description": "A transaction privateFor nodes with public keys in a Quorum network",
+          "type": "string",
+          "description": "A comma separated transaction privateFor nodes with public keys in a Quorum network",
           "title": "Private For",
           "required": false,
           "deprecated": false

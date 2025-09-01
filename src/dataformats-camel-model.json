@@ -1687,6 +1687,49 @@
         }
       }
     },
+    "iso8583": {
+      "type": "object",
+      "title": "ISO-8583",
+      "group": "dataformat,transformation,finance",
+      "icon": "generic24.png",
+      "description": "Create, edit and read ISO-8583 messages.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "configFile": {
+          "kind": "attribute",
+          "type": "string",
+          "defaultValue": "j8583-config.xml",
+          "description": "The j8583 configuration file to load from classpath",
+          "title": "Config File",
+          "required": false,
+          "deprecated": false
+        },
+        "isoType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The default ISO-Type to use",
+          "title": "Iso Type",
+          "required": false,
+          "deprecated": false
+        },
+        "allowAutoWiredMessageFormat": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to auto-discover com.solab.iso8583.MessageFactory from the registry",
+          "title": "Allow Auto Wired Message Format",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "jacksonXml": {
       "type": "object",
       "title": "Jackson XML",
@@ -1833,6 +1876,14 @@
           "defaultValue": "true",
           "description": "Whether the data format should set the Content-Type header with the type from the data format. For example application/xml for data formats marshalling to XML, or application/json for data formats marshalling to JSON",
           "title": "Content Type Header",
+          "required": false,
+          "deprecated": false
+        },
+        "maxStringLength": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid.",
+          "title": "Max String Length",
           "required": false,
           "deprecated": false
         }
@@ -2244,6 +2295,14 @@
           "title": "Date Format Pattern",
           "required": false,
           "deprecated": false
+        },
+        "maxStringLength": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Jackson. Sets the maximum string length (in chars or bytes, depending on input context). The default is 20,000,000. This limit is not exact, the limit is applied when we increase internal buffer sizes and an exception will happen at sizes greater than this limit. Some text values that are a little bigger than the limit may be treated as valid but no text values with sizes less than or equal to this limit will be treated as invalid.",
+          "title": "Max String Length",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -2336,7 +2395,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
@@ -2929,7 +2988,7 @@
     "swiftMt": {
       "type": "object",
       "title": "SWIFT MT",
-      "group": "dataformat,transformation,swift",
+      "group": "dataformat,transformation,finance",
       "icon": "generic24.png",
       "description": "Encode and decode SWIFT MT messages.",
       "properties": {
@@ -2955,7 +3014,7 @@
     "swiftMx": {
       "type": "object",
       "title": "SWIFT MX",
-      "group": "dataformat,transformation,swift",
+      "group": "dataformat,transformation,finance",
       "icon": "generic24.png",
       "description": "Encode and decode SWIFT MX messages.",
       "properties": {
@@ -3697,7 +3756,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "description": "Disables this EIP from the route.",
           "title": "Disabled",
           "required": false,
           "deprecated": false
