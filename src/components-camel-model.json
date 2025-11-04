@@ -4352,15 +4352,57 @@
             "amazon.titan-text-lite-v1",
             "amazon.titan-image-generator-v1",
             "amazon.titan-embed-text-v1",
-            "ai21.j2-ultra-v1",
-            "ai21.j2-mid-v1",
-            "anthropic.claude-instant-v1",
-            "anthropic.claude-v2",
-            "anthropic.claude-v2:1",
-            "anthropic.claude-3-sonnet-20240229-v1:0",
-            "anthropic.claude-3-haiku-20240307-v1:0",
+            "amazon.titan-embed-image-v1",
             "amazon.titan-text-premier-v1:0",
-            "amazon.titan-embed-text-v2:0"
+            "amazon.titan-embed-text-v2:0",
+            "amazon.titan-image-generator-v2:0",
+            "amazon.nova-canvas-v1:0",
+            "amazon.nova-lite-v1:0",
+            "amazon.nova-micro-v1:0",
+            "amazon.nova-premier-v1:0",
+            "amazon.nova-pro-v1:0",
+            "amazon.nova-reel-v1:0",
+            "amazon.nova-reel-v1:1",
+            "amazon.nova-sonic-v1:0",
+            "amazon.rerank-v1:0",
+            "ai21.jamba-1-5-large-v1:0",
+            "ai21.jamba-1-5-mini-v1:0",
+            "anthropic.claude-3-sonnet-20240229-v1:0",
+            "anthropic.claude-3-5-sonnet-20240620-v1:0",
+            "anthropic.claude-3-5-sonnet-20241022-v2:0",
+            "anthropic.claude-3-haiku-20240307-v1:0",
+            "anthropic.claude-3-5-haiku-20241022-v1:0",
+            "anthropic.claude-3-opus-20240229-v1:0",
+            "anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "anthropic.claude-opus-4-20250514-v1:0",
+            "anthropic.claude-sonnet-4-20250514-v1:0",
+            "cohere.command-r-plus-v1:0",
+            "cohere.command-r-v1:0",
+            "cohere.embed-english-v3",
+            "cohere.embed-multilingual-v3",
+            "cohere.rerank-v3-5:0",
+            "meta.llama3-8b-instruct-v1:0",
+            "meta.llama3-70b-instruct-v1:0",
+            "meta.llama3-1-8b-instruct-v1:0",
+            "meta.llama3-1-70b-instruct-v1:0",
+            "meta.llama3-1-405b-instruct-v1:0",
+            "meta.llama3-2-1b-instruct-v1:0",
+            "meta.llama3-2-3b-instruct-v1:0",
+            "meta.llama3-2-11b-instruct-v1:0",
+            "meta.llama3-2-90b-instruct-v1:0",
+            "meta.llama3-3-70b-instruct-v1:0",
+            "meta.llama4-maverick-17b-instruct-v1:0",
+            "meta.llama4-scout-17b-instruct-v1:0",
+            "mistral.mistral-7b-instruct-v0:2",
+            "mistral.mixtral-8x7b-instruct-v0:1",
+            "mistral.mistral-large-2402-v1:0",
+            "mistral.mistral-large-2407-v1:0",
+            "mistral.mistral-small-2402-v1:0",
+            "mistral.pixtral-large-2502-v1:0",
+            "stability.sd3-5-large-v1:0",
+            "stability.stable-image-control-sketch-v1:0",
+            "stability.stable-image-control-structure-v1:0",
+            "stability.stable-image-core-v1:1"
           ],
           "description": "Define the model Id we are going to use",
           "title": "Model Id",
@@ -10700,7 +10742,8 @@
           "defaultValue": "progressive",
           "enum": [
             "progressive",
-            "random"
+            "random",
+            "timestamp"
           ],
           "description": "The naming strategy to use in streaming upload mode",
           "title": "Naming Strategy",
@@ -10771,6 +10814,33 @@
           "type": "integer",
           "description": "While streaming upload mode is true, this option set the timeout to complete upload",
           "title": "Streaming Upload Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "timestampGroupingEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enable timestamp-based grouping of messages into time windows for file creation. When enabled, messages are grouped by their timestamp header into time windows.",
+          "title": "Timestamp Grouping Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "timestampHeaderName": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "CamelMessageTimestamp",
+          "description": "The name of the message header containing the timestamp for grouping. Default is CamelMessageTimestamp.",
+          "title": "Timestamp Header Name",
+          "required": false,
+          "deprecated": false
+        },
+        "timestampWindowSizeMillis": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "300000",
+          "description": "The size of the time window in milliseconds for timestamp-based grouping. Messages within the same time window will be written to the same file. Default is 300000 (5 minutes).",
+          "title": "Timestamp Window Size Millis",
           "required": false,
           "deprecated": false
         },
@@ -12769,6 +12839,259 @@
         }
       }
     },
+    "aws2-textract": {
+      "type": "object",
+      "title": "AWS Textract",
+      "group": "cloud,document",
+      "icon": "generic24.png",
+      "description": "Extract text and data from documents using AWS Textract and AWS SDK version 2.x.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "detectDocumentText",
+          "enum": [
+            "detectDocumentText",
+            "analyzeDocument",
+            "analyzeExpense",
+            "startDocumentTextDetection",
+            "startDocumentAnalysis",
+            "startExpenseAnalysis",
+            "getDocumentTextDetection",
+            "getDocumentAnalysis",
+            "getExpenseAnalysis"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "ap-south-2",
+            "ap-south-1",
+            "eu-south-1",
+            "eu-south-2",
+            "us-gov-east-1",
+            "me-central-1",
+            "il-central-1",
+            "ca-central-1",
+            "eu-central-1",
+            "us-iso-west-1",
+            "eu-central-2",
+            "eu-isoe-west-1",
+            "us-west-1",
+            "us-west-2",
+            "af-south-1",
+            "eu-north-1",
+            "eu-west-3",
+            "eu-west-2",
+            "eu-west-1",
+            "ap-northeast-3",
+            "ap-northeast-2",
+            "ap-northeast-1",
+            "me-south-1",
+            "sa-east-1",
+            "ap-east-1",
+            "cn-north-1",
+            "ca-west-1",
+            "us-gov-west-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "us-iso-east-1",
+            "ap-southeast-3",
+            "ap-southeast-4",
+            "us-east-1",
+            "us-east-2",
+            "cn-northwest-1",
+            "us-isob-east-1",
+            "aws-global",
+            "aws-cn-global",
+            "aws-us-gov-global",
+            "aws-iso-global",
+            "aws-iso-b-global"
+          ],
+          "description": "The region in which Textract client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "s3Bucket": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The S3 bucket name for document location",
+          "title": "S3 Bucket",
+          "required": false,
+          "deprecated": false
+        },
+        "s3Object": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The S3 object name for document location",
+          "title": "S3 Object",
+          "required": false,
+          "deprecated": false
+        },
+        "s3ObjectVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The S3 object version for document location",
+          "title": "S3 Object Version",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "textractClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AWS Textract client",
+          "title": "Textract Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Textract client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Textract client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Textract client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider this parameter will set the profile name.",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Textract client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Textract client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Textract client should expect to use Session Credentials. This is useful in situation in which the user needs to assume a IAM role for doing operations in Textract.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "aws2-timestream": {
       "type": "object",
       "title": "AWS Timestream",
@@ -13011,6 +13334,236 @@
           "type": "string",
           "description": "Amazon AWS Secret Key",
           "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "aws2-transcribe": {
+      "type": "object",
+      "title": "AWS Transcribe",
+      "group": "cloud,messaging",
+      "icon": "generic24.png",
+      "description": "Automatically convert speech to text using AWS Transcribe service",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "startTranscriptionJob",
+            "getTranscriptionJob",
+            "listTranscriptionJobs",
+            "deleteTranscriptionJob",
+            "createVocabulary",
+            "getVocabulary",
+            "listVocabularies",
+            "updateVocabulary",
+            "deleteVocabulary",
+            "createVocabularyFilter",
+            "getVocabularyFilter",
+            "listVocabularyFilters",
+            "updateVocabularyFilter",
+            "deleteVocabularyFilter",
+            "createLanguageModel",
+            "describeLanguageModel",
+            "listLanguageModels",
+            "deleteLanguageModel",
+            "createMedicalVocabulary",
+            "getMedicalVocabulary",
+            "listMedicalVocabularies",
+            "updateMedicalVocabulary",
+            "deleteMedicalVocabulary",
+            "startMedicalTranscriptionJob",
+            "getMedicalTranscriptionJob",
+            "listMedicalTranscriptionJobs",
+            "deleteMedicalTranscriptionJob",
+            "tagResource",
+            "untagResource",
+            "listTagsForResource"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider this parameter will set the profile name.",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "protocol": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Transcribe client",
+          "title": "Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Transcribe client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Transcribe client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "HTTPS",
+          "description": "To define a proxy protocol when instantiating the Transcribe client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The region in which Transcribe client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "transcribeClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a existing configured AWS Transcribe as client",
+          "title": "Transcribe Client",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Transcribe client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Transcribe client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Transcribe client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume a IAM role for doing the operations.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPassword": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy password when instantiating the Transcribe client",
+          "title": "Proxy Password",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyUsername": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy username when instantiating the Transcribe client",
+          "title": "Proxy Username",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume a IAM role",
+          "title": "Session Token",
           "required": false,
           "deprecated": false
         }
@@ -18953,14 +19506,6 @@
           "required": false,
           "deprecated": false
         },
-        "consulClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Reference to a org.kiwiproject.consul.Consul in the registry.",
-          "title": "Consul Client",
-          "required": false,
-          "deprecated": false
-        },
         "key": {
           "kind": "parameter",
           "type": "string",
@@ -18999,6 +19544,15 @@
           "type": "string",
           "description": "The Consul agent URL",
           "title": "Url",
+          "required": false,
+          "deprecated": false
+        },
+        "valueAsString": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Default to transform values retrieved from Consul i.e. on KV endpoint to string.",
+          "title": "Value As String",
           "required": false,
           "deprecated": false
         },
@@ -19041,18 +19595,16 @@
         },
         "action": {
           "kind": "parameter",
-          "type": "string",
+          "type": "enum",
+          "enum": [
+            "CHECKS",
+            "SERVICES",
+            "AGENT",
+            "REGISTER",
+            "DEREGISTER"
+          ],
           "description": "The default action. Can be overridden by CamelConsulAction",
           "title": "Action",
-          "required": false,
-          "deprecated": false
-        },
-        "valueAsString": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Default to transform values retrieved from Consul i.e. on KV endpoint to string.",
-          "title": "Value As String",
           "required": false,
           "deprecated": false
         },
@@ -19076,6 +19628,14 @@
           ],
           "description": "The consistencyMode used for queries, default ConsistencyMode.DEFAULT",
           "title": "Consistency Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "consulClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The consul client to use.",
+          "title": "Consul Client",
           "required": false,
           "deprecated": false
         },
@@ -19361,6 +19921,15 @@
           "required": false,
           "deprecated": false
         },
+        "consumerRetryPause": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5000",
+          "description": "Define the consumer retry pause between different attempts",
+          "title": "Consumer Retry Pause",
+          "required": false,
+          "deprecated": false
+        },
         "descending": {
           "kind": "parameter",
           "type": "boolean",
@@ -19517,7 +20086,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "5000",
-          "description": "Define the retry pause between different attempts",
+          "description": "Define the producer retry pause between different attempts",
           "title": "Producer Retry Pause",
           "required": false,
           "deprecated": false
@@ -22038,6 +22607,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatIntervalMs": {
           "kind": "parameter",
           "type": "duration",
@@ -22140,6 +22727,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -22782,6 +23377,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatIntervalMs": {
           "kind": "parameter",
           "type": "duration",
@@ -22954,6 +23567,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -23723,6 +24344,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatActionQuery": {
           "kind": "parameter",
           "type": "string",
@@ -23878,6 +24517,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -24649,6 +25296,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatActionQuery": {
           "kind": "parameter",
           "type": "string",
@@ -24708,6 +25373,15 @@
           "defaultValue": "numeric",
           "description": "Specify how INTERVAL columns should be represented in change events, including: \u0027string\u0027 represents values as an exact ISO formatted string; \u0027numeric\u0027 (default) represents values using the inexact conversion into microseconds",
           "title": "Interval Handling Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "legacyDecimalHandlingStrategy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Uses the legacy decimal handling behavior before DBZ-7882",
+          "title": "Legacy Decimal Handling Strategy",
           "required": false,
           "deprecated": false
         },
@@ -24915,12 +25589,28 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningPathDictionary": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "This is required when using the connector against a read-only database replica.",
+          "title": "Log Mining Path Dictionary",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningQueryFilterMode": {
           "kind": "parameter",
           "type": "string",
           "defaultValue": "none",
           "description": "Specifies how the filter configuration is applied to the LogMiner database query. none - The query does not apply any schema or table filters, all filtering is at runtime by the connector. in - The query uses SQL in-clause expressions to specify the schema or table filters. regex - The query uses Oracle REGEXP_LIKE expressions to specify the schema or table filters.",
           "title": "Log Mining Query Filter Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningReadonlyHostname": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The hostname the connector will use to connect and perform read-only operations for the the replica.",
+          "title": "Log Mining Readonly Hostname",
           "required": false,
           "deprecated": false
         },
@@ -25087,6 +25777,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -25898,6 +26596,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatActionQuery": {
           "kind": "parameter",
           "type": "string",
@@ -26069,6 +26785,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -26928,6 +27652,24 @@
           "required": false,
           "deprecated": false
         },
+        "guardrailCollectionsLimitAction": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "warn",
+          "description": "Specify the action to take when a guardrail collections limit is exceeded: \u0027warn\u0027 (the default) logs a warning message and continues processing; \u0027fail\u0027 stops the connector with an error.",
+          "title": "Guardrail Collections Limit Action",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailCollectionsMax": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of collections or tables that can be captured by the connector. When this limit is exceeded, the action specified by \u0027guardrail.collections.limit.action\u0027 will be taken. Set to 0 to disable this guardrail.",
+          "title": "Guardrail Collections Max",
+          "required": false,
+          "deprecated": false
+        },
         "heartbeatActionQuery": {
           "kind": "parameter",
           "type": "string",
@@ -27074,6 +27816,14 @@
           "defaultValue": "./openlineage.yml",
           "description": "Path to OpenLineage file configuration. See https://openlineage.io/docs/client/java/configuration",
           "title": "Openlineage Integration Config File Path",
+          "required": false,
+          "deprecated": false
+        },
+        "openlineageIntegrationDatasetKafkaBootstrapServers": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Kafka bootstrap server address used as input/output namespace/",
+          "title": "Openlineage Integration Dataset Kafka Bootstrap Servers",
           "required": false,
           "deprecated": false
         },
@@ -28652,6 +29402,127 @@
           "type": "string",
           "description": "User name to authenticate with",
           "title": "Username",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "docling": {
+      "type": "object",
+      "title": "Docling",
+      "group": "transformation,ai",
+      "icon": "generic24.png",
+      "description": "Process documents using Docling library for parsing and conversion.",
+      "properties": {
+        "operationId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The operation identifier",
+          "title": "Operation Id",
+          "required": true,
+          "deprecated": false
+        },
+        "contentInBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Include the content of the output file in the exchange body and delete the output file",
+          "title": "Content In Body",
+          "required": false,
+          "deprecated": false
+        },
+        "enableOCR": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable OCR processing for scanned documents",
+          "title": "Enable OCR",
+          "required": false,
+          "deprecated": false
+        },
+        "includeLayoutInfo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Show layout information with bounding boxes",
+          "title": "Include Layout Info",
+          "required": false,
+          "deprecated": false
+        },
+        "ocrLanguage": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "en",
+          "description": "Language code for OCR processing",
+          "title": "Ocr Language",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "CONVERT_TO_MARKDOWN",
+          "enum": [
+            "CONVERT_TO_MARKDOWN",
+            "CONVERT_TO_HTML",
+            "CONVERT_TO_JSON",
+            "EXTRACT_TEXT",
+            "EXTRACT_STRUCTURED_DATA"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "outputFormat": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "markdown",
+          "description": "Output format for document conversion",
+          "title": "Output Format",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "doclingCommand": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Path to Docling Python executable or command",
+          "title": "Docling Command",
+          "required": false,
+          "deprecated": false
+        },
+        "processTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "Timeout for Docling process execution in milliseconds",
+          "title": "Process Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "workingDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Working directory for Docling execution",
+          "title": "Working Directory",
+          "required": false,
+          "deprecated": false
+        },
+        "maxFileSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "52428800",
+          "description": "Maximum file size in bytes for processing",
+          "title": "Max File Size",
           "required": false,
           "deprecated": false
         }
@@ -38154,6 +39025,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "httpClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom pre-existing Http Client. Beware that when using this, then other configurations such as proxy, access token, is not applied and all this must be pre-configured on the Http Client.",
+          "title": "Http Client",
           "required": false,
           "deprecated": false
         },
@@ -51674,6 +52553,470 @@
         }
       }
     },
+    "keycloak": {
+      "type": "object",
+      "title": "Keycloak",
+      "group": "security,management",
+      "icon": "generic24.png",
+      "description": "Manage Keycloak instances via Admin API.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "authClient": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by authentication client ID",
+          "title": "Auth Client",
+          "required": false,
+          "deprecated": false
+        },
+        "authIpAddress": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by authentication IP address",
+          "title": "Auth Ip Address",
+          "required": false,
+          "deprecated": false
+        },
+        "authRealm": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "master",
+          "description": "Keycloak realm to authenticate against. If not specified, the realm parameter is used for authentication. This is useful when you want to authenticate against one realm (e.g., master) but perform operations on another realm.",
+          "title": "Auth Realm",
+          "required": false,
+          "deprecated": false
+        },
+        "authRealmFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by authentication realm",
+          "title": "Auth Realm Filter",
+          "required": false,
+          "deprecated": false
+        },
+        "authUser": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by authentication user ID",
+          "title": "Auth User",
+          "required": false,
+          "deprecated": false
+        },
+        "client": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by client ID",
+          "title": "Client",
+          "required": false,
+          "deprecated": false
+        },
+        "clientId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Keycloak client ID",
+          "title": "Client Id",
+          "required": false,
+          "deprecated": false
+        },
+        "clientSecret": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Keycloak client secret",
+          "title": "Client Secret",
+          "required": false,
+          "deprecated": false
+        },
+        "dateFrom": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by start date/time in milliseconds since epoch",
+          "title": "Date From",
+          "required": false,
+          "deprecated": false
+        },
+        "dateTo": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by end date/time in milliseconds since epoch",
+          "title": "Date To",
+          "required": false,
+          "deprecated": false
+        },
+        "eventType": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "events",
+          "description": "Type of events to consume: events or admin-events",
+          "title": "Event Type",
+          "required": false,
+          "deprecated": false
+        },
+        "first": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Offset for pagination (first result index)",
+          "title": "First",
+          "required": false,
+          "deprecated": false
+        },
+        "ipAddress": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by IP address",
+          "title": "Ip Address",
+          "required": false,
+          "deprecated": false
+        },
+        "keycloakClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured Keycloak admin client",
+          "title": "Keycloak Client",
+          "required": false,
+          "deprecated": false
+        },
+        "maxResults": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "100",
+          "description": "Maximum number of events to retrieve per poll",
+          "title": "Max Results",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "createRealm",
+            "deleteRealm",
+            "getRealm",
+            "updateRealm",
+            "createUser",
+            "deleteUser",
+            "getUser",
+            "updateUser",
+            "listUsers",
+            "searchUsers",
+            "createRole",
+            "deleteRole",
+            "getRole",
+            "updateRole",
+            "listRoles",
+            "assignRoleToUser",
+            "removeRoleFromUser",
+            "getUserRoles",
+            "createGroup",
+            "deleteGroup",
+            "getGroup",
+            "updateGroup",
+            "listGroups",
+            "addUserToGroup",
+            "removeUserFromGroup",
+            "listUserGroups",
+            "createClient",
+            "deleteClient",
+            "getClient",
+            "updateClient",
+            "listClients",
+            "resetUserPassword",
+            "createClientRole",
+            "deleteClientRole",
+            "getClientRole",
+            "updateClientRole",
+            "listClientRoles",
+            "assignClientRoleToUser",
+            "removeClientRoleFromUser",
+            "listUserSessions",
+            "logoutUser",
+            "createClientScope",
+            "deleteClientScope",
+            "getClientScope",
+            "updateClientScope",
+            "listClientScopes"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "operationTypes": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by operation types (comma-separated list, e.g., CREATE,UPDATE,DELETE)",
+          "title": "Operation Types",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Keycloak password",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "realm": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "master",
+          "description": "Keycloak realm, the default is master because usually all the operations are done starting from the master realm",
+          "title": "Realm",
+          "required": false,
+          "deprecated": false
+        },
+        "resourcePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter admin events by resource path",
+          "title": "Resource Path",
+          "required": false,
+          "deprecated": false
+        },
+        "serverUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Keycloak server URL",
+          "title": "Server Url",
+          "required": false,
+          "deprecated": false
+        },
+        "types": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by event types (comma-separated list, e.g., LOGIN,LOGOUT)",
+          "title": "Types",
+          "required": false,
+          "deprecated": false
+        },
+        "user": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter events by user ID",
+          "title": "User",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Keycloak username",
+          "title": "Username",
+          "required": false,
+          "deprecated": false
+        },
+        "sendEmptyMessageWhenIdle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "knative": {
       "type": "object",
       "title": "Knative",
@@ -60576,7 +61919,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Detach a relationship - set true if want to delete a node and detach its relationships to other nodes at same time",
+          "description": "Detach a relationship - set true if you want to delete a node and detach its relationships to other nodes at same time",
           "title": "Detach Relationship",
           "required": false,
           "deprecated": false
@@ -61317,14 +62660,6 @@
           "required": false,
           "deprecated": false
         },
-        "keyStoreFile": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Client side certificate keystore to be used for encryption",
-          "title": "Key Store File",
-          "required": false,
-          "deprecated": true
-        },
         "keyStoreFormat": {
           "kind": "parameter",
           "type": "string",
@@ -61353,7 +62688,7 @@
         "passphrase": {
           "kind": "parameter",
           "type": "string",
-          "description": "Password setting to use in order to encrypt/decrypt payloads sent using SSH",
+          "description": "Password to use for the keyStore and trustStore. The same password must be configured for both resources.",
           "title": "Passphrase",
           "required": false,
           "deprecated": false
@@ -61399,14 +62734,6 @@
           "title": "Ssl Handler",
           "required": false,
           "deprecated": false
-        },
-        "trustStoreFile": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Server side certificate keystore to be used for encryption",
-          "title": "Trust Store File",
-          "required": false,
-          "deprecated": true
         },
         "trustStoreResource": {
           "kind": "parameter",
@@ -62115,14 +63442,6 @@
           "required": false,
           "deprecated": false
         },
-        "keyStoreFile": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Client side certificate keystore to be used for encryption",
-          "title": "Key Store File",
-          "required": false,
-          "deprecated": true
-        },
         "keyStoreFormat": {
           "kind": "parameter",
           "type": "string",
@@ -62151,7 +63470,7 @@
         "passphrase": {
           "kind": "parameter",
           "type": "string",
-          "description": "Password setting to use in order to encrypt/decrypt payloads sent using SSH",
+          "description": "Password to use for the keyStore and trustStore. The same password must be configured for both resources.",
           "title": "Passphrase",
           "required": false,
           "deprecated": false
@@ -62213,14 +63532,6 @@
           "title": "Ssl Handler",
           "required": false,
           "deprecated": false
-        },
-        "trustStoreFile": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Server side certificate keystore to be used for encryption",
-          "title": "Trust Store File",
-          "required": false,
-          "deprecated": true
         },
         "trustStoreResource": {
           "kind": "parameter",
@@ -65002,6 +66313,15 @@
           "type": "string",
           "description": "Sets the Last Will and Testament (LWT) for the connection. In the event that this client unexpectedly loses its connection to the server, the server will publish a message to itself using the supplied details. Sets the topic that the willPayload will be published to.",
           "title": "Will Topic",
+          "required": false,
+          "deprecated": false
+        },
+        "manualAcksEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Sets whether to use manual acknowledgements for the client. By default, this is false and message will be automatically acknowledged. If set to true, the acknowledgement is added in the exchange\u0027s completion callback.",
+          "title": "Manual Acks Enabled",
           "required": false,
           "deprecated": false
         },
@@ -87533,6 +88853,15 @@
           "required": false,
           "deprecated": false
         },
+        "useJsonBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use JSON body as input. When enabled, the message body is expected to be JSON and will be converted to XML representation of JSON using XSLT3 json-to-xml() function before XSLT processing. This allows XSLT stylesheets to process JSON input directly using standard XPath expressions.",
+          "title": "Use JSON Body",
+          "required": false,
+          "deprecated": false
+        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
@@ -88799,6 +90128,15 @@
           "defaultValue": "0",
           "description": "The number of javax.xml.transform.Transformer object that are cached for reuse to avoid calls to Template.newTransformer().",
           "title": "Transformer Cache Size",
+          "required": false,
+          "deprecated": false
+        },
+        "useJsonBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use JSON body as input. When enabled, the message body is expected to be JSON and will be converted to XML representation of JSON using XSLT3 json-to-xml() function before XSLT processing. This allows XSLT stylesheets to process JSON input directly using standard XPath expressions.",
+          "title": "Use JSON Body",
           "required": false,
           "deprecated": false
         },

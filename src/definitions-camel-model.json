@@ -6123,6 +6123,15 @@
           "required": false,
           "deprecated": false
         },
+        "micrometerEnabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable collecting statistics using Micrometer. This requires adding camel-resilience4j-micrometer JAR to the classpath.",
+          "title": "Micrometer Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "recordException": {
           "kind": "element",
           "type": "array",
@@ -9474,48 +9483,6 @@
           "type": "array",
           "description": "",
           "title": "Outputs",
-          "required": true,
-          "deprecated": false
-        }
-      }
-    },
-    "whenSkipSendToEndpoint": {
-      "type": "object",
-      "title": "When Skip Send To Endpoint",
-      "group": "configuration",
-      "icon": "generic24.png",
-      "description": "Predicate to determine if the message should be sent or not to the endpoint, when using interceptSentToEndpoint.",
-      "properties": {
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the id of this node",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Sets the description of this node",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
-        },
-        "disabled": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
-          "title": "Disabled",
-          "required": false,
-          "deprecated": false
-        },
-        "expression": {
-          "kind": "expression",
-          "type": "object",
-          "description": "Expression used as the predicate to evaluate whether the message should be sent or not to the endpoint",
-          "title": "Expression",
           "required": true,
           "deprecated": false
         }
