@@ -4,56 +4,21 @@ updates:
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - jsolovjo
-      - grgrzybek
-      - kariuwu
-      - joshiraezcode
+  - package-ecosystem: maven
+    directory: '/'
+    schedule:
+      interval: monthly
+    target-branch: '4.14.x'
   - package-ecosystem: maven
     directory: '/'
     schedule:
       interval: monthly
     target-branch: '4.10.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - jsolovjo
-      - grgrzybek
-      - kariuwu
-      - joshiraezcode
-  - package-ecosystem: maven
-    directory: '/'
-    schedule:
-      interval: monthly
-    target-branch: '4.8.x'
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - jsolovjo
-      - grgrzybek
-      - kariuwu
-      - joshiraezcode
   - package-ecosystem: npm
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - jsolovjo
-      - grgrzybek
-      - kariuwu
-      - joshiraezcode
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: monthly
-    reviewers:
-      - tadayosi
-      - phantomjinx
-      - jsolovjo
-      - grgrzybek
-      - kariuwu
-      - joshiraezcode
