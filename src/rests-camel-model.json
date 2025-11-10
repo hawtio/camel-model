@@ -145,6 +145,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -350,6 +358,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -552,6 +568,14 @@
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
           "required": false,
           "deprecated": false
         },
@@ -864,6 +888,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -1103,6 +1135,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -1308,6 +1348,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -1510,6 +1558,14 @@
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
           "required": false,
           "deprecated": false
         },
@@ -1865,6 +1921,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -2025,6 +2089,14 @@
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
           "required": false,
           "deprecated": false
         },
@@ -2368,16 +2440,28 @@
         },
         "jsonDataFormat": {
           "kind": "attribute",
-          "type": "string",
-          "description": "Name of specific json data format to use. By default jackson will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
+          "type": "enum",
+          "defaultValue": "jackson",
+          "enum": [
+            "jackson",
+            "jsonb",
+            "fastjson",
+            "gson"
+          ],
+          "description": "Name of specific json data format to use. By default, jackson will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
           "title": "Json Data Format",
           "required": false,
           "deprecated": false
         },
         "xmlDataFormat": {
           "kind": "attribute",
-          "type": "string",
-          "description": "Name of specific XML data format to use. By default jaxb will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
+          "type": "enum",
+          "defaultValue": "jaxb",
+          "enum": [
+            "jaxb",
+            "jacksonXml"
+          ],
+          "description": "Name of specific XML data format to use. By default jaxb will be used, but jacksonXml is also supported. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
           "title": "Xml Data Format",
           "required": false,
           "deprecated": false
@@ -2503,6 +2587,14 @@
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
           "required": false,
           "deprecated": false
         },

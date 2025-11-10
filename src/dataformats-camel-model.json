@@ -2132,8 +2132,7 @@
         "accessExternalSchemaProtocols": {
           "kind": "attribute",
           "type": "string",
-          "defaultValue": "false",
-          "description": "Only in use if schema validation has been enabled. Restrict access to the protocols specified for external reference set by the schemaLocation attribute, Import and Include element. Examples of protocols are file, http, jar:file. false or none to deny all access to external references; a specific protocol, such as file, to give permission to only the protocol; the keyword all to grant permission to all protocols.",
+          "description": "Only in use if schema validation has been enabled. Restrict access to the protocols specified for external reference set by the schemaLocation attribute, Import and Include element. Examples of protocols are file, http, jar:file. empty, false or none to deny all access to external references; a specific protocol, such as file, to give permission to only the protocol; the keyword all to grant permission to all protocols.",
           "title": "Access External Schema Protocols",
           "required": false,
           "deprecated": false
@@ -2442,6 +2441,14 @@
           "required": false,
           "deprecated": false
         },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
         "description": {
           "kind": "attribute",
           "type": "string",
@@ -2725,6 +2732,115 @@
           "type": "string",
           "description": "Controls the behavior for verifying the signature during unmarshaling. There are 4 values possible: optional: The PGP message may or may not contain signatures; if it does contain signatures, then a signature verification is executed. required: The PGP message must contain at least one signature; if this is not the case an exception (PGPException) is thrown. A signature verification is executed. ignore: Contained signatures in the PGP message are ignored; no signature verification is executed. no_signature_allowed: The PGP message must not contain a signature; otherwise an exception (PGPException) is thrown.",
           "title": "Signature Verification Option",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "pqc": {
+      "type": "object",
+      "title": "PQC (Post-Quantum Cryptography)",
+      "group": "dataformat,transformation,security",
+      "icon": "generic24.png",
+      "description": "Encrypt and decrypt messages using Post-Quantum Cryptography Key Encapsulation Mechanisms (KEM).",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "keyEncapsulationAlgorithm": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "MLKEM",
+          "enum": [
+            "MLKEM",
+            "BIKE",
+            "HQC",
+            "CMCE",
+            "SABER",
+            "FRODO",
+            "NTRU",
+            "NTRULPRime",
+            "SNTRUPrime",
+            "KYBER"
+          ],
+          "description": "The Post-Quantum KEM algorithm to use for key encapsulation. Supported values: MLKEM, BIKE, HQC, CMCE, SABER, FRODO, NTRU, NTRULPRime, SNTRUPrime, KYBER",
+          "title": "Key Encapsulation Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "symmetricKeyAlgorithm": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "AES",
+          "enum": [
+            "AES",
+            "ARIA",
+            "RC2",
+            "RC5",
+            "CAMELLIA",
+            "CAST5",
+            "CAST6",
+            "CHACHA7539",
+            "DSTU7624",
+            "GOST28147",
+            "GOST3412_2015",
+            "GRAIN128",
+            "HC128",
+            "HC256",
+            "SALSA20",
+            "SEED",
+            "SM4",
+            "DESEDE"
+          ],
+          "description": "The symmetric encryption algorithm to use with the shared secret. Supported values: AES, ARIA, RC2, RC5, CAMELLIA, CAST5, CAST6, CHACHA7539, etc.",
+          "title": "Symmetric Key Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "symmetricKeyLength": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "128",
+          "description": "The length (in bits) of the symmetric key.",
+          "title": "Symmetric Key Length",
+          "required": false,
+          "deprecated": false
+        },
+        "keyPair": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Refers to the KeyPair to lookup from the register to use for KEM operations.",
+          "title": "Key Pair",
+          "required": false,
+          "deprecated": false
+        },
+        "bufferSize": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "4096",
+          "description": "The size of the buffer used for streaming encryption/decryption.",
+          "title": "Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "provider": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The JCE security provider to use.",
+          "title": "Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "keyGenerator": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Refers to a custom KeyGenerator to lookup from the register for KEM operations.",
+          "title": "Key Generator",
           "required": false,
           "deprecated": false
         }
@@ -3745,6 +3861,14 @@
           "type": "string",
           "description": "Sets the id of this node",
           "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
           "required": false,
           "deprecated": false
         },
