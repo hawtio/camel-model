@@ -81741,8 +81741,7 @@
           "enum": [
             "xml",
             "html",
-            "text",
-            "textMain"
+            "text"
           ],
           "description": "Tika Output Format. Supported output formats. xml: Returns Parsed Content as XML. html: Returns Parsed Content as HTML. text: Returns Parsed Content as Text. textMain: Uses the boilerpipe library to automatically extract the main content from a web page.",
           "title": "Tika Parse Output Format",
