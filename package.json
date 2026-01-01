@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.8",
+    "@types/node": "^25.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "jest": "^30.0.3",
     "jest-environment-jsdom": "^30.0.2",
