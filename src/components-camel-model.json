@@ -36826,6 +36826,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "includeAllGoogleProperties": {
           "kind": "parameter",
           "type": "boolean",
@@ -40675,6 +40683,15 @@
           "required": false,
           "deprecated": false
         },
+        "oauth2BodyAuthentication": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use OAuth2 body authentication.",
+          "title": "Oauth2 Body Authentication",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2CachedTokensDefaultExpirySeconds": {
           "kind": "parameter",
           "type": "integer",
@@ -41243,6 +41260,15 @@
           "type": "string",
           "description": "Authentication username",
           "title": "Auth Username",
+          "required": false,
+          "deprecated": false
+        },
+        "oauth2BodyAuthentication": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use OAuth2 body authentication.",
+          "title": "Oauth2 Body Authentication",
           "required": false,
           "deprecated": false
         },
@@ -83219,8 +83245,7 @@
           "enum": [
             "xml",
             "html",
-            "text",
-            "textMain"
+            "text"
           ],
           "description": "Tika Output Format. Supported output formats. xml: Returns Parsed Content as XML. html: Returns Parsed Content as HTML. text: Returns Parsed Content as Text. textMain: Uses the boilerpipe library to automatically extract the main content from a web page.",
           "title": "Tika Parse Output Format",

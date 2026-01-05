@@ -6361,7 +6361,8 @@
         },
         "streamCache": {
           "kind": "attribute",
-          "type": "object",
+          "type": "boolean",
+          "defaultValue": "false",
           "description": "Whether stream caching is enabled on this route.",
           "title": "Stream Cache",
           "required": false,
