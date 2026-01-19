@@ -4368,6 +4368,32 @@
           "required": true,
           "deprecated": false
         },
+        "guardrailIdentifier": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The identifier (ID or ARN) for the guardrail to apply to the model invocation",
+          "title": "Guardrail Identifier",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailTrace": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return trace information from the guardrail",
+          "title": "Guardrail Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "guardrailVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "DRAFT",
+          "description": "The version of the guardrail to use. Defaults to DRAFT.",
+          "title": "Guardrail Version",
+          "required": false,
+          "deprecated": false
+        },
         "includeStreamingMetadata": {
           "kind": "parameter",
           "type": "boolean",
@@ -4453,7 +4479,8 @@
             "invokeImageModelStreaming",
             "invokeEmbeddingsModelStreaming",
             "converse",
-            "converseStream"
+            "converseStream",
+            "applyGuardrail"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -4492,10 +4519,21 @@
           "type": "enum",
           "enum": [
             "us-east-1",
-            "us-west-1",
-            "ap-southeast-1",
+            "us-east-2",
+            "us-west-2",
+            "us-gov-west-1",
             "ap-northeast-1",
-            "eu-central-1"
+            "ap-northeast-2",
+            "ap-south-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "ca-central-1",
+            "eu-central-1",
+            "eu-central-2",
+            "eu-west-1",
+            "eu-west-2",
+            "eu-west-3",
+            "sa-east-1"
           ],
           "description": "The region in which Bedrock client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
           "title": "Region",
@@ -4728,10 +4766,21 @@
           "type": "enum",
           "enum": [
             "us-east-1",
-            "us-west-1",
-            "ap-southeast-1",
+            "us-east-2",
+            "us-west-2",
+            "us-gov-west-1",
             "ap-northeast-1",
-            "eu-central-1"
+            "ap-northeast-2",
+            "ap-south-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "ca-central-1",
+            "eu-central-1",
+            "eu-central-2",
+            "eu-west-1",
+            "eu-west-2",
+            "eu-west-3",
+            "sa-east-1"
           ],
           "description": "The region in which Bedrock Agent client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
           "title": "Region",
@@ -5125,10 +5174,21 @@
           "type": "enum",
           "enum": [
             "us-east-1",
-            "us-west-1",
-            "ap-southeast-1",
+            "us-east-2",
+            "us-west-2",
+            "us-gov-west-1",
             "ap-northeast-1",
-            "eu-central-1"
+            "ap-northeast-2",
+            "ap-south-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "ca-central-1",
+            "eu-central-1",
+            "eu-central-2",
+            "eu-west-1",
+            "eu-west-2",
+            "eu-west-3",
+            "sa-east-1"
           ],
           "description": "The region in which Bedrock Agent Runtime client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
           "title": "Region",
@@ -6090,7 +6150,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Set whether the Translate client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "description": "Set whether the Secrets Manager client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
           "title": "Use Default Credentials Provider",
           "required": false,
           "deprecated": false
@@ -6209,6 +6269,15 @@
           "required": false,
           "deprecated": false
         },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with the uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
         "queryExecutionId": {
           "kind": "parameter",
           "type": "string",
@@ -6299,6 +6368,14 @@
           ],
           "description": "Optional comma separated list of error types to retry the query for. Use: \u0027retryable\u0027 to retry all retryable failure conditions (e.g. generic errors and resources exhausted), \u0027generic\u0027 to retry \u0027GENERIC_INTERNAL_ERROR\u0027 failures, \u0027exhausted\u0027 to retry queries that have exhausted resource limits, \u0027always\u0027 to always retry regardless of failure condition, or \u0027never\u0027 or null to never retry (default). See the section Waiting for Query Completion and Retrying Failed Queries to learn more.",
           "title": "Retry",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
           "required": false,
           "deprecated": false
         },
@@ -6433,6 +6510,15 @@
           "type": "string",
           "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
           "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
           "required": false,
           "deprecated": false
         },
@@ -10408,6 +10494,252 @@
         }
       }
     },
+    "aws2-rekognition": {
+      "type": "object",
+      "title": "AWS Rekognition",
+      "group": "cloud,ai",
+      "icon": "generic24.png",
+      "description": "Manage and invoke AWS Rekognition.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "associateFaces",
+            "compareFaces",
+            "createCollection",
+            "createUser",
+            "deleteCollection",
+            "deleteFaces",
+            "deleteUser",
+            "describeCollection",
+            "detectFaces",
+            "detectLabels",
+            "detectModerationLabels",
+            "detectProtectiveEquipment",
+            "detectText",
+            "disassociateFaces",
+            "getCelebrityInfo",
+            "getMediaAnalysisJob",
+            "indexFaces",
+            "listCollections",
+            "listMediaAnalysisJobs",
+            "listFaces",
+            "listUsers",
+            "recognizeCelebrities",
+            "searchFaces",
+            "searchFacesByImage",
+            "searchUsers",
+            "searchUsersByImage",
+            "startMediaAnalysisJob"
+          ],
+          "description": "The operation to perform. It can be listFunctions, getFunction, createFunction, deleteFunction or invokeFunction",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with the uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "pojoRequest": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to use a POJO request as body or not",
+          "title": "Pojo Request",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "ap-south-2",
+            "ap-south-1",
+            "eu-south-1",
+            "eu-south-2",
+            "us-gov-east-1",
+            "me-central-1",
+            "il-central-1",
+            "ca-central-1",
+            "eu-central-1",
+            "us-iso-west-1",
+            "eu-central-2",
+            "eu-isoe-west-1",
+            "us-west-1",
+            "us-west-2",
+            "af-south-1",
+            "eu-north-1",
+            "eu-west-3",
+            "eu-west-2",
+            "eu-west-1",
+            "ap-northeast-3",
+            "ap-northeast-2",
+            "ap-northeast-1",
+            "me-south-1",
+            "sa-east-1",
+            "ap-east-1",
+            "cn-north-1",
+            "ca-west-1",
+            "us-gov-west-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "us-iso-east-1",
+            "ap-southeast-3",
+            "ap-southeast-4",
+            "us-east-1",
+            "us-east-2",
+            "cn-northwest-1",
+            "us-isob-east-1",
+            "aws-global",
+            "aws-cn-global",
+            "aws-us-gov-global",
+            "aws-iso-global",
+            "aws-iso-b-global"
+          ],
+          "description": "The region in which Rekognition client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example, ap-east-1) You\u0027ll need to use the name Region.EU_WEST_1.id()",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Rekognition client should expect to load credentials through a default credentials provider or to expect static credentials to be passed in.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Rekognition client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "awsRekognitionClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AwsRekognitionClient client",
+          "title": "Aws Rekognition Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the Rekognition client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the Rekognition client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the Rekognition client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Rekognition client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in Rekognition.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "aws2-s3": {
       "type": "object",
       "title": "AWS S3 Storage Service",
@@ -11220,6 +11552,507 @@
           "type": "boolean",
           "defaultValue": "false",
           "description": "Set whether the S3 client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in S3.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "aws2-s3-vectors": {
+      "type": "object",
+      "title": "AWS S3 Vectors",
+      "group": "cloud,ai",
+      "icon": "generic24.png",
+      "description": "Store and query vector embeddings using AWS S3 Vectors with similarity search.",
+      "properties": {
+        "vectorBucketName": {
+          "kind": "path",
+          "type": "string",
+          "description": "Vector bucket name or ARN",
+          "title": "Vector Bucket Name",
+          "required": true,
+          "deprecated": false
+        },
+        "dataType": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "float32",
+          "enum": [
+            "float32",
+            "float16"
+          ],
+          "description": "The data type of the vector. Options: float32, float16",
+          "title": "Data Type",
+          "required": false,
+          "deprecated": false
+        },
+        "distanceMetric": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "cosine",
+          "enum": [
+            "cosine",
+            "euclidean",
+            "dot-product"
+          ],
+          "description": "The distance metric to use for similarity search. Options: cosine, euclidean, dot-product",
+          "title": "Distance Metric",
+          "required": false,
+          "deprecated": false
+        },
+        "overrideEndpoint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set the need for overriding the endpoint. This option needs to be used in combination with uriEndpointOverride option",
+          "title": "Override Endpoint",
+          "required": false,
+          "deprecated": false
+        },
+        "region": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "ap-south-2",
+            "ap-south-1",
+            "eu-south-1",
+            "eu-south-2",
+            "us-gov-east-1",
+            "me-central-1",
+            "il-central-1",
+            "ca-central-1",
+            "eu-central-1",
+            "us-iso-west-1",
+            "eu-central-2",
+            "eu-isoe-west-1",
+            "us-west-1",
+            "us-west-2",
+            "af-south-1",
+            "eu-north-1",
+            "eu-west-3",
+            "eu-west-2",
+            "eu-west-1",
+            "ap-northeast-3",
+            "ap-northeast-2",
+            "ap-northeast-1",
+            "me-south-1",
+            "sa-east-1",
+            "ap-east-1",
+            "cn-north-1",
+            "ca-west-1",
+            "us-gov-west-1",
+            "ap-southeast-1",
+            "ap-southeast-2",
+            "us-iso-east-1",
+            "ap-southeast-3",
+            "ap-southeast-4",
+            "us-east-1",
+            "us-east-2",
+            "cn-northwest-1",
+            "us-isob-east-1",
+            "aws-global",
+            "aws-cn-global",
+            "aws-us-gov-global",
+            "aws-iso-global",
+            "aws-iso-b-global"
+          ],
+          "description": "The region in which S3 Vectors client needs to work. When using this parameter, the configuration will expect the lowercase name of the region (for example ap-east-1)",
+          "title": "Region",
+          "required": false,
+          "deprecated": false
+        },
+        "similarityThreshold": {
+          "kind": "parameter",
+          "type": "number",
+          "description": "The minimum similarity threshold for results",
+          "title": "Similarity Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "topK": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "The number of top similar vectors to return in a query",
+          "title": "Top K",
+          "required": false,
+          "deprecated": false
+        },
+        "uriEndpointOverride": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the overriding uri endpoint. This option needs to be used in combination with overrideEndpoint option",
+          "title": "Uri Endpoint Override",
+          "required": false,
+          "deprecated": false
+        },
+        "vectorDimensions": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1536",
+          "description": "The dimensions of the vector embeddings (default: 1536, which is the dimension for OpenAI text-embedding-3-small)",
+          "title": "Vector Dimensions",
+          "required": false,
+          "deprecated": false
+        },
+        "vectorIndexName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the vector index",
+          "title": "Vector Index Name",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerMetadataFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Optional metadata filter for the consumer to filter vectors during polling",
+          "title": "Consumer Metadata Filter",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerQueryVector": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The query vector to use for the consumer to poll for similar vectors. Specified as comma-separated float values (e.g., 0.1,0.2,0.3). If not specified, the consumer will not poll.",
+          "title": "Consumer Query Vector",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "500",
+          "description": "Milliseconds before the next poll for the consumer",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "deleteAfterRead": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Delete vectors after they have been consumed",
+          "title": "Delete After Read",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMessagesPerPoll": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "The maximum number of messages to consume per poll for the consumer",
+          "title": "Max Messages Per Poll",
+          "required": false,
+          "deprecated": false
+        },
+        "sendEmptyMessageWhenIdle": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
+          "title": "Send Empty Message When Idle",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "pollStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
+          "title": "Poll Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "putVectors",
+            "queryVectors",
+            "deleteVectors",
+            "getVectors",
+            "createVectorBucket",
+            "deleteVectorBucket",
+            "listVectorBuckets",
+            "describeVectorBucket",
+            "createVectorIndex",
+            "deleteVectorIndex",
+            "listVectorIndexes",
+            "describeVectorIndex"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "s3VectorsClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Reference to a software.amazon.awssdk.services.s3vectors.S3VectorsClient in the registry.",
+          "title": "S3 Vectors Client",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "To define a proxy host when instantiating the S3 Vectors client",
+          "title": "Proxy Host",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To define a proxy port when instantiating the S3 Vectors client",
+          "title": "Proxy Port",
+          "required": false,
+          "deprecated": false
+        },
+        "proxyProtocol": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
+          "description": "To define a proxy protocol when instantiating the S3 Vectors client",
+          "title": "Proxy Protocol",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffErrorThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffIdleThreshold": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
+          "title": "Backoff Idle Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "backoffMultiplier": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
+          "title": "Backoff Multiplier",
+          "required": false,
+          "deprecated": false
+        },
+        "greedy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
+          "title": "Greedy",
+          "required": false,
+          "deprecated": false
+        },
+        "initialDelay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Milliseconds before the first poll starts.",
+          "title": "Initial Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "repeatCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
+          "title": "Repeat Count",
+          "required": false,
+          "deprecated": false
+        },
+        "runLoggingLevel": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "TRACE",
+          "enum": [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "OFF"
+          ],
+          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
+          "title": "Run Logging Level",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduledExecutorService": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
+          "title": "Scheduled Executor Service",
+          "required": false,
+          "deprecated": false
+        },
+        "scheduler": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "none",
+          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
+          "title": "Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "schedulerProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
+          "title": "Scheduler Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "startScheduler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the scheduler should be auto started.",
+          "title": "Start Scheduler",
+          "required": false,
+          "deprecated": false
+        },
+        "timeUnit": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "Time unit for initialDelay and delay options.",
+          "title": "Time Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "useFixedDelay": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
+          "title": "Use Fixed Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "accessKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Access Key",
+          "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
+          "required": false,
+          "deprecated": false
+        },
+        "secretKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Secret Key",
+          "title": "Secret Key",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If we want to trust all certificates in case of overriding the endpoint",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the S3 Vectors client should expect to load credentials through a default credentials provider.",
+          "title": "Use Default Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useProfileCredentialsProvider": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the S3 Vectors client should expect to load credentials through a profile credentials provider.",
+          "title": "Use Profile Credentials Provider",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the S3 Vectors client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in S3 Vectors.",
           "title": "Use Session Credentials",
           "required": false,
           "deprecated": false
@@ -13412,6 +14245,23 @@
           "title": "Secret Key",
           "required": false,
           "deprecated": false
+        },
+        "sessionToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Amazon AWS Session Token used when the user needs to assume an IAM role",
+          "title": "Session Token",
+          "required": false,
+          "deprecated": false
+        },
+        "useSessionCredentials": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set whether the Timestream client should expect to use Session Credentials. This is useful in a situation in which the user needs to assume an IAM role for doing operations in Timestream.",
+          "title": "Use Session Credentials",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -13527,8 +14377,12 @@
         },
         "proxyProtocol": {
           "kind": "parameter",
-          "type": "string",
+          "type": "enum",
           "defaultValue": "HTTPS",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ],
           "description": "To define a proxy protocol when instantiating the Transcribe client",
           "title": "Proxy Protocol",
           "required": false,
@@ -16312,6 +17166,30 @@
           "required": false,
           "deprecated": false
         },
+        "azureClientId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Azure Client ID for authentication with Azure Identity",
+          "title": "Azure Client Id",
+          "required": false,
+          "deprecated": false
+        },
+        "azureClientSecret": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Azure Client Secret for authentication with Azure Identity",
+          "title": "Azure Client Secret",
+          "required": false,
+          "deprecated": false
+        },
+        "azureTenantId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Azure Tenant ID for authentication with Azure Identity",
+          "title": "Azure Tenant Id",
+          "required": false,
+          "deprecated": false
+        },
         "sourceBlobAccessKey": {
           "kind": "parameter",
           "type": "string",
@@ -17571,7 +18449,7 @@
     "braintree": {
       "type": "object",
       "title": "Braintree",
-      "group": "saas",
+      "group": "saas,finance",
       "icon": "generic24.png",
       "description": "Process payments using Braintree Payments.",
       "properties": {
@@ -17883,8 +18761,8 @@
           "type": "enum",
           "defaultValue": "SIZE_BASED",
           "enum": [
-            "size_based",
-            "time_based"
+            "SIZE_BASED",
+            "TIME_BASED"
           ],
           "description": "Set the eviction Type for this cache",
           "title": "Eviction Type",
@@ -18032,8 +18910,8 @@
           "type": "enum",
           "defaultValue": "SIZE_BASED",
           "enum": [
-            "size_based",
-            "time_based"
+            "SIZE_BASED",
+            "TIME_BASED"
           ],
           "description": "Set the eviction Type for this cache",
           "title": "Eviction Type",
@@ -19577,7 +20455,7 @@
         "connectTimeout": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Connect timeout for OkHttpClient",
+          "description": "Connect timeout",
           "title": "Connect Timeout",
           "required": false,
           "deprecated": false
@@ -19602,7 +20480,7 @@
         "readTimeout": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Read timeout for OkHttpClient",
+          "description": "Read timeout",
           "title": "Read Timeout",
           "required": false,
           "deprecated": false
@@ -19635,7 +20513,7 @@
         "writeTimeout": {
           "kind": "parameter",
           "type": "duration",
-          "description": "Write timeout for OkHttpClient",
+          "description": "Write timeout",
           "title": "Write Timeout",
           "required": false,
           "deprecated": false
@@ -21728,6 +22606,126 @@
         }
       }
     },
+    "cyberark-vault": {
+      "type": "object",
+      "title": "CyberArk Vault",
+      "group": "cloud,security",
+      "icon": "generic24.png",
+      "description": "Retrieve secrets from CyberArk Conjur Vault.",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "account": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The CyberArk Conjur account name",
+          "title": "Account",
+          "required": true,
+          "deprecated": false
+        },
+        "certificatePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Path to the SSL certificate for verification",
+          "title": "Certificate Path",
+          "required": false,
+          "deprecated": false
+        },
+        "conjurClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Reference to a ConjurClient instance in the registry",
+          "title": "Conjur Client",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "getSecret",
+          "enum": [
+            "getSecret",
+            "createSecret"
+          ],
+          "description": "The operation to perform. It can be getSecret or createSecret",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "secretId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The secret ID to retrieve from CyberArk Conjur",
+          "title": "Secret Id",
+          "required": false,
+          "deprecated": false
+        },
+        "url": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The CyberArk Conjur instance URL",
+          "title": "Url",
+          "required": true,
+          "deprecated": false
+        },
+        "verifySsl": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to verify SSL certificates when connecting to CyberArk Conjur",
+          "title": "Verify Ssl",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The API key for authentication with CyberArk Conjur",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "authToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Pre-authenticated token to use for CyberArk Conjur",
+          "title": "Auth Token",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password for authentication with CyberArk Conjur",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The username for authentication with CyberArk Conjur",
+          "title": "Username",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "dapr": {
       "type": "object",
       "title": "Dapr",
@@ -21740,11 +22738,25 @@
           "type": "enum",
           "enum": [
             "invokeService",
-            "state"
+            "state",
+            "pubSub",
+            "invokeBinding",
+            "secret",
+            "configuration",
+            "lock",
+            "workflow"
           ],
           "description": "The Dapr building block operation to perform with this component",
           "title": "Operation",
           "required": true,
+          "deprecated": false
+        },
+        "client": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Dapr Client",
+          "title": "Client",
+          "required": false,
           "deprecated": false
         },
         "configKeys": {
@@ -21771,6 +22783,14 @@
           "required": false,
           "deprecated": false
         },
+        "previewClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Dapr Preview Client",
+          "title": "Preview Client",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubName": {
           "kind": "parameter",
           "type": "string",
@@ -21784,14 +22804,6 @@
           "type": "string",
           "description": "The name of the topic to subscribe to. The topic must exist in the Pub/Sub component configured under the given pubsubName.",
           "title": "Topic",
-          "required": false,
-          "deprecated": false
-        },
-        "previewClient": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "The client to consume messages by the consumer",
-          "title": "Preview Client",
           "required": false,
           "deprecated": false
         },
@@ -21872,6 +22884,31 @@
           "required": false,
           "deprecated": false
         },
+        "eventName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the event. Event names are case-insensitive",
+          "title": "Event Name",
+          "required": false,
+          "deprecated": false
+        },
+        "expiryInSeconds": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The expiry time in seconds for the lock",
+          "title": "Expiry In Seconds",
+          "required": false,
+          "deprecated": false
+        },
+        "getWorkflowIO": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Set true to fetch the workflow instance\u0027s inputs, outputs, and custom status, or false to omit",
+          "title": "Get Workflow IO",
+          "required": false,
+          "deprecated": false
+        },
         "httpExtension": {
           "kind": "parameter",
           "type": "object",
@@ -21888,11 +22925,48 @@
           "required": false,
           "deprecated": false
         },
+        "lockOperation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "tryLock",
+          "enum": [
+            "tryLock",
+            "unlock"
+          ],
+          "description": "The lock operation to perform on the store. Required for DaprOperation.lock operation",
+          "title": "Lock Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "lockOwner": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The lock owner identifier for the lock",
+          "title": "Lock Owner",
+          "required": false,
+          "deprecated": false
+        },
         "methodToInvoke": {
           "kind": "parameter",
           "type": "string",
           "description": "The name of the method or route to invoke on the target service",
           "title": "Method To Invoke",
+          "required": false,
+          "deprecated": false
+        },
+        "reason": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Reason for suspending/resuming the workflow instance",
+          "title": "Reason",
+          "required": false,
+          "deprecated": false
+        },
+        "resourceId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The resource Id for the lock",
+          "title": "Resource Id",
           "required": false,
           "deprecated": false
         },
@@ -21937,12 +23011,88 @@
           "required": false,
           "deprecated": false
         },
+        "storeName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The lock store name",
+          "title": "Store Name",
+          "required": false,
+          "deprecated": false
+        },
+        "timeout": {
+          "kind": "parameter",
+          "type": "duration",
+          "description": "The amount of time to wait for the workflow instance to start/complete",
+          "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "verb": {
           "kind": "parameter",
           "type": "string",
           "defaultValue": "POST",
           "description": "The HTTP verb to use for invoking the method",
           "title": "Verb",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowClass": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The FQCN of the class which implements io.dapr.workflows.Workflow",
+          "title": "Workflow Class",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Dapr Workflow Client",
+          "title": "Workflow Client",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowInstanceId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The instance ID of the workflow",
+          "title": "Workflow Instance Id",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowOperation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "scheduleNew",
+          "enum": [
+            "scheduleNew",
+            "terminate",
+            "purge",
+            "suspend",
+            "resume",
+            "state",
+            "waitForInstanceStart",
+            "waitForInstanceCompletion",
+            "raiseEvent"
+          ],
+          "description": "The workflow operation to perform. Required for DaprOperation.workflow operation",
+          "title": "Workflow Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowStartTime": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The start time of the new workflow",
+          "title": "Workflow Start Time",
+          "required": false,
+          "deprecated": false
+        },
+        "workflowVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The version of the workflow to start",
+          "title": "Workflow Version",
           "required": false,
           "deprecated": false
         },
@@ -22580,6 +23730,15 @@
           "required": false,
           "deprecated": false
         },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
+          "required": false,
+          "deprecated": false
+        },
         "databaseDbname": {
           "kind": "parameter",
           "type": "string",
@@ -22956,7 +24115,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -23385,6 +24544,15 @@
           "required": false,
           "deprecated": false
         },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
+          "required": false,
+          "deprecated": false
+        },
         "databaseExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -23760,7 +24928,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -24179,6 +25347,15 @@
           "type": "string",
           "description": "The custom metric tags will accept key-value pairs to customize the MBean object name which should be appended the end of regular name, each key would represent a tag for the MBean object name, and the corresponding value would be the value of that tag the key is. For example: k1\u003dv1,k2\u003dv2",
           "title": "Custom Metric Tags",
+          "required": false,
+          "deprecated": false
+        },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
           "required": false,
           "deprecated": false
         },
@@ -24746,7 +25923,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -25233,6 +26410,15 @@
           "type": "string",
           "description": "The custom metric tags will accept key-value pairs to customize the MBean object name which should be appended the end of regular name, each key would represent a tag for the MBean object name, and the corresponding value would be the value of that tag the key is. For example: k1\u003dv1,k2\u003dv2",
           "title": "Custom Metric Tags",
+          "required": false,
+          "deprecated": false
+        },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
           "required": false,
           "deprecated": false
         },
@@ -26038,7 +27224,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -26494,6 +27680,15 @@
           "required": false,
           "deprecated": false
         },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
+          "required": false,
+          "deprecated": false
+        },
         "databaseDbname": {
           "kind": "parameter",
           "type": "string",
@@ -26663,15 +27858,6 @@
           "required": false,
           "deprecated": false
         },
-        "flushLsnSource": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Boolean to determine if Debezium should flush LSN in the source postgres database. If set to false, user will have to flush the LSN manually outside Debezium.",
-          "title": "Flush Lsn Source",
-          "required": false,
-          "deprecated": false
-        },
         "guardrailCollectionsLimitAction": {
           "kind": "parameter",
           "type": "string",
@@ -26767,6 +27953,14 @@
           "defaultValue": "numeric",
           "description": "Specify how INTERVAL columns should be represented in change events, including: \u0027string\u0027 represents values as an exact ISO formatted string; \u0027numeric\u0027 (default) represents values using the inexact conversion into microseconds",
           "title": "Interval Handling Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "lsnFlushMode": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Determines the LSN flushing strategy. Options include: \u0027connector\u0027 (default) for Debezium managed LSN flushing (replaces deprecated flush.lsn.source\u003dtrue); \u0027manual\u0027 for externally managed LSN flushing (replaces deprecated flush.lsn.source\u003dfalse); \u0027connector_and_driver\u0027 for Debezium managed LSN flushing with the pgjdbc driver flushing unmonitored LSNsusing server keepalive LSN, which prevents WAL growth on low-activity databases.",
+          "title": "Lsn Flush Mode",
           "required": false,
           "deprecated": false
         },
@@ -27047,7 +28241,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -27608,6 +28802,15 @@
           "required": false,
           "deprecated": false
         },
+        "customSanitizePattern": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
+          "title": "Custom Sanitize Pattern",
+          "required": false,
+          "deprecated": false
+        },
         "databaseHostname": {
           "kind": "parameter",
           "type": "string",
@@ -27669,8 +28872,8 @@
         "dataQueryMode": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": "function",
-          "description": "Controls how the connector queries CDC data. The default is \u0027function\u0027, which means the data is queried by means of calling cdc.fn_cdc_get_all_changes_# function. The value of \u0027direct\u0027 makes the connector to query the change tables directly.",
+          "defaultValue": "direct",
+          "description": "Controls how the connector queries CDC data. The default is \u0027direct\u0027, which makes the connector to query the change tables directly. The value of \u0027function\u0027 means the data is queried by means of calling cdc.fn_cdc_get_all_changes_# function.",
           "title": "Data Query Mode",
           "required": false,
           "deprecated": false
@@ -28036,7 +29239,7 @@
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
-          "description": "The name of the data collection that is used to send signals/commands to Debezium. Signaling is disabled when not set.",
+          "description": "The name of the data collection that is used to send signals/commands to Debezium. For multi-partition mode connectors, multiple signal data collections can be specified as a comma-separated list. Signaling is disabled when not set.",
           "title": "Signal Data Collection",
           "required": false,
           "deprecated": false
@@ -29594,15 +30797,6 @@
           "required": false,
           "deprecated": false
         },
-        "apiTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "60000",
-          "description": "API request timeout in milliseconds",
-          "title": "Api Timeout",
-          "required": false,
-          "deprecated": false
-        },
         "asyncPollInterval": {
           "kind": "parameter",
           "type": "integer",
@@ -29621,83 +30815,11 @@
           "required": false,
           "deprecated": false
         },
-        "connectionRequestTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "30000",
-          "description": "Connection request timeout in milliseconds (timeout when requesting connection from pool)",
-          "title": "Connection Request Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "connectionTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "30000",
-          "description": "Connection timeout in milliseconds",
-          "title": "Connection Timeout",
-          "required": false,
-          "deprecated": false
-        },
-        "connectionTimeToLive": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "-1",
-          "description": "Time to live for connections in milliseconds (-1 for infinite)",
-          "title": "Connection Time To Live",
-          "required": false,
-          "deprecated": false
-        },
-        "convertEndpoint": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "/v1/convert/source",
-          "description": "Docling-serve API convert endpoint path",
-          "title": "Convert Endpoint",
-          "required": false,
-          "deprecated": false
-        },
         "doclingCommand": {
           "kind": "parameter",
           "type": "string",
           "description": "Path to Docling Python executable or command",
           "title": "Docling Command",
-          "required": false,
-          "deprecated": false
-        },
-        "evictIdleConnections": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Enable eviction of idle connections from the pool",
-          "title": "Evict Idle Connections",
-          "required": false,
-          "deprecated": false
-        },
-        "maxConnectionsPerRoute": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "10",
-          "description": "Maximum connections per route in the connection pool",
-          "title": "Max Connections Per Route",
-          "required": false,
-          "deprecated": false
-        },
-        "maxIdleTime": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "60000",
-          "description": "Maximum idle time for connections in milliseconds before eviction",
-          "title": "Max Idle Time",
-          "required": false,
-          "deprecated": false
-        },
-        "maxTotalConnections": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "20",
-          "description": "Maximum total connections in the connection pool",
-          "title": "Max Total Connections",
           "required": false,
           "deprecated": false
         },
@@ -29710,30 +30832,12 @@
           "required": false,
           "deprecated": false
         },
-        "socketTimeout": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "60000",
-          "description": "Socket timeout in milliseconds",
-          "title": "Socket Timeout",
-          "required": false,
-          "deprecated": false
-        },
         "useAsyncMode": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Use asynchronous conversion mode (docling-serve API only)",
           "title": "Use Async Mode",
-          "required": false,
-          "deprecated": false
-        },
-        "validateAfterInactivity": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "2000",
-          "description": "Validate connections after inactivity in milliseconds",
-          "title": "Validate After Inactivity",
           "required": false,
           "deprecated": false
         },
@@ -30254,7 +31358,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "-1",
-          "description": "Sets a total timeout specified in milliseconds, when using parallel processing. If the Multicast has not been able to send and process all replies within the given timeframe, then the timeout triggers and the Multicast breaks out and continues. Notice that, if you provide a TimeoutAwareAggregationStrategy, then the timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks (for which it is difficult for Camel to shut down in a graceful manner) may continue to run. So use this option with a bit of care.",
+          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Dynamic Router hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Dynamic Router breaks out and continues. The timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
           "title": "Timeout",
           "required": false,
           "deprecated": false
@@ -30489,7 +31593,18 @@
         },
         "action": {
           "kind": "parameter",
-          "type": "string",
+          "type": "enum",
+          "enum": [
+            "CLEAR",
+            "PUT",
+            "PUT_ALL",
+            "PUT_IF_ABSENT",
+            "GET",
+            "GET_ALL",
+            "REMOVE",
+            "REMOVE_ALL",
+            "REPLACE"
+          ],
           "description": "To configure the default cache action. If an action is set in the message header, then the operation from the header takes precedence.",
           "title": "Action",
           "required": false,
@@ -38123,6 +39238,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "includeAllGoogleProperties": {
           "kind": "parameter",
           "type": "boolean",
@@ -39348,6 +40471,175 @@
         }
       }
     },
+    "google-vertexai": {
+      "type": "object",
+      "title": "Google Vertex AI",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Interact with Google Cloud Vertex AI generative models.",
+      "properties": {
+        "projectId": {
+          "kind": "path",
+          "type": "string",
+          "description": "Google Cloud Project ID",
+          "title": "Project Id",
+          "required": true,
+          "deprecated": false
+        },
+        "location": {
+          "kind": "path",
+          "type": "string",
+          "description": "Google Cloud location/region (e.g., us-central1)",
+          "title": "Location",
+          "required": true,
+          "deprecated": false
+        },
+        "modelId": {
+          "kind": "path",
+          "type": "string",
+          "description": "Model ID to use for predictions",
+          "title": "Model Id",
+          "required": true,
+          "deprecated": false
+        },
+        "serviceAccountKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Service account key that can be used as credentials for the Vertex AI client. It can be loaded by default from classpath, but you can prefix with classpath:, file:, or http: to load the resource from different systems.",
+          "title": "Service Account Key",
+          "required": false,
+          "deprecated": false
+        },
+        "anthropicVersion": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "vertex-2023-10-16",
+          "description": "Anthropic API version for Claude models. Required when publisher is \u0027anthropic\u0027.",
+          "title": "Anthropic Version",
+          "required": false,
+          "deprecated": false
+        },
+        "candidateCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Number of candidate responses to generate",
+          "title": "Candidate Count",
+          "required": false,
+          "deprecated": false
+        },
+        "jsonMode": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use JSON request/response format",
+          "title": "Json Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "maxOutputTokens": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1024",
+          "description": "Maximum number of output tokens",
+          "title": "Max Output Tokens",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "generateText",
+            "generateChat",
+            "generateChatStreaming",
+            "generateImage",
+            "generateEmbeddings",
+            "generateCode",
+            "generateMultimodal",
+            "rawPredict",
+            "streamRawPredict"
+          ],
+          "description": "Set the operation for the producer",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "publisher": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Publisher name for partner models (e.g., anthropic, meta, mistralai). Required for rawPredict operations.",
+          "title": "Publisher",
+          "required": false,
+          "deprecated": false
+        },
+        "streamOutputMode": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "complete",
+          "enum": [
+            "complete",
+            "chunks"
+          ],
+          "description": "Streaming output mode: complete (default) or chunks",
+          "title": "Stream Output Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "temperature": {
+          "kind": "parameter",
+          "type": "number",
+          "defaultValue": "0.7",
+          "description": "Temperature parameter for generation (0.0-1.0)",
+          "title": "Temperature",
+          "required": false,
+          "deprecated": false
+        },
+        "topK": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "40",
+          "description": "Top-K parameter for generation",
+          "title": "Top K",
+          "required": false,
+          "deprecated": false
+        },
+        "topP": {
+          "kind": "parameter",
+          "type": "number",
+          "defaultValue": "0.95",
+          "description": "Top-P parameter for nucleus sampling",
+          "title": "Top P",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "client": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Google GenAI client for Vertex AI",
+          "title": "Client",
+          "required": false,
+          "deprecated": false
+        },
+        "predictionServiceClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The Google Cloud AI Platform Prediction Service client for rawPredict operations",
+          "title": "Prediction Service Client",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "grape": {
       "type": "object",
       "title": "Grape",
@@ -39853,7 +41145,10 @@
           "enum": [
             "HMAC256",
             "HMAC384",
-            "HMAC512"
+            "HMAC512",
+            "RSA256",
+            "RSA384",
+            "RSA512"
           ],
           "description": "JSON Web Token sign algorithm",
           "title": "Jwt Algorithm",
@@ -39913,9 +41208,8 @@
           "type": "enum",
           "defaultValue": "PLAINTEXT",
           "enum": [
-            "TLS",
-            "PLAINTEXT_UPGRADE",
-            "PLAINTEXT"
+            "PLAINTEXT",
+            "TLS"
           ],
           "description": "Identifies the security negotiation type used for HTTP/2 communication",
           "title": "Negotiation Type",
@@ -41855,6 +43149,14 @@
           "required": false,
           "deprecated": false
         },
+        "nonProxyHosts": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of hosts that should bypass the proxy. Supports wildcards, e.g., localhost,.example.com,192.168..",
+          "title": "Non Proxy Hosts",
+          "required": false,
+          "deprecated": false
+        },
         "proxyAuthDomain": {
           "kind": "parameter",
           "type": "string",
@@ -42441,6 +43743,14 @@
           "defaultValue": "false",
           "description": "To use System Properties as fallback for configuration for configuring HTTP Client",
           "title": "Use System Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "nonProxyHosts": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of hosts that should bypass the proxy. Supports wildcards, e.g., localhost,.example.com,192.168..",
+          "title": "Non Proxy Hosts",
           "required": false,
           "deprecated": false
         },
@@ -44101,7 +45411,7 @@
         "endpointUrl": {
           "kind": "parameter",
           "type": "string",
-          "description": "IBM COS Endpoint URL (e.g., https://s3.us-south.cloud-object-storage.appdomain.cloud)",
+          "description": "IBM COS Endpoint URL (e.g., https://s3.us-south.cloud-object-storage.appdomain.cloud) Note that some operations requires to use a regional endpoint URL instead of a cross-region one.",
           "title": "Endpoint Url",
           "required": false,
           "deprecated": false
@@ -44522,7 +45832,9 @@
             "createKVSecret",
             "getSecret",
             "deleteSecret",
-            "listSecrets"
+            "listSecrets",
+            "updateSecret",
+            "listSecretVersions"
           ],
           "description": "Operation to be performed",
           "title": "Operation",
@@ -44726,6 +46038,192 @@
           ],
           "description": "The operation to perform",
           "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The IBM Cloud API key for authentication",
+          "title": "Api Key",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "ibm-watson-speech-to-text": {
+      "type": "object",
+      "title": "IBM Watson Speech to Text",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Convert speech audio to text using IBM Watson Speech to Text",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "serviceUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The service endpoint URL. If not specified, the default URL will be used.",
+          "title": "Service Url",
+          "required": false,
+          "deprecated": false
+        },
+        "contentType": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "audio/wav",
+          "description": "The audio format (MIME type). Default is audio/wav. Supported formats: audio/wav, audio/mp3, audio/flac, audio/ogg, audio/webm",
+          "title": "Content Type",
+          "required": false,
+          "deprecated": false
+        },
+        "model": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "en-US_BroadbandModel",
+          "description": "The language model to use for recognition. Default is en-US_BroadbandModel. Examples: en-US_NarrowbandModel, en-GB_BroadbandModel, es-ES_BroadbandModel, fr-FR_BroadbandModel",
+          "title": "Model",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "recognize",
+            "listModels",
+            "getModel",
+            "listCustomModels",
+            "getCustomModel"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "speakerLabels": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to identify different speakers in the audio. Default is false.",
+          "title": "Speaker Labels",
+          "required": false,
+          "deprecated": false
+        },
+        "timestamps": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to include timestamps for each word in the transcription. Default is false.",
+          "title": "Timestamps",
+          "required": false,
+          "deprecated": false
+        },
+        "wordConfidence": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to include confidence scores for each word. Default is false.",
+          "title": "Word Confidence",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The IBM Cloud API key for authentication",
+          "title": "Api Key",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "ibm-watson-text-to-speech": {
+      "type": "object",
+      "title": "IBM Watson Text to Speech",
+      "group": "ai,cloud",
+      "icon": "generic24.png",
+      "description": "Convert text to natural-sounding speech using IBM Watson Text to Speech",
+      "properties": {
+        "label": {
+          "kind": "path",
+          "type": "string",
+          "description": "Logical name",
+          "title": "Label",
+          "required": true,
+          "deprecated": false
+        },
+        "serviceUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The service endpoint URL. If not specified, the default URL will be used.",
+          "title": "Service Url",
+          "required": false,
+          "deprecated": false
+        },
+        "accept": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "audio/wav",
+          "description": "The audio format for synthesized speech. Default is audio/wav. Supported formats: audio/wav, audio/mp3, audio/ogg, audio/flac, audio/webm",
+          "title": "Accept",
+          "required": false,
+          "deprecated": false
+        },
+        "customizationId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The customization ID (GUID) of a custom voice model to use for synthesis",
+          "title": "Customization Id",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "synthesize",
+            "listVoices",
+            "getVoice",
+            "listCustomModels",
+            "getCustomModel",
+            "getPronunciation"
+          ],
+          "description": "The operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "voice": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "en-US_MichaelV3Voice",
+          "description": "The voice to use for synthesis. Default is en-US_MichaelV3Voice. Examples: en-US_AllisonV3Voice, en-GB_KateV3Voice, es-ES_EnriqueV3Voice, fr-FR_NicolasV3Voice",
+          "title": "Voice",
           "required": false,
           "deprecated": false
         },
@@ -45162,6 +46660,274 @@
           "type": "string",
           "description": "An identifier grouping connection instances",
           "title": "Connection Id",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "iggy": {
+      "type": "object",
+      "title": "Iggy",
+      "group": "messaging",
+      "icon": "generic24.png",
+      "description": "Camel Iggy component",
+      "properties": {
+        "topicName": {
+          "kind": "path",
+          "type": "string",
+          "description": "Name of the topic",
+          "title": "Topic Name",
+          "required": true,
+          "deprecated": false
+        },
+        "autoCreateStream": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to automatically create stream if it does not exist",
+          "title": "Auto Create Stream",
+          "required": false,
+          "deprecated": false
+        },
+        "autoCreateTopic": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to automatically create topic if it does not exist",
+          "title": "Auto Create Topic",
+          "required": false,
+          "deprecated": false
+        },
+        "clientTransport": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "TCP",
+          "enum": [
+            "TCP",
+            "HTTP"
+          ],
+          "description": "Polling strategy",
+          "title": "Client Transport",
+          "required": false,
+          "deprecated": false
+        },
+        "compressionAlgorithm": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "None",
+          "enum": [
+            "None",
+            "Gzip"
+          ],
+          "description": "Compression algorithm for message payload",
+          "title": "Compression Algorithm",
+          "required": false,
+          "deprecated": false
+        },
+        "host": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "localhost",
+          "description": "Iggy server hostname or IP address",
+          "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "maxTopicSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Maximum topic size in bytes (0 means unlimited)",
+          "title": "Max Topic Size",
+          "required": false,
+          "deprecated": false
+        },
+        "messageExpiry": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Message expiry time in seconds (0 means no expiry)",
+          "title": "Message Expiry",
+          "required": false,
+          "deprecated": false
+        },
+        "partitionsCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Number of partitions for the topic",
+          "title": "Partitions Count",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Iggy password",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "port": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "8090",
+          "description": "Iggy server port number",
+          "title": "Port",
+          "required": false,
+          "deprecated": false
+        },
+        "replicationFactor": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Replication factor for the topic",
+          "title": "Replication Factor",
+          "required": false,
+          "deprecated": false
+        },
+        "streamId": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Stream identifier",
+          "title": "Stream Id",
+          "required": false,
+          "deprecated": false
+        },
+        "streamName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Stream name",
+          "title": "Stream Name",
+          "required": false,
+          "deprecated": false
+        },
+        "autoCommit": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Controls message acknowledgment behavior. When true, messages are automatically marked as processed after consumption. When false, enables manual offset management and allows setting a custom starting offset position",
+          "title": "Auto Commit",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerGroupName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The name of the consumer group",
+          "title": "Consumer Group Name",
+          "required": false,
+          "deprecated": false
+        },
+        "consumersCount": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1",
+          "description": "Camel Iggy consumers count",
+          "title": "Consumers Count",
+          "required": false,
+          "deprecated": false
+        },
+        "partitionId": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The consumer partition id",
+          "title": "Partition Id",
+          "required": false,
+          "deprecated": false
+        },
+        "pollBatchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "The consumer poll batch size",
+          "title": "Poll Batch Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pollingStrategy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "next",
+          "enum": [
+            "next",
+            "first",
+            "last"
+          ],
+          "description": "Polling strategy",
+          "title": "Polling Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "shutdownTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "Camel Iggy shutdown timeout",
+          "title": "Shutdown Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "startingOffset": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Defines the initial message offset position when autoCommit is disabled. Use 0 to start from the beginning of the stream, or specify a custom offset to resume from a particular point",
+          "title": "Starting Offset",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "partitioning": {
+          "kind": "parameter",
+          "type": "object",
+          "defaultValue": "balanced",
+          "description": "Partitioning strategy for message distribution",
+          "title": "Partitioning",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Iggy username",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -51140,9 +52906,10 @@
           "type": "enum",
           "defaultValue": "NONE",
           "enum": [
+            "NONE",
             "EXECUTE",
             "FETCH",
-            "NONE"
+            "CONSUME"
           ],
           "description": "Type of operation to execute on query",
           "title": "Operation",
@@ -53912,7 +55679,12 @@
             "removeRequiredAction",
             "executeActionsEmail",
             "getClientSecret",
-            "regenerateClientSecret"
+            "regenerateClientSecret",
+            "bulkCreateUsers",
+            "bulkDeleteUsers",
+            "bulkAssignRolesToUser",
+            "bulkAssignRoleToUsers",
+            "bulkUpdateUsers"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -66461,6 +68233,93 @@
         }
       }
     },
+    "once": {
+      "type": "object",
+      "title": "Once",
+      "group": "core,scheduling",
+      "icon": "generic24.png",
+      "description": "Camel Once component",
+      "properties": {
+        "name": {
+          "kind": "path",
+          "type": "string",
+          "description": "The logical name",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
+        "body": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The data to use as message body. You can externalize the data by using file: or classpath: as prefix and specify the location of the file.",
+          "title": "Body",
+          "required": false,
+          "deprecated": false
+        },
+        "headers": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The data to use as message headers as key\u003dvalue pairs. You can externalize the data by using file: or classpath: as prefix and specify the location of the file. This is a multi-value option with prefix: header.",
+          "title": "Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "delay": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "The number of milliseconds to wait before triggering. The default value is 1000.",
+          "title": "Delay",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangeProperties": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The data to use as exchange properties as key\u003dvalue pairs. You can externalize the data by using file: or classpath: as prefix and specify the location of the file. This is a multi-value option with prefix: exchangeProperty.",
+          "title": "Exchange Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "variables": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The data to use as exchange variables as key\u003dvalue pairs. You can externalize the data by using file: or classpath: as prefix and specify the location of the file. This is a multi-value option with prefix: variable.",
+          "title": "Variables",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "opensearch": {
       "type": "object",
       "title": "OpenSearch",
@@ -67898,6 +69757,115 @@
           "description": "OpenStack username",
           "title": "Username",
           "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "opentelemetry-metrics": {
+      "type": "object",
+      "title": "OpenTelemetry Metrics",
+      "group": "monitoring",
+      "icon": "generic24.png",
+      "description": "Camel metrics based on the Camel Telemetry spec",
+      "properties": {
+        "metricType": {
+          "kind": "path",
+          "type": "enum",
+          "enum": [
+            "counter",
+            "summary",
+            "timer"
+          ],
+          "description": "Type of metrics",
+          "title": "Metric Type",
+          "required": true,
+          "deprecated": false
+        },
+        "metricName": {
+          "kind": "path",
+          "type": "string",
+          "description": "Name of metric",
+          "title": "Metric Name",
+          "required": true,
+          "deprecated": false
+        },
+        "action": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "start",
+            "stop"
+          ],
+          "description": "Action expression when using timer type",
+          "title": "Action",
+          "required": false,
+          "deprecated": false
+        },
+        "attributes": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "metric attributes. This is a multi-value option with prefix: attributes.",
+          "title": "Attributes",
+          "required": false,
+          "deprecated": false
+        },
+        "decrement": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Decrement value expression when using counter type",
+          "title": "Decrement",
+          "required": false,
+          "deprecated": false
+        },
+        "increment": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Increment value expression when using counter type",
+          "title": "Increment",
+          "required": false,
+          "deprecated": false
+        },
+        "metricsDescription": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Description of metrics",
+          "title": "Metrics Description",
+          "required": false,
+          "deprecated": false
+        },
+        "unit": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "MILLISECONDS",
+          "enum": [
+            "NANOSECONDS",
+            "MICROSECONDS",
+            "MILLISECONDS",
+            "SECONDS",
+            "MINUTES",
+            "HOURS",
+            "DAYS"
+          ],
+          "description": "The time unit when using the timer type",
+          "title": "Unit",
+          "required": false,
+          "deprecated": false
+        },
+        "value": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Value expression when using histogram type",
+          "title": "Value",
+          "required": false,
           "deprecated": false
         },
         "lazyStartProducer": {
@@ -71536,8 +73504,12 @@
         },
         "batcherBuilder": {
           "kind": "parameter",
-          "type": "object",
+          "type": "enum",
           "defaultValue": "DEFAULT",
+          "enum": [
+            "DEFAULT",
+            "KEY_BASED"
+          ],
           "description": "Control batching method used by the producer.",
           "title": "Batcher Builder",
           "required": false,
@@ -71709,14 +73681,6 @@
           "required": true,
           "deprecated": false
         },
-        "apiKey": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets the API key to use for authentication",
-          "title": "Api Key",
-          "required": false,
-          "deprecated": false
-        },
         "host": {
           "kind": "parameter",
           "type": "string",
@@ -71752,15 +73716,6 @@
           "required": false,
           "deprecated": false
         },
-        "tls": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the client uses Transport Layer Security (TLS) to secure communications",
-          "title": "Tls",
-          "required": false,
-          "deprecated": false
-        },
         "lazyStartProducer": {
           "kind": "parameter",
           "type": "boolean",
@@ -71773,8 +73728,25 @@
         "filter": {
           "kind": "parameter",
           "type": "object",
-          "description": "Filter of type io.qdrant.client.grpc.Points.Points.Filter for similarity search. This is for advanced usage.",
+          "description": "Filter for similarity search.",
           "title": "Filter",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the API key to use for authentication",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "tls": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the client uses Transport Layer Security (TLS) to secure communications",
+          "title": "Tls",
           "required": false,
           "deprecated": false
         }
@@ -76011,10 +77983,12 @@
           "type": "enum",
           "defaultValue": "WARN",
           "enum": [
+            "TRACE",
             "DEBUG",
             "INFO",
             "WARN",
-            "ERROR"
+            "ERROR",
+            "OFF"
           ],
           "description": "The logging level to use for JSCH activity logging. As JSCH is verbose at by default at INFO level the threshold is WARN by default.",
           "title": "Jsch Logging Level",
@@ -78774,6 +80748,15 @@
           "required": false,
           "deprecated": false
         },
+        "renameUsingCopy": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Perform rename operations using a copy and delete strategy. This option takes precedence over the copyAndDeleteOnRenameFail parameter that will automatically fall back to the copy and delete strategy, but only after additional delays.",
+          "title": "Rename Using Copy",
+          "required": false,
+          "deprecated": false
+        },
         "autoCreate": {
           "kind": "parameter",
           "type": "boolean",
@@ -78798,6 +80781,15 @@
           "defaultValue": "131072",
           "description": "Buffer size in bytes used for writing files (or in case of FTP for downloading and uploading files).",
           "title": "Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "copyAndDeleteOnRenameFail": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to fall back and do a copy and delete file, in case the file could not be renamed directly.",
+          "title": "Copy And Delete On Rename Fail",
           "required": false,
           "deprecated": false
         },
@@ -82683,6 +84675,470 @@
         }
       }
     },
+    "spring-ai-chat": {
+      "type": "object",
+      "title": "Spring AI Chat",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Perform chat operations using Spring AI.",
+      "properties": {
+        "chatId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The ID of the chat endpoint",
+          "title": "Chat Id",
+          "required": false,
+          "deprecated": false
+        },
+        "chatClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The ChatClient instance to use for chat operations. ChatClient provides advanced features like memory management and advisors. If not provided, a ChatClient will be created from the ChatModel.",
+          "title": "Chat Client",
+          "required": false,
+          "deprecated": false
+        },
+        "chatModel": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The ChatModel instance to use for chat operations. This is used to create a ChatClient if one is not explicitly provided.",
+          "title": "Chat Model",
+          "required": false,
+          "deprecated": false
+        },
+        "chatOperation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "CHAT_SINGLE_MESSAGE",
+          "enum": [
+            "CHAT_SINGLE_MESSAGE",
+            "CHAT_SINGLE_MESSAGE_WITH_PROMPT",
+            "CHAT_MULTIPLE_MESSAGES"
+          ],
+          "description": "The chat operation to perform.",
+          "title": "Chat Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "systemMessage": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Default system message to set context for the conversation. Can be overridden by the CamelSpringAiChatSystemMessage header.",
+          "title": "System Message",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Tags for discovering and calling Camel route tools",
+          "title": "Tags",
+          "required": false,
+          "deprecated": false
+        },
+        "userMessage": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Default user message text for multimodal requests. Can be combined with media data in the message body.",
+          "title": "User Message",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "advisors": {
+          "kind": "parameter",
+          "type": "array",
+          "description": "List of custom advisors to add to the ChatClient. These advisors will be added after the built-in advisors (SimpleLogger, SafeGuard, ChatMemory, QuestionAnswer) in the order they are provided in the list.",
+          "title": "Advisors",
+          "required": false,
+          "deprecated": false
+        },
+        "chatMemory": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "ChatMemory instance for maintaining conversation history across requests. When provided, conversation context will be automatically managed using MessageChatMemoryAdvisor.",
+          "title": "Chat Memory",
+          "required": false,
+          "deprecated": false
+        },
+        "chatMemoryVectorStore": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "VectorStore instance for maintaining conversation history using semantic search. When provided, conversation context will be automatically managed using VectorStoreChatMemoryAdvisor. This is an alternative to chatMemory that uses vector embeddings for long-term memory with semantic retrieval.",
+          "title": "Chat Memory Vector Store",
+          "required": false,
+          "deprecated": false
+        },
+        "entityClass": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Java class to use for entity response conversion using ChatClient.entity(Class). When specified, the response will be automatically converted to this type instead of returning a String.",
+          "title": "Entity Class",
+          "required": false,
+          "deprecated": false
+        },
+        "maxFileSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1048576",
+          "description": "Maximum file size in bytes for multimodal content (images, audio, PDFs, etc.). Files exceeding this size will be rejected with an exception. Default is 1048576 bytes (1MB). Set to 0 to disable size checking (not recommended).",
+          "title": "Max File Size",
+          "required": false,
+          "deprecated": false
+        },
+        "maxTokens": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Maximum tokens in the response.",
+          "title": "Max Tokens",
+          "required": false,
+          "deprecated": false
+        },
+        "outputClass": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Java class to use for BEAN output format conversion. Required when outputFormat is BEAN.",
+          "title": "Output Class",
+          "required": false,
+          "deprecated": false
+        },
+        "outputFormat": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The output format for structured output conversion (BEAN, MAP, LIST). Used in conjunction with outputClass for BEAN format.",
+          "title": "Output Format",
+          "required": false,
+          "deprecated": false
+        },
+        "structuredOutputConverter": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A StructuredOutputConverter for converting the chat response to structured output (e.g., BeanOutputConverter, MapOutputConverter, ListOutputConverter). When provided, the converter will be used to transform the response into the desired format.",
+          "title": "Structured Output Converter",
+          "required": false,
+          "deprecated": false
+        },
+        "systemMetadata": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Metadata to attach to system messages. This metadata can be used for tracking system prompt versions, model configurations, or other application-specific data.",
+          "title": "System Metadata",
+          "required": false,
+          "deprecated": false
+        },
+        "temperature": {
+          "kind": "parameter",
+          "type": "number",
+          "description": "Temperature parameter for response randomness (0.0-2.0).",
+          "title": "Temperature",
+          "required": false,
+          "deprecated": false
+        },
+        "topKSampling": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Top K parameter for sampling.",
+          "title": "Top KSampling",
+          "required": false,
+          "deprecated": false
+        },
+        "topP": {
+          "kind": "parameter",
+          "type": "number",
+          "description": "Top P parameter for nucleus sampling.",
+          "title": "Top P",
+          "required": false,
+          "deprecated": false
+        },
+        "userMetadata": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Metadata to attach to user messages. This metadata can be used for tracking conversation context, message identifiers, or other application-specific data.",
+          "title": "User Metadata",
+          "required": false,
+          "deprecated": false
+        },
+        "ragTemplate": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Context:\\n\\{context}\\n\\nQuestion: \\{question}",
+          "description": "Template for formatting RAG (Retrieval Augmented Generation) prompts when augmented data is provided. The template supports two placeholders: {context} for the retrieved documents and {question} for the user\u0027s question. Default template is Context:\\n{context}\\n\\nQuestion: {question}.",
+          "title": "Rag Template",
+          "required": false,
+          "deprecated": false
+        },
+        "similarityThreshold": {
+          "kind": "parameter",
+          "type": "number",
+          "defaultValue": "0.7",
+          "description": "Similarity threshold for RAG retrieval (default: 0.7).",
+          "title": "Similarity Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "topK": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5",
+          "description": "Number of top documents to retrieve for RAG (default: 5).",
+          "title": "Top K",
+          "required": false,
+          "deprecated": false
+        },
+        "vectorStore": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "VectorStore for automatic RAG retrieval.",
+          "title": "Vector Store",
+          "required": false,
+          "deprecated": false
+        },
+        "safeguardFailureResponse": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Failure response message for SafeGuard advisor when sensitive content is detected. If not specified, a default message will be used.",
+          "title": "Safeguard Failure Response",
+          "required": false,
+          "deprecated": false
+        },
+        "safeguardSensitiveWords": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of sensitive words for SafeGuard advisor. When provided, the SafeGuard advisor will be enabled to prevent generation of content containing these words.",
+          "title": "Safeguard Sensitive Words",
+          "required": false,
+          "deprecated": false
+        },
+        "safeguardOrder": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Order of execution for SafeGuard advisor. Lower numbers execute first. Default is 0.",
+          "title": "Safeguard Order",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "spring-ai-embeddings": {
+      "type": "object",
+      "title": "Spring AI Embeddings",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Spring AI Embeddings",
+      "properties": {
+        "embeddingId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The id",
+          "title": "Embedding Id",
+          "required": true,
+          "deprecated": false
+        },
+        "embeddingModel": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The EmbeddingModel to use for generating embeddings.",
+          "title": "Embedding Model",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "spring-ai-tools": {
+      "type": "object",
+      "title": "Spring AI Tools",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Spring AI Tools and Function Calling Features",
+      "properties": {
+        "toolId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The tool id",
+          "title": "Tool Id",
+          "required": true,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The tags for the tools",
+          "title": "Tags",
+          "required": true,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Tool description",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "inputType": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Input type class for the tool",
+          "title": "Input Type",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Tool name",
+          "title": "Name",
+          "required": false,
+          "deprecated": false
+        },
+        "parameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "List of Tool parameters with optional metadata. Format: parameter.\u003d, parameter..description\u003d, parameter..required\u003d, parameter..enum\u003d. Example: parameter.location\u003dstring, parameter.location.description\u003dThe city and state, parameter.location.required\u003dtrue, parameter.unit.enum\u003dC,F. This is a multi-value option with prefix: parameter.",
+          "title": "Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "returnDirect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the tool result should be returned directly or passed back to the model. Default is false, meaning the result is passed back to the model for further processing.",
+          "title": "Return Direct",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "spring-ai-vector-store": {
+      "type": "object",
+      "title": "Spring AI Vector Store",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Spring AI Vector Store",
+      "properties": {
+        "storeId": {
+          "kind": "path",
+          "type": "string",
+          "description": "The id",
+          "title": "Store Id",
+          "required": true,
+          "deprecated": false
+        },
+        "filterExpression": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Filter expression for metadata-based filtering in searches.",
+          "title": "Filter Expression",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "ADD",
+          "enum": [
+            "ADD",
+            "DELETE",
+            "SIMILARITY_SEARCH"
+          ],
+          "description": "The operation to perform on the vector store (ADD, DELETE, SIMILARITY_SEARCH).",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "similarityThreshold": {
+          "kind": "parameter",
+          "type": "number",
+          "defaultValue": "0.0",
+          "description": "The minimum similarity score threshold (0-1) for similarity search.",
+          "title": "Similarity Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "topK": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5",
+          "description": "The maximum number of similar documents to return for similarity search.",
+          "title": "Top K",
+          "required": false,
+          "deprecated": false
+        },
+        "vectorStore": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The VectorStore to use for vector operations.",
+          "title": "Vector Store",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "spring-batch": {
       "type": "object",
       "title": "Spring Batch",
@@ -85298,6 +87754,60 @@
         }
       }
     },
+    "stripe": {
+      "type": "object",
+      "title": "Stripe",
+      "group": "saas,finance",
+      "icon": "generic24.png",
+      "description": "Camel Stripe component",
+      "properties": {
+        "operation": {
+          "kind": "path",
+          "type": "enum",
+          "enum": [
+            "charges",
+            "customers",
+            "paymentIntents",
+            "paymentMethods",
+            "refunds",
+            "subscriptions",
+            "invoices",
+            "products",
+            "prices",
+            "balanceTransactions"
+          ],
+          "description": "The Stripe operation to perform",
+          "title": "Operation",
+          "required": true,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "apiBase": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Override the default Stripe API base URL (for testing purposes)",
+          "title": "Api Base",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Stripe API key for authentication",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "stub": {
       "type": "object",
       "title": "Stub",
@@ -86490,8 +89000,7 @@
           "enum": [
             "xml",
             "html",
-            "text",
-            "textMain"
+            "text"
           ],
           "description": "Tika Output Format. Supported output formats. xml: Returns Parsed Content as XML. html: Returns Parsed Content as HTML. text: Returns Parsed Content as Text. textMain: Uses the boilerpipe library to automatically extract the main content from a web page.",
           "title": "Tika Parse Output Format",

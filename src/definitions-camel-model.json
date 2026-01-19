@@ -248,7 +248,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Enables the batch completion mode where we aggregate from a org.apache.camel.BatchConsumer and aggregate the total number of exchanges the org.apache.camel.BatchConsumer has reported as total by checking the exchange property org.apache.camel.Exchange#BATCH_COMPLETE when its complete. This option cannot be used together with discardOnAggregationFailure.",
+          "description": "Enables the batch completion mode where we aggregate from a org.apache.camel.BatchConsumer and aggregate the total number of exchanges the org.apache.camel.BatchConsumer has reported as total by checking the exchange property org.apache.camel.Exchange#BATCH_COMPLETE when its complete. This option cannot be used together with discardOnAggregationFailure. Important: When using this option, you should also enable eagerCheckCompletion() to ensure the aggregator checks for batch completion on each incoming exchange. Without eager checking, the batch completion signal may not be properly detected.",
           "title": "Completion From Batch Consumer",
           "required": false,
           "deprecated": false
@@ -4340,7 +4340,7 @@
           "kind": "attribute",
           "type": "duration",
           "defaultValue": "0",
-          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Multicast hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Multicast breaks out and continues. Notice if you provide a TimeoutAwareAggregationStrategy then the timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
+          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Multicast hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Multicast breaks out and continues. The timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
           "title": "Timeout",
           "required": false,
           "deprecated": false
@@ -5596,7 +5596,7 @@
           "kind": "attribute",
           "type": "duration",
           "defaultValue": "0",
-          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Recipient List hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Recipient List breaks out and continues. Notice if you provide a TimeoutAwareAggregationStrategy then the timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
+          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Recipient List hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Recipient List breaks out and continues. The timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
           "title": "Timeout",
           "required": false,
           "deprecated": false
@@ -8522,7 +8522,7 @@
           "kind": "attribute",
           "type": "duration",
           "defaultValue": "0",
-          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Splitter hasn\u0027t been able to split and process all the sub messages within the given timeframe, then the timeout triggers and the Splitter breaks out and continues. Notice if you provide a TimeoutAwareAggregationStrategy then the timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
+          "description": "Sets a total timeout specified in millis, when using parallel processing. If the Splitter hasn\u0027t been able to send and process all replies within the given timeframe, then the timeout triggers and the Splitter breaks out and continues. The timeout method is invoked before breaking out. If the timeout is reached with running tasks still remaining, certain tasks for which it is difficult for Camel to shut down in a graceful manner may continue to run. So use this option with a bit of care.",
           "title": "Timeout",
           "required": false,
           "deprecated": false
@@ -9899,6 +9899,51 @@
           "title": "Expression",
           "required": true,
           "deprecated": false
+        }
+      }
+    },
+    "transformDataType": {
+      "type": "object",
+      "title": "Transform Data Type",
+      "group": "eip,transformation",
+      "icon": "generic24.png",
+      "description": "Transforms the message body based on known data type transformers.",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the note of this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the description of this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Disables this EIP from the route.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
         },
         "fromType": {
           "kind": "attribute",
@@ -9913,7 +9958,7 @@
           "type": "string",
           "description": "To type used as a target data type in the transformation.",
           "title": "To Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
