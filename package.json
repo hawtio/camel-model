@@ -1,6 +1,6 @@
 {
   "name": "@hawtio/camel-model",
-  "version": "4.14.4",
+  "version": "4.14.5",
   "description": "Camel Catalog Definition Model",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
