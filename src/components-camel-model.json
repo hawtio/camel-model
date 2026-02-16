@@ -15421,6 +15421,14 @@
           "required": false,
           "deprecated": false
         },
+        "blockSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The block size in bytes to use for chunked uploads with uploadBlockBlobChunked operation. Default is 4MB (4194304). Maximum is 4000MB. Must be greater than 0.",
+          "title": "Block Size",
+          "required": false,
+          "deprecated": false
+        },
         "changeFeedContext": {
           "kind": "parameter",
           "type": "object",
@@ -15489,6 +15497,22 @@
           "required": false,
           "deprecated": false
         },
+        "maxConcurrency": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The maximum number of parallel requests to use during upload with uploadBlockBlobChunked operation. Default is determined by the Azure SDK based on available processors.",
+          "title": "Max Concurrency",
+          "required": false,
+          "deprecated": false
+        },
+        "maxSingleUploadSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The maximum size in bytes for a single upload request with uploadBlockBlobChunked operation. Files smaller than this will be uploaded in a single request. Files larger will use chunked upload with blocks of size blockSize. Default is 256MB.",
+          "title": "Max Single Upload Size",
+          "required": false,
+          "deprecated": false
+        },
         "operation": {
           "kind": "parameter",
           "type": "enum",
@@ -15503,6 +15527,7 @@
             "downloadBlobToFile",
             "downloadLink",
             "uploadBlockBlob",
+            "uploadBlockBlobChunked",
             "stageBlockBlobList",
             "commitBlobBlockList",
             "getBlobBlockList",
