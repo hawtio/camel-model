@@ -4739,7 +4739,7 @@
         "expression": {
           "kind": "expression",
           "type": "object",
-          "description": "",
+          "description": "The predicate to use",
           "title": "Expression",
           "required": true,
           "deprecated": false
@@ -5342,7 +5342,7 @@
         "expression": {
           "kind": "expression",
           "type": "object",
-          "description": "",
+          "description": "The predicate to use for validation.",
           "title": "Expression",
           "required": true,
           "deprecated": false

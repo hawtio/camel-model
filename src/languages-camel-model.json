@@ -35,7 +35,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -65,6 +65,24 @@
           "required": true,
           "deprecated": false
         },
+        "trimResult": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to trim the returned values when this language are in use. For example the output result may contain unwanted line breaks at the beginning and end such as when using Java DSL with multi-line blocks. Is default false to be backwards compatible with existing behavior.",
+          "title": "Trim Result",
+          "required": false,
+          "deprecated": false
+        },
+        "pretty": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To pretty format the output (only JSon or XML supported)",
+          "title": "Pretty",
+          "required": false,
+          "deprecated": false
+        },
         "resultType": {
           "kind": "attribute",
           "type": "string",
@@ -77,7 +95,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -143,7 +161,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -177,7 +195,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -211,7 +229,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -253,7 +271,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -287,7 +305,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -337,7 +355,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -397,7 +415,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -457,7 +475,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -507,7 +525,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -549,7 +567,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -659,7 +677,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -701,7 +719,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -782,7 +800,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -824,7 +842,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -866,7 +884,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -908,7 +926,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -950,7 +968,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -980,6 +998,33 @@
           "required": true,
           "deprecated": false
         },
+        "trimResult": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to trim the returned values when this language are in use. For example the output result may contain unwanted line breaks at the beginning and end such as when using Java DSL with multi-line blocks. Is default false to be backwards compatible with existing behavior.",
+          "title": "Trim Result",
+          "required": false,
+          "deprecated": false
+        },
+        "pretty": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To pretty format the output (only JSon or XML supported)",
+          "title": "Pretty",
+          "required": false,
+          "deprecated": false
+        },
+        "nested": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If the result is a nested simple expression should this expression be evaluated as well",
+          "title": "Nested",
+          "required": false,
+          "deprecated": false
+        },
         "resultType": {
           "kind": "attribute",
           "type": "string",
@@ -992,7 +1037,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1034,7 +1079,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1152,7 +1197,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1186,7 +1231,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1236,7 +1281,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1370,7 +1415,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1436,7 +1481,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false
@@ -1517,7 +1562,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to trim the value to remove leading and trailing whitespaces and line breaks",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks. For example when using DSLs where the source will span across multiple lines and there may be additional line breaks at both the beginning and end.",
           "title": "Trim",
           "required": false,
           "deprecated": false

@@ -2562,6 +2562,83 @@
         }
       }
     },
+    "ocsf": {
+      "type": "object",
+      "title": "OCSF",
+      "group": "dataformat,transformation,json,security",
+      "icon": "generic24.png",
+      "description": "Marshal and unmarshal OCSF (Open Cybersecurity Schema Framework) security events to/from JSON.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "objectMapper": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Lookup and use the existing ObjectMapper with the given id when using Jackson.",
+          "title": "Object Mapper",
+          "required": false,
+          "deprecated": false
+        },
+        "useDefaultObjectMapper": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to lookup and use default Jackson ObjectMapper from the registry.",
+          "title": "Use Default Object Mapper",
+          "required": false,
+          "deprecated": false
+        },
+        "unmarshalType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Class name of the OCSF event type to use when unmarshalling. Defaults to OcsfEvent.",
+          "title": "Unmarshal Type",
+          "required": false,
+          "deprecated": false
+        },
+        "collectionType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Refers to a custom collection type to lookup in the registry to use. This option should rarely be used, but allows to use different collection types than java.util.Collection based as default.",
+          "title": "Collection Type",
+          "required": false,
+          "deprecated": false
+        },
+        "useList": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To unmarshal to a List of OCSF events.",
+          "title": "Use List",
+          "required": false,
+          "deprecated": false
+        },
+        "allowUnmarshallType": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If enabled then the unmarshal type can be specified via the CamelOcsfUnmarshalType header. This should only be enabled when desired to be used.",
+          "title": "Allow Unmarshall Type",
+          "required": false,
+          "deprecated": false
+        },
+        "prettyPrint": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "To enable pretty printing output nicely formatted. Is by default false.",
+          "title": "Pretty Print",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "parquetAvro": {
       "type": "object",
       "title": "Parquet File",
