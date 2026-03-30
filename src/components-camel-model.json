@@ -20524,6 +20524,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "advancedCertificateVerifier": {
           "kind": "parameter",
           "type": "object",
@@ -20708,6 +20716,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -20898,6 +20914,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "advancedCertificateVerifier": {
           "kind": "parameter",
           "type": "object",
@@ -21082,6 +21106,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -40760,6 +40792,15 @@
           "defaultValue": "3600",
           "description": "Set the maximum period a message ack deadline will be extended. Value in seconds",
           "title": "Max Ack Extension Period",
+          "required": false,
+          "deprecated": false
+        },
+        "maxDeliveryAttempts": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The maximum number of delivery attempts for each message. When set to a positive value, the consumer will automatically nack any message whose delivery attempt count is greater than or equal to this value, allowing Pub/Sub to route it to the dead-letter topic without processing it. This prevents infinite redelivery loops when short retry delays are configured. If not explicitly set and the subscription has a dead-letter policy, the value is automatically fetched from the subscription configuration at consumer startup. Set to 0 to disable enforcement.",
+          "title": "Max Delivery Attempts",
           "required": false,
           "deprecated": false
         },
@@ -64232,6 +64273,15 @@
           "required": false,
           "deprecated": false
         },
+        "overridePort": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Override the server reported endpoint port with the port from the endpoint URI.",
+          "title": "Override Port",
+          "required": false,
+          "deprecated": false
+        },
         "productUri": {
           "kind": "parameter",
           "type": "string",
@@ -64535,6 +64585,15 @@
           "defaultValue": "false",
           "description": "Override the server reported endpoint host with the host from the endpoint URI.",
           "title": "Override Host",
+          "required": false,
+          "deprecated": false
+        },
+        "overridePort": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Override the server reported endpoint port with the port from the endpoint URI.",
+          "title": "Override Port",
           "required": false,
           "deprecated": false
         },
@@ -68635,11 +68694,59 @@
           "required": false,
           "deprecated": false
         },
+        "ackPolicy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "Explicit",
+          "enum": [
+            "None",
+            "All",
+            "Explicit"
+          ],
+          "description": "Acknowledgement mode. none \u003d Messages are acknowledged as soon as the server sends them (danger: messages that Camel failed to process is also ack). Clients do not need to ack. all \u003d All messages with a sequence number less than the message acked are also acknowledged. E.g. reading a batch of messages 1..100. Ack on message 100 will acknowledge 1..99 as well. explicit (default) \u003d Each message is acknowledged individually by Camel after the message has been processed, this ensures the message is only ack if success and nack if processing failed due to an exception during routing. Message can be acked out of sequence and create gaps of unacknowledged messages in the consumer.",
+          "title": "Ack Policy",
+          "required": false,
+          "deprecated": false
+        },
+        "ackWait": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "After a message is delivered to a consumer, the server waits 30 seconds (default) for an acknowledgement. If none arrives (timeout), the message becomes eligible for redelivery.",
+          "title": "Ack Wait",
+          "required": false,
+          "deprecated": false
+        },
+        "durableName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the name to assign to the JetStream durable consumer. Setting this value makes the consumer durable. The value is used to set the durable() field in the underlying NATS ConsumerConfiguration.Builder.",
+          "title": "Durable Name",
+          "required": false,
+          "deprecated": false
+        },
+        "maxDeliver": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Maximum number of attempts to deliver a message from Nats to a consumer. Once MaxDeliver is reached, the NATS server stops attempting to deliver that specific message. The message is not deleted, it remains in the stream but is simply skipped. It is recommended to set this option to a sensible value in case a message is poison and can not successfully be processed and would always keep failing.",
+          "title": "Max Deliver",
+          "required": false,
+          "deprecated": false
+        },
         "maxMessages": {
           "kind": "parameter",
           "type": "string",
           "description": "Stop receiving messages from a topic we are subscribing to after maxMessages",
           "title": "Max Messages",
+          "required": false,
+          "deprecated": false
+        },
+        "nackWait": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "5000",
+          "description": "For negative acknowledgements (NAK), redelivery is delayed by 5 seconds (default). Setting this to 0 or negative makes the redelivery immediately. Be careful as this can cause the consumer to keep re-processing the same message over and over again due to intermediate error that last a while.",
+          "title": "Nack Wait",
           "required": false,
           "deprecated": false
         },
@@ -68649,6 +68756,15 @@
           "defaultValue": "10",
           "description": "Consumer thread pool size (default is 10)",
           "title": "Pool Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pullSubscription": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Sets the consumer subscription type for JetStream. Set to true to use a Pull Subscription (consumer explicitly requests messages). Set to false to use a Push Subscription (messages are automatically delivered).",
+          "title": "Pull Subscription",
           "required": false,
           "deprecated": false
         },
@@ -68675,6 +68791,14 @@
           "defaultValue": "false",
           "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
           "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "consumerConfiguration": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Sets a custom ConsumerConfiguration object for the JetStream consumer. This is an advanced option typically used when you need to configure properties not exposed as simple Camel URI parameters. When set, this object will be used to build the final consumer subscription options.",
+          "title": "Consumer Configuration",
           "required": false,
           "deprecated": false
         },
@@ -68732,22 +68856,6 @@
           "required": false,
           "deprecated": false
         },
-        "consumerConfiguration": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Sets a custom ConsumerConfiguration object for the JetStream consumer. This is an advanced option typically used when you need to configure properties not exposed as simple Camel URI parameters. When set, this object will be used to build the final consumer subscription options.",
-          "title": "Consumer Configuration",
-          "required": false,
-          "deprecated": false
-        },
-        "durableName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets the name to assign to the JetStream durable consumer. Setting this value makes the consumer durable. The value is used to set the durable() field in the underlying NATS ConsumerConfiguration.Builder.",
-          "title": "Durable Name",
-          "required": false,
-          "deprecated": false
-        },
         "headerFilterStrategy": {
           "kind": "parameter",
           "type": "object",
@@ -68762,15 +68870,6 @@
           "defaultValue": "true",
           "description": "Sets whether to operate JetStream requests asynchronously.",
           "title": "Jetstream Async",
-          "required": false,
-          "deprecated": false
-        },
-        "pullSubscription": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Sets the consumer subscription type for JetStream. Set to true to use a Pull Subscription (consumer explicitly requests messages). Set to false to use a Push Subscription (messages are automatically delivered).",
-          "title": "Pull Subscription",
           "required": false,
           "deprecated": false
         },
@@ -71683,7 +71782,7 @@
         "encodingFormat": {
           "kind": "parameter",
           "type": "enum",
-          "defaultValue": "float",
+          "defaultValue": "base64",
           "enum": [
             "float",
             "base64"
@@ -90481,6 +90580,14 @@
           "type": "string",
           "description": "Whether to use compression, and if so which.",
           "title": "Compressions",
+          "required": false,
+          "deprecated": false
+        },
+        "idleTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Sets the timeout in milliseconds to wait before the SSH session is closed due to inactivity. The default value is 0, which means no idle timeout is applied.",
+          "title": "Idle Timeout",
           "required": false,
           "deprecated": false
         },

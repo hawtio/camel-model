@@ -7385,16 +7385,16 @@
           "deprecated": false
         },
         "compensation": {
-          "kind": "element",
-          "type": "object",
+          "kind": "attribute",
+          "type": "string",
           "description": "The compensation endpoint URI that must be called to compensate all changes done in the route. The route corresponding to the compensation URI must perform compensation and complete without error. If errors occur during compensation, the saga service may call again the compensation URI to retry.",
           "title": "Compensation",
           "required": false,
           "deprecated": false
         },
         "completion": {
-          "kind": "element",
-          "type": "object",
+          "kind": "attribute",
+          "type": "string",
           "description": "The completion endpoint URI that will be called when the Saga is completed successfully. The route corresponding to the completion URI must perform completion tasks and terminate without error. If errors occur during completion, the saga service may call again the completion URI to retry.",
           "title": "Completion",
           "required": false,
