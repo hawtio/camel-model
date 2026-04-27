@@ -37,6 +37,8 @@ yarn test
 
 ## Releasing
 
+Publishing to npm is automated via the [Publish](.github/workflows/publish.yml) GitHub Actions workflow. It is triggered automatically when a version tag is pushed to the repository.
+
 To release the `@hawtio/camel-model` package, follow these steps:
 
 1. Manually increase the `version` in [package.json](./package.json). (Currently, we don't use any automation tool for increasing versions yet.)
@@ -49,32 +51,12 @@ To release the `@hawtio/camel-model` package, follow these steps:
       "description": "Camel Catalog Definition Model",
    ```
 
-2. Commit the change and tag the version. Note we prefix `v` to a version in commit messages and tags.
+2. Commit the change and push a version tag. Note we prefix `v` to a version in commit messages and tags.
 
    ```console
    git commit -m v3.21.0
    git tag v3.21.0
+   git push && git push origin v3.21.0
    ```
 
-3. Check the contents to be packaged before the actual release is made with `yarn pack` command.
-
-   ```console
-   $ yarn pack
-   $ tar -tf package.tgz
-   package/LICENSE
-   package/dist/index.d.ts
-   package/dist/index.js
-   package/package.json
-   ```
-
-   Make sure to clean up the generated file after checking.
-
-   ```console
-   git clean -f
-   ```
-
-4. Perform the release.
-
-   ```console
-   yarn release
-   ```
+   Pushing the tag triggers the [Publish](.github/workflows/publish.yml) workflow, which builds, tests, and publishes the package to npm automatically.
