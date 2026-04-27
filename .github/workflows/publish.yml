@@ -2,18 +2,35 @@ name: Publish
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - 4.14.x
+      - 4.18.x
+      - 4.x
+    paths:
+      - 'pom.xml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   publish:
+    if: contains(github.event.head_commit.message, 'org.apache.camel')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Get Camel version from pom.xml
+        id: camel-version
+        run: |
+          VERSION=$(./mvnw -q -Dexpression=version.org.apache.camel -DforceStdout help:evaluate)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
@@ -34,11 +51,31 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install
         run: yarn install
+      - name: Generate Camel model
+        run: yarn generate:camel-model
+      - name: Update package.json version
+        run: npm pkg set version=${{ steps.camel-version.outputs.version }}
       - name: Build
         run: yarn build
       - name: Test
         run: yarn test
+      - name: Commit and tag
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "v${{ steps.camel-version.outputs.version }}"
+            git tag "v${{ steps.camel-version.outputs.version }}"
+            git push origin HEAD --tags
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
       - name: Publish to npm
+        if: steps.commit.outputs.changed == 'true'
         run: yarn release
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -37,26 +37,14 @@ yarn test
 
 ## Releasing
 
-Publishing to npm is automated via the [Publish](.github/workflows/publish.yml) GitHub Actions workflow. It is triggered automatically when a version tag is pushed to the repository.
+Publishing to npm is fully automated via the [Publish](.github/workflows/publish.yml) GitHub Actions workflow. It is triggered automatically when Dependabot merges a PR that bumps the Camel version (i.e. updates `pom.xml`) into one of the main branches.
 
-To release the `@hawtio/camel-model` package, follow these steps:
+The workflow automatically:
+1. Extracts the new Camel version from `pom.xml`
+2. Regenerates the Camel model (`yarn generate:camel-model`)
+3. Updates the `version` in `package.json` to match the Camel version
+4. Builds and tests the package
+5. Commits the generated model and version bump, and creates a `v<version>` tag
+6. Publishes the package to npm
 
-1. Manually increase the `version` in [package.json](./package.json). (Currently, we don't use any automation tool for increasing versions yet.)
-
-   ```diff
-    {
-      "name": "@hawtio/camel-model",
-   -  "version": "3.20.6",
-   +  "version": "3.21.0",
-      "description": "Camel Catalog Definition Model",
-   ```
-
-2. Commit the change and push a version tag. Note we prefix `v` to a version in commit messages and tags.
-
-   ```console
-   git commit -m v3.21.0
-   git tag v3.21.0
-   git push && git push origin v3.21.0
-   ```
-
-   Pushing the tag triggers the [Publish](.github/workflows/publish.yml) workflow, which builds, tests, and publishes the package to npm automatically.
+> **Note:** A `NPM_TOKEN` secret with publish access to the `@hawtio` npm scope must be configured in the repository's Settings → Secrets → Actions.
