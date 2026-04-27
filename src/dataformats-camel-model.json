@@ -206,7 +206,7 @@
         },
         "schemaResolver": {
           "kind": "attribute",
-          "type": "object",
+          "type": "string",
           "description": "Optional schema resolver used to lookup schemas for the data in transit.",
           "title": "Schema Resolver",
           "required": false,
@@ -1652,6 +1652,32 @@
         }
       }
     },
+    "groovyJson": {
+      "type": "object",
+      "title": "Groovy JSon",
+      "group": "dataformat,transformation,json",
+      "icon": "generic24.png",
+      "description": "Transform between JSon and java.util.Map or java.util.List objects.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "prettyPrint": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "To pretty printing output nicely formatted. Is by default true.",
+          "title": "Pretty Print",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "groovyXml": {
       "type": "object",
       "title": "Groovy XML",
@@ -2694,7 +2720,7 @@
     },
     "pgp": {
       "type": "object",
-      "title": "PGP",
+      "title": "PGP (Pretty Good Privacy Cryptographic)",
       "group": "dataformat,transformation,security",
       "icon": "generic24.png",
       "description": "Encrypt and decrypt messages using Java Cryptographic Extension (JCE) and PGP.",
@@ -4013,7 +4039,7 @@
     "xmlSecurity": {
       "type": "object",
       "title": "XML Security",
-      "group": "dataformat,transformation,xml",
+      "group": "dataformat,transformation,security,xml",
       "icon": "generic24.png",
       "description": "Encrypt and decrypt XML payloads using Apache Santuario.",
       "properties": {
