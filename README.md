@@ -1,5 +1,7 @@
 # Camel Catalog Definition Model
 
+[![npm](https://img.shields.io/npm/v/@hawtio/camel-model)](https://www.npmjs.com/package/@hawtio/camel-model)
+
 This project provides [Apache Camel](https://camel.apache.org/) catalog definition model extracted from the [org.apache.camel:camel-catalog](https://github.com/apache/camel/tree/main/catalog/camel-catalog) JAR. NPM projects can consume this package to create an application that is based on the Apache Camel model.
 
 ## Install
