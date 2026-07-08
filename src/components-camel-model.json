@@ -1,5 +1,348 @@
 {
   "components": {
+    "a2a": {
+      "type": "object",
+      "title": "A2A",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "A2A endpoint for agent-to-agent communication.",
+      "properties": {
+        "agentCardSource": {
+          "kind": "path",
+          "type": "string",
+          "description": "The agent card source (classpath:, file:, http://, https://, or plain name)",
+          "title": "Agent Card Source",
+          "required": true,
+          "deprecated": false
+        },
+        "agentCard": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Agent card bean reference or inline configuration",
+          "title": "Agent Card",
+          "required": false,
+          "deprecated": false
+        },
+        "basePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The base path for HTTP requests",
+          "title": "Base Path",
+          "required": false,
+          "deprecated": false
+        },
+        "dataFormat": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "PAYLOAD",
+          "enum": [
+            "PAYLOAD",
+            "POJO",
+            "RAW"
+          ],
+          "description": "The data format for the exchange body, following the CXF DataFormat convention. PAYLOAD (default) extracts text content from message parts as a String backward compatible, simple for chatbot routes. POJO sets the body to the full Java model object (Message on consumer, Task or Message on producer) preserving all parts, metadata, and file content. RAW passes the raw JSON string without deserialization useful for forwarding, logging, or compliance.",
+          "title": "Data Format",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The agent description (overrides agent card)",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "historyLength": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "Maximum number of history messages to include in the context",
+          "title": "History Length",
+          "required": false,
+          "deprecated": false
+        },
+        "host": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The host to connect to for producers",
+          "title": "Host",
+          "required": false,
+          "deprecated": false
+        },
+        "name": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The agent name (overrides agent card)",
+          "title": "Name",
+          "required": false,
+          "deprecated": false
+        },
+        "port": {
+          "kind": "parameter",
+          "type": "integer",
+          "description": "The port to connect to for producers",
+          "title": "Port",
+          "required": false,
+          "deprecated": false
+        },
+        "protocolBinding": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "HTTP+JSON",
+          "enum": [
+            "HTTP+JSON",
+            "JSONRPC"
+          ],
+          "description": "The protocol binding to use for communication. Legacy aliases rest and jsonrpc are also accepted.",
+          "title": "Protocol Binding",
+          "required": false,
+          "deprecated": false
+        },
+        "returnImmediately": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to return immediately without waiting for task completion",
+          "title": "Return Immediately",
+          "required": false,
+          "deprecated": false
+        },
+        "validateAuth": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to validate authentication on incoming consumer operation requests. Disable explicitly only for unauthenticated A2A operation serving.",
+          "title": "Validate Auth",
+          "required": false,
+          "deprecated": false
+        },
+        "version": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The agent version (overrides agent card)",
+          "title": "Version",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "httpServerComponent": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Camel HTTP component to use for serving incoming A2A requests (consumer side). Must implement RestConsumerFactory (e.g., platform-http, jetty, netty-http, undertow, servlet). When not set, the component is auto-discovered from the classpath or falls back to the global camel.rest.component setting.",
+          "title": "Http Server Component",
+          "required": false,
+          "deprecated": false
+        },
+        "maxConcurrentTasks": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Maximum number of tasks the agent can process concurrently. When the limit is reached, new requests are rejected with ServerBusyError (HTTP 429). Set to 0 (default) for unlimited concurrency.",
+          "title": "Max Concurrent Tasks",
+          "required": false,
+          "deprecated": false
+        },
+        "sseHeartbeatInterval": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "15000",
+          "description": "Interval in milliseconds for SSE keep-alive heartbeat comments. Sent as \u0027:\u0027 comment lines to prevent proxies from closing idle connections. Independent from asyncTimeout which controls task processing timeout.",
+          "title": "Sse Heartbeat Interval",
+          "required": false,
+          "deprecated": false
+        },
+        "sseQueueCapacity": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Maximum number of SSE events that can be buffered per streaming connection. When the queue is full, new events are dropped with a warning log. Prevents unbounded memory growth from slow clients.",
+          "title": "Sse Queue Capacity",
+          "required": false,
+          "deprecated": false
+        },
+        "taskQueueSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Maximum number of tasks that can wait in the pending queue when all concurrent slots are occupied. Only applies to async requests (returnImmediately\u003dtrue). Queued tasks receive SUBMITTED status and are processed as capacity becomes available. Set to 0 (default) for no queueing requests are rejected immediately when at capacity.",
+          "title": "Task Queue Size",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "MESSAGE_SEND",
+          "enum": [
+            "MESSAGE_SEND",
+            "MESSAGE_STREAM",
+            "TASK_GET",
+            "TASK_LIST",
+            "TASK_CANCEL",
+            "TASK_SUBSCRIBE",
+            "PUSH_CONFIG_CREATE",
+            "PUSH_CONFIG_GET",
+            "PUSH_CONFIG_LIST",
+            "PUSH_CONFIG_DELETE"
+          ],
+          "description": "The A2A operation to perform",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "connectTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "30000",
+          "description": "Connect timeout in milliseconds for the HTTP client used by the producer",
+          "title": "Connect Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "streamingReadTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "300000",
+          "description": "Read timeout in milliseconds for the producer\u0027s SSE streaming connection. If no SSE event arrives within this period, the stream is closed with an error. Prevents indefinite blocking when a remote agent stops sending events.",
+          "title": "Streaming Read Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "300000",
+          "description": "Timeout in milliseconds for asynchronous task operations",
+          "title": "Async Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "completedTaskTtl": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3600000",
+          "description": "Time-to-live in milliseconds for completed tasks before cleanup",
+          "title": "Completed Task Ttl",
+          "required": false,
+          "deprecated": false
+        },
+        "followRedirects": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the HTTP client should follow redirects. Disabled by default to prevent credential leakage on cross-origin redirects. Enable only when the remote agent is known to issue redirects (e.g., behind a load balancer).",
+          "title": "Follow Redirects",
+          "required": false,
+          "deprecated": false
+        },
+        "maxPayloadSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "6291456",
+          "description": "Maximum payload size in bytes (default 6MB)",
+          "title": "Max Payload Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pushRetryAttempts": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "3",
+          "description": "Maximum number of retry attempts for push notification webhook delivery",
+          "title": "Push Retry Attempts",
+          "required": false,
+          "deprecated": false
+        },
+        "pushRetryBackoffMs": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Initial backoff in milliseconds for push notification retry. Retries use exponential backoff with this delay multiplied by 2 to the attempt number.",
+          "title": "Push Retry Backoff Ms",
+          "required": false,
+          "deprecated": false
+        },
+        "allowLocalWebhookUrls": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow webhook URLs pointing to localhost/loopback addresses. When false (default), push notification webhook URLs targeting 127.0.0.0/8, ::1, or localhost are rejected as SSRF protection. Enable for local development only.",
+          "title": "Allow Local Webhook Urls",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKey": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "API key for authentication",
+          "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "apiKeyHeader": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "Authorization",
+          "description": "HTTP header name for API key authentication (e.g., X-API-Key, Authorization)",
+          "title": "Api Key Header",
+          "required": false,
+          "deprecated": false
+        },
+        "bearerToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Bearer token for authentication",
+          "title": "Bearer Token",
+          "required": false,
+          "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for obtaining an access token via the OAuth 2.0 Client Credentials grant. When set, the token is acquired from the configured identity provider and used for authentication. Requires camel-oauth on the classpath. The profile properties are resolved from camel.oauth.profile-name.client-id, camel.oauth.profile-name.client-secret, and camel.oauth.profile-name.token-endpoint.",
+          "title": "Oauth Profile",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "activemq": {
       "type": "object",
       "title": "ActiveMQ 5.x",
@@ -786,6 +1129,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -931,7 +1283,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -1792,6 +2144,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -1937,7 +2298,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -2790,6 +3151,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -2935,7 +3305,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -3560,6 +3930,15 @@
           "required": false,
           "deprecated": false
         },
+        "signatureVerificationRequired": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to reject an inbound signed AS2 message that cannot be verified because no validateSigningCertificateChain is configured (server only). When false (default), such a message is delivered after logging a warning, preserving the previous behaviour. When true, the message is rejected instead of being delivered without verifying its signature. Has no effect when validateSigningCertificateChain is set (signatures are always validated then) or for unsigned messages.",
+          "title": "Signature Verification Required",
+          "required": false,
+          "deprecated": false
+        },
         "signedReceiptMicAlgorithms": {
           "kind": "parameter",
           "type": "string",
@@ -4110,6 +4489,36 @@
           "defaultValue": "true",
           "description": "Sets whether to add the feed object as a header.",
           "title": "Feed Header",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotent": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Option to use the Idempotent Consumer EIP pattern to let Camel skip already processed entries. By default it skips Atom entries that is older that the last read entry, using Atom updatedDate and publishedDate, but this strategy can be changed with the idempotentStrategy option. Idempotency only works when splitEntries \u003d true.",
+          "title": "Idempotent",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A pluggable repository org.apache.camel.spi.IdempotentRepository which by default use MemoryIdempotentRepository if none is specified and idempotent is true.",
+          "title": "Idempotent Repository",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentStrategy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "default",
+          "enum": [
+            "default",
+            "repository"
+          ],
+          "description": "A pluggable strategy org.apache.camel.component.FeedIdempotentStrategy to use when checking idempotency. Camel provides two implementations out of the box: default and repository. The updated strategy is used as default if idempotent \u003d true. The default strategy checks the Atom entrys updated or published date is newer than the previously read entry. You can provide your own implementation of the org.apache.camel.component.FeedIdempotentStrategy and refer to it using the # notation.",
+          "title": "Idempotent Strategy",
           "required": false,
           "deprecated": false
         },
@@ -4741,19 +5150,6 @@
           "required": false,
           "deprecated": false
         },
-        "modelId": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "anthropic.claude-instant-v1",
-            "anthropic.claude-v2",
-            "anthropic.claude-v2:1"
-          ],
-          "description": "Define the model Id we are going to use",
-          "title": "Model Id",
-          "required": true,
-          "deprecated": false
-        },
         "operation": {
           "kind": "parameter",
           "type": "enum",
@@ -5168,7 +5564,9 @@
           "kind": "parameter",
           "type": "enum",
           "enum": [
-            "retrieveAndGenerate"
+            "retrieveAndGenerate",
+            "invokeFlow",
+            "retrieve"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -5263,11 +5661,44 @@
           "required": false,
           "deprecated": false
         },
+        "bedrockAgentRuntimeAsyncClient": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use an existing configured AWS Bedrock Agent Runtime async client (required for invokeFlow which streams events back).",
+          "title": "Bedrock Agent Runtime Async Client",
+          "required": false,
+          "deprecated": false
+        },
         "bedrockAgentRuntimeClient": {
           "kind": "parameter",
           "type": "object",
           "description": "To use an existing configured AWS Bedrock Agent Runtime client",
           "title": "Bedrock Agent Runtime Client",
+          "required": false,
+          "deprecated": false
+        },
+        "enableTrace": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Enables tracing for the invokeFlow operation. When enabled, the producer collects FlowTraceEvent entries and publishes them in the CamelAwsBedrockAgentRuntimeFlowTraces header.",
+          "title": "Enable Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "flowAliasIdentifier": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The unique identifier of the Bedrock flow alias to invoke (used by the invokeFlow operation). Can be overridden per exchange via the CamelAwsBedrockAgentRuntimeFlowAliasIdentifier header.",
+          "title": "Flow Alias Identifier",
+          "required": false,
+          "deprecated": false
+        },
+        "flowIdentifier": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The unique identifier of the Bedrock flow to invoke (used by the invokeFlow operation). Can be overridden per exchange via the CamelAwsBedrockAgentRuntimeFlowIdentifier header.",
+          "title": "Flow Identifier",
           "required": false,
           "deprecated": false
         },
@@ -16654,6 +17085,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "sharedKey": {
           "kind": "parameter",
           "type": "string",
@@ -16883,15 +17323,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -18327,6 +18758,14 @@
           "required": false,
           "deprecated": false
         },
+        "versionId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The blob version identifier used to target a specific blob version on read operations (getBlob, downloadBlobToFile, downloadLink). Requires blob versioning to be enabled on the storage account. When set, the read targets the version scoped client instead of the live blob. Can also be provided per-exchange via the CamelAzureStorageBlobVersionId header.",
+          "title": "Version Id",
+          "required": false,
+          "deprecated": false
+        },
         "deleteAfterRead": {
           "kind": "parameter",
           "type": "boolean",
@@ -18545,6 +18984,7 @@
           "defaultValue": "listBlobContainers",
           "enum": [
             "listBlobContainers",
+            "findBlobsByTags",
             "createBlobContainer",
             "deleteBlobContainer",
             "listBlobs",
@@ -18566,7 +19006,11 @@
             "getPageBlobRanges",
             "getChangeFeed",
             "copyBlob",
-            "createBlobSnapshot"
+            "createBlobSnapshot",
+            "setBlobTags",
+            "getBlobTags",
+            "undeleteBlob",
+            "setBlobTier"
           ],
           "description": "The blob operation that can be used with this component on the producer",
           "title": "Operation",
@@ -21980,6 +22424,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -22159,6 +22611,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         }
@@ -24856,6 +25316,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -25485,7 +25953,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -26308,7 +26776,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -27141,7 +27609,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -28213,7 +28681,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -29531,7 +29999,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -30662,7 +31130,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -32683,6 +33151,15 @@
           "required": false,
           "deprecated": false
         },
+        "asyncTaskTtl": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "86400000",
+          "description": "Time-to-live for pending async conversion tasks in milliseconds. Tasks older than this will be evicted from memory to prevent leaks.",
+          "title": "Async Task Ttl",
+          "required": false,
+          "deprecated": false
+        },
         "asyncTimeout": {
           "kind": "parameter",
           "type": "integer",
@@ -33926,6 +34403,14 @@
           "title": "Enable SSL",
           "required": false,
           "deprecated": false
+        },
+        "sslContextParameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure security using SSLContextParameters. When configured, this takes precedence over the certificatePath option. This allows configuring named groups, signature schemes, cipher suites, and protocols for the TLS connection.",
+          "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -34051,6 +34536,14 @@
           "type": "string",
           "description": "Password",
           "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "sslContextParameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure security using SSLContextParameters. When configured, this takes precedence over the certificatePath option. This allows configuring named groups, signature schemes, cipher suites, and protocols for the TLS connection.",
+          "title": "Ssl Context Parameters",
           "required": false,
           "deprecated": false
         },
@@ -34807,6 +35300,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "delete": {
           "kind": "parameter",
           "type": "boolean",
@@ -35062,15 +35564,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -36507,6 +37000,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "passiveMode": {
           "kind": "parameter",
           "type": "boolean",
@@ -36822,15 +37324,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -37591,6 +38084,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "passiveMode": {
           "kind": "parameter",
           "type": "boolean",
@@ -37906,15 +38408,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -39152,316 +39645,6 @@
           "type": "string",
           "description": "Remote repository username",
           "title": "Username",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "github": {
-      "type": "object",
-      "title": "GitHub",
-      "group": "file,cloud,api",
-      "icon": "generic24.png",
-      "description": "Interact with the GitHub API.",
-      "properties": {
-        "type": {
-          "kind": "path",
-          "type": "enum",
-          "enum": [
-            "CLOSEPULLREQUEST",
-            "PULLREQUESTCOMMENT",
-            "COMMIT",
-            "PULLREQUEST",
-            "TAG",
-            "PULLREQUESTSTATE",
-            "PULLREQUESTFILES",
-            "GETCOMMITFILE",
-            "CREATEISSUE",
-            "EVENT"
-          ],
-          "description": "What git operation to execute",
-          "title": "Type",
-          "required": true,
-          "deprecated": false
-        },
-        "branchName": {
-          "kind": "path",
-          "type": "string",
-          "description": "Name of branch",
-          "title": "Branch Name",
-          "required": false,
-          "deprecated": false
-        },
-        "repoName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "GitHub repository name",
-          "title": "Repo Name",
-          "required": true,
-          "deprecated": false
-        },
-        "repoOwner": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "GitHub repository owner (organization)",
-          "title": "Repo Owner",
-          "required": true,
-          "deprecated": false
-        },
-        "commitMessageAsBody": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the commit consumer should store the commit message or the raw org.eclipse.egit.github.core.RepositoryCommit object as the message body.",
-          "title": "Commit Message As Body",
-          "required": false,
-          "deprecated": false
-        },
-        "sendEmptyMessageWhenIdle": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If the polling consumer did not poll any files, you can enable this option to send an empty message (no body) instead.",
-          "title": "Send Empty Message When Idle",
-          "required": false,
-          "deprecated": false
-        },
-        "startingSha": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "last",
-          "description": "The starting sha to use for polling commits with the commit consumer. The value can either be a sha for the sha to start from, or use beginning to start from the beginning, or last to start from the last commit.",
-          "title": "Starting Sha",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "eventFetchStrategy": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To specify a custom strategy that configures how the EventsConsumer fetches events.",
-          "title": "Event Fetch Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "pollStrategy": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
-          "title": "Poll Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "encoding": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "To use the given encoding when getting a git commit file",
-          "title": "Encoding",
-          "required": false,
-          "deprecated": false
-        },
-        "state": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "error",
-            "failure",
-            "pending",
-            "success"
-          ],
-          "description": "To set git commit status state",
-          "title": "State",
-          "required": false,
-          "deprecated": false
-        },
-        "targetUrl": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "To set git commit status target url",
-          "title": "Target Url",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "backoffErrorThreshold": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "The number of subsequent error polls (failed due some error) that should happen before the backoffMultipler should kick-in.",
-          "title": "Backoff Error Threshold",
-          "required": false,
-          "deprecated": false
-        },
-        "backoffIdleThreshold": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "The number of subsequent idle polls that should happen before the backoffMultipler should kick-in.",
-          "title": "Backoff Idle Threshold",
-          "required": false,
-          "deprecated": false
-        },
-        "backoffMultiplier": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "To let the scheduled polling consumer backoff if there has been a number of subsequent idles/errors in a row. The multiplier is then the number of polls that will be skipped before the next actual attempt is happening again. When this option is in use then backoffIdleThreshold and/or backoffErrorThreshold must also be configured.",
-          "title": "Backoff Multiplier",
-          "required": false,
-          "deprecated": false
-        },
-        "delay": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "500",
-          "description": "Milliseconds before the next poll.",
-          "title": "Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "greedy": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If greedy is enabled, then the ScheduledPollConsumer will run immediately again, if the previous run polled 1 or more messages.",
-          "title": "Greedy",
-          "required": false,
-          "deprecated": false
-        },
-        "initialDelay": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "1000",
-          "description": "Milliseconds before the first poll starts.",
-          "title": "Initial Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "repeatCount": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "0",
-          "description": "Specifies a maximum limit of number of fires. So if you set it to 1, the scheduler will only fire once. If you set it to 5, it will only fire five times. A value of zero or negative means fire forever.",
-          "title": "Repeat Count",
-          "required": false,
-          "deprecated": false
-        },
-        "runLoggingLevel": {
-          "kind": "parameter",
-          "type": "enum",
-          "defaultValue": "TRACE",
-          "enum": [
-            "TRACE",
-            "DEBUG",
-            "INFO",
-            "WARN",
-            "ERROR",
-            "OFF"
-          ],
-          "description": "The consumer logs a start/complete log line when it polls. This option allows you to configure the logging level for that.",
-          "title": "Run Logging Level",
-          "required": false,
-          "deprecated": false
-        },
-        "scheduledExecutorService": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "Allows for configuring a custom/shared thread pool to use for the consumer. By default each consumer has its own single threaded thread pool.",
-          "title": "Scheduled Executor Service",
-          "required": false,
-          "deprecated": false
-        },
-        "scheduler": {
-          "kind": "parameter",
-          "type": "object",
-          "defaultValue": "none",
-          "description": "To use a cron scheduler from either camel-spring or camel-quartz component. Use value spring or quartz for built in scheduler",
-          "title": "Scheduler",
-          "required": false,
-          "deprecated": false
-        },
-        "schedulerProperties": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To configure additional properties when using a custom scheduler or any of the Quartz, Spring based scheduler. This is a multi-value option with prefix: scheduler.",
-          "title": "Scheduler Properties",
-          "required": false,
-          "deprecated": false
-        },
-        "startScheduler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether the scheduler should be auto started.",
-          "title": "Start Scheduler",
-          "required": false,
-          "deprecated": false
-        },
-        "timeUnit": {
-          "kind": "parameter",
-          "type": "enum",
-          "defaultValue": "MILLISECONDS",
-          "enum": [
-            "NANOSECONDS",
-            "MICROSECONDS",
-            "MILLISECONDS",
-            "SECONDS",
-            "MINUTES",
-            "HOURS",
-            "DAYS"
-          ],
-          "description": "Time unit for initialDelay and delay options.",
-          "title": "Time Unit",
-          "required": false,
-          "deprecated": false
-        },
-        "useFixedDelay": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Controls if fixed delay or fixed rate is used. See ScheduledExecutorService in JDK for details.",
-          "title": "Use Fixed Delay",
-          "required": false,
-          "deprecated": false
-        },
-        "oauthToken": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "GitHub OAuth token. Must be configured on either component or endpoint.",
-          "title": "Oauth Token",
           "required": false,
           "deprecated": false
         }
@@ -43567,32 +43750,6 @@
         }
       }
     },
-    "grape": {
-      "type": "object",
-      "title": "Grape",
-      "group": "management",
-      "icon": "generic24.png",
-      "description": "Fetch, load and manage additional jars dynamically after Camel Context was started.",
-      "properties": {
-        "defaultCoordinates": {
-          "kind": "path",
-          "type": "string",
-          "description": "Maven coordinates to use as default to grab if the message body is empty.",
-          "title": "Default Coordinates",
-          "required": true,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
     "graphql": {
       "type": "object",
       "title": "GraphQL",
@@ -44156,77 +44313,6 @@
           "type": "string",
           "description": "The trusted certificates collection file resource in PEM format for verifying the remote endpoint\u0027s certificate",
           "title": "Trust Cert Collection Resource",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "guava-eventbus": {
-      "type": "object",
-      "title": "Guava EventBus",
-      "group": "messaging",
-      "icon": "generic24.png",
-      "description": "Send and receive messages to/from Guava EventBus.",
-      "properties": {
-        "eventBusRef": {
-          "kind": "path",
-          "type": "string",
-          "description": "To lookup the Guava EventBus from the registry with the given name",
-          "title": "Event Bus Ref",
-          "required": false,
-          "deprecated": false
-        },
-        "eventClass": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "If used on the consumer side of the route, will filter events received from the EventBus to the instances of the class and superclasses of eventClass. Null value of this option is equal to setting it to the java.lang.Object i.e. the consumer will capture all messages incoming to the event bus. This option cannot be used together with listenerInterface option.",
-          "title": "Event Class",
-          "required": false,
-          "deprecated": false
-        },
-        "listenerInterface": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The interface with method(s) marked with the Subscribe annotation. Dynamic proxy will be created over the interface so it could be registered as the EventBus listener. Particularly useful when creating multi-event listeners and for handling DeadEvent properly. This option cannot be used together with eventClass option.",
-          "title": "Listener Interface",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
         }
@@ -46331,6 +46417,20 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerificationPolicy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "CLIENT",
+          "enum": [
+            "CLIENT",
+            "BUILTIN",
+            "BOTH"
+          ],
+          "description": "Controls how hostname verification is performed during the TLS handshake. CLIENT (default) delegates entirely to the configured x509HostnameVerifier, preserving the behaviour of httpclient 5.5 and earlier a NoopHostnameVerifier will disable verification. BUILTIN uses the JDK SSLParameters hostname check only, ignoring the configured verifier. BOTH runs the JDK built-in check first and then the configured verifier; a NoopHostnameVerifier cannot bypass the built-in check under BUILTIN or BOTH. Prefer BOTH when no custom verifier semantics are needed for stronger out-of-the-box security.",
+          "title": "Hostname Verification Policy",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2BodyAuthentication": {
           "kind": "parameter",
           "type": "boolean",
@@ -46928,6 +47028,20 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerificationPolicy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "CLIENT",
+          "enum": [
+            "CLIENT",
+            "BUILTIN",
+            "BOTH"
+          ],
+          "description": "Controls how hostname verification is performed during the TLS handshake. CLIENT (default) delegates entirely to the configured x509HostnameVerifier, preserving the behaviour of httpclient 5.5 and earlier a NoopHostnameVerifier will disable verification. BUILTIN uses the JDK SSLParameters hostname check only, ignoring the configured verifier. BOTH runs the JDK built-in check first and then the configured verifier; a NoopHostnameVerifier cannot bypass the built-in check under BUILTIN or BOTH. Prefer BOTH when no custom verifier semantics are needed for stronger out-of-the-box security.",
+          "title": "Hostname Verification Policy",
+          "required": false,
+          "deprecated": false
+        },
         "oauth2BodyAuthentication": {
           "kind": "parameter",
           "type": "boolean",
@@ -47277,15 +47391,6 @@
           "required": false,
           "deprecated": false
         },
-        "ignoreSslVerification": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Ignore SSL verification",
-          "title": "SSL Verification Ignored",
-          "required": false,
-          "deprecated": false
-        },
         "instanceId": {
           "kind": "parameter",
           "type": "string",
@@ -47460,6 +47565,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreSslVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Ignore SSL verification",
+          "title": "SSL Verification Ignored",
           "required": false,
           "deprecated": false
         }
@@ -47831,15 +47945,6 @@
           "required": false,
           "deprecated": false
         },
-        "ignoreSslVerification": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Ignore SSL verification",
-          "title": "SSL Verification Ignored",
-          "required": false,
-          "deprecated": false
-        },
         "proxyHost": {
           "kind": "parameter",
           "type": "string",
@@ -47910,6 +48015,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreSslVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Ignore SSL verification",
+          "title": "SSL Verification Ignored",
           "required": false,
           "deprecated": false
         }
@@ -48486,15 +48600,6 @@
           "required": false,
           "deprecated": false
         },
-        "ignoreSslVerification": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Ignore SSL verification",
-          "title": "SSL Verification Ignored",
-          "required": false,
-          "deprecated": false
-        },
         "messageTtl": {
           "kind": "parameter",
           "type": "integer",
@@ -48582,6 +48687,15 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "ignoreSslVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Ignore SSL verification",
+          "title": "SSL Verification Ignored",
           "required": false,
           "deprecated": false
         }
@@ -50567,6 +50681,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "sslContextParameters": {
           "kind": "parameter",
           "type": "object",
@@ -51586,6 +51708,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -51906,6 +52064,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -52218,6 +52385,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -52538,6 +52741,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -53336,7 +53548,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Sends NAMES command to channel after joining it. onReply has to be true in order to process the result which will have the header value irc.num \u003d \u0027353\u0027.",
+          "description": "Sends NAMES command to channel after joining it. onReply has to be true in order to process the result which will have the header value CamelIrcNum \u003d \u0027353\u0027.",
           "title": "Names On Join",
           "required": false,
           "deprecated": false
@@ -54689,6 +54901,14 @@
           "required": false,
           "deprecated": false
         },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for validating incoming Authorization: Bearer tokens. When set, the request is authenticated before the route is processed. This requires an OAuthTokenValidationFactory; camel-oauth provides the default implementation. This is Camel endpoint-level validation and does not replace Jetty handlers or container security.",
+          "title": "OAuth Profile",
+          "required": false,
+          "deprecated": false
+        },
         "sslContextParameters": {
           "kind": "parameter",
           "type": "object",
@@ -55930,6 +56150,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -56075,7 +56304,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -59415,6 +59644,11 @@
             "removeClientRoleFromUser",
             "listUserSessions",
             "logoutUser",
+            "logoutAllUsers",
+            "revokeAccessToken",
+            "revokeRefreshToken",
+            "introspectToken",
+            "pushNotBefore",
             "createClientScope",
             "deleteClientScope",
             "getClientScope",
@@ -59457,7 +59691,19 @@
             "bulkDeleteUsers",
             "bulkAssignRolesToUser",
             "bulkAssignRoleToUsers",
-            "bulkUpdateUsers"
+            "bulkUpdateUsers",
+            "createOrganization",
+            "updateOrganization",
+            "deleteOrganization",
+            "getOrganization",
+            "listOrganizations",
+            "searchOrganizations",
+            "addOrganizationMember",
+            "removeOrganizationMember",
+            "listOrganizationMembers",
+            "linkOrganizationIdentityProvider",
+            "unlinkOrganizationIdentityProvider",
+            "listOrganizationIdentityProviders"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -64279,11 +64525,35 @@
           "required": false,
           "deprecated": false
         },
+        "agentConfiguration": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "AgentConfiguration used by Camel to create the agent internally. When set, Camel creates an AgentWithMemory if a ChatMemoryProvider is configured, otherwise an AgentWithoutMemory. If an agentFactory is also configured, the factory takes precedence.",
+          "title": "Agent Configuration",
+          "required": false,
+          "deprecated": false
+        },
         "agentFactory": {
           "kind": "parameter",
           "type": "object",
           "description": "The agent factory to use for creating agents if no Agent is provided",
           "title": "Agent Factory",
+          "required": false,
+          "deprecated": false
+        },
+        "jsonSchema": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "JSON schema for structured output validation. Only supported in inline agent creation mode: agentConfiguration must be set and neither agent nor agentFactory may be configured. Mutually exclusive with outputClass.",
+          "title": "Json Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "outputClass": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Java class to use for structured output. Camel derives the JSON schema from the class and instructs the model to produce matching JSON; the response body is left as a raw JSON string. Only supported in inline agent creation mode: agentConfiguration must be set and neither agent nor agentFactory may be configured. The class must be a POJO with public fields or getters; simple types, enums, and collections are not supported. Mutually exclusive with jsonSchema.",
+          "title": "Output Class",
           "required": false,
           "deprecated": false
         },
@@ -64349,35 +64619,6 @@
           "description": "Operation in case of Endpoint of type CHAT. The value is one of the values of org.apache.camel.component.langchain4j.chat.LangChain4jChatOperations",
           "title": "Chat Operation",
           "required": true,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
           "deprecated": false
         },
         "lazyStartProducer": {
@@ -66105,6 +66346,22 @@
           "title": "Session Timeout",
           "required": false,
           "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password for authentication. Use this instead of embedding credentials in the endpoint URI when the password contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The username for authentication. Use this instead of embedding credentials in the endpoint URI when the username contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
+          "title": "Username",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -66418,6 +66675,22 @@
           "type": "integer",
           "description": "Session timeout in milliseconds",
           "title": "Session Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password for authentication. Use this instead of embedding credentials in the endpoint URI when the password contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The username for authentication. Use this instead of embedding credentials in the endpoint URI when the username contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -66898,6 +67171,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "passiveMode": {
           "kind": "parameter",
           "type": "boolean",
@@ -67160,15 +67442,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -68040,7 +68313,7 @@
             "no",
             "yes"
           ],
-          "description": "Sets whether to use strict host key checking.",
+          "description": "Sets whether to use strict host key checking. Setting this to \u0027no\u0027 (the default) disables host key verification and makes SFTP connections vulnerable to man-in-the-middle attacks. Use \u0027yes\u0027 in production environments.",
           "title": "Strict Host Key Checking",
           "required": false,
           "deprecated": false
@@ -69200,6 +69473,22 @@
           ],
           "description": "Convert the output of the producer to the selected type: DocumentList Document or MongoIterable. DocumentList or MongoIterable applies to findAll and aggregate. Document applies to all other operations.",
           "title": "Output Type",
+          "required": false,
+          "deprecated": false
+        },
+        "changeStreamToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "A change stream token as a serialized BSON document JSON string.",
+          "title": "Change Stream Token",
+          "required": false,
+          "deprecated": false
+        },
+        "changeStreamTokenRepository": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "The repository to store change stream tokens.",
+          "title": "Change Stream Token Repository",
           "required": false,
           "deprecated": false
         },
@@ -70515,6 +70804,15 @@
           "required": false,
           "deprecated": false
         },
+        "manualAck": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow doing manual acknowledgment via NatsManualAck. If this option is enabled then an instance of NatsManualAck is stored on the org.apache.camel.Exchange message header, which allows end users to access this API and perform manual ack/nak/term operations via the JetStream consumer. When enabled, the automatic acknowledgment on exchange completion is disabled. If the user does not call any ack method, the message remains unacknowledged and NATS will redeliver it after the ackWait timeout expires. This option is only applicable when JetStream is enabled (jetstreamEnabled\u003dtrue). It has no effect when ackPolicy\u003dNone since the server acknowledges messages automatically on delivery.",
+          "title": "Manual Ack",
+          "required": false,
+          "deprecated": false
+        },
         "maxDeliver": {
           "kind": "parameter",
           "type": "integer",
@@ -70546,6 +70844,24 @@
           "defaultValue": "10",
           "description": "Consumer thread pool size (default is 10)",
           "title": "Pool Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pullBatchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "Maximum number of messages to fetch per pull request when using a JetStream Pull Subscription. Only used when {code pullSubscription\u003dtrue}.",
+          "title": "Pull Batch Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pullFetchTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Maximum time (in milliseconds) to wait for a batch of messages to be available on the server during a single fetch when using a JetStream Pull Subscription. Only used when {code pullSubscription\u003dtrue}.",
+          "title": "Pull Fetch Timeout",
           "required": false,
           "deprecated": false
         },
@@ -71679,7 +71995,7 @@
         "muteException": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
           "title": "Mute Exception",
           "required": false,
@@ -72242,7 +72558,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled and the remote side returns a serialized exception. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter allowing java., javax. and org.apache.camel. packages is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled and the remote side returns a serialized exception. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -72287,6 +72603,14 @@
           "defaultValue": "false",
           "description": "Configures whether the server needs client authentication when using SSL.",
           "title": "Need Client Auth",
+          "required": false,
+          "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for validating incoming Authorization: Bearer tokens. When set, the request is authenticated before the route is processed. This requires an OAuthTokenValidationFactory; camel-oauth provides the default implementation. Requires usingExecutorService\u003dtrue and sync\u003dtrue (the defaults), and is not supported with nettySharedHttpServer.",
+          "title": "OAuth Profile",
           "required": false,
           "deprecated": false
         },
@@ -73413,7 +73737,7 @@
       "title": "OpenAI",
       "group": "ai",
       "icon": "generic24.png",
-      "description": "OpenAI endpoint for chat completion and embeddings.",
+      "description": "OpenAI endpoint for chat completion, embeddings, and audio transcription.",
       "properties": {
         "operation": {
           "kind": "path",
@@ -73421,9 +73745,10 @@
           "enum": [
             "chat-completion",
             "embeddings",
-            "tool-execution"
+            "tool-execution",
+            "audio-transcription"
           ],
-          "description": "The operation to perform: \u0027chat-completion\u0027, \u0027embeddings\u0027, or \u0027tool-execution\u0027",
+          "description": "The operation to perform: \u0027chat-completion\u0027, \u0027embeddings\u0027, \u0027tool-execution\u0027, or \u0027audio-transcription\u0027",
           "title": "Operation",
           "required": true,
           "deprecated": false
@@ -73436,11 +73761,75 @@
           "required": false,
           "deprecated": false
         },
+        "additionalResponseHeader": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Map additional fields from the response message to Camel headers. The key is the field name in the API response, the value is the Camel header name (e.g. additionalResponseHeader.reasoning_content\u003dCamelMyReasoningHeader). This is a multi-value option with prefix: additionalResponseHeader.",
+          "title": "Additional Response Header",
+          "required": false,
+          "deprecated": false
+        },
         "apiKey": {
           "kind": "parameter",
           "type": "string",
           "description": "OpenAI API key. Can also be set via OPENAI_API_KEY environment variable.",
           "title": "Api Key",
+          "required": false,
+          "deprecated": false
+        },
+        "audioLanguage": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The language of the input audio in ISO-639-1 format (e.g., \u0027en\u0027). Improves accuracy and latency.",
+          "title": "Audio Language",
+          "required": false,
+          "deprecated": false
+        },
+        "audioModel": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The model to use for audio transcription (e.g., whisper-1, gpt-4o-transcribe)",
+          "title": "Audio Model",
+          "required": false,
+          "deprecated": false
+        },
+        "audioPrompt": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Optional text to guide the model\u0027s style or continue a previous audio segment",
+          "title": "Audio Prompt",
+          "required": false,
+          "deprecated": false
+        },
+        "audioResponseFormat": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "json",
+          "enum": [
+            "json",
+            "text",
+            "srt",
+            "verbose_json",
+            "vtt"
+          ],
+          "description": "The format of the transcription output",
+          "title": "Audio Response Format",
+          "required": false,
+          "deprecated": false
+        },
+        "audioTemperature": {
+          "kind": "parameter",
+          "type": "number",
+          "description": "Sampling temperature for transcription (0.0 to 1.0)",
+          "title": "Audio Temperature",
+          "required": false,
+          "deprecated": false
+        },
+        "audioTimestampGranularities": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated timestamp granularities: \u0027word\u0027, \u0027segment\u0027, or \u0027word,segment\u0027. Only applicable with verbose_json response format.",
+          "title": "Audio Timestamp Granularities",
           "required": false,
           "deprecated": false
         },
@@ -73562,7 +73951,7 @@
         "mcpServer": {
           "kind": "parameter",
           "type": "object",
-          "description": "MCP (Model Context Protocol) server configurations. Define servers using prefix notation: mcpServer..transportType\u003dstdiossestreamableHttp, mcpServer..command\u003d (stdio), mcpServer..args\u003d (stdio), mcpServer..url\u003d (sse/streamableHttp), mcpServer..oauthProfile\u003d (OAuth profile for HTTP auth, requires camel-oauth). This is a multi-value option with prefix: mcpServer.",
+          "description": "MCP (Model Context Protocol) server configurations. Define servers using prefix notation: mcpServer..transportType\u003dstdiossestreamableHttp, (Note that sse is deprecated) mcpServer..command\u003d (stdio), mcpServer..args\u003d (stdio), mcpServer..url\u003d (sse/streamableHttp), mcpServer..oauthProfile\u003d (OAuth profile for HTTP auth, requires camel-oauth). This is a multi-value option with prefix: mcpServer.",
           "title": "Mcp Server",
           "required": false,
           "deprecated": false
@@ -73607,6 +73996,15 @@
           "defaultValue": "false",
           "description": "Enable streaming responses",
           "title": "Streaming",
+          "required": false,
+          "deprecated": false
+        },
+        "stripThinking": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Strip ... blocks from model responses (used by reasoning models like Qwen3, DeepSeek-R1). The thinking content is stored in the CamelOpenAIThinkingContent header.",
+          "title": "Strip Thinking",
           "required": false,
           "deprecated": false
         },
@@ -77014,6 +77412,14 @@
           "title": "Platform Http Engine",
           "required": false,
           "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for validating incoming Authorization: Bearer tokens. When set, the request is authenticated before the route is processed. This requires an OAuthTokenValidationFactory; camel-oauth provides the default implementation.",
+          "title": "OAuth Profile",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -77396,6 +77802,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -77716,6 +78158,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -78028,6 +78479,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -78348,6 +78835,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -78930,6 +79426,15 @@
           "type": "string",
           "description": "Name of the topic where the messages which fail maxRedeliverCount times will be sent. Note: if not set, default topic name will be topicName-subscriptionName-DLQ",
           "title": "Dead Letter Topic",
+          "required": false,
+          "deprecated": false
+        },
+        "enableBatchIndexAcknowledgment": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, allows each individual message in a batch to be acknowledged independently. By default Pulsar redelivers the entire batch when any single message in the batch is not acknowledged. This option also requires the Pulsar broker to be configured with acknowledgmentAtBatchIndexLevelEnabled\u003dtrue.",
+          "title": "Enable Batch Index Acknowledgment",
           "required": false,
           "deprecated": false
         },
@@ -80221,6 +80726,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name passed to the HTTP consumer delegate for validating incoming Authorization: Bearer tokens. The selected consumer component must support the oauthProfile option; delegates that ignore unknown options will start without endpoint protection.",
+          "title": "OAuth Profile",
           "required": false,
           "deprecated": false
         }
@@ -82454,6 +82967,23 @@
           "required": false,
           "deprecated": false
         },
+        "fileName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Use Expression such as File Language to dynamically set the filename. For consumers, it\u0027s used as a filename filter. For producers, it\u0027s used to evaluate the filename to write. If an expression is set, it take precedence over the CamelFileName header. (Note: The header itself can also be an Expression). The expression options support both String and Expression types. If the expression is a String type, it is always evaluated using the File Language. If the expression is an Expression type, the specified Expression type is used - this allows you, for instance, to use OGNL expressions. For the consumer, you can use it to filter filenames, so you can for instance consume today\u0027s file using the File Language syntax: mydata-${date:now:yyyyMMdd}.txt. The producers support the CamelOverruleFileName header which takes precedence over any existing CamelFileName header; the CamelOverruleFileName is a header that is used only once, and makes it easier as this avoids to temporary store CamelFileName and have to restore it afterwards.",
+          "title": "File Name",
+          "required": false,
+          "deprecated": false
+        },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "checksumWriteFile": {
           "kind": "parameter",
           "type": "boolean",
@@ -82463,29 +82993,12 @@
           "required": false,
           "deprecated": false
         },
-        "fileName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Use Expression such as File Language to dynamically set the filename. For consumers, it\u0027s used as a filename filter. For producers, it\u0027s used to evaluate the filename to write. If an expression is set, it take precedence over the CamelFileName header. (Note: The header itself can also be an Expression). The expression options support both String and Expression types. If the expression is a String type, it is always evaluated using the File Language. If the expression is an Expression type, the specified Expression type is used - this allows you, for instance, to use OGNL expressions. For the consumer, you can use it to filter filenames, so you can for instance consume today\u0027s file using the File Language syntax: mydata-${date:now:yyyyMMdd}.txt. The producers support the CamelOverruleFileName header which takes precedence over any existing CamelFileName header; the CamelOverruleFileName is a header that is used only once, and makes it easier as this avoids to temporary store CamelFileName and have to restore it afterwards.",
-          "title": "File Name",
-          "required": false,
-          "deprecated": false
-        },
         "flatten": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -83335,6 +83848,15 @@
           "required": false,
           "deprecated": false
         },
+        "transferException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "If enabled and an Exchange failed processing on the consumer side, and if the caused Exception was send back serialized in the response as a application/x-java-serialized-object content type. On the producer side the exception will be deserialized and thrown as is, instead of the HttpOperationFailedException. The caused exception is required to be serialized. This is by default turned off. If you enable this then be aware that Java will deserialize the incoming data from the request to Java and that can be a potential security risk.",
+          "title": "Transfer Exception",
+          "required": false,
+          "deprecated": false
+        },
         "headerFilterStrategy": {
           "kind": "parameter",
           "type": "object",
@@ -83351,30 +83873,21 @@
           "required": false,
           "deprecated": false
         },
-        "chunked": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "If this option is false the Servlet will disable the HTTP streaming and set the content-length header on the response",
-          "title": "Chunked",
-          "required": false,
-          "deprecated": false
-        },
-        "transferException": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "If enabled and an Exchange failed processing on the consumer side, and if the caused Exception was send back serialized in the response as a application/x-java-serialized-object content type. On the producer side the exception will be deserialized and thrown as is, instead of the HttpOperationFailedException. The caused exception is required to be serialized. This is by default turned off. If you enable this then be aware that Java will deserialize the incoming data from the request to Java and that can be a potential security risk.",
-          "title": "Transfer Exception",
-          "required": false,
-          "deprecated": false
-        },
         "async": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
           "description": "Configure the consumer to work in async mode",
           "title": "Async",
+          "required": false,
+          "deprecated": false
+        },
+        "chunked": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If this option is false the Servlet will disable the HTTP streaming and set the content-length header on the response",
+          "title": "Chunked",
           "required": false,
           "deprecated": false
         },
@@ -83529,6 +84042,14 @@
           "title": "Trace Enabled",
           "required": false,
           "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for validating incoming Authorization: Bearer tokens. When set, the request is authenticated before the route is processed. This requires an OAuthTokenValidationFactory; camel-oauth provides the default implementation. This is Camel endpoint-level validation and does not replace servlet container or framework security.",
+          "title": "OAuth Profile",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -83602,6 +84123,15 @@
           "type": "string",
           "description": "Use Expression such as File Language to dynamically set the filename. For consumers, it\u0027s used as a filename filter. For producers, it\u0027s used to evaluate the filename to write. If an expression is set, it take precedence over the CamelFileName header. (Note: The header itself can also be an Expression). The expression options support both String and Expression types. If the expression is a String type, it is always evaluated using the File Language. If the expression is an Expression type, the specified Expression type is used - this allows you, for instance, to use OGNL expressions. For the consumer, you can use it to filter filenames, so you can for instance consume today\u0027s file using the File Language syntax: mydata-${date:now:yyyyMMdd}.txt. The producers support the CamelOverruleFileName header which takes precedence over any existing CamelFileName header; the CamelOverruleFileName is a header that is used only once, and makes it easier as this avoids to temporary store CamelFileName and have to restore it afterwards.",
           "title": "File Name",
+          "required": false,
+          "deprecated": false
+        },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -83884,15 +84414,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -84757,7 +85278,7 @@
             "no",
             "yes"
           ],
-          "description": "Sets whether to use strict host key checking.",
+          "description": "Sets whether to use strict host key checking. Setting this to \u0027no\u0027 (the default) disables host key verification and makes SFTP connections vulnerable to man-in-the-middle attacks. Use \u0027yes\u0027 in production environments.",
           "title": "Strict Host Key Checking",
           "required": false,
           "deprecated": false
@@ -84801,6 +85322,61 @@
           "type": "object",
           "description": "Pluggable sorter as a java.util.Comparator class.",
           "title": "Sorter",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "shell": {
+      "type": "object",
+      "title": "Shell",
+      "group": "api",
+      "icon": "generic24.png",
+      "description": "Camel Shell component",
+      "properties": {
+        "prompt": {
+          "kind": "path",
+          "type": "string",
+          "description": "Shell prompt",
+          "title": "Prompt",
+          "required": true,
+          "deprecated": false
+        },
+        "color": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "cyan",
+          "description": "Prompt color: black, red, green, yellow, blue, magenta, cyan, white",
+          "title": "Color",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
           "required": false,
           "deprecated": false
         }
@@ -85223,6 +85799,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "recoveryInterval": {
           "kind": "parameter",
           "type": "duration",
@@ -85253,7 +85838,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -85712,6 +86297,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "recoveryInterval": {
           "kind": "parameter",
           "type": "duration",
@@ -85742,7 +86336,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter allowing java., javax. and org.apache.camel. is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -86123,6 +86717,15 @@
           "required": false,
           "deprecated": false
         },
+        "jailStartingDirectory": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders. For consumers that use a localWorkDirectory, this also restricts the downloaded files to stay within the configured localWorkDirectory.",
+          "title": "Jail Starting Directory",
+          "required": false,
+          "deprecated": false
+        },
         "delete": {
           "kind": "parameter",
           "type": "boolean",
@@ -86352,15 +86955,6 @@
           "defaultValue": "false",
           "description": "Flatten is used to flatten the file name path to strip any leading paths, so it\u0027s just the file name. This allows you to consume recursively into sub-directories, but when you eg write the files to another directory they will be written in a single directory. Setting this to true on the producer enforces that any file name in CamelFileName header will be stripped for any leading paths.",
           "title": "Flatten",
-          "required": false,
-          "deprecated": false
-        },
-        "jailStartingDirectory": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Used for jailing (restricting) writing files to the starting directory (and sub) only. This is enabled by default to not allow Camel to write files to outside directories (to be more secured out of the box). You can turn this off to allow writing files to directories outside the starting directory, such as parent or root folders.",
-          "title": "Jail Starting Directory",
           "required": false,
           "deprecated": false
         },
@@ -88282,6 +88876,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -88602,6 +89232,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -88914,6 +89553,42 @@
           "required": false,
           "deprecated": false
         },
+        "useHeaderFrom": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "title": "Use Header From",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderRecipients": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "title": "Use Header Recipients",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderReplyTo": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "title": "Use Header Reply To",
+          "required": false,
+          "deprecated": false
+        },
+        "useHeaderSubject": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "title": "Use Header Subject",
+          "required": false,
+          "deprecated": false
+        },
         "javaMailSender": {
           "kind": "parameter",
           "type": "object",
@@ -89234,6 +89909,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -89792,6 +90476,14 @@
           "type": "string",
           "description": "Password for authenticating",
           "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "sslContextParameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To configure security using SSLContextParameters. When configured, this takes precedence over the certificatePath option. This allows configuring named groups, signature schemes, cipher suites, and protocols for the TLS connection.",
+          "title": "Ssl Context Parameters",
           "required": false,
           "deprecated": false
         },
@@ -91961,6 +92653,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers mapped to and from the Camel message. By default the internal Camel and camel header namespace (case-insensitive) is filtered out from inbound SOAP headers.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "messageFilter": {
           "kind": "parameter",
           "type": "object",
@@ -93219,126 +93919,6 @@
           "description": "Stitch access token for the Stitch Import API",
           "title": "Token",
           "required": true,
-          "deprecated": false
-        }
-      }
-    },
-    "stomp": {
-      "type": "object",
-      "title": "Stomp",
-      "group": "messaging",
-      "icon": "generic24.png",
-      "description": "Send and receive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.",
-      "properties": {
-        "destination": {
-          "kind": "path",
-          "type": "string",
-          "description": "Name of the queue",
-          "title": "Destination",
-          "required": true,
-          "deprecated": false
-        },
-        "brokerURL": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "tcp://localhost:61613",
-          "description": "The URI of the Stomp broker to connect to",
-          "title": "Broker URL",
-          "required": true,
-          "deprecated": false
-        },
-        "customHeaders": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To set custom headers",
-          "title": "Custom Headers",
-          "required": false,
-          "deprecated": false
-        },
-        "host": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The virtual host name",
-          "title": "Host",
-          "required": false,
-          "deprecated": false
-        },
-        "version": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The stomp version (1.1, or 1.2)",
-          "title": "Version",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        },
-        "headerFilterStrategy": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
-          "title": "Header Filter Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "login": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The username",
-          "title": "Login",
-          "required": false,
-          "deprecated": false
-        },
-        "passcode": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The password",
-          "title": "Passcode",
-          "required": false,
-          "deprecated": false
-        },
-        "sslContextParameters": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To configure security using SSLContextParameters",
-          "title": "Ssl Context Parameters",
-          "required": false,
           "deprecated": false
         }
       }
@@ -96646,7 +97226,7 @@
         "muteException": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
           "title": "Mute Exception",
           "required": false,
@@ -96806,6 +97386,14 @@
           "type": "string",
           "description": "Configuration used by UndertowSecurityProvider. Comma separated list of allowed roles.",
           "title": "Allowed Roles",
+          "required": false,
+          "deprecated": false
+        },
+        "oauthProfile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "OAuth profile name for validating incoming Authorization: Bearer tokens. When set, the HTTP request or WebSocket upgrade request is authenticated before the route is processed. This requires an OAuthTokenValidationFactory; camel-oauth provides the default implementation.",
+          "title": "OAuth Profile",
           "required": false,
           "deprecated": false
         },
@@ -97389,7 +97977,7 @@
         "deserializationFilter": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled (or when allowJavaSerializedObject is enabled on the component) and the remote side returns a serialized payload. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter allowing java., javax. and org.apache.camel. packages is applied.",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled (or when allowJavaSerializedObject is enabled on the component) and the remote side returns a serialized payload. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied.",
           "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
@@ -97562,6 +98150,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -98619,6 +99215,14 @@
           "description": "The authorization access token taken from whatsapp-business dashboard.",
           "title": "Authorization Token",
           "required": true,
+          "deprecated": false
+        },
+        "webhookSecret": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The app secret used to verify the X-Hub-Signature-256 signature of inbound webhook event payloads (from the Meta/WhatsApp app dashboard). When set, event callbacks with a missing or invalid signature are rejected with HTTP 403; when not set, no signature verification is performed.",
+          "title": "Webhook Secret",
+          "required": false,
           "deprecated": false
         }
       }

@@ -5,7 +5,7 @@
       "title": "Api Key",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security basic auth definition",
+      "description": "Configures API key authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -13,7 +13,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -29,7 +29,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -68,7 +68,7 @@
       "title": "Basic Auth",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security basic auth definition",
+      "description": "Configures HTTP Basic authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -76,7 +76,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -84,7 +84,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -96,7 +96,7 @@
       "title": "Bearer Token",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security bearer token authentication definition",
+      "description": "Configures Bearer token authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -104,7 +104,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -112,7 +112,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -132,7 +132,7 @@
       "title": "Delete",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest DELETE command",
+      "description": "Defines an HTTP DELETE operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -140,7 +140,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -148,7 +148,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -156,7 +156,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -213,7 +213,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -221,7 +221,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -229,7 +229,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -237,7 +237,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -253,7 +253,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -262,7 +262,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -271,7 +271,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -280,7 +280,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -289,7 +289,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -298,7 +298,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -307,7 +307,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -333,7 +333,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -345,7 +345,7 @@
       "title": "Get",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest GET command",
+      "description": "Defines an HTTP GET operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -353,7 +353,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -361,7 +361,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -369,7 +369,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -426,7 +426,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -434,7 +434,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -442,7 +442,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -450,7 +450,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -466,7 +466,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -475,7 +475,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -484,7 +484,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -493,7 +493,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -502,7 +502,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -511,7 +511,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -520,7 +520,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -546,7 +546,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -558,7 +558,7 @@
       "title": "Head",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest HEAD command",
+      "description": "Defines an HTTP HEAD operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -566,7 +566,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -574,7 +574,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -582,7 +582,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -639,7 +639,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -647,7 +647,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -655,7 +655,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -663,7 +663,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -679,7 +679,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -688,7 +688,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -697,7 +697,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -706,7 +706,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -715,7 +715,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -724,7 +724,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -733,7 +733,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -759,7 +759,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -771,7 +771,7 @@
       "title": "Mutual TLS",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security mutual TLS authentication definition",
+      "description": "Configures mutual TLS (mTLS) client certificate authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -779,7 +779,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -787,7 +787,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -799,7 +799,7 @@
       "title": "Oauth2",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security OAuth2 definition",
+      "description": "Configures OAuth2 authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -807,7 +807,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -815,7 +815,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -823,7 +823,7 @@
         "authorizationUrl": {
           "kind": "attribute",
           "type": "string",
-          "description": "The authorization URL to be used for this flow. This SHOULD be in the form of a URL. Required for implicit and access code flows",
+          "description": "The authorization URL to use for this flow. Required for implicit and access code flows.",
           "title": "Authorization Url",
           "required": false,
           "deprecated": false
@@ -831,7 +831,7 @@
         "tokenUrl": {
           "kind": "attribute",
           "type": "string",
-          "description": "The token URL to be used for this flow. This SHOULD be in the form of a URL. Required for password, application, and access code flows.",
+          "description": "The token URL to use for this flow. Required for password, application, and access code flows.",
           "title": "Token Url",
           "required": false,
           "deprecated": false
@@ -839,7 +839,7 @@
         "refreshUrl": {
           "kind": "attribute",
           "type": "string",
-          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL.",
+          "description": "The URL to use for obtaining refresh tokens.",
           "title": "Refresh Url",
           "required": false,
           "deprecated": false
@@ -863,7 +863,7 @@
         "scopes": {
           "kind": "element",
           "type": "array",
-          "description": "The available scopes for an OAuth2 security scheme",
+          "description": "The available scopes for the OAuth2 security scheme.",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -875,7 +875,7 @@
       "title": "Open Api",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To use OpenApi as contract-first with Camel Rest DSL.",
+      "description": "Configures a contract-first REST service using an OpenAPI specification, where Camel auto-generates routes for each operation",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -883,7 +883,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -891,7 +891,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -899,7 +899,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -916,7 +916,7 @@
         "specification": {
           "kind": "attribute",
           "type": "string",
-          "description": "Path to the OpenApi specification file.",
+          "description": "Path to the OpenAPI specification file.",
           "title": "Specification",
           "required": true,
           "deprecated": false
@@ -924,7 +924,7 @@
         "apiContextPath": {
           "kind": "attribute",
           "type": "string",
-          "description": "Whether to enable api-doc that exposes the OpenAPI specification file as a REST endpoint. This allows clients to obtain the specification from the running Camel application.",
+          "description": "Context path for exposing the OpenAPI specification file as a REST endpoint, allowing clients to obtain the specification from the running application.",
           "title": "Api Context Path",
           "required": false,
           "deprecated": false
@@ -932,7 +932,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -967,7 +967,7 @@
       "title": "Open Id Connect",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security OpenID Connect definition",
+      "description": "Configures OpenID Connect authentication for a REST service",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -975,7 +975,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "A short description for security scheme.",
+          "description": "A short description for the security scheme.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -983,7 +983,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -991,7 +991,7 @@
         "url": {
           "kind": "attribute",
           "type": "string",
-          "description": "OpenId Connect URL to discover OAuth2 configuration values.",
+          "description": "OpenID Connect URL to discover OAuth2 configuration values.",
           "title": "Url",
           "required": true,
           "deprecated": false
@@ -1003,7 +1003,7 @@
       "title": "Param",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To specify the rest operation parameters.",
+      "description": "Defines a parameter for a REST operation, specifying its type, name, data type, and whether it is required",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -1011,7 +1011,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the parameter description.",
+          "description": "Description of the parameter.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1019,7 +1019,7 @@
         "name": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the parameter name.",
+          "description": "The parameter name.",
           "title": "Name",
           "required": true,
           "deprecated": false
@@ -1035,7 +1035,7 @@
             "path",
             "query"
           ],
-          "description": "Sets the parameter type.",
+          "description": "Sets the parameter type such as body, form, header, path, or query.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -1043,7 +1043,7 @@
         "defaultValue": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the parameter default value.",
+          "description": "The default value of the parameter.",
           "title": "Default Value",
           "required": false,
           "deprecated": false
@@ -1086,7 +1086,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": "string",
-          "description": "Sets the parameter data type.",
+          "description": "Sets the parameter data type such as string, integer, or boolean.",
           "title": "Data Type",
           "required": false,
           "deprecated": false
@@ -1094,7 +1094,7 @@
         "dataFormat": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the parameter data format.",
+          "description": "The data format of the parameter such as binary, date, date-time, or password.",
           "title": "Data Format",
           "required": false,
           "deprecated": false
@@ -1102,7 +1102,7 @@
         "allowableValues": {
           "kind": "element",
           "type": "array",
-          "description": "Sets the parameter list of allowable values (enum).",
+          "description": "List of allowable values for the parameter (enum).",
           "title": "Allowable Values",
           "required": false,
           "deprecated": false
@@ -1110,7 +1110,7 @@
         "examples": {
           "kind": "element",
           "type": "array",
-          "description": "Sets the parameter examples.",
+          "description": "Examples of the parameter.",
           "title": "Examples",
           "required": false,
           "deprecated": false
@@ -1122,7 +1122,7 @@
       "title": "Patch",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest PATCH command",
+      "description": "Defines an HTTP PATCH operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -1130,7 +1130,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -1138,7 +1138,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -1146,7 +1146,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1203,7 +1203,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -1211,7 +1211,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -1219,7 +1219,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -1227,7 +1227,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -1243,7 +1243,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -1252,7 +1252,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -1261,7 +1261,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -1270,7 +1270,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -1279,7 +1279,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -1288,7 +1288,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -1297,7 +1297,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -1323,7 +1323,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -1335,7 +1335,7 @@
       "title": "Post",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest POST command",
+      "description": "Defines an HTTP POST operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -1343,7 +1343,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -1351,7 +1351,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -1359,7 +1359,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1416,7 +1416,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -1424,7 +1424,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -1432,7 +1432,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -1440,7 +1440,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -1456,7 +1456,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -1465,7 +1465,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -1474,7 +1474,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -1483,7 +1483,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -1492,7 +1492,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -1501,7 +1501,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -1510,7 +1510,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -1536,7 +1536,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -1548,7 +1548,7 @@
       "title": "Put",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Rest PUT command",
+      "description": "Defines an HTTP PUT operation in the REST DSL",
       "acceptInput": "true",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "true",
@@ -1556,7 +1556,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -1564,7 +1564,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -1572,7 +1572,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1629,7 +1629,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -1637,7 +1637,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -1645,7 +1645,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data This option will override what may be configured on a parent level. The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data. This option will override what may be configured on a parent level.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -1653,7 +1653,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data This option will override what may be configured on a parent level The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data. This option will override what may be configured on a parent level.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -1669,7 +1669,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -1678,7 +1678,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -1687,7 +1687,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -1696,7 +1696,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -1705,7 +1705,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -1714,7 +1714,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -1723,7 +1723,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -1749,7 +1749,7 @@
         "routeId": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of the route",
+          "description": "The route id this REST service will refer to.",
           "title": "Route Id",
           "required": false,
           "deprecated": false
@@ -1761,7 +1761,7 @@
       "title": "Response Header",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To specify the rest operation response headers.",
+      "description": "Defines a response header for a REST operation, used for API documentation and OpenAPI spec generation",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -1769,7 +1769,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Description of the parameter.",
+          "description": "Description of the response header.",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1777,7 +1777,7 @@
         "name": {
           "kind": "attribute",
           "type": "string",
-          "description": "Name of the parameter. This option is mandatory.",
+          "description": "Name of the response header.",
           "title": "Name",
           "required": true,
           "deprecated": false
@@ -1811,7 +1811,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": "string",
-          "description": "Sets the header data type.",
+          "description": "Sets the header data type such as string, integer, or boolean.",
           "title": "Data Type",
           "required": false,
           "deprecated": false
@@ -1819,7 +1819,7 @@
         "dataFormat": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the parameter data format.",
+          "description": "The data format of the header such as binary, date, date-time, or password.",
           "title": "Data Format",
           "required": false,
           "deprecated": false
@@ -1827,7 +1827,7 @@
         "allowableValues": {
           "kind": "element",
           "type": "array",
-          "description": "Sets the parameter list of allowable values.",
+          "description": "List of allowable values for the header (enum).",
           "title": "Allowable Values",
           "required": false,
           "deprecated": false
@@ -1835,7 +1835,7 @@
         "example": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the example",
+          "description": "An example value of this response header.",
           "title": "Example",
           "required": false,
           "deprecated": false
@@ -1847,7 +1847,7 @@
       "title": "Response Message",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To specify the rest operation response messages.",
+      "description": "Defines a response message for a REST operation, including HTTP status code and description for API documentation",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -1856,7 +1856,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": "200",
-          "description": "The response code such as a HTTP status code",
+          "description": "The response code such as a HTTP status code.",
           "title": "Code",
           "required": false,
           "deprecated": false
@@ -1864,7 +1864,7 @@
         "contentType": {
           "kind": "attribute",
           "type": "string",
-          "description": "The response content-type such as application/json.",
+          "description": "The response content type such as application/json.",
           "title": "Content Type",
           "required": false,
           "deprecated": false
@@ -1872,7 +1872,7 @@
         "message": {
           "kind": "attribute",
           "type": "string",
-          "description": "The response message (description)",
+          "description": "The response message (description).",
           "title": "Message",
           "required": true,
           "deprecated": false
@@ -1880,7 +1880,7 @@
         "responseModel": {
           "kind": "attribute",
           "type": "string",
-          "description": "The response model",
+          "description": "The response model (class name).",
           "title": "Response Model",
           "required": false,
           "deprecated": false
@@ -1888,7 +1888,7 @@
         "header": {
           "kind": "element",
           "type": "array",
-          "description": "Adds a response header",
+          "description": "The response headers.",
           "title": "Header",
           "required": false,
           "deprecated": false
@@ -1896,7 +1896,7 @@
         "examples": {
           "kind": "element",
           "type": "array",
-          "description": "Examples of response messages",
+          "description": "Examples of response messages.",
           "title": "Examples",
           "required": false,
           "deprecated": false
@@ -1908,7 +1908,7 @@
       "title": "Rest",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "Defines a rest service using the rest-dsl",
+      "description": "Defines a REST service with HTTP operations (GET, POST, PUT, DELETE, etc.) using the Camel REST DSL",
       "acceptInput": "false",
       "acceptOutput": "true",
       "nextSiblingAddedAsChild": "false",
@@ -1916,7 +1916,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -1924,7 +1924,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -1932,7 +1932,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -1949,7 +1949,7 @@
         "path": {
           "kind": "attribute",
           "type": "string",
-          "description": "Path of the rest service, such as /foo",
+          "description": "Path of the rest service, such as /foo.",
           "title": "Path",
           "required": false,
           "deprecated": false
@@ -1957,7 +1957,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level",
+          "description": "The content type the REST service consumes (accept as input), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -1965,7 +1965,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json This option will override what may be configured on a parent level",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json. This option will override what may be configured on a parent level.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -1981,7 +1981,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. This option will override what may be configured on a parent level The default value is auto",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML. This option will override what may be configured on a parent level.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -1990,7 +1990,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level",
+          "description": "Whether to skip binding on output if there is a custom HTTP error code header. This allows to build custom error messages that do not bind to json / xml etc, as success messages otherwise will do. This option will override what may be configured on a parent level.",
           "title": "Skip Binding On Error Code",
           "required": false,
           "deprecated": false
@@ -1999,7 +1999,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -2008,7 +2008,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -2017,7 +2017,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response. This option will override what may be configured on a parent level.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -2026,7 +2026,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -2035,7 +2035,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Whether to include or exclude this rest operation in API documentation. This option will override what may be configured on a parent level. The default value is true.",
+          "description": "Whether to include or exclude this rest operation in API documentation. This option will override what may be configured on a parent level.",
           "title": "Api Docs",
           "required": false,
           "deprecated": false
@@ -2079,7 +2079,7 @@
       "title": "Rest Binding",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To configure rest binding",
+      "description": "Configures data binding for a REST service, controlling how request and response bodies are marshalled and unmarshalled",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2087,7 +2087,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -2095,7 +2095,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -2103,7 +2103,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -2111,7 +2111,7 @@
         "consumes": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service consumes (accept as input), such as application/xml or application/json",
+          "description": "The content type the REST service accepts (consumes) as input, such as application/xml or application/json.",
           "title": "Consumes",
           "required": false,
           "deprecated": false
@@ -2119,7 +2119,7 @@
         "produces": {
           "kind": "attribute",
           "type": "string",
-          "description": "To define the content type what the REST service produces (uses for output), such as application/xml or application/json",
+          "description": "The content type the REST service produces (uses for output), such as application/xml or application/json.",
           "title": "Produces",
           "required": false,
           "deprecated": false
@@ -2135,7 +2135,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -2143,7 +2143,7 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from input to POJO for the incoming data The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from input to POJO for the incoming data.",
           "title": "Type",
           "required": false,
           "deprecated": false
@@ -2151,7 +2151,7 @@
         "outType": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the class name to use for binding from POJO to output for the outgoing data The name of the class of the input data. Append a to the end of the name if you want the input to be an array type.",
+          "description": "Sets the class name to use for binding from POJO to output for the outgoing data.",
           "title": "Out Type",
           "required": false,
           "deprecated": false
@@ -2169,7 +2169,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -2178,7 +2178,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -2187,7 +2187,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -2196,7 +2196,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -2204,7 +2204,7 @@
         "component": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the component name that this definition will apply to",
+          "description": "Sets the component name that this definition will apply to.",
           "title": "Component",
           "required": false,
           "deprecated": false
@@ -2216,7 +2216,7 @@
       "title": "Rest Configuration",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "To configure rest",
+      "description": "Configures global settings for the REST DSL, such as host, port, context path, binding mode, and the underlying HTTP component to use",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2232,7 +2232,7 @@
             "netty-http",
             "coap"
           ],
-          "description": "The Camel Rest component to use for the REST transport (consumer), such as netty-http, jetty, servlet, undertow. If no component has been explicit configured, then Camel will lookup if there is a Camel component that integrates with the Rest DSL, or if a org.apache.camel.spi.RestConsumerFactory is registered in the registry. If either one is found, then that is being used.",
+          "description": "The Camel Rest component to use for the REST transport (consumer), such as netty-http, jetty, servlet, undertow.",
           "title": "Component",
           "required": false,
           "deprecated": false
@@ -2244,7 +2244,7 @@
             "openapi",
             "swagger"
           ],
-          "description": "The name of the Camel component to use as the REST API. If no API Component has been explicit configured, then Camel will lookup if there is a Camel component responsible for servicing and generating the REST API documentation, or if a org.apache.camel.spi.RestApiProcessorFactory is registered in the registry. If either one is found, then that is being used.",
+          "description": "The name of the Camel component to use as the REST API (such as OpenApi).",
           "title": "Api Component",
           "required": false,
           "deprecated": false
@@ -2258,7 +2258,7 @@
             "undertow",
             "netty-http"
           ],
-          "description": "Sets the name of the Camel component to use as the REST producer",
+          "description": "Sets the name of the Camel component to use as the REST producer.",
           "title": "Producer Component",
           "required": false,
           "deprecated": false
@@ -2266,7 +2266,7 @@
         "scheme": {
           "kind": "attribute",
           "type": "string",
-          "description": "The scheme to use for exposing the REST service. Usually http or https is supported. The default value is http",
+          "description": "The scheme to use for exposing the REST service. Usually http or https is supported.",
           "title": "Scheme",
           "required": false,
           "deprecated": false
@@ -2282,7 +2282,7 @@
         "port": {
           "kind": "attribute",
           "type": "string",
-          "description": "The port number to use for exposing the REST service. Notice if you use servlet component then the port number configured here does not apply, as the port number in use is the actual port number the servlet component is using. eg if using Apache Tomcat its the tomcat http port, if using Apache Karaf its the HTTP service in Karaf that uses port 8181 by default etc. Though in those situations setting the port number here, allows tooling and JMX to know the port number, so its recommended to set the port number to the number that the servlet engine uses.",
+          "description": "The port number to use for exposing the REST service.",
           "title": "Port",
           "required": false,
           "deprecated": false
@@ -2290,7 +2290,7 @@
         "apiHost": {
           "kind": "attribute",
           "type": "string",
-          "description": "To use a specific hostname for the API documentation (such as swagger or openapi) This can be used to override the generated host with this configured hostname",
+          "description": "To use a specific hostname for the API documentation (such as swagger or openapi). This can be used to override the generated host with this configured hostname.",
           "title": "Api Host",
           "required": false,
           "deprecated": false
@@ -2299,7 +2299,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to use X-Forward headers to set host etc. for OpenApi. This may be needed in special cases involving reverse-proxy and networking going from HTTP to HTTPS etc. Then the proxy can send X-Forward headers (X-Forwarded-Proto) that influences the host names in the OpenAPI schema that camel-openapi-java generates from Rest DSL routes.",
+          "description": "Whether to use X-Forward headers to set host etc. for OpenApi. This may be needed in special cases involving reverse-proxy and networking going from HTTP to HTTPS etc.",
           "title": "Use XForward Headers",
           "required": false,
           "deprecated": false
@@ -2307,7 +2307,7 @@
         "producerApiDoc": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the location of the api document the REST producer will use to validate the REST uri and query parameters are valid accordingly to the api document. The location of the api document is loaded from classpath by default, but you can use file: or http: to refer to resources to load from file or http url.",
+          "description": "Sets the location of the api document the REST producer will use to validate the REST uri and query parameters are valid accordingly to the api document.",
           "title": "Producer Api Doc",
           "required": false,
           "deprecated": false
@@ -2315,7 +2315,7 @@
         "contextPath": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets a leading context-path the REST services will be using. This can be used when using components such as camel-servlet where the deployed web application is deployed using a context-path. Or for components such as camel-jetty or camel-netty-http that includes a HTTP server.",
+          "description": "Sets a leading context-path the REST services will be using. This can be used when using components such as camel-servlet where the deployed web application is deployed using a context-path.",
           "title": "Context Path",
           "required": false,
           "deprecated": false
@@ -2323,7 +2323,7 @@
         "apiContextPath": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets a leading context-path the REST API will be using. This can be used when using components such as camel-servlet where the deployed web application is deployed using a context-path.",
+          "description": "Sets a leading context-path the REST API will be using.",
           "title": "Api Context Path",
           "required": false,
           "deprecated": false
@@ -2340,7 +2340,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether vendor extension is enabled in the Rest APIs. If enabled then Camel will include additional information as vendor extension (eg keys starting with x-) such as route ids, class names etc. Not all 3rd party API gateways and tools supports vendor-extensions when importing your API docs.",
+          "description": "Whether vendor extension is enabled in the Rest APIs. If enabled then Camel will include additional information as vendor extension (eg keys starting with x-) such as route ids, class names etc.",
           "title": "Api Vendor Extension",
           "required": false,
           "deprecated": false
@@ -2371,7 +2371,7 @@
             "xml",
             "json_xml"
           ],
-          "description": "Sets the binding mode to use. The default value is off",
+          "description": "Sets the binding mode for automatic marshalling and unmarshalling of request and response bodies. off (default) disables binding. auto detects JSON or XML from the Content-Type header. json binds using a JSON data format only. xml binds using an XML data format only. json_xml supports both JSON and XML.",
           "title": "Binding Mode",
           "required": false,
           "deprecated": false
@@ -2397,7 +2397,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable validation of the client request to check: 1) Content-Type header matches what the Rest DSL consumes; returns HTTP Status 415 if validation error. 2) Accept header matches what the Rest DSL produces; returns HTTP Status 406 if validation error. 3) Missing required data (query parameters, HTTP headers, body); returns HTTP Status 400 if validation error. 4) Parsing error of the message body (JSon, XML or Auto binding mode must be enabled); returns HTTP Status 400 if validation error.",
+          "description": "Whether to enable validation of the client request to check whether Content-Type/Accept headers, required parameters, and message body are valid.",
           "title": "Client Request Validation",
           "required": false,
           "deprecated": false
@@ -2406,7 +2406,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to check what Camel is returning as response to the client: 1) Status-code and Content-Type matches Rest DSL response messages. 2) Check whether expected headers is included according to the Rest DSL repose message headers. 3) If the response body is JSon then check whether its valid JSon. Returns 500 if validation error detected.",
+          "description": "Whether to validate what Camel is returning as response to the client, such as checking status-code, Content-Type, and headers match the Rest DSL response definition.",
           "title": "Client Response Validation",
           "required": false,
           "deprecated": false
@@ -2415,7 +2415,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable CORS headers in the HTTP response. The default value is false.",
+          "description": "Whether to enable CORS headers in the HTTP response.",
           "title": "Enable CORS",
           "required": false,
           "deprecated": false
@@ -2424,7 +2424,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object. The default value is false.",
+          "description": "Whether to return HTTP 204 with an empty body when a response contains an empty JSON object or XML root object.",
           "title": "Enable No Content Response",
           "required": false,
           "deprecated": false
@@ -2433,7 +2433,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Inline routes in rest-dsl which are linked using direct endpoints. Each service in Rest DSL is an individual route, meaning that you would have at least two routes per service (rest-dsl, and the route linked from rest-dsl). By inlining (default) allows Camel to optimize and inline this as a single route, however this requires to use direct endpoints, which must be unique per service. If a route is not using direct endpoint then the rest-dsl is not inlined, and will become an individual route. This option is default true.",
+          "description": "Inline routes in rest-dsl which are linked using direct endpoints. By inlining, Camel can optimize and inline this as a single route, however this requires to use direct endpoints, which must be unique per service.",
           "title": "Inline Routes",
           "required": false,
           "deprecated": false
@@ -2448,7 +2448,7 @@
             "fastjson",
             "gson"
           ],
-          "description": "Name of specific json data format to use. By default, jackson will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
+          "description": "Name of specific json data format to use. By default jackson will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
           "title": "Json Data Format",
           "required": false,
           "deprecated": false
@@ -2461,7 +2461,7 @@
             "jaxb",
             "jacksonXml"
           ],
-          "description": "Name of specific XML data format to use. By default jaxb will be used, but jacksonXml is also supported. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
+          "description": "Name of specific XML data format to use. By default jaxb will be used. Important: This option is only for setting a custom name of the data format, not to refer to an existing data format instance.",
           "title": "Xml Data Format",
           "required": false,
           "deprecated": false
@@ -2493,7 +2493,7 @@
         "dataFormatProperty": {
           "kind": "element",
           "type": "array",
-          "description": "Allows to configure as many additional properties for the data formats in use. For example set property prettyPrint to true to have json outputted in pretty mode. The properties can be prefixed to denote the option is only for either JSON or XML and for either the IN or the OUT. The prefixes are: json.in. json.out. xml.in. xml.out. For example a key with value xml.out.mustBeJAXBElement is only for the XML data format for the outgoing. A key without a prefix is a common key for all situations.",
+          "description": "Allows to configure as many additional properties for the data formats in use. For example set property prettyPrint to true to have json outputted in pretty mode.",
           "title": "Data Format Property",
           "required": false,
           "deprecated": false
@@ -2501,7 +2501,7 @@
         "apiProperty": {
           "kind": "element",
           "type": "array",
-          "description": "Allows to configure as many additional properties for the api documentation. For example set property api.title to my cool stuff",
+          "description": "Allows to configure as many additional properties for the api documentation.",
           "title": "Api Property",
           "required": false,
           "deprecated": false
@@ -2529,7 +2529,7 @@
       "title": "Rest Context Ref",
       "group": "configuration,rest",
       "icon": "generic24.png",
-      "description": "To refer to an XML file with rest services defined using the rest-dsl",
+      "description": "References an external XML file containing REST service definitions for inclusion in the current context",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2537,9 +2537,9 @@
         "ref": {
           "kind": "attribute",
           "type": "string",
-          "description": "Reference to the rest-dsl",
+          "description": "Reference to the rest-dsl.",
           "title": "Ref",
-          "required": true,
+          "required": false,
           "deprecated": false
         }
       }
@@ -2549,7 +2549,7 @@
       "title": "Rest Property",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "A key value pair",
+      "description": "Defines a key/value property for REST configuration, used to pass component-specific settings",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2557,7 +2557,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Property key",
+          "description": "Property key.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -2565,7 +2565,7 @@
         "value": {
           "kind": "attribute",
           "type": "string",
-          "description": "Property value",
+          "description": "Property value.",
           "title": "Value",
           "required": true,
           "deprecated": false
@@ -2577,7 +2577,7 @@
       "title": "Rests",
       "group": "rest",
       "icon": "generic24.png",
-      "description": "A series of rest services defined using the rest-dsl",
+      "description": "Container for a collection of REST service definitions",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2585,7 +2585,7 @@
         "id": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the id of this node",
+          "description": "The id of this node",
           "title": "Id",
           "required": false,
           "deprecated": false
@@ -2593,7 +2593,7 @@
         "note": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the note of this node",
+          "description": "The note for this node",
           "title": "Note",
           "required": false,
           "deprecated": false
@@ -2601,7 +2601,7 @@
         "description": {
           "kind": "attribute",
           "type": "string",
-          "description": "Sets the description of this node",
+          "description": "The description for this node",
           "title": "Description",
           "required": false,
           "deprecated": false
@@ -2621,7 +2621,7 @@
       "title": "Rest Security",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "Rest security definition",
+      "description": "Applies a security requirement to a REST operation, referencing a security scheme defined at the service level",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2629,7 +2629,7 @@
         "key": {
           "kind": "attribute",
           "type": "string",
-          "description": "Key used to refer to this security definition",
+          "description": "Key used to refer to this security definition.",
           "title": "Key",
           "required": true,
           "deprecated": false
@@ -2637,7 +2637,7 @@
         "scopes": {
           "kind": "attribute",
           "type": "string",
-          "description": "The scopes to allow (separate multiple scopes by comma)",
+          "description": "The scopes to allow (separate multiple scopes by comma).",
           "title": "Scopes",
           "required": false,
           "deprecated": false
@@ -2649,7 +2649,7 @@
       "title": "Rest Security Definitions",
       "group": "rest,security,configuration",
       "icon": "generic24.png",
-      "description": "To configure rest security definitions.",
+      "description": "Container for security scheme definitions used by REST services",
       "acceptInput": "false",
       "acceptOutput": "false",
       "nextSiblingAddedAsChild": "false",
@@ -2657,9 +2657,9 @@
         "securityDefinitions": {
           "kind": "element",
           "type": "array",
-          "description": "Security definitions",
+          "description": "The configured security definitions (apiKey, basicAuth, bearerToken, oauth2, openIdConnect, mutualTLS).",
           "title": "Security Definitions",
-          "required": true,
+          "required": false,
           "deprecated": false
         }
       }
