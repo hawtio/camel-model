@@ -656,7 +656,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -1671,7 +1671,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -2373,12 +2373,134 @@
         }
       }
     },
+    "ai-tool": {
+      "type": "object",
+      "title": "AI Tool",
+      "group": "ai",
+      "icon": "generic24.png",
+      "description": "Framework-agnostic consumer endpoint that registers a Camel route as an LLM tool in the shared AiToolRegistry.",
+      "properties": {
+        "toolName": {
+          "kind": "path",
+          "type": "string",
+          "description": "The tool name. This is the name the LLM sees and uses to invoke the tool.",
+          "title": "Tool Name",
+          "required": true,
+          "deprecated": false
+        },
+        "argSchema": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Raw JSON Schema for tool input parameters. Supports inline JSON and resource references (classpath:, file:, resource:). Mutually exclusive with the parameter multi-value options. Use for nested objects, arrays, oneOf, and other complex schemas.",
+          "title": "Arg Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Human-readable description of what this tool does. Passed verbatim to the LLM; be precise and action-oriented. When omitted, defaults to the tool name.",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "destructiveHint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "MCP hint that the tool may perform destructive or irreversible updates. Advisory for MCP clients; not enforced by Camel.",
+          "title": "Destructive Hint",
+          "required": false,
+          "deprecated": false
+        },
+        "idempotentHint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "MCP hint that repeating the tool call with the same arguments has no additional effect. Advisory for MCP clients; not enforced by Camel.",
+          "title": "Idempotent Hint",
+          "required": false,
+          "deprecated": false
+        },
+        "openWorldHint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "MCP hint that the tool interacts with external systems outside the application\u0027s control. Advisory for MCP clients; not enforced by Camel.",
+          "title": "Open World Hint",
+          "required": false,
+          "deprecated": false
+        },
+        "parameters": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Tool input parameters. Format: parameter.NAME\u003dTYPE, parameter.NAME.description\u003dTEXT, parameter.NAME.required\u003dtrue or false, parameter.NAME.enum\u003dval1,val2. Supported types: string, integer, number, boolean. Mutually exclusive with argSchema. This is a multi-value option with prefix: parameter.",
+          "title": "Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "readOnlyHint": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "MCP hint that the tool only reads data and does not modify state. Advisory for MCP clients; not enforced by Camel.",
+          "title": "Read Only Hint",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated list of tags used to group tools. Producers filter the registry by these tags to select which tools to expose to the LLM. When omitted, the tool goes into a default pool available to all producers.",
+          "title": "Tags",
+          "required": false,
+          "deprecated": false
+        },
+        "title": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Optional display title for MCP tool listings. Advisory hint for MCP clients only.",
+          "title": "Title",
+          "required": false,
+          "deprecated": false
+        },
+        "bridgeErrorHandler": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Bridge Error Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exceptionHandler": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
+          "title": "Exception Handler",
+          "required": false,
+          "deprecated": false
+        },
+        "exchangePattern": {
+          "kind": "parameter",
+          "type": "enum",
+          "enum": [
+            "InOnly",
+            "InOut"
+          ],
+          "description": "Sets the exchange pattern when the consumer creates an exchange.",
+          "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "amqp": {
       "type": "object",
       "title": "AMQP",
       "group": "messaging",
       "icon": "generic24.png",
-      "description": "Messaging with AMQP protocol using Apache QPid Client.",
+      "description": "Messaging with AMQP protocol using Apache Qpid Client.",
       "properties": {
         "destinationType": {
           "kind": "path",
@@ -2678,7 +2800,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -5551,9 +5673,61 @@
           "kind": "parameter",
           "type": "enum",
           "enum": [
-            "anthropic.claude-instant-v1",
-            "anthropic.claude-v2",
-            "anthropic.claude-v2:1"
+            "amazon.titan-text-express-v1",
+            "amazon.titan-text-lite-v1",
+            "amazon.titan-image-generator-v1",
+            "amazon.titan-embed-text-v1",
+            "amazon.titan-embed-image-v1",
+            "amazon.titan-text-premier-v1:0",
+            "amazon.titan-embed-text-v2:0",
+            "amazon.titan-image-generator-v2:0",
+            "amazon.nova-canvas-v1:0",
+            "amazon.nova-lite-v1:0",
+            "amazon.nova-micro-v1:0",
+            "amazon.nova-premier-v1:0",
+            "amazon.nova-pro-v1:0",
+            "amazon.nova-reel-v1:0",
+            "amazon.nova-reel-v1:1",
+            "amazon.nova-sonic-v1:0",
+            "amazon.rerank-v1:0",
+            "ai21.jamba-1-5-large-v1:0",
+            "ai21.jamba-1-5-mini-v1:0",
+            "anthropic.claude-3-sonnet-20240229-v1:0",
+            "anthropic.claude-3-5-sonnet-20240620-v1:0",
+            "anthropic.claude-3-5-sonnet-20241022-v2:0",
+            "anthropic.claude-3-haiku-20240307-v1:0",
+            "anthropic.claude-3-5-haiku-20241022-v1:0",
+            "anthropic.claude-3-opus-20240229-v1:0",
+            "anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "anthropic.claude-opus-4-20250514-v1:0",
+            "anthropic.claude-sonnet-4-20250514-v1:0",
+            "cohere.command-r-plus-v1:0",
+            "cohere.command-r-v1:0",
+            "cohere.embed-english-v3",
+            "cohere.embed-multilingual-v3",
+            "cohere.rerank-v3-5:0",
+            "meta.llama3-8b-instruct-v1:0",
+            "meta.llama3-70b-instruct-v1:0",
+            "meta.llama3-1-8b-instruct-v1:0",
+            "meta.llama3-1-70b-instruct-v1:0",
+            "meta.llama3-1-405b-instruct-v1:0",
+            "meta.llama3-2-1b-instruct-v1:0",
+            "meta.llama3-2-3b-instruct-v1:0",
+            "meta.llama3-2-11b-instruct-v1:0",
+            "meta.llama3-2-90b-instruct-v1:0",
+            "meta.llama3-3-70b-instruct-v1:0",
+            "meta.llama4-maverick-17b-instruct-v1:0",
+            "meta.llama4-scout-17b-instruct-v1:0",
+            "mistral.mistral-7b-instruct-v0:2",
+            "mistral.mixtral-8x7b-instruct-v0:1",
+            "mistral.mistral-large-2402-v1:0",
+            "mistral.mistral-large-2407-v1:0",
+            "mistral.mistral-small-2402-v1:0",
+            "mistral.pixtral-large-2502-v1:0",
+            "stability.sd3-5-large-v1:0",
+            "stability.stable-image-control-sketch-v1:0",
+            "stability.stable-image-control-structure-v1:0",
+            "stability.stable-image-core-v1:1"
           ],
           "description": "Define the model Id we are going to use",
           "title": "Model Id",
@@ -5566,6 +5740,8 @@
           "enum": [
             "retrieveAndGenerate",
             "invokeFlow",
+            "invokeAgent",
+            "invokeInlineAgent",
             "retrieve"
           ],
           "description": "The operation to perform",
@@ -5677,12 +5853,65 @@
           "required": false,
           "deprecated": false
         },
+        "agentAliasId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The unique identifier of the agent alias to invoke, used by the invokeAgent operation.",
+          "title": "Agent Alias Id",
+          "required": false,
+          "deprecated": false
+        },
+        "agentId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The unique identifier of the agent to invoke, used by the invokeAgent operation.",
+          "title": "Agent Id",
+          "required": false,
+          "deprecated": false
+        },
         "enableTrace": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Enables tracing for the invokeFlow operation. When enabled, the producer collects FlowTraceEvent entries and publishes them in the CamelAwsBedrockAgentRuntimeFlowTraces header.",
+          "description": "Enables tracing for the invokeFlow and agent operations. When enabled, the producer collects the trace events and publishes them in the CamelAwsBedrockAgentRuntimeFlowTraces or CamelAwsBedrockAgentRuntimeAgentTraces header.",
           "title": "Enable Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "foundationModel": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The foundation model used by the invokeInlineAgent operation.",
+          "title": "Foundation Model",
+          "required": false,
+          "deprecated": false
+        },
+        "instruction": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The instruction given to the agent defined by the invokeInlineAgent operation.",
+          "title": "Instruction",
+          "required": false,
+          "deprecated": false
+        },
+        "sessionId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The unique identifier of the agent session. Reuse the same value across invocations to continue the same conversation. When not set, a random session id is generated for each invocation.",
+          "title": "Session Id",
+          "required": false,
+          "deprecated": false
+        },
+        "streamOutputMode": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "complete",
+          "enum": [
+            "complete",
+            "chunks"
+          ],
+          "description": "The streaming output mode (complete or chunks) used by the agent operations. In complete mode the response chunks are accumulated and the body is the full text. In chunks mode the body is the list of chunks.",
+          "title": "Stream Output Mode",
           "required": false,
           "deprecated": false
         },
@@ -5777,10 +6006,10 @@
     },
     "aws-cloudtrail": {
       "type": "object",
-      "title": "AWS Cloudtrail",
+      "title": "AWS CloudTrail",
       "group": "cloud,management,monitoring",
       "icon": "generic24.png",
-      "description": "Consume events from Amazon Cloudtrail using AWS SDK version 2.x.",
+      "description": "Consume events from Amazon CloudTrail using AWS SDK version 2.x.",
       "properties": {
         "label": {
           "kind": "path",
@@ -5801,8 +6030,8 @@
         "maxResults": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "1",
-          "description": "Maximum number of records that will be fetched in each poll",
+          "defaultValue": "50",
+          "description": "Maximum number of records that will be fetched in each lookup page. Each poll drains all pages, so this controls the page size rather than the total per poll. AWS allows up to 50.",
           "title": "Max Results",
           "required": false,
           "deprecated": false
@@ -8914,15 +9143,6 @@
           "required": false,
           "deprecated": false
         },
-        "profileCredentialsName": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "false",
-          "description": "If using a profile credentials provider, this parameter will set the profile name",
-          "title": "Profile Credentials Name",
-          "required": false,
-          "deprecated": false
-        },
         "region": {
           "kind": "parameter",
           "type": "enum",
@@ -9052,6 +9272,14 @@
           "type": "string",
           "description": "Amazon AWS Access Key",
           "title": "Access Key",
+          "required": false,
+          "deprecated": false
+        },
+        "profileCredentialsName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "If using a profile credentials provider, this parameter will set the profile name",
+          "title": "Profile Credentials Name",
           "required": false,
           "deprecated": false
         },
@@ -12679,10 +12907,10 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "60",
-          "description": "Set the maxConnections parameter in the S3 client configuration",
+          "description": "Set the maxConnections parameter in the S3 client configuration. This option is deprecated and has no effect. Use the httpClientBuilder option on the S3 client configuration to customize the HTTP client connection pool.",
           "title": "Max Connections",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "maxMessagesPerPoll": {
           "kind": "parameter",
@@ -17138,9 +17366,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -18528,7 +18765,7 @@
         "connectionString": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets the connection string for a Service Bus namespace or a specific Service Bus resource.",
+          "description": "Sets the connection string for a Service Bus namespace or a specific Service Bus resource. Connection strings commonly contain characters with a special meaning in URIs (the SharedAccessKey is a Base64 value that may contain plus, slash or equals characters): when configuring the connection string directly in an endpoint URI, wrap the value with RAW() so it is not URI-decoded.",
           "title": "Connection String",
           "required": false,
           "deprecated": false
@@ -21323,6 +21560,133 @@
           "type": "object",
           "description": "Used for configuring additional properties on the bean. This is a multi-value option with prefix: bean.",
           "title": "Parameters",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "clickhouse": {
+      "type": "object",
+      "title": "ClickHouse",
+      "group": "database,bigdata",
+      "icon": "generic24.png",
+      "description": "Interact with ClickHouse, the high-performance columnar OLAP database, for high-throughput ingestion and OLAP queries.",
+      "properties": {
+        "database": {
+          "kind": "path",
+          "type": "string",
+          "description": "The ClickHouse database. A table may also be provided using the database.table syntax.",
+          "title": "Database",
+          "required": true,
+          "deprecated": false
+        },
+        "asyncInsert": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use ClickHouse server-side asynchronous inserts (async_insert\u003d1).",
+          "title": "Async Insert",
+          "required": false,
+          "deprecated": false
+        },
+        "batchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "The client-side batch size for insert operations when the message body is a List. When greater than 0, the list is split into batches of this size and each batch is sent as a separate insert. A value of 0 (default) inserts the whole list in a single call.",
+          "title": "Batch Size",
+          "required": false,
+          "deprecated": false
+        },
+        "compression": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to compress the insert request payload sent to the server (LZ4).",
+          "title": "Compression",
+          "required": false,
+          "deprecated": false
+        },
+        "format": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "JSONEachRow",
+          "description": "The ClickHouse data format used for insert and query operations, e.g. JSONEachRow, RowBinary, CSV, TSV or Parquet.",
+          "title": "Format",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "INSERT",
+          "enum": [
+            "INSERT",
+            "QUERY",
+            "PING"
+          ],
+          "description": "The operation to perform: insert, query or ping.",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "serverUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The ClickHouse HTTP endpoint URL, e.g. http://localhost:8123. Required unless a shared Client bean is autowired or configured on the component.",
+          "title": "Server Url",
+          "required": false,
+          "deprecated": false
+        },
+        "table": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The target table for insert operations. Can also be given in the path as database.table or overridden per message with the CamelClickHouseTable header.",
+          "title": "Table",
+          "required": false,
+          "deprecated": false
+        },
+        "waitForAsyncInsert": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "When asyncInsert is enabled, whether the server should wait for the async insert to be flushed before acknowledging (wait_for_async_insert).",
+          "title": "Wait For Async Insert",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The password used to authenticate to ClickHouse.",
+          "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "ssl": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to connect to ClickHouse over a secure (HTTPS) connection.",
+          "title": "Ssl",
+          "required": false,
+          "deprecated": false
+        },
+        "username": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "default",
+          "description": "The username used to authenticate to ClickHouse.",
+          "title": "Username",
           "required": false,
           "deprecated": false
         }
@@ -25953,7 +26317,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -26125,6 +26489,15 @@
           "required": false,
           "deprecated": false
         },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
+          "required": false,
+          "deprecated": false
+        },
         "maxBatchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -26149,6 +26522,24 @@
           "defaultValue": "0",
           "description": "Maximum size of the queue in bytes for change events read from the database log but not yet recorded or forwarded. Defaults to 0. Mean the feature is not enabled",
           "title": "Max Queue Size In Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementSchemasClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for schema metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Schemas Class",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementTablesClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for table metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Tables Class",
           "required": false,
           "deprecated": false
         },
@@ -26498,6 +26889,15 @@
           "required": false,
           "deprecated": false
         },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "streamingDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -26536,7 +26936,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "adaptive",
-          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision.",
+          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision; \u0027isostring\u0027 represents time, date, and timestamp values as ISO-8601 formatted strings at the UTC time zone; \u0027microseconds\u0027 always represents time, date, and timestamp values using microsecond precision; \u0027nanoseconds\u0027 always represents time, date, and timestamp values using nanosecond precision.",
           "title": "Time Precision Mode",
           "required": false,
           "deprecated": false
@@ -26776,7 +27176,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -26892,6 +27292,15 @@
           "defaultValue": "INSERT_INSERT",
           "description": "Specify the strategy used for watermarking during an incremental snapshot: \u0027insert_insert\u0027 both open and close signal is written into signal data collection (default); \u0027insert_delete\u0027 only open signal is written on signal data collection, the close will delete the relative open signal;",
           "title": "Incremental Snapshot Watermarking Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
           "required": false,
           "deprecated": false
         },
@@ -27311,6 +27720,15 @@
           "required": false,
           "deprecated": false
         },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "streamingDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -27609,7 +28027,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -27765,6 +28183,15 @@
           "required": false,
           "deprecated": false
         },
+        "ddlParserType": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "default",
+          "description": "Specifies which ANTLR grammar to use for parsing MySQL DDL statements. \u0027default\u0027 uses the Oracle MySQL grammar, which is actively maintained and supports MySQL 8.0 features. \u0027legacy\u0027 uses the Positive Technologies grammar for backward compatibility with existing deployments.",
+          "title": "Ddl Parser Type",
+          "required": false,
+          "deprecated": false
+        },
         "decimalHandlingMode": {
           "kind": "parameter",
           "type": "string",
@@ -27825,6 +28252,15 @@
           "defaultValue": "true",
           "description": "Enable/Disable Debezium context headers that provides essential metadata for tracking and identifying the source of CDC events in downstream processing systems.",
           "title": "Extended Headers Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "gtidIgnoreOnRecovery": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the connector should ignore GTID during recovery and restart from the binlog file and position instead. GTID mode on the server remains enabled, and GTID tracking resumes normally after recovery.",
+          "title": "Gtid Ignore On Recovery",
           "required": false,
           "deprecated": false
         },
@@ -27960,6 +28396,15 @@
           "required": false,
           "deprecated": false
         },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
+          "required": false,
+          "deprecated": false
+        },
         "maxBatchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -27984,6 +28429,24 @@
           "defaultValue": "0",
           "description": "Maximum size of the queue in bytes for change events read from the database log but not yet recorded or forwarded. Defaults to 0. Mean the feature is not enabled",
           "title": "Max Queue Size In Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementSchemasClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for schema metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Schemas Class",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementTablesClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for table metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Tables Class",
           "required": false,
           "deprecated": false
         },
@@ -28276,7 +28739,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "initial",
-          "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027when_needed\u0027: On startup, the connector runs a snapshot if one is needed.; \u0027schema_only\u0027: If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures only the schema (table structures), but not any table data. After the snapshot completes, the connector begins to stream changes from the binlog.; \u0027schema_only_recovery\u0027: The connector performs a snapshot that captures only the database schema history. The connector then transitions back to streaming. Use this setting to restore a corrupted or lost database schema history topic. Do not use if the database schema was modified after the connector stopped.; \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the binlog.; \u0027initial_only\u0027: The connector performs a snapshot as it does for the \u0027initial\u0027 option, but after the connector completes the snapshot, it stops, and does not stream changes from the binlog.; \u0027never\u0027: The connector does not run a snapshot. Upon first startup, the connector immediately begins reading from the beginning of the binlog. The \u0027never\u0027 mode should be used with care, and only when the binlog is known to contain all history.",
+          "description": "The criteria for running a snapshot upon startup of the connector. Select one of the following snapshot options: \u0027when_needed\u0027: On startup, the connector runs a snapshot if one is needed.; \u0027schema_only\u0027: If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures only the schema (table structures), but not any table data. After the snapshot completes, the connector begins to stream changes from the binlog.; \u0027schema_only_recovery\u0027: The connector performs a snapshot that captures only the database schema history. The connector then transitions back to streaming. Use this setting to restore a corrupted or lost database schema history topic. Do not use if the database schema was modified after the connector stopped.; \u0027initial\u0027 (default): If the connector does not detect any offsets for the logical server name, it runs a snapshot that captures the current full state of the configured tables. After the snapshot completes, the connector begins to stream changes from the binlog.; \u0027initial_only\u0027: The connector performs a snapshot as it does for the \u0027initial\u0027 option, but after the connector completes the snapshot, it stops, and does not stream changes from the binlog.",
           "title": "Snapshot Mode",
           "required": false,
           "deprecated": false
@@ -28374,6 +28837,15 @@
           "defaultValue": "io.debezium.connector.mysql.MySqlSourceInfoStructMaker",
           "description": "The name of the SourceInfoStructMaker class that returns SourceInfo schema and struct.",
           "title": "Sourceinfo Struct Maker",
+          "required": false,
+          "deprecated": false
+        },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
           "required": false,
           "deprecated": false
         },
@@ -28629,6 +29101,15 @@
           "required": false,
           "deprecated": false
         },
+        "captureMode": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "primary",
+          "description": "Specifies the capture mode used to capture streaming changes from Oracle\u0027primary\u0027 (the default) captures changes from the primary, specified by database. configurations, \u0027physical_standby\u0027 captures changes from a read-only physical standby, specified by secondary. configurations.",
+          "title": "Capture Mode",
+          "required": false,
+          "deprecated": false
+        },
         "columnExcludeList": {
           "kind": "parameter",
           "type": "string",
@@ -28681,7 +29162,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -28912,6 +29393,15 @@
           "required": false,
           "deprecated": false
         },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
+          "required": false,
+          "deprecated": false
+        },
         "lobEnabled": {
           "kind": "parameter",
           "type": "boolean",
@@ -28939,39 +29429,21 @@
           "required": false,
           "deprecated": false
         },
-        "logMiningBatchSizeDefault": {
+        "logMiningBufferDeferredTransactionRetentionMs": {
           "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "20000",
-          "description": "The starting SCN interval size that the connector will use for reading data from redo/archive logs.",
-          "title": "Log Mining Batch Size Default",
+          "type": "duration",
+          "defaultValue": "1d",
+          "description": "Duration in milliseconds to retain deferred transaction metadata for transactions that never emit a DML event. By default, deferred transaction metadata is retained for 24 hours. This is independent of log.mining.transaction.retention.ms which governs cached transactions with events.",
+          "title": "Log Mining Buffer Deferred Transaction Retention Ms",
           "required": false,
           "deprecated": false
         },
-        "logMiningBatchSizeIncrement": {
+        "logMiningBufferDeferredTransactionStart": {
           "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "20000",
-          "description": "Active batch size will be also increased/decreased by this amount for tuning connector throughput when needed.",
-          "title": "Log Mining Batch Size Increment",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningBatchSizeMax": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "100000",
-          "description": "The maximum SCN interval size that this connector will use when reading from redo/archive logs.",
-          "title": "Log Mining Batch Size Max",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningBatchSizeMin": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "1000",
-          "description": "The minimum SCN interval size that this connector will try to read from redo/archive logs.",
-          "title": "Log Mining Batch Size Min",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Controls whether transaction start events are deferred when using buffered LogMiner. When enabled, transaction start events are stored in a lightweight metadata map. Transactions are only promoted to the transaction cache when a DML event is observed. The mining window is not pinned by transactions, allowing a block-by-block sliding window.",
+          "title": "Log Mining Buffer Deferred Transaction Start",
           "required": false,
           "deprecated": false
         },
@@ -29080,12 +29552,57 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningBufferMemoryLegacyTransactionStart": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Controls whether transaction start events are deferred when using buffered LogMiner. When enabled, transaction start events are stored in a lightweight metadata map. Transactions are only promoted to the transaction cache when a DML event is observed. The mining window is not pinned by transactions, allowing a block-by-block sliding window.",
+          "title": "Log Mining Buffer Memory Legacy Transaction Start",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferTrackClientId": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "This controls whether the \u0027CLIENT_ID\u0027 column values are tracked. When set to true (the default), the \u0027CLIENT_ID\u0027 values are buffered and provided in events when available. When set to false, the \u0027CLIENT_ID\u0027 column is excluded from the LogMiner query and its values are not buffered, reducing both the memory footprint and query bandwidth.",
+          "title": "Log Mining Buffer Track Client Id",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferTrackCommitTimestamp": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "This controls whether the \u0027COMMIT_TIMESTAMP\u0027 column values are tracked. When set to true (the default), the \u0027COMMIT_TIMESTAMP\u0027 values are buffered and provided in events when available. When set to false, the \u0027COMMIT_TIMESTAMP\u0027 column is excluded from the LogMiner query and its values are not buffered, reducing both the memory footprint and query bandwidth.",
+          "title": "Log Mining Buffer Track Commit Timestamp",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningBufferTrackRsId": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "This controls whether the \u0027RS_ID\u0027 column values are tracked. When set to true (the default), the \u0027RS_ID\u0027 values are buffered and provided in events when available. When set to false, the \u0027RS_ID\u0027 values are not buffered and can reduce the memory footprint.",
+          "description": "This controls whether the \u0027RS_ID\u0027 column values are tracked. When set to true (the default), the \u0027RS_ID\u0027 values are buffered and provided in events when available. When set to false, the \u0027RS_ID\u0027 column is excluded from the LogMiner query and its values are not buffered, reducing both the memory footprint and query bandwidth.",
           "title": "Log Mining Buffer Track Rs Id",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferTrackStartTimestamp": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "This controls whether the \u0027START_TIMESTAMP\u0027 column values are tracked. When set to true (the default), the \u0027START_TIMESTAMP\u0027 values are buffered and provided in events when available. When set to false, the \u0027START_TIMESTAMP\u0027 column is excluded from the LogMiner query and its values are not buffered, reducing both the memory footprint and query bandwidth.",
+          "title": "Log Mining Buffer Track Start Timestamp",
+          "required": false,
+          "deprecated": false
+        },
+        "logMiningBufferTrackUsername": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "This controls whether the \u0027USERNAME\u0027 column values are tracked. When set to true (the default), the \u0027USERNAME\u0027 values are buffered and provided in events when available. When set to false, the \u0027USERNAME\u0027 column is excluded from the LogMiner query and its values are not buffered, reducing both the memory footprint and query bandwidth.",
+          "title": "Log Mining Buffer Track Username",
           "required": false,
           "deprecated": false
         },
@@ -29141,6 +29658,15 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningLogCountMin": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "2",
+          "description": "Specifies the minimum number of logs to mine per redo thread. Setting this to 0 disables the cap, and all available logs are mined in a single pass.",
+          "title": "Log Mining Log Count Min",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningPathDictionary": {
           "kind": "parameter",
           "type": "string",
@@ -29158,10 +29684,19 @@
           "required": false,
           "deprecated": false
         },
+        "logMiningReadOnly": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When set to \u0027true\u0027, the connector will not attempt to flush the LGWR buffer to disk, allowing connecting to read-only databases.",
+          "title": "Log Mining Read Only",
+          "required": false,
+          "deprecated": false
+        },
         "logMiningReadonlyHostname": {
           "kind": "parameter",
           "type": "string",
-          "description": "The hostname the connector will use to connect and perform read-only operations for the the replica.",
+          "description": "The secondary Oracle instance where changes will be streamed",
           "title": "Log Mining Readonly Hostname",
           "required": false,
           "deprecated": false
@@ -29175,24 +29710,6 @@
           "required": false,
           "deprecated": false
         },
-        "logMiningScnGapDetectionGapSizeMin": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "1000000",
-          "description": "Used for SCN gap detection, if the difference between current SCN and previous end SCN is bigger than this value, and the time difference of current SCN and previous end SCN is smaller than log.mining.scn.gap.detection.time.interval.max.ms, consider it a SCN gap.",
-          "title": "Log Mining Scn Gap Detection Gap Size Min",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningScnGapDetectionTimeIntervalMaxMs": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "20s",
-          "description": "Used for SCN gap detection, if the difference between current SCN and previous end SCN is bigger than log.mining.scn.gap.detection.gap.size.min, and the time difference of current SCN and previous end SCN is smaller than this value, consider it a SCN gap.",
-          "title": "Log Mining Scn Gap Detection Time Interval Max Ms",
-          "required": false,
-          "deprecated": false
-        },
         "logMiningSessionMaxMs": {
           "kind": "parameter",
           "type": "duration",
@@ -29202,47 +29719,11 @@
           "required": false,
           "deprecated": false
         },
-        "logMiningSleepTimeDefaultMs": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "1s",
-          "description": "The amount of time that the connector will sleep after reading data from redo/archive logs and before starting reading data again. Value is in milliseconds.",
-          "title": "Log Mining Sleep Time Default Ms",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningSleepTimeIncrementMs": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "200ms",
-          "description": "The maximum amount of time that the connector will use to tune the optimal sleep time when reading data from LogMiner. Value is in milliseconds.",
-          "title": "Log Mining Sleep Time Increment Ms",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningSleepTimeMaxMs": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "3s",
-          "description": "The maximum amount of time that the connector will sleep after reading data from redo/archive logs and before starting reading data again. Value is in milliseconds.",
-          "title": "Log Mining Sleep Time Max Ms",
-          "required": false,
-          "deprecated": false
-        },
-        "logMiningSleepTimeMinMs": {
-          "kind": "parameter",
-          "type": "duration",
-          "defaultValue": "0ms",
-          "description": "The minimum amount of time that the connector will sleep after reading data from redo/archive logs and before starting reading data again. Value is in milliseconds.",
-          "title": "Log Mining Sleep Time Min Ms",
-          "required": false,
-          "deprecated": false
-        },
         "logMiningStrategy": {
           "kind": "parameter",
           "type": "string",
           "defaultValue": "online_catalog",
-          "description": "There are strategies: Online catalog with faster mining but no captured DDL. Another - with data dictionary loaded into REDO LOG files",
+          "description": "Defines the mining strategy and LogMiner session characteristics: \u0027redo_log_catalog\u0027 writes the data dictionary to the redo logs, is deprecated and will be removed in 3.7, \u0027online_catalog\u0027 uses the existing data dictionary and operates faster than \u0027redo_log_catalog\u0027 but requires schema changes in lock-step, \u0027hybrid\u0027 uses the existing data dictionary, operates faster than \u0027redo_log_catalog\u0027, and supports interleaved schema changes.",
           "title": "Log Mining Strategy",
           "required": false,
           "deprecated": false
@@ -29305,6 +29786,24 @@
           "defaultValue": "0",
           "description": "Maximum size of the queue in bytes for change events read from the database log but not yet recorded or forwarded. Defaults to 0. Mean the feature is not enabled",
           "title": "Max Queue Size In Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementSchemasClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for schema metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Schemas Class",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementTablesClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for table metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Tables Class",
           "required": false,
           "deprecated": false
         },
@@ -29520,6 +30019,39 @@
           "required": false,
           "deprecated": false
         },
+        "secondaryDbname": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The secondary Oracle instance database name, if different from primary",
+          "title": "Secondary Dbname",
+          "required": false,
+          "deprecated": false
+        },
+        "secondaryHostname": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The secondary Oracle instance where changes will be streamed",
+          "title": "Secondary Hostname",
+          "required": false,
+          "deprecated": false
+        },
+        "secondaryPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1528",
+          "description": "The secondary Oracle instance port where changes will be streamed",
+          "title": "Secondary Port",
+          "required": false,
+          "deprecated": false
+        },
+        "secondaryUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The secondary Oracle instance connection string URL where changes will be streamed",
+          "title": "Secondary Url",
+          "required": false,
+          "deprecated": false
+        },
         "signalDataCollection": {
           "kind": "parameter",
           "type": "string",
@@ -29713,6 +30245,15 @@
           "required": false,
           "deprecated": false
         },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "streamingDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -29742,7 +30283,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "adaptive",
-          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision.",
+          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision; \u0027isostring\u0027 represents time, date, and timestamp values as ISO-8601 formatted strings at the UTC time zone; \u0027microseconds\u0027 always represents time, date, and timestamp values using microsecond precision; \u0027nanoseconds\u0027 always represents time, date, and timestamp values using nanosecond precision.",
           "title": "Time Precision Mode",
           "required": false,
           "deprecated": false
@@ -29803,10 +30344,10 @@
     },
     "debezium-postgres": {
       "type": "object",
-      "title": "Debezium PostgresSQL Connector",
+      "title": "Debezium PostgreSQL Connector",
       "group": "database",
       "icon": "generic24.png",
-      "description": "Capture changes from a PostgresSQL database.",
+      "description": "Capture changes from a PostgreSQL database.",
       "properties": {
         "name": {
           "kind": "path",
@@ -29999,7 +30540,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -30272,6 +30813,15 @@
           "required": false,
           "deprecated": false
         },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
+          "required": false,
+          "deprecated": false
+        },
         "lsnFlushMode": {
           "kind": "parameter",
           "type": "string",
@@ -30322,6 +30872,24 @@
           "defaultValue": "0",
           "description": "Maximum size of the queue in bytes for change events read from the database log but not yet recorded or forwarded. Defaults to 0. Mean the feature is not enabled",
           "title": "Max Queue Size In Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementSchemasClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for schema metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Schemas Class",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementTablesClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for table metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Tables Class",
           "required": false,
           "deprecated": false
         },
@@ -30825,6 +31393,15 @@
           "required": false,
           "deprecated": false
         },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "statusUpdateIntervalMs": {
           "kind": "parameter",
           "type": "duration",
@@ -30872,7 +31449,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "adaptive",
-          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision.",
+          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision; \u0027isostring\u0027 represents time, date, and timestamp values as ISO-8601 formatted strings at the UTC time zone; \u0027microseconds\u0027 always represents time, date, and timestamp values using microsecond precision; \u0027nanoseconds\u0027 always represents time, date, and timestamp values using nanosecond precision.",
           "title": "Time Precision Mode",
           "required": false,
           "deprecated": false
@@ -31130,7 +31707,7 @@
         "customSanitizePattern": {
           "kind": "parameter",
           "type": "string",
-          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$",
+          "defaultValue": ".*secret$|.*password$|.*sasl\\.jaas\\.config$|.*basic\\.auth\\.user\\.info|.*registry\\.auth\\.client-secret|.*credentials\\.json$|.*connectionstring$|.*connection\\.string$",
           "description": "Regular expression identifying configuration keys whose values should be masked. When set, this custom pattern replaces Debeziums default password masking pattern.",
           "title": "Custom Sanitize Pattern",
           "required": false,
@@ -31354,6 +31931,15 @@
           "required": false,
           "deprecated": false
         },
+        "legacySnapshotMaxThreads": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When enabled, uses the legacy table-per-thread parallel snapshot algorithm. When set to false (the default), tables are split into chunks and processed across all snapshot threads, allowing for higher concurrency for snapshots.",
+          "title": "Legacy Snapshot Max Threads",
+          "required": false,
+          "deprecated": false
+        },
         "maxBatchSize": {
           "kind": "parameter",
           "type": "integer",
@@ -31387,6 +31973,24 @@
           "defaultValue": "0",
           "description": "Maximum size of the queue in bytes for change events read from the database log but not yet recorded or forwarded. Defaults to 0. Mean the feature is not enabled",
           "title": "Max Queue Size In Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementSchemasClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for schema metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Schemas Class",
+          "required": false,
+          "deprecated": false
+        },
+        "memoryManagementTablesClass": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "io.debezium.relational.ConcurrentMapTableMappingStorage",
+          "description": "The fully-qualified class name of the storage implementation for table metadata. The class must implement io.debezium.relational.TableMappingStorage. Defaults to io.debezium.relational.ConcurrentMapTableMappingStorage for in-memory storage.",
+          "title": "Memory Management Tables Class",
           "required": false,
           "deprecated": false
         },
@@ -31745,6 +32349,15 @@
           "required": false,
           "deprecated": false
         },
+        "statisticsMetricsEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Enable to collect various kind of statistics, like latencies in record processing, and derived data like quantiles. By default collecting statistics is enabled.",
+          "title": "Statistics Metrics Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "streamingDelayMs": {
           "kind": "parameter",
           "type": "duration",
@@ -31792,7 +32405,7 @@
           "kind": "parameter",
           "type": "string",
           "defaultValue": "adaptive",
-          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision.",
+          "description": "Time, date, and timestamps can be represented with different kinds of precisions, including: \u0027adaptive\u0027 (the default) bases the precision of time, date, and timestamp values on the database column\u0027s precision; \u0027adaptive_time_microseconds\u0027 like \u0027adaptive\u0027 mode, but TIME fields always use microseconds precision; \u0027connect\u0027 always represents time, date, and timestamp values using Kafka Connect\u0027s built-in representations for Time, Date, and Timestamp, which uses millisecond precision regardless of the database columns\u0027 precision; \u0027isostring\u0027 represents time, date, and timestamp values as ISO-8601 formatted strings at the UTC time zone; \u0027microseconds\u0027 always represents time, date, and timestamp values using microsecond precision; \u0027nanoseconds\u0027 always represents time, date, and timestamp values using nanosecond precision.",
           "title": "Time Precision Mode",
           "required": false,
           "deprecated": false
@@ -33730,6 +34343,112 @@
         }
       }
     },
+    "duckdb": {
+      "type": "object",
+      "title": "DuckDB",
+      "group": "database,bigdata",
+      "icon": "generic24.png",
+      "description": "Interact with DuckDB, the in-process analytical SQL database, for embedded analytics workloads.",
+      "properties": {
+        "databasePath": {
+          "kind": "path",
+          "type": "string",
+          "description": "Database path, either :memory: or a relative or absolute file path.",
+          "title": "Database Path",
+          "required": false,
+          "deprecated": false
+        },
+        "batchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Batch size for insert when the body is a List. 0 inserts all rows in one JDBC batch.",
+          "title": "Batch Size",
+          "required": false,
+          "deprecated": false
+        },
+        "format": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "auto",
+          "description": "File format for copy: csv, parquet, json or auto (inferred from the file extension).",
+          "title": "Format",
+          "required": false,
+          "deprecated": false
+        },
+        "jdbcUrl": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Full JDBC URL override. When set, databasePath is not used to build the URL.",
+          "title": "Jdbc Url",
+          "required": false,
+          "deprecated": false
+        },
+        "operation": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "EXECUTE",
+          "enum": [
+            "EXECUTE",
+            "QUERY",
+            "INSERT",
+            "COPY",
+            "PING"
+          ],
+          "description": "The operation to perform: execute, query, insert, copy or ping.",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
+        "query": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Static SQL for query when the message body is empty.",
+          "title": "Query",
+          "required": false,
+          "deprecated": false
+        },
+        "readOnly": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Open the embedded database file in read-only mode. Only applies to connections created by this endpoint from databasePath or jdbcUrl, and requires an existing database file.",
+          "title": "Read Only",
+          "required": false,
+          "deprecated": false
+        },
+        "resultFormat": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "LIST_MAP",
+          "enum": [
+            "LIST_MAP",
+            "JSON"
+          ],
+          "description": "How query results are returned: LIST_MAP (List of Map) or JSON array string.",
+          "title": "Result Format",
+          "required": false,
+          "deprecated": false
+        },
+        "table": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Target table for insert and copy operations. Can be overridden per message with the CamelDuckDbTable header.",
+          "title": "Table",
+          "required": false,
+          "deprecated": false
+        },
+        "lazyStartProducer": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
+          "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "dynamic-router": {
       "type": "object",
       "title": "Dynamic Router",
@@ -34207,7 +34926,7 @@
       "title": "Elasticsearch",
       "group": "search,monitoring",
       "icon": "generic24.png",
-      "description": "Send requests to ElasticSearch via Java Client API.",
+      "description": "Send requests to Elasticsearch via Java Client API.",
       "properties": {
         "clusterName": {
           "kind": "path",
@@ -35345,9 +36064,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -35628,11 +36356,11 @@
         "forceWrites": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "true",
+          "defaultValue": "false",
           "description": "Whether to force syncing, writes to the file system. You can turn this off if you do not want this level of guarantee, for example, if writing to logs / audit logs etc.; this would yield better performance.",
           "title": "Force Writes",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "keepLastModified": {
           "kind": "parameter",
@@ -37112,9 +37840,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -38196,9 +38933,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -44320,10 +45066,10 @@
     },
     "hashicorp-vault": {
       "type": "object",
-      "title": "Hashicorp Vault",
+      "title": "HashiCorp Vault",
       "group": "cloud,cloud",
       "icon": "generic24.png",
-      "description": "Manage secrets in Hashicorp Vault Service",
+      "description": "Manage secrets in HashiCorp Vault Service",
       "properties": {
         "secretsEngine": {
           "kind": "path",
@@ -47163,14 +47909,6 @@
           "required": true,
           "deprecated": false
         },
-        "authToken": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "HF API token for private models",
-          "title": "Auth Token",
-          "required": false,
-          "deprecated": false
-        },
         "autoSelect": {
           "kind": "parameter",
           "type": "boolean",
@@ -47311,6 +48049,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "authToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "HF API token for private models",
+          "title": "Auth Token",
           "required": false,
           "deprecated": false
         },
@@ -49867,15 +50613,6 @@
           "required": false,
           "deprecated": false
         },
-        "verifySsl": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether to verify SSL certificates",
-          "title": "Verify Ssl",
-          "required": false,
-          "deprecated": false
-        },
         "apiKey": {
           "kind": "parameter",
           "type": "string",
@@ -49889,6 +50626,15 @@
           "type": "string",
           "description": "OAuth profile name for obtaining an access token via the OAuth 2.0 Client Credentials grant. When set, the token is acquired from the configured identity provider and used as apiKey. Requires camel-oauth on the classpath.",
           "title": "Oauth Profile",
+          "required": false,
+          "deprecated": false
+        },
+        "verifySsl": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to verify SSL certificates",
+          "title": "Verify Ssl",
           "required": false,
           "deprecated": false
         }
@@ -53492,7 +54238,7 @@
       "title": "IRC",
       "group": "chat",
       "icon": "generic24.png",
-      "description": "Send and receive messages to/from and IRC chat.",
+      "description": "Send and receive messages to/from an IRC chat.",
       "properties": {
         "hostname": {
           "kind": "path",
@@ -54331,14 +55077,6 @@
           "required": false,
           "deprecated": false
         },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Password for login",
-          "title": "Password",
-          "required": false,
-          "deprecated": false
-        },
         "sessionLiveCheckInterval": {
           "kind": "parameter",
           "type": "duration",
@@ -54416,6 +55154,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password for login",
+          "title": "Password",
           "required": false,
           "deprecated": false
         }
@@ -55677,7 +56423,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -58272,6 +59018,15 @@
           "required": false,
           "deprecated": false
         },
+        "metadataMaxAgeMs": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "300000",
+          "description": "The period of time in milliseconds after which we force a refresh of metadata even if we haven\u0027t seen any partition leadership changes to proactively discover any new brokers or partitions.",
+          "title": "Metadata Max Age Ms",
+          "required": false,
+          "deprecated": false
+        },
         "reconnectBackoffMaxMs": {
           "kind": "parameter",
           "type": "integer",
@@ -58798,15 +59553,6 @@
           "required": false,
           "deprecated": false
         },
-        "metadataMaxAgeMs": {
-          "kind": "parameter",
-          "type": "integer",
-          "defaultValue": "300000",
-          "description": "The period of time in milliseconds after which we force a refresh of metadata even if we haven\u0027t seen any partition leadership changes to proactively discover any new brokers or partitions.",
-          "title": "Metadata Max Age Ms",
-          "required": false,
-          "deprecated": false
-        },
         "metricReporters": {
           "kind": "parameter",
           "type": "string",
@@ -58871,10 +59617,10 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "10000",
-          "description": "The maximum number of unsent messages that can be queued up the producer when using async mode before either the producer must be blocked or data must be dropped.",
+          "description": "Deprecated: this option has no effect. Use bufferMemorySize or maxBlockMs instead.",
           "title": "Queue Buffering Max Messages",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "receiveBufferBytes": {
           "kind": "parameter",
@@ -59703,7 +60449,10 @@
             "listOrganizationMembers",
             "linkOrganizationIdentityProvider",
             "unlinkOrganizationIdentityProvider",
-            "listOrganizationIdentityProviders"
+            "listOrganizationIdentityProviders",
+            "addFederatedIdentity",
+            "removeFederatedIdentity",
+            "getFederatedIdentities"
           ],
           "description": "The operation to perform",
           "title": "Operation",
@@ -64679,7 +65428,7 @@
       "title": "LangChain4j Embedding Store",
       "group": "database,ai",
       "icon": "generic24.png",
-      "description": "Perform operations on the Langchain4jEmbeddingStores.",
+      "description": "Perform operations on the LangChain4jEmbeddingStores.",
       "properties": {
         "embeddingStoreId": {
           "kind": "path",
@@ -64699,6 +65448,14 @@
           ],
           "description": "The operation to perform: ADD, REMOVE, or SEARCH",
           "title": "Action",
+          "required": false,
+          "deprecated": false
+        },
+        "embeddingModel": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Embedding model for auto-computing embeddings from message body text. When set, ADD and SEARCH operations can accept plain text body instead of requiring a pre-computed embedding in the CamelLangChain4jEmbeddingsEmbedding header. The header always takes precedence when present.",
+          "title": "Embedding Model",
           "required": false,
           "deprecated": false
         },
@@ -64845,6 +65602,15 @@
           ],
           "description": "Sets the exchange pattern when the consumer creates an exchange.",
           "title": "Exchange Pattern",
+          "required": false,
+          "deprecated": false
+        },
+        "maxToolCallingRoundTrips": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "Maximum number of tool-calling round trips (iterations) allowed before stopping. This prevents infinite loops when the LLM keeps requesting tool calls indefinitely. Each round trip consists of one LLM call and the execution of all tools requested in that call. Set to 0 for unlimited (not recommended).",
+          "title": "Max Tool Calling Round Trips",
           "required": false,
           "deprecated": false
         },
@@ -65201,6 +65967,15 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "allowUrlBody": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow a message body that is not LDIF content to be dereferenced as a URL and fetched. When disabled (default), a body that does not start with version: 1 is rejected with an IllegalArgumentException instead of being fetched as a URL, which avoids a content-sniffed URL fetch (SSRF) from untrusted body content.",
+          "title": "Allow Url Body",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -65209,7 +65984,7 @@
       "title": "Log Data",
       "group": "core,monitoring",
       "icon": "log24.png",
-      "description": "Prints data form the routed message (such as body and headers) to the logger.",
+      "description": "Prints data from the routed message (such as body and headers) to the logger.",
       "properties": {
         "loggerName": {
           "kind": "path",
@@ -65804,7 +66579,7 @@
       "title": "MapStruct",
       "group": "transformation",
       "icon": "generic24.png",
-      "description": "Type Conversion using Mapstruct",
+      "description": "Type Conversion using MapStruct",
       "properties": {
         "className": {
           "kind": "path",
@@ -67248,9 +68023,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -73737,18 +74521,21 @@
       "title": "OpenAI",
       "group": "ai",
       "icon": "generic24.png",
-      "description": "OpenAI endpoint for chat completion, embeddings, and audio transcription.",
+      "description": "OpenAI endpoint for chat completion, Responses API, embeddings, audio transcription, audio translation, and text-to-speech.",
       "properties": {
         "operation": {
           "kind": "path",
           "type": "enum",
           "enum": [
             "chat-completion",
+            "responses",
             "embeddings",
             "tool-execution",
-            "audio-transcription"
+            "audio-transcription",
+            "audio-translation",
+            "audio-speech"
           ],
-          "description": "The operation to perform: \u0027chat-completion\u0027, \u0027embeddings\u0027, \u0027tool-execution\u0027, or \u0027audio-transcription\u0027",
+          "description": "The operation to perform: \u0027chat-completion\u0027, \u0027responses\u0027, \u0027embeddings\u0027, \u0027tool-execution\u0027, \u0027audio-transcription\u0027, \u0027audio-translation\u0027, or \u0027audio-speech\u0027",
           "title": "Operation",
           "required": true,
           "deprecated": false
@@ -73758,6 +74545,14 @@
           "type": "object",
           "description": "Additional JSON properties to include in the request body (e.g. additionalBodyProperty.traceId\u003d123). This is a multi-value option with prefix: additionalBodyProperty.",
           "title": "Additional Body Property",
+          "required": false,
+          "deprecated": false
+        },
+        "additionalHeader": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "Additional HTTP request headers to send with every API call (e.g. additionalHeader.OpenAI-Organization\u003dmy-org or additionalHeader.api-key\u003dsecret). Values may contain secrets. This is a multi-value option with prefix: additionalHeader.",
+          "title": "Additional Header",
           "required": false,
           "deprecated": false
         },
@@ -73851,6 +74646,14 @@
           "required": false,
           "deprecated": false
         },
+        "builtinTools": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated hosted tools for the Responses API: web_search, file_search, code_interpreter",
+          "title": "Builtin Tools",
+          "required": false,
+          "deprecated": false
+        },
         "conversationHistoryProperty": {
           "kind": "parameter",
           "type": "string",
@@ -73906,11 +74709,76 @@
           "required": false,
           "deprecated": false
         },
+        "fileSearchVectorStoreIds": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated vector store ids required when builtinTools includes file_search",
+          "title": "File Search Vector Store Ids",
+          "required": false,
+          "deprecated": false
+        },
+        "hallucinatedToolNameStrategy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "failExchange",
+          "enum": [
+            "failExchange",
+            "repromptModel"
+          ],
+          "description": "Strategy for handling tool names hallucinated by the model (tool not found in any MCP server). \u0027failExchange\u0027 (default) throws an IllegalStateException, failing the exchange immediately. \u0027repromptModel\u0027 sends a corrective tool result listing the available tools so the model can self-correct and retry. The maxToolIterations option bounds retries.",
+          "title": "Hallucinated Tool Name Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "hostedMcpTools": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "JSON array of hosted MCP tool definitions (OpenAI Tool.Mcp) passed through to the Responses API",
+          "title": "Hosted Mcp Tools",
+          "required": false,
+          "deprecated": false
+        },
         "jsonSchema": {
           "kind": "parameter",
           "type": "string",
           "description": "JSON schema for structured output validation",
           "title": "Json Schema",
+          "required": false,
+          "deprecated": false
+        },
+        "maxAgenticTokens": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Maximum cumulative prompt plus completion tokens allowed across the MCP agentic loop. When 0 or negative, no token budget is enforced. Enforcement runs after each API call that requests further tool execution, so actual spend may exceed the configured budget by up to one call (typically the largest, as the prompt grows each iteration). A final text response is returned even when cumulative usage exceeds the budget.",
+          "title": "Max Agentic Tokens",
+          "required": false,
+          "deprecated": false
+        },
+        "maxHistoryMessages": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "When conversationMemory is enabled, retain at most this many messages in the exchange conversation history. System and developer messages are prepended separately and are not stored in history. Assistant tool-call blocks are kept intact and may retain slightly more than this limit to preserve tool result pairing. When 0, no message limit is applied.",
+          "title": "Max History Messages",
+          "required": false,
+          "deprecated": false
+        },
+        "maxHistoryTokens": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "When conversationMemory is enabled, trim conversation history using a token estimate (character count / 4, including image payload size for multi-modal user messages). Oldest segments are dropped first until the estimated tokens are within this limit. Assistant tool-call blocks are removed as a unit with their tool results. The most recent segment is always retained, even when it alone exceeds this limit. When 0, no token limit is applied.",
+          "title": "Max History Tokens",
+          "required": false,
+          "deprecated": false
+        },
+        "maxRetries": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "2",
+          "description": "Maximum number of times the OpenAI SDK client retries failed requests. The SDK retry is rate-limit aware (honors Retry-After on 429).",
+          "title": "Max Retries",
           "required": false,
           "deprecated": false
         },
@@ -73951,7 +74819,7 @@
         "mcpServer": {
           "kind": "parameter",
           "type": "object",
-          "description": "MCP (Model Context Protocol) server configurations. Define servers using prefix notation: mcpServer..transportType\u003dstdiossestreamableHttp, (Note that sse is deprecated) mcpServer..command\u003d (stdio), mcpServer..args\u003d (stdio), mcpServer..url\u003d (sse/streamableHttp), mcpServer..oauthProfile\u003d (OAuth profile for HTTP auth, requires camel-oauth). This is a multi-value option with prefix: mcpServer.",
+          "description": "MCP (Model Context Protocol) server configurations. Define servers using prefix notation: mcpServer..transportType\u003dstdiossestreamableHttp, (Note that sse is deprecated) mcpServer..command\u003d (stdio), mcpServer..args\u003d (stdio), mcpServer..url\u003d (sse/streamableHttp), mcpServer..oauthProfile\u003d (OAuth profile for HTTP auth, requires camel-oauth), mcpServer..toolNames\u003d (optional include list to restrict which tools are registered from this server). This is a multi-value option with prefix: mcpServer.",
           "title": "Mcp Server",
           "required": false,
           "deprecated": false
@@ -73962,6 +74830,15 @@
           "defaultValue": "20",
           "description": "Timeout in seconds for MCP tool call requests. Applies to all MCP operations including tool execution and initialization.",
           "title": "Mcp Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "mcpToolRefresh": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Refresh the advertised tool list when an MCP server notifies that its tools changed. Set to false to keep the tool list fixed to what was listed when the endpoint started, for deployments that require a deterministic set of tools.",
+          "title": "Mcp Tool Refresh",
           "required": false,
           "deprecated": false
         },
@@ -73981,11 +74858,96 @@
           "required": false,
           "deprecated": false
         },
+        "parallelToolExecution": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Execute the tool calls returned by the model in a single response concurrently instead of sequentially. Tool calls in the same batch are independent by design, so this reduces the latency of a batch to that of its slowest tool. Results are always fed back to the model in the original tool call order. Note that with toolExecutionErrorStrategy\u003dfailExchange the sibling tool calls already dispatched complete before the exchange fails.",
+          "title": "Parallel Tool Execution",
+          "required": false,
+          "deprecated": false
+        },
+        "parallelToolTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "Timeout in milliseconds for a batch of parallel tool calls, so that one slow tool cannot block the whole batch. The timeout applies to the batch as a whole, not per tool call. A tool call that exceeds it is cancelled and handled according to toolExecutionErrorStrategy. The default of 0 disables the batch timeout and relies on mcpTimeout, which already bounds each individual MCP request. Only used when parallelToolExecution\u003dtrue.",
+          "title": "Parallel Tool Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "previousResponseId": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Previous response id for OpenAI server-side conversation state (Responses API only)",
+          "title": "Previous Response Id",
+          "required": false,
+          "deprecated": false
+        },
+        "requestTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "0",
+          "description": "HTTP request timeout in milliseconds for the OpenAI SDK client. When 0 or negative, the SDK default (10 minutes) is used.",
+          "title": "Request Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "speechInstructions": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Optional instructions to control the voice of the generated audio. Does not work with tts-1 or tts-1-hd.",
+          "title": "Speech Instructions",
+          "required": false,
+          "deprecated": false
+        },
+        "speechModel": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The model to use for text-to-speech (e.g., gpt-4o-mini-tts, tts-1, tts-1-hd)",
+          "title": "Speech Model",
+          "required": false,
+          "deprecated": false
+        },
+        "speechResponseFormat": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "mp3",
+          "enum": [
+            "mp3",
+            "opus",
+            "aac",
+            "flac",
+            "wav",
+            "pcm"
+          ],
+          "description": "The audio format for text-to-speech output",
+          "title": "Speech Response Format",
+          "required": false,
+          "deprecated": false
+        },
+        "speechSpeed": {
+          "kind": "parameter",
+          "type": "number",
+          "description": "The speed of the generated audio, from 0.25 to 4.0 where 1.0 is normal speed",
+          "title": "Speech Speed",
+          "required": false,
+          "deprecated": false
+        },
+        "speechVoice": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "alloy",
+          "description": "The voice to use for text-to-speech (e.g., alloy, echo, fable, onyx, nova, shimmer). See the OpenAI documentation for the full list of supported voices.",
+          "title": "Speech Voice",
+          "required": false,
+          "deprecated": false
+        },
         "storeFullResponse": {
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Store the full response in the exchange property \u0027CamelOpenAIResponse\u0027 in non-streaming mode",
+          "description": "Store the full SDK response in non-streaming mode: chat-completion uses exchange property \u0027CamelOpenAIResponse\u0027; responses uses \u0027CamelOpenAIResponsesResponse\u0027",
           "title": "Store Full Response",
           "required": false,
           "deprecated": false
@@ -74021,6 +74983,19 @@
           "type": "number",
           "description": "Temperature for response generation (0.0 to 2.0)",
           "title": "Temperature",
+          "required": false,
+          "deprecated": false
+        },
+        "toolExecutionErrorStrategy": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "failExchange",
+          "enum": [
+            "failExchange",
+            "repromptModel"
+          ],
+          "description": "Strategy for handling exceptions thrown during MCP tool execution. \u0027failExchange\u0027 (default) propagates the exception to the Camel exchange so that standard Camel error handling (onException, dead-letter channel) can process it. This is the safer default because \u0027repromptModel\u0027 sends raw exception messages (which may contain connection strings, hostnames, or internal paths) to a third-party LLM provider. \u0027repromptModel\u0027 catches the error and sends it back to the model as a tool result so the model can attempt to recover.",
+          "title": "Tool Execution Error Strategy",
           "required": false,
           "deprecated": false
         },
@@ -76576,7 +77551,7 @@
     },
     "pg-replication-slot": {
       "type": "object",
-      "title": "PostgresSQL Replication Slot",
+      "title": "PostgreSQL Replication Slot",
       "group": "database",
       "icon": "generic24.png",
       "description": "Poll for PostgreSQL Write-Ahead Log (WAL) records using Streaming Replication Slots.",
@@ -76854,7 +77829,7 @@
     },
     "pgevent": {
       "type": "object",
-      "title": "PostgresSQL Event",
+      "title": "PostgreSQL Event",
       "group": "database",
       "icon": "generic24.png",
       "description": "Send and receive PostgreSQL events via LISTEN and NOTIFY commands.",
@@ -77168,7 +78143,7 @@
         "tls": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "true",
+          "defaultValue": "false",
           "description": "Whether the client uses Transport Layer Security (TLS) to secure communications",
           "title": "Tls",
           "required": false,
@@ -79056,6 +80031,14 @@
           "type": "string",
           "description": "The KeyStore password to use in combination with KeyStore Parameter",
           "title": "Key Store Password",
+          "required": false,
+          "deprecated": false
+        },
+        "parameterSpec": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The NIST parameter set (security level) to use for the configured signature or key encapsulation algorithm, using the BouncyCastle parameter-set names: for example ML-DSA-44, ML-DSA-65 or ML-DSA-87 for MLDSA, and ML-KEM-512, ML-KEM-768 or ML-KEM-1024 for MLKEM. Names are case-insensitive and the underscore form (ml_dsa_87) is accepted as an alias. When set, the key material is generated with this parameter set instead of the algorithm default. Not supported for the stateful signature algorithms (XMSS, XMSSMT, LMS, HSS), for MAYO and SNOVA, nor for the hybrid operations: for those, register a KeyPair bean in the registry instead.",
+          "title": "Parameter Spec",
           "required": false,
           "deprecated": false
         },
@@ -81907,7 +82890,8 @@
         "apexMethod": {
           "kind": "parameter",
           "type": "string",
-          "description": "APEX method name",
+          "defaultValue": "GET",
+          "description": "HTTP verb used for the Apex REST invocation, such as GET, POST, PUT, PATCH or DELETE. Applies to the apexCall operation and defaults to GET. Can be overridden per message with the CamelSalesforceApexMethod header.",
           "title": "Apex Method",
           "required": false,
           "deprecated": false
@@ -81941,7 +82925,7 @@
         "batchId": {
           "kind": "parameter",
           "type": "string",
-          "description": "Bulk API Batch ID",
+          "description": "Identifies a batch within a Bulk API v1 job. Required by getBatch, getRequest, getResults, getQueryResultIds and getQueryResult unless a BatchInfo message body supplies it. Not used by Bulk API 2.0.",
           "title": "Batch Id",
           "required": false,
           "deprecated": false
@@ -82028,7 +83012,7 @@
         "jobId": {
           "kind": "parameter",
           "type": "string",
-          "description": "Bulk API Job ID",
+          "description": "Identifies the Bulk API job to act on, for Bulk API v1 operations such as getJob, closeJob, abortJob, createBatch and getResults, and for the bulk2 operations that target an existing job. Operations that accept a JobInfo or BatchInfo message body can take the id from there instead.",
           "title": "Job Id",
           "required": false,
           "deprecated": false
@@ -82220,7 +83204,7 @@
         "resultId": {
           "kind": "parameter",
           "type": "string",
-          "description": "Bulk API Result ID",
+          "description": "Identifies one result set of a completed Bulk API v1 query batch, as returned by the getQueryResultIds operation. Used only by getQueryResult, together with jobId and batchId.",
           "title": "Result Id",
           "required": false,
           "deprecated": false
@@ -82463,7 +83447,7 @@
         "apexUrl": {
           "kind": "parameter",
           "type": "string",
-          "description": "APEX method URL",
+          "description": "Path of the Apex REST resource to invoke, appended to /services/apexrest/ on the instance URL, for example MyApexClass/. The apexCall operation needs this value, which can be given as this option, in the endpoint path as apexCall/MyApexClass/, or in the CamelSalesforceApexUrl header. Placeholders written in curly braces are resolved from message headers of the same name.",
           "title": "Apex Url",
           "required": false,
           "deprecated": false
@@ -83002,19 +83986,6 @@
           "required": false,
           "deprecated": false
         },
-        "strictHostKeyChecking": {
-          "kind": "parameter",
-          "type": "enum",
-          "defaultValue": "no",
-          "enum": [
-            "no",
-            "yes"
-          ],
-          "description": "Sets whether to use strict host key checking. Possible values are: no, yes",
-          "title": "Strict Host Key Checking",
-          "required": false,
-          "deprecated": false
-        },
         "allowNullBody": {
           "kind": "parameter",
           "type": "boolean",
@@ -83163,6 +84134,19 @@
           "type": "string",
           "description": "Set the private key file passphrase to that the endpoint can do private key verification.",
           "title": "Private Key File Passphrase",
+          "required": false,
+          "deprecated": false
+        },
+        "strictHostKeyChecking": {
+          "kind": "parameter",
+          "type": "enum",
+          "defaultValue": "no",
+          "enum": [
+            "no",
+            "yes"
+          ],
+          "description": "Sets whether to use strict host key checking. Setting this to \u0027no\u0027 (the default) disables host key verification and makes the connection vulnerable to man-in-the-middle attacks. Use \u0027yes\u0027 in production environments.",
+          "title": "Strict Host Key Checking",
           "required": false,
           "deprecated": false
         },
@@ -84220,9 +85204,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -86762,9 +87755,18 @@
         },
         "preSort": {
           "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled.",
+          "type": "enum",
+          "enum": [
+            "true",
+            "false",
+            "name",
+            "-name",
+            "modified",
+            "-modified",
+            "size",
+            "-size"
+          ],
+          "description": "When pre-sort is enabled then the consumer will sort the file and directory names during polling, that was retrieved from the file system. You may want to do this in case you need to operate on the files in a sorted order. The pre-sort is executed before the consumer starts to filter, and accept files to process by Camel. This option is default\u003dfalse meaning disabled. The following values are supported: name (sort by file name), modified (sort by last-modified timestamp), size (sort by file size). To sort in descending (reverse) order, prefix the value with a minus sign (e.g., -modified to sort newest first). The value true is an alias for name (backward compatible).",
           "title": "Pre Sort",
           "required": false,
           "deprecated": false
@@ -91124,7 +92126,7 @@
         "toolNames": {
           "kind": "parameter",
           "type": "string",
-          "description": "Comma-separated tool names for selecting tools by name via Spring AI\u0027s ToolCallbackResolver. This enables selecting Spring Tool annotated beans or any registered ToolCallback by name.",
+          "description": "Comma-separated tool names for selecting tools by name. Names are resolved against a ToolCallbackResolver bound in the registry (Spring Boot applications get Spring AI\u0027s auto-configured one), then against the tools discovered via tags and configured via toolCallbacks, and finally against a ToolCallback bound in the registry under that name. An unresolvable name fails the exchange.",
           "title": "Tool Names",
           "required": false,
           "deprecated": false
@@ -91473,110 +92475,6 @@
           "type": "integer",
           "description": "Image width in pixels",
           "title": "Width",
-          "required": false,
-          "deprecated": false
-        },
-        "lazyStartProducer": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
-          "title": "Lazy Start Producer",
-          "required": false,
-          "deprecated": false
-        }
-      }
-    },
-    "spring-ai-tools": {
-      "type": "object",
-      "title": "Spring AI Tools",
-      "group": "ai",
-      "icon": "generic24.png",
-      "description": "Spring AI Tools and Function Calling Features",
-      "properties": {
-        "toolId": {
-          "kind": "path",
-          "type": "string",
-          "description": "The tool id",
-          "title": "Tool Id",
-          "required": true,
-          "deprecated": false
-        },
-        "tags": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The tags for the tools",
-          "title": "Tags",
-          "required": true,
-          "deprecated": false
-        },
-        "description": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Tool description",
-          "title": "Description",
-          "required": false,
-          "deprecated": false
-        },
-        "inputType": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Input type class for the tool",
-          "title": "Input Type",
-          "required": false,
-          "deprecated": false
-        },
-        "name": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Tool name",
-          "title": "Name",
-          "required": false,
-          "deprecated": false
-        },
-        "parameters": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "List of Tool parameters with optional metadata. Format: parameter.\u003d, parameter..description\u003d, parameter..required\u003d, parameter..enum\u003d. Example: parameter.location\u003dstring, parameter.location.description\u003dThe city and state, parameter.location.required\u003dtrue, parameter.unit.enum\u003dC,F. This is a multi-value option with prefix: parameter.",
-          "title": "Parameters",
-          "required": false,
-          "deprecated": false
-        },
-        "returnDirect": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether the tool result should be returned directly or passed back to the model. Default is false, meaning the result is passed back to the model for further processing.",
-          "title": "Return Direct",
-          "required": false,
-          "deprecated": false
-        },
-        "bridgeErrorHandler": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions (if possible) occurred while the Camel consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. Important: This is only possible if the 3rd party component allows Camel to be alerted if an exception was thrown. Some components handle this internally only, and therefore bridgeErrorHandler is not possible. In other situations we may improve the Camel component to hook into the 3rd party component and make this possible for future releases. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Bridge Error Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exceptionHandler": {
-          "kind": "parameter",
-          "type": "object",
-          "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored.",
-          "title": "Exception Handler",
-          "required": false,
-          "deprecated": false
-        },
-        "exchangePattern": {
-          "kind": "parameter",
-          "type": "enum",
-          "enum": [
-            "InOnly",
-            "InOut"
-          ],
-          "description": "Sets the exchange pattern when the consumer creates an exchange.",
-          "title": "Exchange Pattern",
           "required": false,
           "deprecated": false
         },
@@ -93411,23 +94309,6 @@
           "required": false,
           "deprecated": false
         },
-        "failOnUnknownHost": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Specifies whether a connection to an unknown host should fail or not. This value is only checked when the property knownHosts is set.",
-          "title": "Fail On Unknown Host",
-          "required": false,
-          "deprecated": false
-        },
-        "knownHostsResource": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Sets the resource path for a known_hosts file",
-          "title": "Known Hosts Resource",
-          "required": false,
-          "deprecated": false
-        },
         "timeout": {
           "kind": "parameter",
           "type": "integer",
@@ -93752,6 +94633,15 @@
           "required": false,
           "deprecated": false
         },
+        "failOnUnknownHost": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Specifies whether a connection to an unknown SSH server host key should fail. When false, host keys that are not present in the known_hosts resource are accepted.",
+          "title": "Fail On Unknown Host",
+          "required": false,
+          "deprecated": false
+        },
         "kex": {
           "kind": "parameter",
           "type": "string",
@@ -93773,6 +94663,14 @@
           "type": "string",
           "description": "Sets the key type to pass to the KeyPairProvider as part of authentication. KeyPairProvider.loadKey(...) will be passed this value. From Camel 3.0.0 / 2.25.0, by default Camel will select the first available KeyPair that is loaded. Prior to this, a KeyType of \u0027ssh-rsa\u0027 was enforced by default.",
           "title": "Key Type",
+          "required": false,
+          "deprecated": false
+        },
+        "knownHostsResource": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets the resource path for a known_hosts file used to verify the SSH server host key. When not set, the client does not verify the server host key against a known_hosts file.",
+          "title": "Known Hosts Resource",
           "required": false,
           "deprecated": false
         },
@@ -98245,14 +99143,6 @@
           "required": true,
           "deprecated": false
         },
-        "appid": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "APPID ID used to authenticate the user connected to the API Server",
-          "title": "Appid",
-          "required": true,
-          "deprecated": false
-        },
         "headerName": {
           "kind": "parameter",
           "type": "string",
@@ -98624,6 +99514,14 @@
           "required": false,
           "deprecated": false
         },
+        "appid": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "APPID ID used to authenticate the user connected to the API Server",
+          "title": "Appid",
+          "required": true,
+          "deprecated": false
+        },
         "geolocationAccessKey": {
           "kind": "parameter",
           "type": "string",
@@ -98665,6 +99563,23 @@
           "required": false,
           "deprecated": false
         },
+        "grpcHost": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "gRPC host for Weaviate server connection",
+          "title": "Grpc Host",
+          "required": false,
+          "deprecated": false
+        },
+        "grpcPort": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "50051",
+          "description": "gRPC port for Weaviate server connection",
+          "title": "Grpc Port",
+          "required": false,
+          "deprecated": false
+        },
         "host": {
           "kind": "parameter",
           "type": "string",
@@ -98673,33 +99588,10 @@
           "required": false,
           "deprecated": false
         },
-        "proxyHost": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Proxy host to connect to weaviate through",
-          "title": "Proxy Host",
-          "required": false,
-          "deprecated": false
-        },
-        "proxyPort": {
-          "kind": "parameter",
-          "type": "integer",
-          "description": "Proxy port to connect to weaviate through",
-          "title": "Proxy Port",
-          "required": false,
-          "deprecated": false
-        },
-        "proxyScheme": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Proxy scheme to connect to weaviate through",
-          "title": "Proxy Scheme",
-          "required": false,
-          "deprecated": false
-        },
         "scheme": {
           "kind": "parameter",
           "type": "string",
+          "defaultValue": "http",
           "description": "Scheme used to connect to weaviate",
           "title": "Scheme",
           "required": false,
@@ -99193,14 +100085,6 @@
           "required": false,
           "deprecated": false
         },
-        "webhookVerifyToken": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Webhook verify token",
-          "title": "Webhook Verify Token",
-          "required": false,
-          "deprecated": false
-        },
         "whatsappService": {
           "kind": "parameter",
           "type": "object",
@@ -99222,6 +100106,14 @@
           "type": "string",
           "description": "The app secret used to verify the X-Hub-Signature-256 signature of inbound webhook event payloads (from the Meta/WhatsApp app dashboard). When set, event callbacks with a missing or invalid signature are rejected with HTTP 403; when not set, no signature verification is performed.",
           "title": "Webhook Secret",
+          "required": false,
+          "deprecated": false
+        },
+        "webhookVerifyToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Webhook verify token",
+          "title": "Webhook Verify Token",
           "required": false,
           "deprecated": false
         }
@@ -99291,14 +100183,6 @@
           "required": false,
           "deprecated": false
         },
-        "password": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "Password from authorized user",
-          "title": "Password",
-          "required": false,
-          "deprecated": false
-        },
         "searchCriteria": {
           "kind": "parameter",
           "type": "object",
@@ -99358,6 +100242,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "password": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Password from authorized user",
+          "title": "Password",
           "required": false,
           "deprecated": false
         }
@@ -99734,6 +100626,15 @@
           "type": "object",
           "description": "To use a custom javax.xml.transform.URIResolver",
           "title": "Uri Resolver",
+          "required": false,
+          "deprecated": false
+        },
+        "xpathTotalOpLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10000",
+          "description": "Limits the total number of XPath operators in an XSL Stylesheet. The default (from JDK) is 10000. The limit is set per TransformerFactory instance used by this endpoint.",
+          "title": "Xpath Total Op Limit",
           "required": false,
           "deprecated": false
         },
@@ -100814,6 +101715,15 @@
           "required": false,
           "deprecated": false
         },
+        "xpathTotalOpLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10000",
+          "description": "Limits the total number of XPath operators in an XSL Stylesheet. The default (from JDK) is 10000. The limit is set per TransformerFactory instance used by this endpoint.",
+          "title": "Xpath Total Op Limit",
+          "required": false,
+          "deprecated": false
+        },
         "xsltMessageLogger": {
           "kind": "parameter",
           "type": "object",
@@ -101012,6 +101922,15 @@
           "type": "object",
           "description": "To use a custom javax.xml.transform.URIResolver",
           "title": "Uri Resolver",
+          "required": false,
+          "deprecated": false
+        },
+        "xpathTotalOpLimit": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10000",
+          "description": "Limits the total number of XPath operators in an XSL Stylesheet. The default (from JDK) is 10000. The limit is set per TransformerFactory instance used by this endpoint.",
+          "title": "Xpath Total Op Limit",
           "required": false,
           "deprecated": false
         },

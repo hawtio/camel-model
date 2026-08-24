@@ -30,6 +30,7 @@
             "groovy",
             "header",
             "hl7terser",
+            "jactl",
             "java",
             "joor",
             "jq",
@@ -187,7 +188,7 @@
           "type": "object",
           "description": "The expression used to calculate the correlation key to use for aggregation. Exchanges with the same correlation key are aggregated together. If the correlation key cannot be evaluated an Exception is thrown.",
           "title": "Correlation Expression",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "completionPredicate": {
@@ -286,7 +287,7 @@
           "type": "object",
           "description": "The AggregationStrategy to use. Required. Merges each incoming exchange with the existing already merged exchanges. At first call the oldExchange parameter is null.",
           "title": "Aggregation Strategy",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "aggregationStrategyMethodName": {
@@ -581,7 +582,7 @@
           "type": "string",
           "description": "The name of the bean (bean id).",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "type": {
@@ -589,7 +590,7 @@
           "type": "string",
           "description": "The class name (fully qualified) of the bean.",
           "title": "Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "initMethod": {
@@ -903,7 +904,7 @@
           ],
           "description": "The claim check operation to use. Get\u003dretrieve, GetAndRemove\u003dretrieve and remove, Set\u003dstore with key, Push\u003dstore on stack, Pop\u003dretrieve from stack.",
           "title": "Operation",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "key": {
@@ -1022,7 +1023,7 @@
           "type": "string",
           "description": "The java type to convert to.",
           "title": "Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "mandatory": {
@@ -1092,7 +1093,7 @@
           "type": "string",
           "description": "Name of message header to convert its value. The simple language can be used to define a dynamic evaluated header name.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "type": {
@@ -1100,7 +1101,7 @@
           "type": "string",
           "description": "The java type to convert to.",
           "title": "Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "toName": {
@@ -1178,7 +1179,7 @@
           "type": "string",
           "description": "Name of variable to convert its value. The simple language can be used to define a dynamic evaluated variable name.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "type": {
@@ -1186,7 +1187,7 @@
           "type": "string",
           "description": "The java type to convert to.",
           "title": "Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "toName": {
@@ -1239,7 +1240,7 @@
           "type": "string",
           "description": "Refers to the custom load balancer to lookup from the registry.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -1354,7 +1355,7 @@
           "type": "string",
           "description": "The endpoint URI where failed exchanges are sent after all redelivery attempts have been exhausted (the dead letter queue).",
           "title": "Dead Letter Uri",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "deadLetterHandleNewException": {
@@ -1939,6 +1940,14 @@
           "title": "Cache Size",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -2175,6 +2184,14 @@
           "title": "Auto Start Components",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -2198,7 +2215,7 @@
           "type": "object",
           "description": "The error handler type to use, such as default error handler, dead letter channel, no error handler, or a transaction error handler.",
           "title": "Error Handler Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -2344,15 +2361,6 @@
           "defaultValue": "1000",
           "description": "Configures the thread execution timeout. Default value is 1 second.",
           "title": "Timeout Duration",
-          "required": false,
-          "deprecated": false
-        },
-        "timeoutPoolSize": {
-          "kind": "attribute",
-          "type": "integer",
-          "defaultValue": "10",
-          "description": "Configures the pool size of the thread pool when timeout is enabled.",
-          "title": "Timeout Pool Size",
           "required": false,
           "deprecated": false
         },
@@ -2526,7 +2534,7 @@
           "type": "string",
           "description": "Global option key",
           "title": "Key",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "value": {
@@ -2534,7 +2542,7 @@
           "type": "string",
           "description": "Global option value",
           "title": "Value",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -2612,7 +2620,7 @@
           "type": "object",
           "description": "Sets the reference name of the message id repository to use for storing processed message ids to detect duplicates.",
           "title": "Idempotent Repository",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "eager": {
@@ -2880,7 +2888,7 @@
           "type": "string",
           "description": "Intercept sending to the uri or uri pattern.",
           "title": "Uri",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "skipSendToOriginalEndpoint": {
@@ -3115,7 +3123,7 @@
           "type": "string",
           "description": "Name of the Kamelet (templateId/routeId) to call. Options for the kamelet can be specified using uri syntax, eg mynamecount\u003d4\u0026type\u003dgold.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "outputs": {
@@ -3180,7 +3188,7 @@
           "type": "string",
           "description": "The underlying model name used by the tokenizer. Providing this switches to computing segment sizes in terms of tokens.",
           "title": "Model Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -3237,7 +3245,7 @@
           "type": "string",
           "description": "The underlying model name used by the tokenizer. Providing this switches to computing segment sizes in terms of tokens.",
           "title": "Model Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -3294,7 +3302,7 @@
           "type": "string",
           "description": "The underlying model name used by the tokenizer. Providing this switches to computing segment sizes in terms of tokens.",
           "title": "Model Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -3351,7 +3359,7 @@
           "type": "string",
           "description": "The underlying model name used by the tokenizer. Providing this switches to computing segment sizes in terms of tokens.",
           "title": "Model Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -3408,7 +3416,7 @@
           "type": "string",
           "description": "The underlying model name used by the tokenizer. Providing this switches to computing segment sizes in terms of tokens.",
           "title": "Model Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -3461,7 +3469,7 @@
           "type": "object",
           "description": "The load balancing strategy to use, such as round-robin, random, sticky, topic, failover, weighted, or a custom load balancer.",
           "title": "Load Balancer Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "outputs": {
@@ -3580,7 +3588,7 @@
           "type": "string",
           "description": "The log message to output. Supports simple language expressions.",
           "title": "Message",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "loggingLevel": {
@@ -4064,7 +4072,7 @@
           "type": "array",
           "description": "A list of exception class names to catch and handle.",
           "title": "Exception",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "onWhen": {
@@ -4200,7 +4208,7 @@
           "description": "Whether the fallback goes over the network. If so, the fallback is executed on a separate thread-pool to avoid exhausting the main thread-pool.",
           "title": "Fallback Via Network",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "outputs": {
           "kind": "element",
@@ -4421,7 +4429,7 @@
           "type": "array",
           "description": "Java package names to use for scanning for route builder classes.",
           "title": "Package",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "excludes": {
@@ -4811,6 +4819,14 @@
           "title": "Auto Start Components",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -5142,6 +5158,14 @@
           "title": "Share Unit Of Work",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -5411,7 +5435,7 @@
           "type": "object",
           "description": "Reference to an existing or custom error handler to lookup from the registry.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -5578,7 +5602,7 @@
           "type": "string",
           "description": "Name or pattern of properties to remove. Supports exact match, wildcard (ending with ), and regular expression (all case-insensitive).",
           "title": "Pattern",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "excludePattern": {
@@ -5639,7 +5663,7 @@
           "type": "string",
           "description": "Name of the exchange property to remove.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -5692,7 +5716,7 @@
           "type": "string",
           "description": "Name of the variable to remove.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -5753,7 +5777,7 @@
           "type": "object",
           "description": "Resequencer configuration using either batch or stream mode. Defaults to batch mode.",
           "title": "Resequencer Config",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "outputs": {
@@ -5849,6 +5873,19 @@
           "required": false,
           "deprecated": false
         },
+        "slidingWindowSynchronizationStrategy": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "SYNCHRONIZED",
+          "enum": [
+            "LOCK_FREE",
+            "SYNCHRONIZED"
+          ],
+          "description": "Configures the synchronization strategy for the sliding window. LOCK_FREE uses a CAS-based lock-free algorithm for better performance under high concurrency. SYNCHRONIZED uses blocking locks with lower memory allocation.",
+          "title": "Sliding Window Synchronization Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "minimumNumberOfCalls": {
           "kind": "attribute",
           "type": "integer",
@@ -5869,9 +5906,9 @@
         },
         "waitDurationInOpenState": {
           "kind": "attribute",
-          "type": "integer",
-          "defaultValue": "60",
-          "description": "Configures the wait duration (in seconds) which specifies how long the CircuitBreaker should stay open, before it switches to half open.",
+          "type": "duration",
+          "defaultValue": "60000",
+          "description": "Configures the wait duration which specifies how long the CircuitBreaker should stay open, before it switches to half open. The default is 60 seconds.",
           "title": "Wait Duration In Open State",
           "required": false,
           "deprecated": false
@@ -5882,6 +5919,15 @@
           "defaultValue": "false",
           "description": "Enables automatic transition from OPEN to HALF_OPEN state once the waitDurationInOpenState has passed.",
           "title": "Automatic Transition From Open To Half Open Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "maxWaitDurationInHalfOpenState": {
+          "kind": "attribute",
+          "type": "duration",
+          "defaultValue": "0",
+          "description": "Configures the maximum wait duration which controls how long the CircuitBreaker should stay in Half Open state, before it switches to open. Value 0 means circuit breaker will wait in half open state until all permitted calls have been completed.",
+          "title": "Max Wait Duration In Half Open State",
           "required": false,
           "deprecated": false
         },
@@ -5896,9 +5942,9 @@
         },
         "slowCallDurationThreshold": {
           "kind": "attribute",
-          "type": "integer",
-          "defaultValue": "60",
-          "description": "Configures the duration threshold (seconds) above which calls are considered as slow and increase the slow calls percentage.",
+          "type": "duration",
+          "defaultValue": "60000",
+          "description": "Configures the duration threshold above which calls are considered as slow and increase the slow calls percentage. The default is 60 seconds.",
           "title": "Slow Call Duration Threshold",
           "required": false,
           "deprecated": false
@@ -5923,10 +5969,28 @@
         },
         "bulkheadMaxWaitDuration": {
           "kind": "attribute",
-          "type": "integer",
+          "type": "duration",
           "defaultValue": "0",
-          "description": "Configures a maximum amount of time which the calling thread will wait to enter the bulkhead.",
+          "description": "Configures a maximum amount of time which the calling thread will wait to enter the bulkhead. The default is 0 (no waiting).",
           "title": "Bulkhead Max Wait Duration",
+          "required": false,
+          "deprecated": false
+        },
+        "bulkheadFairCallHandlingEnabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Configures whether the bulkhead uses a fair calling strategy. When enabled (default), a fair strategy guarantees the order of incoming requests (FIFO). When disabled, no ordering is guaranteed and may improve throughput.",
+          "title": "Bulkhead Fair Call Handling Enabled",
+          "required": false,
+          "deprecated": false
+        },
+        "asynchronous": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to use asynchronous (non-blocking) processing with CompletionStage-based circuit breaker decorators. When enabled, the circuit breaker releases the caller thread immediately and completes processing asynchronously. This is most valuable when the downstream processor supports asynchronous processing (e.g. Netty HTTP, Kafka). When used with timeout, the timeoutExecutorService must be a ScheduledExecutorService.",
+          "title": "Asynchronous",
           "required": false,
           "deprecated": false
         },
@@ -5949,7 +6013,7 @@
         },
         "timeoutDuration": {
           "kind": "attribute",
-          "type": "integer",
+          "type": "duration",
           "defaultValue": "1000",
           "description": "Configures the thread execution timeout. Default value is 1 second.",
           "title": "Timeout Duration",
@@ -5969,7 +6033,7 @@
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to enable collecting statistics using Micrometer. This requires adding camel-resilience4j-micrometer JAR to the classpath.",
+          "description": "Whether to enable collecting statistics using Micrometer for all circuit breaker instances. This is a global setting (configure via camel.resilience4j.micrometerEnabled\u003dtrue) and requires adding camel-resilience4j-micrometer JAR to the classpath.",
           "title": "Micrometer Enabled",
           "required": false,
           "deprecated": false
@@ -6389,7 +6453,7 @@
           "type": "string",
           "description": "Reference to the RouteBuilder instance.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -6495,7 +6559,7 @@
           "type": "string",
           "description": "Reference to the route configuration in the xml-dsl.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -6545,7 +6609,7 @@
           "type": "string",
           "description": "Reference to the routes in the xml-dsl.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -6602,7 +6666,7 @@
           "type": "object",
           "description": "The route definition that this template uses to create routes.",
           "title": "Route",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -6619,7 +6683,7 @@
           "type": "string",
           "description": "Reference to the route templates in the xml-dsl.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -6772,6 +6836,14 @@
           "type": "integer",
           "description": "Configures the cache size for ProducerCache which caches producers for reuse. The default cache size is 1000. Set to -1 to turn off caching.",
           "title": "Cache Size",
+          "required": false,
+          "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
           "required": false,
           "deprecated": false
         }
@@ -7165,20 +7237,20 @@
           "required": false,
           "deprecated": false
         },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of message header to set a new value. The simple language can be used to define a dynamic evaluated header name. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
           "description": "The expression whose result is used as the header value.",
           "title": "Expression",
           "required": true,
-          "deprecated": false
-        },
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of message header to set a new value. The simple language can be used to define a dynamic evaluated header name. Otherwise a constant name will be used.",
-          "title": "Name",
-          "required": false,
           "deprecated": false
         }
       }
@@ -7279,20 +7351,20 @@
           "required": false,
           "deprecated": false
         },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of exchange property to set a new value. The simple language can be used to define a dynamic evaluated property name. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
           "description": "The expression whose result is used as the exchange property value.",
           "title": "Expression",
           "required": true,
-          "deprecated": false
-        },
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of exchange property to set a new value. The simple language can be used to define a dynamic evaluated property name. Otherwise a constant name will be used.",
-          "title": "Name",
-          "required": false,
           "deprecated": false
         }
       }
@@ -7340,20 +7412,20 @@
           "required": false,
           "deprecated": false
         },
+        "name": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Name of variable to set a new value. The simple language can be used to define a dynamic evaluated variable name. Otherwise a constant name will be used.",
+          "title": "Name",
+          "required": true,
+          "deprecated": false
+        },
         "expression": {
           "kind": "expression",
           "type": "object",
           "description": "The expression whose result is used as the variable value.",
           "title": "Expression",
           "required": true,
-          "deprecated": false
-        },
-        "name": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "Name of variable to set a new value. The simple language can be used to define a dynamic evaluated variable name. Otherwise a constant name will be used.",
-          "title": "Name",
-          "required": false,
           "deprecated": false
         }
       }
@@ -7636,6 +7708,54 @@
           "required": false,
           "deprecated": false
         },
+        "group": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Groups N split messages into a single message with a java.util.List body. This allows processing items in chunks instead of one at a time.",
+          "title": "Group",
+          "required": false,
+          "deprecated": false
+        },
+        "errorThreshold": {
+          "kind": "attribute",
+          "type": "number",
+          "description": "Sets the error threshold as a fraction (0.0-1.0) of failed items before aborting the split operation. For example, 0.1 means abort if more than 10% of items fail. When the threshold is exceeded, a org.apache.camel.CamelExchangeException is thrown. This option is mutually exclusive with stopOnException . When set, individual item failures are tracked but processing continues until the threshold is exceeded. Note: When combined with parallelProcessing , the failure ratio may vary between runs because parallel items complete in non-deterministic order. For deterministic abort behavior with parallel processing, prefer maxFailedRecords (absolute count) over errorThreshold (ratio).",
+          "title": "Error Threshold",
+          "required": false,
+          "deprecated": false
+        },
+        "maxFailedRecords": {
+          "kind": "attribute",
+          "type": "integer",
+          "description": "Sets the maximum number of failed records before aborting the split operation. When the count is exceeded, a org.apache.camel.CamelExchangeException is thrown. This option is mutually exclusive with stopOnException . Can be combined with errorThreshold processing aborts when either threshold is exceeded.",
+          "title": "Max Failed Records",
+          "required": false,
+          "deprecated": false
+        },
+        "resumeStrategy": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets a ResumeStrategy for resume-from-last-position support. The watermark key must also be configured via watermarkKey(String) .",
+          "title": "Resume Strategy",
+          "required": false,
+          "deprecated": false
+        },
+        "watermarkKey": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets the key to use in the watermark store.",
+          "title": "Watermark Key",
+          "required": false,
+          "deprecated": false
+        },
+        "watermarkExpression": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets a Simple expression to evaluate on each completed sub-exchange to determine the new watermark value. When set, enables value-based watermarking instead of index-based. The expression is evaluated using the Simple language.",
+          "title": "Watermark Expression",
+          "required": false,
+          "deprecated": false
+        },
         "outputs": {
           "kind": "element",
           "type": "array",
@@ -7871,7 +7991,7 @@
           "type": "object",
           "description": "The correlation expression to use to calculate the correlation key.",
           "title": "Correlation Expression",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -8006,7 +8126,7 @@
           "type": "string",
           "description": "The name of the template parameter.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "required": {
@@ -8040,7 +8160,7 @@
           "type": "string",
           "description": "The id of the route template to use to build the route.",
           "title": "Route Template Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "routeId": {
@@ -8097,7 +8217,7 @@
           "type": "string",
           "description": "The name of the parameter.",
           "title": "Name",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "value": {
@@ -8105,7 +8225,7 @@
           "type": "string",
           "description": "The value of the parameter.",
           "title": "Value",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -8776,6 +8896,14 @@
           "title": "Auto Start Components",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -8827,7 +8955,7 @@
           "type": "object",
           "description": "The tokenizer implementation to use, such as LangChain4j character, line, paragraph, sentence, or word tokenizers.",
           "title": "Tokenizer Implementation",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -9028,7 +9156,7 @@
           "type": "array",
           "description": "The configured transformers.",
           "title": "Transformers",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -9106,7 +9234,7 @@
           "type": "array",
           "description": "The configured validators.",
           "title": "Validators",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -9123,7 +9251,7 @@
           "type": "string",
           "description": "The value.",
           "title": "Value",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -9151,7 +9279,7 @@
           "type": "string",
           "description": "The distribution ratio is a delimited String consisting of integer weights separated by delimiters for example 2,3,5. The distributionRatio must match the number of endpoints and/or processors specified in the load balancer list.",
           "title": "Distribution Ratio",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "distributionRatioDelimiter": {
@@ -9368,6 +9496,14 @@
           "defaultValue": "true",
           "description": "Whether to auto startup components when toD is starting up.",
           "title": "Auto Start Components",
+          "required": false,
+          "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that the dynamic recipient may resolve to (e.g. http,https). When set, a dynamic endpoint whose scheme is not in the list is rejected. This is a defence-in-depth restriction, useful for low-code / Kamelet deployments; by default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
           "required": false,
           "deprecated": false
         }

@@ -362,6 +362,48 @@
         }
       }
     },
+    "jactl": {
+      "type": "object",
+      "title": "Jactl",
+      "group": "language,script",
+      "icon": "generic24.png",
+      "description": "Evaluates a Jactl script",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node.",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax.",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "resultType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The class of the result type (type from output).",
+          "title": "Result Type",
+          "required": false,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
+          "title": "Trim",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "java": {
       "type": "object",
       "title": "Java",
@@ -699,20 +741,20 @@
           "required": false,
           "deprecated": false
         },
+        "language": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The name of the language to use.",
+          "title": "Language",
+          "required": true,
+          "deprecated": false
+        },
         "expression": {
           "kind": "value",
           "type": "string",
           "description": "The expression value in your chosen language syntax.",
           "title": "Expression",
           "required": true,
-          "deprecated": false
-        },
-        "language": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The name of the language to use.",
-          "title": "Language",
-          "required": false,
           "deprecated": false
         },
         "trim": {
@@ -1106,7 +1148,7 @@
           "type": "string",
           "description": "The (start) token to use as tokenizer, for example you can use the new line token. You can use simple language as the token to support dynamic tokens.",
           "title": "Token",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "endToken": {

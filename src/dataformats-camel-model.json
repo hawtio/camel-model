@@ -1012,7 +1012,7 @@
           "type": "object",
           "description": "The data format to be used for transformation.",
           "title": "Data Format Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "scheme": {
@@ -1061,7 +1061,7 @@
           "type": "array",
           "description": "The configured data formats.",
           "title": "Data Formats",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -1621,7 +1621,7 @@
           "type": "string",
           "description": "The grok pattern to match lines of input.",
           "title": "Pattern",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "flattened": {
@@ -2518,7 +2518,7 @@
           "type": "object",
           "description": "The data format to use for marshalling the message body into a specific format such as JSON, XML, CSV, Avro, Protobuf, etc.",
           "title": "Data Format Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "variableSend": {
@@ -2904,24 +2904,15 @@
           "enum": [
             "AES",
             "ARIA",
-            "RC2",
-            "RC5",
             "CAMELLIA",
-            "CAST5",
             "CAST6",
-            "CHACHA7539",
             "DSTU7624",
-            "GOST28147",
             "GOST3412_2015",
-            "GRAIN128",
-            "HC128",
-            "HC256",
-            "SALSA20",
             "SEED",
             "SM4",
-            "DESEDE"
+            "CHACHA7539"
           ],
-          "description": "The symmetric encryption algorithm to use with the shared secret.",
+          "description": "The symmetric encryption algorithm to use with the shared secret. Only algorithms that support authenticated encryption (AEAD) are allowed: AES, ARIA, CAMELLIA, CAST6, DSTU7624, GOST3412_2015, SEED and SM4 are encrypted with GCM, and CHACHA7539 with ChaCha20-Poly1305.",
           "title": "Symmetric Key Algorithm",
           "required": false,
           "deprecated": false
@@ -2940,15 +2931,6 @@
           "type": "object",
           "description": "Refers to the KeyPair to lookup from the registry to use for KEM operations.",
           "title": "Key Pair",
-          "required": false,
-          "deprecated": false
-        },
-        "bufferSize": {
-          "kind": "attribute",
-          "type": "integer",
-          "defaultValue": "4096",
-          "description": "The size of the buffer used for streaming encryption/decryption.",
-          "title": "Buffer Size",
           "required": false,
           "deprecated": false
         },

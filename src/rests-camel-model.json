@@ -1037,7 +1037,7 @@
           ],
           "description": "Sets the parameter type such as body, form, header, path, or query.",
           "title": "Type",
-          "required": false,
+          "required": true,
           "deprecated": false
         },
         "defaultValue": {
@@ -2539,7 +2539,7 @@
           "type": "string",
           "description": "Reference to the rest-dsl.",
           "title": "Ref",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
@@ -2659,7 +2659,7 @@
           "type": "array",
           "description": "The configured security definitions (apiKey, basicAuth, bearerToken, oauth2, openIdConnect, mutualTLS).",
           "title": "Security Definitions",
-          "required": false,
+          "required": true,
           "deprecated": false
         }
       }
