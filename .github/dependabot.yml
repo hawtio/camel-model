@@ -8,12 +8,12 @@ updates:
     directory: '/'
     schedule:
       interval: weekly
-    target-branch: '4.14.x'
+    target-branch: '4.18.x'
   - package-ecosystem: maven
     directory: '/'
     schedule:
       interval: weekly
-    target-branch: '4.10.x'
+    target-branch: '4.14.x'
   - package-ecosystem: npm
     directory: '/'
     schedule:
