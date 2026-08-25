@@ -313,7 +313,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -786,6 +786,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -925,6 +934,14 @@
           "defaultValue": "true",
           "description": "Allows to control whether stack-traces should be logged or not, by the default errorHandler.",
           "title": "Error Handler Log Stack Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -1311,7 +1328,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -1784,6 +1801,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -1923,6 +1949,14 @@
           "defaultValue": "true",
           "description": "Allows to control whether stack-traces should be logged or not, by the default errorHandler.",
           "title": "Error Handler Log Stack Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -2301,7 +2335,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -2774,6 +2808,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -2913,6 +2956,14 @@
           "defaultValue": "true",
           "description": "Allows to control whether stack-traces should be logged or not, by the default errorHandler.",
           "title": "Error Handler Log Stack Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -5337,8 +5388,8 @@
         "maxResults": {
           "kind": "parameter",
           "type": "integer",
-          "defaultValue": "1",
-          "description": "Maximum number of records that will be fetched in each poll",
+          "defaultValue": "50",
+          "description": "Maximum number of records that will be fetched in each lookup page. Each poll drains all pages, so this controls the page size rather than the total per poll. AWS allows up to 50.",
           "title": "Max Results",
           "required": false,
           "deprecated": false
@@ -21380,6 +21431,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -21559,6 +21618,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         }
@@ -24229,6 +24296,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         }
@@ -32152,7 +32227,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "10",
-          "description": "Maximum number of documents to process in a single batch (batch operations only)",
+          "description": "Number of documents to submit per sub-batch. Documents are partitioned into sub-batches of this size and each sub-batch is processed before starting the next one. Within each sub-batch, up to batchParallelism threads are used concurrently. This controls memory usage and back-pressure when processing large document sets.",
           "title": "Batch Size",
           "required": false,
           "deprecated": false
@@ -48864,6 +48939,14 @@
           "required": false,
           "deprecated": false
         },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
+        },
         "username": {
           "kind": "parameter",
           "type": "string",
@@ -50181,6 +50264,15 @@
           "required": false,
           "deprecated": false
         },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
+          "required": false,
+          "deprecated": false
+        },
         "username": {
           "kind": "parameter",
           "type": "string",
@@ -50810,6 +50902,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -51599,7 +51700,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Sends NAMES command to channel after joining it. onReply has to be true in order to process the result which will have the header value irc.num \u003d \u0027353\u0027.",
+          "description": "Sends NAMES command to channel after joining it. onReply has to be true in order to process the result which will have the header value CamelIrcNum \u003d \u0027353\u0027.",
           "title": "Names On Join",
           "required": false,
           "deprecated": false
@@ -53720,7 +53821,7 @@
         "exposeListenerSession": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "Specifies whether the listener session should be exposed when consuming messages.",
           "title": "Expose Listener Session",
           "required": false,
@@ -54193,6 +54294,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferExchange and transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "pubSubNoLocal": {
           "kind": "parameter",
           "type": "boolean",
@@ -54332,6 +54442,14 @@
           "defaultValue": "true",
           "description": "Allows to control whether stack-traces should be logged or not, by the default errorHandler.",
           "title": "Error Handler Log Stack Trace",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -68759,6 +68877,24 @@
           "required": false,
           "deprecated": false
         },
+        "pullBatchSize": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "10",
+          "description": "Maximum number of messages to fetch per pull request when using a JetStream Pull Subscription. Only used when {code pullSubscription\u003dtrue}.",
+          "title": "Pull Batch Size",
+          "required": false,
+          "deprecated": false
+        },
+        "pullFetchTimeout": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "1000",
+          "description": "Maximum time (in milliseconds) to wait for a batch of messages to be available on the server during a single fetch when using a JetStream Pull Subscription. Only used when {code pullSubscription\u003dtrue}.",
+          "title": "Pull Fetch Timeout",
+          "required": false,
+          "deprecated": false
+        },
         "pullSubscription": {
           "kind": "parameter",
           "type": "boolean",
@@ -69889,7 +70025,7 @@
         "muteException": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
           "title": "Mute Exception",
           "required": false,
@@ -70446,6 +70582,14 @@
           "type": "string",
           "description": "A list of encoders to be used. You can use a String which have values separated by comma, and have the values be looked up in the Registry. Just remember to prefix the value with # so Camel knows it should lookup.",
           "title": "Encoders",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled and the remote side returns a serialized exception. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -71706,7 +71850,11 @@
       "properties": {
         "operation": {
           "kind": "path",
-          "type": "string",
+          "type": "enum",
+          "enum": [
+            "chat-completion",
+            "embeddings"
+          ],
           "description": "The operation to perform: \u0027chat-completion\u0027 or \u0027embeddings\u0027",
           "title": "Operation",
           "required": true,
@@ -75776,6 +75924,15 @@
           "required": false,
           "deprecated": false
         },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
+          "required": false,
+          "deprecated": false
+        },
         "username": {
           "kind": "parameter",
           "type": "string",
@@ -76405,6 +76562,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -80355,6 +80521,24 @@
           "required": false,
           "deprecated": false
         },
+        "chmod": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "664",
+          "description": "Allows you to set chmod on the stored file. For example chmod\u003d664.",
+          "title": "Chmod",
+          "required": false,
+          "deprecated": false
+        },
+        "disconnect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether or not to disconnect from remote FTP server right after use. Disconnect will only disconnect the current connection to the FTP server. If you have a consumer which you want to stop, then you need to stop the consumer/route instead.",
+          "title": "Disconnect",
+          "required": false,
+          "deprecated": false
+        },
         "checksumFileAlgorithm": {
           "kind": "parameter",
           "type": "enum",
@@ -80375,24 +80559,6 @@
           ],
           "description": "If provided, then Camel will calculate a checksum from the file that has been written, and store the result in the CamelFileChecksum header.",
           "title": "Checksum File Algorithm",
-          "required": false,
-          "deprecated": false
-        },
-        "chmod": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "664",
-          "description": "Allows you to set chmod on the stored file. For example chmod\u003d664.",
-          "title": "Chmod",
-          "required": false,
-          "deprecated": false
-        },
-        "disconnect": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Whether or not to disconnect from remote FTP server right after use. Disconnect will only disconnect the current connection to the FTP server. If you have a consumer which you want to stop, then you need to stop the consumer/route instead.",
-          "title": "Disconnect",
           "required": false,
           "deprecated": false
         },
@@ -80512,6 +80678,38 @@
           "defaultValue": "30000",
           "description": "Sets the data timeout for waiting for reply Used only by FTPClient",
           "title": "Timeout",
+          "required": false,
+          "deprecated": false
+        },
+        "caSignatureAlgorithms": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set a comma separated list of CA signature algorithms accepted for host certificate verification. If not specified the default list from JSch will be used (matches OpenSSH 8.2 defaults).",
+          "title": "Ca Signature Algorithms",
+          "required": false,
+          "deprecated": false
+        },
+        "certBytes": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate as a byte array for certificate-based authentication.",
+          "title": "Cert Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "certFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate file path for certificate-based authentication.",
+          "title": "Cert File",
+          "required": false,
+          "deprecated": false
+        },
+        "certUri": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate (loaded from classpath by default) for certificate-based authentication.",
+          "title": "Cert Uri",
           "required": false,
           "deprecated": false
         },
@@ -82552,6 +82750,38 @@
           "required": false,
           "deprecated": false
         },
+        "caSignatureAlgorithms": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set a comma separated list of CA signature algorithms accepted for host certificate verification. If not specified the default list from JSch will be used (matches OpenSSH 8.2 defaults).",
+          "title": "Ca Signature Algorithms",
+          "required": false,
+          "deprecated": false
+        },
+        "certBytes": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate as a byte array for certificate-based authentication.",
+          "title": "Cert Bytes",
+          "required": false,
+          "deprecated": false
+        },
+        "certFile": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate file path for certificate-based authentication.",
+          "title": "Cert File",
+          "required": false,
+          "deprecated": false
+        },
+        "certUri": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Set the OpenSSH certificate (loaded from classpath by default) for certificate-based authentication.",
+          "title": "Cert Uri",
+          "required": false,
+          "deprecated": false
+        },
         "ciphers": {
           "kind": "parameter",
           "type": "string",
@@ -83138,6 +83368,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "recoveryInterval": {
           "kind": "parameter",
           "type": "duration",
@@ -83162,6 +83401,14 @@
           "defaultValue": "false",
           "description": "If enabled and you are using Request Reply messaging (InOut) and an Exchange failed on the consumer side, then the caused Exception will be send back in response as a jakarta.jms.ObjectMessage. If the client is Camel, the returned Exception is rethrown. This allows you to use Camel JMS as a bridge in your routing - for example, using persistent queues to enable robust routing. Notice that if you also have transferExchange enabled, this option takes precedence. The caught exception is required to be serializable. The original Exception on the consumer side can be wrapped in an outer exception such as org.apache.camel.RuntimeCamelException when returned to the producer. Use this with caution as the data is using Java Object serialization and requires the received to be able to deserialize the data at Class level, which forces a strong coupling between the producers and consumer!",
           "title": "Transfer Exception",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -83619,6 +83866,15 @@
           "required": false,
           "deprecated": false
         },
+        "objectMessageEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable sending and receiving JMS ObjectMessage. By default this is disabled because Java object serialization is a known source of security vulnerabilities. Enable this option only if you trust the source of the messages and need to send or receive Java serialized objects via JMS. When disabled, Camel will refuse to create or read JMS ObjectMessage instances. Options that rely on ObjectMessage internally (such as transferException) require this option to be enabled.",
+          "title": "Object Message Enabled",
+          "required": false,
+          "deprecated": false
+        },
         "recoveryInterval": {
           "kind": "parameter",
           "type": "duration",
@@ -83643,6 +83899,14 @@
           "defaultValue": "false",
           "description": "If enabled and you are using Request Reply messaging (InOut) and an Exchange failed on the consumer side, then the caused Exception will be send back in response as a jakarta.jms.ObjectMessage. If the client is Camel, the returned Exception is rethrown. This allows you to use Camel JMS as a bridge in your routing - for example, using persistent queues to enable robust routing. Notice that if you also have transferExchange enabled, this option takes precedence. The caught exception is required to be serializable. The original Exception on the consumer side can be wrapped in an outer exception such as org.apache.camel.RuntimeCamelException when returned to the producer. Use this with caution as the data is using Java Object serialization and requires the received to be able to deserialize the data at Class level, which forces a strong coupling between the producers and consumer!",
           "title": "Transfer Exception",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the body returned by jakarta.jms.ObjectMessage.getObject(). The pattern is evaluated after the JMS provider has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the provider\u0027s ObjectInputStream; to block such attacks, also configure the JMS provider\u0027s own deserialization filter and/or the JVM-wide -Djdk.serialFilter. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         },
@@ -86504,6 +86768,15 @@
           "required": false,
           "deprecated": false
         },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
+          "required": false,
+          "deprecated": false
+        },
         "username": {
           "kind": "parameter",
           "type": "string",
@@ -87133,6 +87406,15 @@
           "type": "object",
           "description": "To configure security using SSLContextParameters.",
           "title": "Ssl Context Parameters",
+          "required": false,
+          "deprecated": false
+        },
+        "useJavaMailSessionPropertiesFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow dynamic JavaMail session properties (message headers whose key starts with mail.smtp. or mail.smtps.) to override the endpoint configuration on a per-message basis. This is disabled by default. Only enable it when these headers originate exclusively from trusted route logic, never from data crossing a trust boundary (for example HTTP query parameters, or JMS/Kafka messages from untrusted producers). When enabled, an attacker able to set these headers could weaken transport security (such as mail.smtp.ssl.trust or mail.smtp.starttls.enable) or redirect the SMTP connection.",
+          "title": "Use Java Mail Session Properties From Headers",
           "required": false,
           "deprecated": false
         },
@@ -89716,6 +89998,14 @@
           "type": "string",
           "description": "The default Web Service endpoint uri to use for the producer.",
           "title": "Web Service Endpoint Uri",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter headers mapped to and from the Camel message. By default the internal Camel and camel header namespace (case-insensitive) is filtered out from inbound SOAP headers.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -94546,7 +94836,7 @@
         "muteException": {
           "kind": "parameter",
           "type": "boolean",
-          "defaultValue": "false",
+          "defaultValue": "true",
           "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
           "title": "Mute Exception",
           "required": false,
@@ -95286,6 +95576,14 @@
           "required": false,
           "deprecated": false
         },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when deserializing Java objects from HTTP responses with Content-Type application/x-java-serialized-object. This is used when transferException is enabled (or when allowJavaSerializedObject is enabled on the component) and the remote side returns a serialized payload. When not set, the filter configured via the JVM system property jdk.serialFilter is used when present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied.",
+          "title": "Deserialization Filter",
+          "required": false,
+          "deprecated": false
+        },
         "sslContextParameters": {
           "kind": "parameter",
           "type": "object",
@@ -95454,6 +95752,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -96511,6 +96817,14 @@
           "description": "The authorization access token taken from whatsapp-business dashboard.",
           "title": "Authorization Token",
           "required": true,
+          "deprecated": false
+        },
+        "webhookSecret": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The app secret used to verify the X-Hub-Signature-256 signature of inbound webhook event payloads (from the Meta/WhatsApp app dashboard). When set, event callbacks with a missing or invalid signature are rejected with HTTP 403; when not set, no signature verification is performed.",
+          "title": "Webhook Secret",
+          "required": false,
           "deprecated": false
         }
       }
