@@ -2858,6 +2858,15 @@
           "title": "Signature Verification Option",
           "required": false,
           "deprecated": false
+        },
+        "requireIntegrityProtection": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether a message must be integrity protected in order to be decrypted. The legacy symmetrically encrypted data packet carries no modification detection code, and the packet type is chosen by whoever produced the message, so accepting it lets the sender decide whether the integrity check applies. Set to false only to interoperate with a sender that still emits the legacy packet.",
+          "title": "Require Integrity Protection",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -3192,6 +3201,15 @@
           "description": "Path to the Smooks configuration file.",
           "title": "Smooks Config",
           "required": true,
+          "deprecated": false
+        },
+        "allowExternalEntities": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow the XML reader used by Smooks to resolve external XML entities (external general and parameter entities) when parsing XML input. This is disabled by default so that external entities in the message body are not resolved; enable it only for trusted legacy configurations that rely on external entity resolution.",
+          "title": "Allow External Entities",
+          "required": false,
           "deprecated": false
         }
       }

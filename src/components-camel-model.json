@@ -2448,6 +2448,15 @@
           "required": false,
           "deprecated": false
         },
+        "returnDirect": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "When true, AI producers that support agentic tool loops (such as camel-openai) return this tool\u0027s result directly to the caller without sending it back to the model. Also published as an MCP tool annotation when the tool is exposed via camel-mcp-server.",
+          "title": "Return Direct",
+          "required": false,
+          "deprecated": false
+        },
         "tags": {
           "kind": "parameter",
           "type": "string",
@@ -3963,6 +3972,14 @@
           "type": "string",
           "description": "The access token that is used by the client for bearer authentication.",
           "title": "Access Token",
+          "required": false,
+          "deprecated": false
+        },
+        "asyncMdnAllowedHosts": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma separated list of host names an asynchronous MDN may be delivered to. The delivery address is chosen by the sender of the AS2 message, so this is the list of hosts the operator vouches for. When set, an asynchronous MDN whose delivery address names a host outside the list is refused, and the configured mdnUserName/mdnPassword/mdnAccessToken are attached only to a host on the list. When not set, the MDN is still delivered to the sender-supplied address but no credentials are attached.",
+          "title": "Async Mdn Allowed Hosts",
           "required": false,
           "deprecated": false
         },
@@ -18963,14 +18980,6 @@
           "required": false,
           "deprecated": false
         },
-        "sasToken": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "In case of usage of Shared Access Signature we\u0027ll need to set a SAS Token",
-          "title": "Sas Token",
-          "required": false,
-          "deprecated": false
-        },
         "serviceClient": {
           "kind": "parameter",
           "type": "object",
@@ -19439,6 +19448,14 @@
           "type": "string",
           "description": "Azure Tenant ID for authentication with Azure Identity",
           "title": "Azure Tenant Id",
+          "required": false,
+          "deprecated": false
+        },
+        "sasToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "In case of usage of Shared Access Signature we\u0027ll need to set a SAS Token",
+          "title": "Sas Token",
           "required": false,
           "deprecated": false
         },
@@ -24587,6 +24604,15 @@
           "defaultValue": "false",
           "description": "The WSDL style that describes how parameters are represented in the SOAP body. If the value is false, CXF will chose the document-literal unwrapped style, If the value is true, CXF will chose the document-literal wrapped style",
           "title": "Wrapped Style",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, and the exception is not a SOAP fault the service contract declares, the SOAP fault returned to the caller won\u0027t contain the exception\u0027s class or message. Faults the route raises deliberately - a CXF Fault, an exception annotated {code WebFault}, or a Throwable set as the message body - are part of the contract and are always returned in full.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -34067,6 +34093,24 @@
           "required": false,
           "deprecated": false
         },
+        "allowFilePathSource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a String message body that starts with / or contains \\ is interpreted as a local filesystem path to read. When disabled, such a body is rejected instead of being read. This does not affect the CamelDoclingInputFilePath header, nor File, byte or explicit path collection bodies used by the batch operations.",
+          "title": "Allow File Path Source",
+          "required": false,
+          "deprecated": false
+        },
+        "allowUrlSource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a String message body that starts with http:// or https:// is interpreted as a remote URL for Docling to fetch. When disabled, such a body is rejected instead of being fetched. This does not affect the CamelDoclingInputFilePath header, nor bodies of any other type.",
+          "title": "Allow Url Source",
+          "required": false,
+          "deprecated": false
+        },
         "apiKeyHeader": {
           "kind": "parameter",
           "type": "string",
@@ -34095,6 +34139,14 @@
           "type": "string",
           "description": "Authentication token for docling-serve API (Bearer token or API key)",
           "title": "Authentication Token",
+          "required": false,
+          "deprecated": false
+        },
+        "inputBaseDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When set, every local input file path must resolve inside this directory once normalized. Applies to the CamelDoclingInputFilePath header, to file path message bodies, and to the paths used by the batch operations. When empty, no directory restriction is applied.",
+          "title": "Input Base Directory",
           "required": false,
           "deprecated": false
         },
@@ -34640,6 +34692,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "allowedSchemes": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an optional comma-separated allow-list of component schemes that a subscription destination may resolve to (e.g. http,https). When set, a subscription whose destination URI uses a scheme that is not in the list is rejected. By default (unset) any scheme is allowed.",
+          "title": "Allowed Schemes",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -34728,6 +34788,15 @@
           "type": "string",
           "description": "The subscription ID; if unspecified, one will be assigned and returned.",
           "title": "Subscription Id",
+          "required": false,
+          "deprecated": false
+        },
+        "allowPredicateFromMessage": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the subscription predicate, and the language used to compile it, may be taken from the incoming control message. When disabled, the predicate and expressionLanguage configured on this endpoint are used instead. Enabling this lets the sender of a control message choose both the expression language and the expression that the Dynamic Router compiles into a live predicate, so only enable it when control messages come from a trusted source.",
+          "title": "Allow Predicate From Message",
           "required": false,
           "deprecated": false
         }
@@ -35499,7 +35568,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to allow to use Camel headers or not (default false). Enabling this allows to specify dynamic command line arguments via message header. However this can be seen as a potential security vulnerability if the header is coming from a malicious user, so use this with care.",
+          "description": "Whether {code CamelExec} in-headers may override URI options (default false since Camel 4.20). When false, CamelExecCommandExecutable, CamelExecCommandArgs, CamelExecCommandOutFile, CamelExecCommandWorkingDir, CamelExecCommandTimeout, CamelExecExitValues, CamelExecUseStderrOnEmptyStdout, and CamelExecCommandLogLevel are ignored. Enable only when those headers come from a trusted route, not from an untrusted consumer.",
           "title": "Allow Control Headers",
           "required": false,
           "deprecated": false
@@ -44816,6 +44885,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the status description returned to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "permitKeepAliveTime": {
           "kind": "parameter",
           "type": "integer",
@@ -47068,11 +47146,12 @@
         "proxyAuthScheme": {
           "kind": "parameter",
           "type": "enum",
+          "defaultValue": "http",
           "enum": [
             "http",
             "https"
           ],
-          "description": "Proxy server authentication protocol scheme to use",
+          "description": "Proxy server connection protocol scheme. Defaults to http regardless of the target endpoint scheme, because most corporate HTTP proxies expect a plain HTTP connection on their listener port.",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -47679,11 +47758,12 @@
         "proxyAuthScheme": {
           "kind": "parameter",
           "type": "enum",
+          "defaultValue": "http",
           "enum": [
             "http",
             "https"
           ],
-          "description": "Proxy server authentication protocol scheme to use",
+          "description": "Proxy server connection protocol scheme. Defaults to http regardless of the target endpoint scheme, because most corporate HTTP proxies expect a plain HTTP connection on their listener port.",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -55734,6 +55814,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the message body deserialized by org.jgroups.Message.getObject(). The pattern is evaluated after JGroups has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the JGroups receive path; to block such attacks, also configure the JVM-wide -Djdk.serialFilter and secure the channel with AUTH and encryption. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied. Use to accept any type.",
+          "title": "Deserialization Filter",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -60825,6 +60913,15 @@
           "type": "object",
           "description": "Set the transport options.",
           "title": "Transport Options",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -67668,6 +67765,15 @@
           "defaultValue": "false",
           "description": "If the clientMode is true, mina consumer will connect the address as a TCP client.",
           "title": "Client Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the response written back to the remote peer won\u0027t contain the exception\u0027s class, message or stack trace.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -74947,7 +75053,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Store the full SDK response in non-streaming mode: chat-completion uses exchange property \u0027CamelOpenAIResponse\u0027; responses uses \u0027CamelOpenAIResponsesResponse\u0027",
+          "description": "Store the full SDK response in non-streaming mode: chat-completion uses exchange property \u0027CamelOpenAIResponse\u0027; responses uses \u0027CamelOpenAIResponsesResponse\u0027; embeddings uses \u0027CamelOpenAIEmbeddingsResponse\u0027; audio transcription uses \u0027CamelOpenAIAudioTranscriptionResponse\u0027; audio translation uses \u0027CamelOpenAIAudioTranslationResponse\u0027",
           "title": "Store Full Response",
           "required": false,
           "deprecated": false
@@ -74975,6 +75081,14 @@
           "type": "string",
           "description": "System message to prepend. When set and conversationMemory is enabled, the conversation history is reset.",
           "title": "System Message",
+          "required": false,
+          "deprecated": false
+        },
+        "tags": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma-separated tags for discovering route-based tools registered via the ai-tool component. When set, matching tools from the shared AiToolRegistry are exposed to the model alongside MCP tools.",
+          "title": "Tags",
           "required": false,
           "deprecated": false
         },
@@ -88592,6 +88706,15 @@
           "title": "Allow Execution Context From Header",
           "required": false,
           "deprecated": false
+        },
+        "allowExternalEntities": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow the XML reader used by Smooks to resolve external XML entities (external general and parameter entities) when parsing XML input. This is disabled by default so that external entities in the message body are not resolved; enable it only for trusted legacy configurations that rely on external entity resolution.",
+          "title": "Allow External Entities",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -93507,6 +93630,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when the default JDK serializer deserializes Redis payloads, both on the consumer and on producer read commands. When not set, the JVM-wide jdk.serialFilter is used if present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied. Ignored when a custom serializer is set.",
+          "title": "Deserialization Filter",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -96391,7 +96522,7 @@
           "description": "Tika Config",
           "title": "Tika Config",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         },
         "tikaConfigUri": {
           "kind": "parameter",
@@ -96399,7 +96530,7 @@
           "description": "Tika Config Url",
           "title": "Tika Config Uri",
           "required": false,
-          "deprecated": false
+          "deprecated": true
         }
       }
     },
