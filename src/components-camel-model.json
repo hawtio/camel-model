@@ -3492,6 +3492,14 @@
           "required": false,
           "deprecated": false
         },
+        "asyncMdnAllowedHosts": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Comma separated list of host names an asynchronous MDN may be delivered to. The delivery address is chosen by the sender of the AS2 message, so this is the list of hosts the operator vouches for. When set, an asynchronous MDN whose delivery address names a host outside the list is refused, and the configured mdnUserName/mdnPassword/mdnAccessToken are attached only to a host on the list. When not set, the MDN is still delivered to the sender-supplied address but no credentials are attached.",
+          "title": "Async Mdn Allowed Hosts",
+          "required": false,
+          "deprecated": false
+        },
         "decryptingPrivateKey": {
           "kind": "parameter",
           "type": "object",
@@ -17849,14 +17857,6 @@
           "required": false,
           "deprecated": false
         },
-        "sasToken": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "In case of usage of Shared Access Signature we\u0027ll need to set a SAS Token",
-          "title": "Sas Token",
-          "required": false,
-          "deprecated": false
-        },
         "serviceClient": {
           "kind": "parameter",
           "type": "object",
@@ -18301,6 +18301,14 @@
           "type": "string",
           "description": "Azure Tenant ID for authentication with Azure Identity",
           "title": "Azure Tenant Id",
+          "required": false,
+          "deprecated": false
+        },
+        "sasToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "In case of usage of Shared Access Signature we\u0027ll need to set a SAS Token",
+          "title": "Sas Token",
           "required": false,
           "deprecated": false
         },
@@ -20502,6 +20510,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "observable": {
           "kind": "parameter",
           "type": "boolean",
@@ -20694,6 +20711,15 @@
           ],
           "description": "Comma separated list of methods that the CoAP consumer will bind to. The default is to bind to all methods (DELETE, GET, POST, PUT).",
           "title": "Coap Method Restrict",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -20892,6 +20918,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "observable": {
           "kind": "parameter",
           "type": "boolean",
@@ -21084,6 +21119,15 @@
           ],
           "description": "Comma separated list of methods that the CoAP consumer will bind to. The default is to bind to all methods (DELETE, GET, POST, PUT).",
           "title": "Coap Method Restrict",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -23205,6 +23249,15 @@
           "defaultValue": "false",
           "description": "The WSDL style that describes how parameters are represented in the SOAP body. If the value is false, CXF will chose the document-literal unwrapped style, If the value is true, CXF will chose the document-literal wrapped style",
           "title": "Wrapped Style",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, and the exception is not a SOAP fault the service contract declares, the SOAP fault returned to the caller won\u0027t contain the exception\u0027s class or message. Faults the route raises deliberately - a CXF Fault, an exception annotated {code WebFault}, or a Throwable set as the message body - are part of the contract and are always returned in full.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -32268,6 +32321,24 @@
           "required": false,
           "deprecated": false
         },
+        "allowFilePathSource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a String message body that starts with / or contains \\ is interpreted as a local filesystem path to read. When disabled, such a body is rejected instead of being read. This does not affect the CamelDoclingInputFilePath header, nor File, byte or explicit path collection bodies used by the batch operations.",
+          "title": "Allow File Path Source",
+          "required": false,
+          "deprecated": false
+        },
+        "allowUrlSource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a String message body that starts with http:// or https:// is interpreted as a remote URL for Docling to fetch. When disabled, such a body is rejected instead of being fetched. This does not affect the CamelDoclingInputFilePath header, nor bodies of any other type.",
+          "title": "Allow Url Source",
+          "required": false,
+          "deprecated": false
+        },
         "apiKeyHeader": {
           "kind": "parameter",
           "type": "string",
@@ -32299,12 +32370,28 @@
           "required": false,
           "deprecated": false
         },
+        "inputBaseDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When set, every local input file path must resolve inside this directory once normalized. Applies to the CamelDoclingInputFilePath header, to file path message bodies, and to the paths used by the batch operations. When empty, no directory restriction is applied.",
+          "title": "Input Base Directory",
+          "required": false,
+          "deprecated": false
+        },
         "maxFileSize": {
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "52428800",
           "description": "Maximum file size in bytes for processing",
           "title": "Max File Size",
+          "required": false,
+          "deprecated": false
+        },
+        "outputBaseDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When set, the output directory passed to the docling CLI must resolve inside this directory once normalized. Applies to the CamelDoclingOutputFilePath header. The check is lexical and does not resolve symbolic links, matching inputBaseDirectory. When empty, no directory restriction is applied and the header value is only normalized.",
+          "title": "Output Base Directory",
           "required": false,
           "deprecated": false
         }
@@ -32815,6 +32902,15 @@
           "type": "string",
           "description": "The subscription ID; if unspecified, one will be assigned and returned.",
           "title": "Subscription Id",
+          "required": false,
+          "deprecated": false
+        },
+        "allowPredicateFromMessage": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the subscription predicate, and the language used to compile it, may be taken from the incoming control message. When disabled, the predicate and expressionLanguage configured on this endpoint are used instead. Enabling this lets the sender of a control message choose both the expression language and the expression that the Dynamic Router compiles into a live predicate, so only enable it when control messages come from a trusted source.",
+          "title": "Allow Predicate From Message",
           "required": false,
           "deprecated": false
         }
@@ -42687,6 +42783,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the status description returned to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "permitKeepAliveTime": {
           "kind": "parameter",
           "type": "integer",
@@ -44914,11 +45019,12 @@
         "proxyAuthScheme": {
           "kind": "parameter",
           "type": "enum",
+          "defaultValue": "http",
           "enum": [
             "http",
             "https"
           ],
-          "description": "Proxy server authentication protocol scheme to use",
+          "description": "Proxy server connection protocol scheme. Defaults to http regardless of the target endpoint scheme, because most corporate HTTP proxies expect a plain HTTP connection on their listener port.",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -45511,11 +45617,12 @@
         "proxyAuthScheme": {
           "kind": "parameter",
           "type": "enum",
+          "defaultValue": "http",
           "enum": [
             "http",
             "https"
           ],
-          "description": "Proxy server authentication protocol scheme to use",
+          "description": "Proxy server connection protocol scheme. Defaults to http regardless of the target endpoint scheme, because most corporate HTTP proxies expect a plain HTTP connection on their listener port.",
           "title": "Proxy Auth Scheme",
           "required": false,
           "deprecated": false
@@ -52570,6 +52677,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom org.apache.camel.spi.HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -53130,6 +53245,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied as a defense-in-depth check on the class of the message body deserialized by org.jgroups.Message.getObject(). The pattern is evaluated after JGroups has deserialized the payload, so this option alone does not prevent gadget-chain execution that happens inside the JGroups receive path; to block such attacks, also configure the JVM-wide -Djdk.serialFilter and secure the channel with AUTH and encryption. When this option is not set and no JVM-wide filter is configured, a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. is applied. Use to accept any type.",
+          "title": "Deserialization Filter",
           "required": false,
           "deprecated": false
         }
@@ -58182,6 +58305,15 @@
           "type": "object",
           "description": "Set the transport options.",
           "title": "Transport Options",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the response\u0027s body won\u0027t contain the exception\u0027s stack trace.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -64956,6 +65088,15 @@
           "defaultValue": "false",
           "description": "If the clientMode is true, mina consumer will connect the address as a TCP client.",
           "title": "Client Mode",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side the response written back to the remote peer won\u0027t contain the exception\u0027s class, message or stack trace.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -85159,6 +85300,15 @@
           "title": "Allow Execution Context From Header",
           "required": false,
           "deprecated": false
+        },
+        "allowExternalEntities": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to allow the XML reader used by Smooks to resolve external XML entities (external general and parameter entities) when parsing XML input. This is disabled by default so that external entities in the message body are not resolved; enable it only for trusted legacy configurations that rely on external entity resolution.",
+          "title": "Allow External Entities",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -89957,6 +90107,14 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "deserializationFilter": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "Sets an ObjectInputFilter pattern (jdk.serialFilter syntax) applied when the default JDK serializer deserializes Redis payloads, both on the consumer and on producer read commands. When not set, the JVM-wide jdk.serialFilter is used if present; otherwise a conservative default filter denying java.net. and otherwise allowing java., javax. and org.apache.camel. packages is applied. Ignored when a custom serializer is set.",
+          "title": "Deserialization Filter",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -90091,7 +90249,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Option to override soap response header in in/out exchange with header info from the actual service layer. If the invoked service appends or rewrites the soap header this option when set to true, allows the modified soap header to be overwritten in in/out message headers",
+          "description": "Option to override soap response header in in/out exchange with header info from the actual service layer. If the invoked service appends or rewrites the soap header this option when set to true, allows the modified soap header to be overwritten in in/out message headers. The names of the soap response header attributes and elements are filtered using the headerFilterStrategy, which by default filters out the internal Camel and camel header namespace (case-insensitive).",
           "title": "Allow Response Header Override",
           "required": false,
           "deprecated": false
