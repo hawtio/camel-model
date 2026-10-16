@@ -39,64 +39,13 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
-        }
-      }
-    },
-    "csimple": {
-      "type": "object",
-      "title": "CSimple",
-      "group": "language,java",
-      "icon": "generic24.png",
-      "description": "Evaluate a compiled simple expression",
-      "properties": {
-        "id": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The id of this node.",
-          "title": "Id",
-          "required": false,
-          "deprecated": false
         },
-        "expression": {
-          "kind": "value",
-          "type": "string",
-          "description": "The expression value in your chosen language syntax.",
-          "title": "Expression",
-          "required": true,
-          "deprecated": false
-        },
-        "trimResult": {
+        "resolveResource": {
           "kind": "attribute",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether to trim the returned values when this language is in use.",
-          "title": "Trim Result",
-          "required": false,
-          "deprecated": false
-        },
-        "pretty": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "To pretty format the output (only JSon or XML supported).",
-          "title": "Pretty",
-          "required": false,
-          "deprecated": false
-        },
-        "resultType": {
-          "kind": "attribute",
-          "type": "string",
-          "description": "The class of the result type (type from output).",
-          "title": "Result Type",
-          "required": false,
-          "deprecated": false
-        },
-        "trim": {
-          "kind": "attribute",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
-          "title": "Trim",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -165,6 +114,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -199,6 +157,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -231,6 +198,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -275,6 +251,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -307,6 +292,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -359,6 +353,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -399,6 +402,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -459,6 +471,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -571,6 +592,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -611,6 +641,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -723,6 +762,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -763,6 +811,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -846,6 +903,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -886,6 +952,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -930,6 +1005,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -972,6 +1056,117 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "python3": {
+      "type": "object",
+      "title": "Python 3",
+      "group": "language,python",
+      "icon": "generic24.png",
+      "description": "Evaluates a Python 3 expression",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node.",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax.",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "resultType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The class of the result type (type from output).",
+          "title": "Result Type",
+          "required": false,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
+          "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "quickjs": {
+      "type": "object",
+      "title": "QuickJS",
+      "group": "language,javascript",
+      "icon": "generic24.png",
+      "description": "Evaluates a JavaScript expression using QuickJS4J",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node.",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "value",
+          "type": "string",
+          "description": "The expression value in your chosen language syntax.",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "resultType": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The class of the result type (type from output).",
+          "title": "Result Type",
+          "required": false,
+          "deprecated": false
+        },
+        "trim": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
+          "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -1012,6 +1207,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1083,6 +1287,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -1123,6 +1336,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1243,6 +1465,15 @@
           "title": "Trim",
           "required": false,
           "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -1275,6 +1506,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1325,6 +1565,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1437,6 +1686,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespacesRef": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Reference to a org.apache.camel.support.builder.Namespaces bean in the registry to use for the XML Namespaces of prefix to uri mappings.",
+          "title": "Namespaces Ref",
+          "required": false,
+          "deprecated": false
+        },
         "source": {
           "kind": "attribute",
           "type": "string",
@@ -1459,6 +1716,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1503,6 +1769,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespacesRef": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Reference to a org.apache.camel.support.builder.Namespaces bean in the registry to use for the XML Namespaces of prefix to uri mappings.",
+          "title": "Namespaces Ref",
+          "required": false,
+          "deprecated": false
+        },
         "source": {
           "kind": "attribute",
           "type": "string",
@@ -1525,6 +1799,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }
@@ -1584,6 +1867,14 @@
           "required": false,
           "deprecated": false
         },
+        "namespacesRef": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Reference to a org.apache.camel.support.builder.Namespaces bean in the registry to use for the XML Namespaces of prefix to uri mappings.",
+          "title": "Namespaces Ref",
+          "required": false,
+          "deprecated": false
+        },
         "source": {
           "kind": "attribute",
           "type": "string",
@@ -1606,6 +1897,15 @@
           "defaultValue": "true",
           "description": "Whether to trim the source code to remove leading and trailing whitespaces and line breaks.",
           "title": "Trim",
+          "required": false,
+          "deprecated": false
+        },
+        "resolveResource": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a result of the expression that is a String starting with resource: is loaded as a resource and its content becomes the result, e.g. a script that returns resource:file:order.json or resource:classpath:templates/order.json (a name without a scheme is a classpath resource). Off by default; the resource: prefix on the expression text itself is always resolved. Applies to the expression used as a value, not as a predicate.",
+          "title": "Resolve Resource",
           "required": false,
           "deprecated": false
         }

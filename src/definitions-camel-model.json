@@ -24,7 +24,6 @@
           "required": true,
           "enum": [
             "constant",
-            "csimple",
             "datasonnet",
             "exchangeProperty",
             "groovy",
@@ -41,6 +40,8 @@
             "mvel",
             "ognl",
             "python",
+            "python3",
+            "quickjs",
             "ref",
             "simple",
             "spel",
@@ -588,9 +589,9 @@
         "type": {
           "kind": "attribute",
           "type": "string",
-          "description": "The class name (fully qualified) of the bean.",
+          "description": "The class name (fully qualified) of the bean. Required unless the bean is created by a script (scriptLanguage) or a builder (builderClass), where the type is optional and is then the type the bean is registered as.",
           "title": "Type",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "initMethod": {
@@ -628,7 +629,7 @@
         "builderClass": {
           "kind": "attribute",
           "type": "string",
-          "description": "Fully qualified class name of builder class to use for creating and configuring the bean. The builder will use the properties values to configure the bean.",
+          "description": "Fully qualified class name of builder class to use for creating and configuring the bean. The builder will use the properties values to configure the bean. Not needed for a type that has no public no-arg constructor but a public static builder() or newBuilder() method (such as Lombok, Immutables, LangChain4j or AWS SDK classes): Camel then infers the builder, sets the properties on it, and creates the bean with its build method.",
           "title": "Builder Class",
           "required": false,
           "deprecated": false
@@ -637,7 +638,7 @@
           "kind": "attribute",
           "type": "string",
           "defaultValue": "build",
-          "description": "Name of method when using builder class. This method is invoked after configuring to create the actual bean. This method is often named build (used by default).",
+          "description": "Name of method when using builder class (or an inferred builder). This method is invoked after configuring to create the actual bean. This method is often named build (used by default).",
           "title": "Builder Method",
           "required": false,
           "deprecated": false
@@ -681,6 +682,142 @@
           "description": "The script to execute that creates the bean when using scripting languages.",
           "title": "Script",
           "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "cache": {
+      "type": "object",
+      "title": "Cache",
+      "group": "eip,routing,caching",
+      "icon": "generic24.png",
+      "description": "Caches the result of the nested processing steps. On cache hit, skips the block and sets the body from cache. On cache miss, executes the block and caches the result body.",
+      "acceptInput": "true",
+      "acceptOutput": "true",
+      "nextSiblingAddedAsChild": "false",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The note for this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The description for this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "expression": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression to compute the cache key. Messages with the same key share the cached result.",
+          "title": "Expression",
+          "required": true,
+          "deprecated": false
+        },
+        "keyValueRepository": {
+          "kind": "attribute",
+          "type": "object",
+          "description": "Sets the reference name of the KeyValueRepository to use as the cache backing store. If not set, a MemoryKeyValueRepository is auto-created.",
+          "title": "Key Value Repository",
+          "required": false,
+          "deprecated": false
+        },
+        "ttl": {
+          "kind": "attribute",
+          "type": "duration",
+          "defaultValue": "-1",
+          "description": "Sets the time-to-live for cached entries. Supports duration syntax (e.g. 10m, 1h) or milliseconds. Default: -1 (no expiration).",
+          "title": "Ttl",
+          "required": false,
+          "deprecated": false
+        },
+        "cacheNull": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to cache null results. By default, null message bodies are not cached.",
+          "title": "Cache Null",
+          "required": false,
+          "deprecated": false
+        },
+        "outputs": {
+          "kind": "element",
+          "type": "array",
+          "description": "",
+          "title": "Outputs",
+          "required": true,
+          "deprecated": false
+        }
+      }
+    },
+    "case": {
+      "type": "object",
+      "title": "Case",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "A literal switch case with one fixed endpoint destination",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The note for this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The description for this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "value": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The case-insensitive literal value for a scalar selector.",
+          "title": "Value",
+          "required": true,
+          "deprecated": false
+        },
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The fixed destination URI. Supports property placeholders, but not Simple expressions.",
+          "title": "Uri",
+          "required": true,
           "deprecated": false
         }
       }
@@ -6337,7 +6474,6 @@
         "delayer": {
           "kind": "attribute",
           "type": "duration",
-          "defaultValue": "advanced",
           "description": "Whether to slow down processing messages by a given delay in msec.",
           "title": "Delayer",
           "required": false,
@@ -7531,7 +7667,7 @@
           "type": "object",
           "description": "The expression to use for sorting. The message body is split into a list, sorted using this expression as the comparator key, and then reassembled.",
           "title": "Expression",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "comparator": {
@@ -8102,6 +8238,92 @@
           "description": "To use a custom comparator for ordering the sequence of messages.",
           "title": "Comparator",
           "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "switch": {
+      "type": "object",
+      "title": "Switch",
+      "group": "eip,routing",
+      "icon": "generic24.png",
+      "description": "Evaluates a selector once and dispatches to a fixed endpoint by literal scalar values",
+      "acceptInput": "true",
+      "acceptOutput": "false",
+      "nextSiblingAddedAsChild": "true",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "note": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The note for this node",
+          "title": "Note",
+          "required": false,
+          "deprecated": false
+        },
+        "description": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The description for this node",
+          "title": "Description",
+          "required": false,
+          "deprecated": false
+        },
+        "disabled": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to disable this EIP from the route during build time. Once an EIP has been disabled then it cannot be enabled later at runtime.",
+          "title": "Disabled",
+          "required": false,
+          "deprecated": false
+        },
+        "selector": {
+          "kind": "expression",
+          "type": "object",
+          "description": "Expression evaluated once per entry. Returns a scalar value to match against the literal cases.",
+          "title": "Selector",
+          "required": true,
+          "deprecated": false
+        },
+        "case": {
+          "kind": "element",
+          "type": "array",
+          "description": "Literal cases. Duplicate values are rejected at startup, ignoring case.",
+          "title": "Case",
+          "required": false,
+          "deprecated": false
+        },
+        "otherwise": {
+          "kind": "element",
+          "type": "object",
+          "description": "Fixed fallback URI for null or unmatched selector results. Without a fallback processing continues.",
+          "title": "Otherwise",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "switchOtherwise": {
+      "type": "object",
+      "title": "Switch Otherwise",
+      "group": "configuration",
+      "icon": "generic24.png",
+      "description": "The fixed endpoint used when no switch case matches",
+      "properties": {
+        "uri": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The fixed destination URI. Supports property placeholders, but not Simple expressions.",
+          "title": "Uri",
+          "required": true,
           "deprecated": false
         }
       }

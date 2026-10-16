@@ -951,6 +951,19 @@
           "required": false,
           "deprecated": false
         },
+        "unmatchedRequestHandling": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "platform",
+          "enum": [
+            "platform",
+            "camel"
+          ],
+          "description": "Who answers requests that match no operation in the OpenAPI specification: the HTTP layer (platform) or Camel via the unmatched request handler (camel).",
+          "title": "Unmatched Request Handling",
+          "required": false,
+          "deprecated": false
+        },
         "mockIncludePattern": {
           "kind": "attribute",
           "type": "string",
@@ -1037,7 +1050,7 @@
           ],
           "description": "Sets the parameter type such as body, form, header, path, or query.",
           "title": "Type",
-          "required": true,
+          "required": false,
           "deprecated": false
         },
         "defaultValue": {
@@ -2232,7 +2245,7 @@
             "netty-http",
             "coap"
           ],
-          "description": "The Camel Rest component to use for the REST transport (consumer), such as netty-http, jetty, servlet, undertow.",
+          "description": "The Camel Rest component to use for the REST transport (consumer), such as platform-http, netty-http, jetty, servlet, undertow.",
           "title": "Component",
           "required": false,
           "deprecated": false

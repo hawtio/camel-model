@@ -220,6 +220,14 @@
           "title": "Auto Discover Schema Resolver",
           "required": false,
           "deprecated": false
+        },
+        "serializablePackages": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "Comma-separated list of additional packages that contain trusted Avro model classes. Avro 1.12 validates classes resolved from schemas; Camel automatically trusts packages derived from the configured schema or instance class.",
+          "title": "Serializable Packages",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -1963,7 +1971,7 @@
         "enableFeatures": {
           "kind": "attribute",
           "type": "string",
-          "description": "Set of features to enable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from SerializationFeature, DeserializationFeature, or MapperFeature. Multiple features can be separated by comma.",
+          "description": "Set of features to enable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from SerializationFeature, DeserializationFeature, MapperFeature, DateTimeFeature, EnumFeature, JsonNodeFeature, StreamReadFeature, StreamWriteFeature, XmlReadFeature or XmlWriteFeature. Multiple features can be separated by comma. When using Jackson 3, a feature can be qualified with its enum class name (e.g. SerializationFeature.WRAP_ROOT_VALUE) to tell apart features with the same name.",
           "title": "Enable Features",
           "required": false,
           "deprecated": false
@@ -1971,7 +1979,7 @@
         "disableFeatures": {
           "kind": "attribute",
           "type": "string",
-          "description": "Set of features to disable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from SerializationFeature, DeserializationFeature, or MapperFeature. Multiple features can be separated by comma.",
+          "description": "Set of features to disable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. The features should be a name that matches a enum from SerializationFeature, DeserializationFeature, MapperFeature, DateTimeFeature, EnumFeature, JsonNodeFeature, StreamReadFeature, StreamWriteFeature, XmlReadFeature or XmlWriteFeature. Multiple features can be separated by comma. When using Jackson 3, a feature can be qualified with its enum class name (e.g. SerializationFeature.WRAP_ROOT_VALUE) to tell apart features with the same name.",
           "title": "Disable Features",
           "required": false,
           "deprecated": false
@@ -2329,7 +2337,7 @@
         "enableFeatures": {
           "kind": "attribute",
           "type": "string",
-          "description": "Set of features to enable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. Multiple features can be separated by comma.",
+          "description": "Set of features to enable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. Multiple features can be separated by comma. When using Jackson 3, a feature can be qualified with its enum class name (e.g. SerializationFeature.WRAP_ROOT_VALUE) to tell apart features with the same name.",
           "title": "Enable Features",
           "required": false,
           "deprecated": false
@@ -2337,7 +2345,7 @@
         "disableFeatures": {
           "kind": "attribute",
           "type": "string",
-          "description": "Set of features to disable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. Multiple features can be separated by comma.",
+          "description": "Set of features to disable on the Jackson com.fasterxml.jackson.databind.ObjectMapper. Multiple features can be separated by comma. When using Jackson 3, a feature can be qualified with its enum class name (e.g. SerializationFeature.WRAP_ROOT_VALUE) to tell apart features with the same name.",
           "title": "Disable Features",
           "required": false,
           "deprecated": false
@@ -2534,6 +2542,15 @@
           "type": "string",
           "description": "To use a variable to store the received message body (only body, not headers). This makes it handy to use variables for user data and to easily control what data to use for sending and receiving.",
           "title": "Variable Receive",
+          "required": false,
+          "deprecated": false
+        },
+        "allowNullBody": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Indicates whether a null body is skipped instead of marshalled. By default the data format marshals the null, and what that gives depends on the data format (JSON gives the text null). When true, a null body is not marshalled and the body stays null.",
+          "title": "Allow Null Body",
           "required": false,
           "deprecated": false
         }
@@ -3487,6 +3504,99 @@
         }
       }
     },
+    "toon": {
+      "type": "object",
+      "title": "TOON",
+      "group": "dataformat,transformation,json",
+      "icon": "generic24.png",
+      "description": "Marshal JSON-compatible Java values to TOON (Token-Oriented Object Notation) and unmarshal TOON back to Java objects.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "indent": {
+          "kind": "attribute",
+          "type": "integer",
+          "defaultValue": "2",
+          "description": "Number of spaces per indentation level.",
+          "title": "Indent",
+          "required": false,
+          "deprecated": false
+        },
+        "delimiter": {
+          "kind": "attribute",
+          "type": "enum",
+          "defaultValue": "COMMA",
+          "enum": [
+            "COMMA",
+            "TAB",
+            "PIPE"
+          ],
+          "description": "Delimiter used for tabular array rows and inline primitive arrays.",
+          "title": "Delimiter",
+          "required": false,
+          "deprecated": false
+        },
+        "lengthMarker": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to prefix array lengths with a hash marker so arrays render as hash-prefixed lengths instead of plain lengths.",
+          "title": "Length Marker",
+          "required": false,
+          "deprecated": false
+        },
+        "strict": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to enable strict validation when unmarshalling TOON. When false, JToon uses best-effort parsing.",
+          "title": "Strict",
+          "required": false,
+          "deprecated": false
+        },
+        "contentTypeHeader": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the data format should set the Content-Type header to text/toon when marshalling.",
+          "title": "Content Type Header",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
+    "ubl": {
+      "type": "object",
+      "title": "UBL",
+      "group": "dataformat,transformation,xml",
+      "icon": "generic24.png",
+      "description": "Marshal and unmarshal UBL 2.1 (Universal Business Language) documents.",
+      "properties": {
+        "id": {
+          "kind": "attribute",
+          "type": "string",
+          "description": "The id of this node",
+          "title": "Id",
+          "required": false,
+          "deprecated": false
+        },
+        "prettyPrint": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to enable pretty printing (formatted) output of the XML",
+          "title": "Pretty Print",
+          "required": false,
+          "deprecated": false
+        }
+      }
+    },
     "univocityCsv": {
       "type": "object",
       "title": "uniVocity CSV",
@@ -4066,7 +4176,7 @@
         "xmlCipherAlgorithm": {
           "kind": "attribute",
           "type": "enum",
-          "defaultValue": "AES-256-GCM",
+          "defaultValue": "AES_256_GCM",
           "enum": [
             "TRIPLEDES",
             "AES_128",
