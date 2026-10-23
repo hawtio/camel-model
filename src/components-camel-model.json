@@ -19773,7 +19773,20 @@
           "defaultValue": "listFileSystem",
           "enum": [
             "listFileSystem",
-            "listFiles"
+            "createFileSystem",
+            "deleteFileSystem",
+            "listPaths",
+            "getFile",
+            "downloadToFile",
+            "downloadLink",
+            "deleteFile",
+            "appendToFile",
+            "flushToFile",
+            "uploadFromFile",
+            "upload",
+            "openQueryInputStream",
+            "createFile",
+            "deleteDirectory"
           ],
           "description": "operation to be performed",
           "title": "Operation",
@@ -21876,6 +21889,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "observable": {
           "kind": "parameter",
           "type": "boolean",
@@ -22068,6 +22090,15 @@
           ],
           "description": "Comma separated list of methods that the CoAP consumer will bind to. The default is to bind to all methods (DELETE, GET, POST, PUT).",
           "title": "Coap Method Restrict",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -22266,6 +22297,15 @@
           "required": false,
           "deprecated": false
         },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
+          "required": false,
+          "deprecated": false
+        },
         "observable": {
           "kind": "parameter",
           "type": "boolean",
@@ -22458,6 +22498,15 @@
           ],
           "description": "Comma separated list of methods that the CoAP consumer will bind to. The default is to bind to all methods (DELETE, GET, POST, PUT).",
           "title": "Coap Method Restrict",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the 5.00 (Internal Server Error) response sent to the client won\u0027t contain the exception\u0027s message.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -34166,6 +34215,14 @@
           "title": "Oauth Profile",
           "required": false,
           "deprecated": false
+        },
+        "outputBaseDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "When set, the output directory passed to the docling CLI must resolve inside this directory once normalized. Applies to the CamelDoclingOutputFilePath header. The check is lexical and does not resolve symbolic links, matching inputBaseDirectory. When empty, no directory restriction is applied and the header value is only normalized.",
+          "title": "Output Base Directory",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -43148,7 +43205,10 @@
           "kind": "parameter",
           "type": "enum",
           "enum": [
-            "createSecret"
+            "createSecret",
+            "getSecretVersion",
+            "deleteSecret",
+            "listSecrets"
           ],
           "description": "The operation to perform on the producer.",
           "title": "Operation",
@@ -43922,6 +43982,14 @@
           "required": false,
           "deprecated": false
         },
+        "objectName": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The Object name inside the bucket",
+          "title": "Object Name",
+          "required": false,
+          "deprecated": false
+        },
         "serviceAccountKey": {
           "kind": "parameter",
           "type": "string",
@@ -44067,14 +44135,6 @@
           "type": "object",
           "description": "A pluggable org.apache.camel.PollingConsumerPollingStrategy allowing you to provide your custom implementation to control error handling usually occurred during the poll operation before an Exchange have been created and being routed in Camel.",
           "title": "Poll Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "objectName": {
-          "kind": "parameter",
-          "type": "string",
-          "description": "The Object name inside the bucket",
-          "title": "Object Name",
           "required": false,
           "deprecated": false
         },
@@ -44745,6 +44805,24 @@
           "required": false,
           "deprecated": false
         },
+        "forwardOnCompleted": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Determines if onCompleted events should be pushed to the Camel route.",
+          "title": "Forward On Completed",
+          "required": false,
+          "deprecated": false
+        },
+        "forwardOnError": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Determines if onError events should be pushed to the Camel route. Exceptions will be set as message body.",
+          "title": "Forward On Error",
+          "required": false,
+          "deprecated": false
+        },
         "maxMessageSize": {
           "kind": "parameter",
           "type": "integer",
@@ -44774,24 +44852,6 @@
           ],
           "description": "This option specifies the top-level strategy for processing service requests and responses in streaming mode. If an aggregation strategy is selected, all requests will be accumulated in the list, then transferred to the flow, and the accumulated responses will be sent to the sender. If a propagation strategy is selected, request is sent to the stream, and the response will be immediately sent back to the sender. If a delegation strategy is selected, request is sent to the stream, but no response generated under the assumption that all necessary responses will be sent at another part of route. Delegation strategy always comes with routeControlledStreamObserver\u003dtrue to be able to achieve the assumption.",
           "title": "Consumer Strategy",
-          "required": false,
-          "deprecated": false
-        },
-        "forwardOnCompleted": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Determines if onCompleted events should be pushed to the Camel route.",
-          "title": "Forward On Completed",
-          "required": false,
-          "deprecated": false
-        },
-        "forwardOnError": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "false",
-          "description": "Determines if onError events should be pushed to the Camel route. Exceptions will be set as message body.",
-          "title": "Forward On Error",
           "required": false,
           "deprecated": false
         },
@@ -52521,7 +52581,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -52538,7 +52598,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -52547,7 +52607,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -52556,7 +52616,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -52565,7 +52625,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -52694,6 +52754,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -53198,7 +53267,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -53215,7 +53284,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -53224,7 +53293,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -53233,7 +53302,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -53242,7 +53311,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -53371,6 +53440,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -55234,6 +55312,14 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "headerFilterStrategy": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "To use a custom org.apache.camel.spi.HeaderFilterStrategy to filter header to and from Camel message.",
+          "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
         },
@@ -58824,19 +58910,19 @@
           "required": false,
           "deprecated": false
         },
-        "outputFieldsIdxArray": {
+        "fieldsLength": {
           "kind": "parameter",
-          "type": "object",
-          "description": "Specifies which fields (program parameters) are output parameters.",
-          "title": "Output Fields Idx Array",
+          "type": "string",
+          "description": "Specifies the fields (program parameters) length as in the IBM i program definition, as a comma-separated list.",
+          "title": "Fields Length",
           "required": false,
           "deprecated": false
         },
-        "outputFieldsLengthArray": {
+        "outputFieldsIdx": {
           "kind": "parameter",
-          "type": "object",
-          "description": "Specifies the fields (program parameters) length as in the IBM i program definition.",
-          "title": "Output Fields Length Array",
+          "type": "string",
+          "description": "Specifies which fields (program parameters) are output parameters, as a comma-separated list of 0-based indexes.",
+          "title": "Output Fields Idx",
           "required": false,
           "deprecated": false
         },
@@ -59180,14 +59266,9 @@
         },
         "autoOffsetReset": {
           "kind": "parameter",
-          "type": "enum",
+          "type": "string",
           "defaultValue": "latest",
-          "enum": [
-            "latest",
-            "earliest",
-            "none"
-          ],
-          "description": "What to do when there is no initial offset in ZooKeeper or if an offset is out of range: earliest : automatically reset the offset to the earliest offset latest: automatically reset the offset to the latest offset fail: throw exception to the consumer",
+          "description": "Where a consumer group starts reading when it has no committed offset, or the committed offset is out of range. Valid values are: earliest (seek to the earliest available offset), latest (seek to the latest offset, the default), none (throw an exception if no previous offset is found), by_duration: followed by an ISO-8601 duration (e.g. by_duration:PT5M or by_duration:P1D; requires Kafka 4.0 or later).",
           "title": "Auto Offset Reset",
           "required": false,
           "deprecated": false
@@ -67969,6 +68050,15 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to check that the certificate of the server matches the host Camel connects to, when SSL is used by the producer, or by the consumer in client mode. When disabled, any certificate accepted by the trust store is accepted, whatever host it was issued for.",
+          "title": "Hostname Verification",
+          "required": false,
+          "deprecated": false
+        },
         "sslContextParameters": {
           "kind": "parameter",
           "type": "object",
@@ -70104,6 +70194,15 @@
           "defaultValue": "8192",
           "description": "Sets the SO_SNDBUF option to the specified value (in bytes)",
           "title": "Send Buffer Size",
+          "required": false,
+          "deprecated": false
+        },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether the producer checks that the certificate of the server matches the host it connects to, when SSL/TLS is used. When disabled, any certificate accepted by the trust store is accepted, whatever host it was issued for.",
+          "title": "Hostname Verification",
           "required": false,
           "deprecated": false
         },
@@ -78878,7 +78977,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -78895,7 +78994,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -78904,7 +79003,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -78913,7 +79012,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -78922,7 +79021,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -79051,6 +79150,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -79555,7 +79663,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -79572,7 +79680,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -79581,7 +79689,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -79590,7 +79698,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -79599,7 +79707,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -79728,6 +79836,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -80168,7 +80285,6 @@
             "XMSSMT",
             "DILITHIUM",
             "FALCON",
-            "PICNIC",
             "SNOVA",
             "MAYO",
             "SPHINCSPLUS"
@@ -89186,6 +89302,15 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to check that the certificate of the SMSC matches the host Camel connects to, when SSL is used. When disabled, any certificate trusted by the JVM is accepted, whatever host it was issued for.",
+          "title": "Hostname Verification",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
@@ -89682,6 +89807,15 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to check that the certificate of the SMSC matches the host Camel connects to, when SSL is used. When disabled, any certificate trusted by the JVM is accepted, whatever host it was issued for.",
+          "title": "Hostname Verification",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
@@ -89988,7 +90122,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -90005,7 +90139,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -90014,7 +90148,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -90023,7 +90157,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -90032,7 +90166,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -90161,6 +90295,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -90665,7 +90808,7 @@
         "subject": {
           "kind": "parameter",
           "type": "string",
-          "description": "The Subject of the message being sent. Note: Setting the subject in the header takes precedence over this option.",
+          "description": "The Subject of the message being sent. The Subject message header is ignored unless useHeaderSubject\u003dtrue, in which case it overrides this option.",
           "title": "Subject",
           "required": false,
           "deprecated": false
@@ -90682,7 +90825,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI sender, ignoring any From or Sender headers from the message.",
+          "description": "Whether message headers From and Sender override the sender pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers From and Sender override the endpoint URI sender.",
           "title": "Use Header From",
           "required": false,
           "deprecated": false
@@ -90691,7 +90834,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI recipients, ignoring any recipient headers from the message.",
+          "description": "Whether message headers To, CC, and BCC override the recipients pre-configured in the endpoint URI. Defaults to false. Set to true to let message headers override the endpoint URI recipients.",
           "title": "Use Header Recipients",
           "required": false,
           "deprecated": false
@@ -90700,7 +90843,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI replyTo, ignoring any Reply-To header from the message.",
+          "description": "Whether message header Reply-To overrides the replyTo pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Reply-To header override the endpoint URI replyTo.",
           "title": "Use Header Reply To",
           "required": false,
           "deprecated": false
@@ -90709,7 +90852,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to true. Set to false to always use the endpoint URI subject, ignoring any Subject header from the message.",
+          "description": "Whether message header Subject overrides the subject pre-configured in the endpoint URI. Defaults to false. Set to true to let the message Subject header override the endpoint URI subject.",
           "title": "Use Header Subject",
           "required": false,
           "deprecated": false
@@ -90838,6 +90981,15 @@
           "type": "object",
           "description": "Sets the java mail options. Will clear any default properties and only use the properties provided for this method.",
           "title": "Java Mail Properties",
+          "required": false,
+          "deprecated": false
+        },
+        "maxMultipartDepth": {
+          "kind": "parameter",
+          "type": "integer",
+          "defaultValue": "20",
+          "description": "The maximum nesting depth of multipart MIME parts the consumer descends into when extracting attachments. A message nested deeper than this has its deeper parts skipped, so a crafted deeply nested multipart cannot exhaust the stack. Increase it only if a legitimate source produces unusually deep nesting.",
+          "title": "Max Multipart Depth",
           "required": false,
           "deprecated": false
         },
@@ -93685,7 +93837,7 @@
         "headerFilterStrategy": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a custom HeaderFilterStrategy to filter headers mapped to and from the Camel message. By default the internal Camel and camel header namespace (case-insensitive) is filtered out from inbound SOAP headers.",
+          "description": "To use a custom HeaderFilterStrategy to filter headers mapped to and from the Camel message. By default the internal Camel and camel header namespace (case-insensitive) is filtered out from inbound SOAP headers, and the default message filter does not write it into outbound SOAP headers.",
           "title": "Header Filter Strategy",
           "required": false,
           "deprecated": false
@@ -93772,7 +93924,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Option to override soap response header in in/out exchange with header info from the actual service layer. If the invoked service appends or rewrites the soap header this option when set to true, allows the modified soap header to be overwritten in in/out message headers",
+          "description": "Option to override soap response header in in/out exchange with header info from the actual service layer. If the invoked service appends or rewrites the soap header this option when set to true, allows the modified soap header to be overwritten in in/out message headers. The names of the soap response header attributes and elements are filtered using the headerFilterStrategy, which by default filters out the internal Camel and camel header namespace (case-insensitive).",
           "title": "Allow Response Header Override",
           "required": false,
           "deprecated": false
@@ -96080,6 +96232,23 @@
           "description": "The authorization token for using the bot (ask the BotFather)",
           "title": "Authorization Token",
           "required": true,
+          "deprecated": false
+        },
+        "webhookSecretToken": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The secret token that Telegram sends in the X-Telegram-Bot-Api-Secret-Token header of every webhook request. In webhook mode, Camel registers the webhook with this token, and rejects a webhook request that does not carry it with HTTP 403. Only the characters A-Z, a-z, 0-9, _ and - are allowed, up to 256 characters. When not set, a token derived from the authorization token is used. Set it when the webhook is registered outside Camel, and register the webhook with the same secret_token.",
+          "title": "Webhook Secret Token",
+          "required": false,
+          "deprecated": false
+        },
+        "webhookSecretTokenEnabled": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether, in webhook mode, Camel registers the webhook with a secret token and rejects a webhook request that does not carry it. Set it to false to restore the behaviour of earlier versions, where the webhook was registered without a secret token and webhook requests were not verified.",
+          "title": "Webhook Secret Token Enabled",
+          "required": false,
           "deprecated": false
         }
       }
@@ -99796,6 +99965,15 @@
           "required": false,
           "deprecated": false
         },
+        "operation": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "transaction",
+          "description": "Operation to use.",
+          "title": "Operation",
+          "required": false,
+          "deprecated": false
+        },
         "privateFor": {
           "kind": "parameter",
           "type": "string",
@@ -99985,15 +100163,6 @@
           "type": "string",
           "description": "The nonce found (64 bits) used for submitting a proof-of-work solution.",
           "title": "Nonce",
-          "required": false,
-          "deprecated": false
-        },
-        "operation": {
-          "kind": "parameter",
-          "type": "string",
-          "defaultValue": "transaction",
-          "description": "Operation to use.",
-          "title": "Operation",
           "required": false,
           "deprecated": false
         },
