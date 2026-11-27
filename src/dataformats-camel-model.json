@@ -60,7 +60,7 @@
         "library": {
           "kind": "attribute",
           "type": "enum",
-          "defaultValue": "avroJackson",
+          "defaultValue": "Jackson",
           "enum": [
             "ApacheAvro",
             "Jackson"
@@ -2124,6 +2124,15 @@
           "type": "string",
           "description": "XML namespace to use for fragment parsing.",
           "title": "Part Namespace",
+          "required": false,
+          "deprecated": false
+        },
+        "allowPartClassFromHeader": {
+          "kind": "attribute",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the CamelJaxbPartClass and CamelJaxbPartNamespace headers are used, when set, instead of the partClass and partNamespace options when marshalling and unmarshalling. Enable it only when the route sets these headers itself, not on routes that receive them from external systems.",
+          "title": "Allow Part Class From Header",
           "required": false,
           "deprecated": false
         },

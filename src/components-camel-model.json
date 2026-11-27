@@ -3978,7 +3978,7 @@
         "asyncMdnAllowedHosts": {
           "kind": "parameter",
           "type": "string",
-          "description": "Comma separated list of host names an asynchronous MDN may be delivered to. The delivery address is chosen by the sender of the AS2 message, so this is the list of hosts the operator vouches for. When set, an asynchronous MDN whose delivery address names a host outside the list is refused, and the configured mdnUserName/mdnPassword/mdnAccessToken are attached only to a host on the list. When not set, the MDN is still delivered to the sender-supplied address but no credentials are attached.",
+          "description": "Comma separated list of hosts an asynchronous MDN may be delivered to. The delivery address is chosen by the sender of the AS2 message, so this is the list of destinations the operator vouches for. Each entry is a host with an optional port in host:port form; an IPv6 literal is written in square brackets, as in a URL, optionally followed by :port. A bare-host entry (for example partner.example) matches only the default port for the scheme (80 or 443), so a non-default port is listed explicitly (for example partner.example:8443). When set, an asynchronous MDN whose delivery address is not on the list is refused, and the configured mdnUserName/mdnPassword/mdnAccessToken are attached only to an address on the list. When not set, the MDN is still delivered to the sender-supplied address but no credentials are attached. The option applies to the consumer endpoint it is set on: consumers sharing a serverPortNumber each apply their own list.",
           "title": "Async Mdn Allowed Hosts",
           "required": false,
           "deprecated": false
@@ -4040,7 +4040,7 @@
         "mdnAccessToken": {
           "kind": "parameter",
           "type": "string",
-          "description": "The access token that is used by the server when it sends an async MDN.",
+          "description": "The access token that is used by the server when it sends an async MDN. The option applies to the consumer endpoint it is set on, like mdnUserName.",
           "title": "Mdn Access Token",
           "required": false,
           "deprecated": false
@@ -4048,7 +4048,7 @@
         "mdnPassword": {
           "kind": "parameter",
           "type": "string",
-          "description": "The password that is used by the server for basic authentication when it sends an async MDN.",
+          "description": "The password that is used by the server for basic authentication when it sends an async MDN. The option applies to the consumer endpoint it is set on, like mdnUserName.",
           "title": "Mdn Password",
           "required": false,
           "deprecated": false
@@ -4056,7 +4056,7 @@
         "mdnUserName": {
           "kind": "parameter",
           "type": "string",
-          "description": "The user-name that is used by the server for basic authentication when it sends an async MDN. If options for basic authentication and bearer authentication are both set then basic authentication takes precedence.",
+          "description": "The user-name that is used by the server for basic authentication when it sends an async MDN. If options for basic authentication and bearer authentication are both set then basic authentication takes precedence. The option applies to the consumer endpoint it is set on: consumers sharing a serverPortNumber each send their async MDNs with their own values.",
           "title": "Mdn User Name",
           "required": false,
           "deprecated": false
@@ -4332,7 +4332,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "To enable streaming to send data as multiple text fragments.",
+          "description": "Whether the consumer receives messages as a stream: a text message as a java.io.Reader and a binary message as a java.io.InputStream, instead of a String or a byte array. The producer does not use this option.",
           "title": "Use Streaming",
           "required": false,
           "deprecated": false
@@ -7226,7 +7226,7 @@
         "queryString": {
           "kind": "parameter",
           "type": "string",
-          "description": "The SQL query to run. Except for simple queries, prefer setting this as the body of the Exchange or as a header using Athena2Constants.QUERY_STRING to avoid having to deal with URL encoding issues.",
+          "description": "The SQL query to run. The CamelAwsAthenaQueryString header takes precedence over this option, and the message body is used as the query only when neither the header nor this option is set. Except for simple queries, prefer setting the query in the header or as the body of the Exchange to avoid having to deal with URL encoding issues.",
           "title": "Query String",
           "required": false,
           "deprecated": false
@@ -17789,7 +17789,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -22716,6 +22716,15 @@
           "required": false,
           "deprecated": false
         },
+        "allowedTransports": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "websocket,long-polling",
+          "description": "A comma-separated list of transport names allowed by the CometD server (e.g. websocket, long-polling, callback-polling). callback-polling is the JSONP transport mechanism. This option applies to the shared CometD server on the host and port; the first endpoint to configure the server sets this value.",
+          "title": "Allowed Transports",
+          "required": false,
+          "deprecated": false
+        },
         "baseResource": {
           "kind": "parameter",
           "type": "string",
@@ -22902,6 +22911,15 @@
           "defaultValue": "*",
           "description": "The origins domain that support to cross, if the crosssOriginFilterOn is true",
           "title": "Allowed Origins",
+          "required": false,
+          "deprecated": false
+        },
+        "allowedTransports": {
+          "kind": "parameter",
+          "type": "string",
+          "defaultValue": "websocket,long-polling",
+          "description": "A comma-separated list of transport names allowed by the CometD server (e.g. websocket, long-polling, callback-polling). callback-polling is the JSONP transport mechanism. This option applies to the shared CometD server on the host and port; the first endpoint to configure the server sets this value.",
+          "title": "Allowed Transports",
           "required": false,
           "deprecated": false
         },
@@ -23970,7 +23988,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "10",
-          "description": "Gets the maximum number of messages as a limit to poll at each polling. Gets the maximum number of messages as a limit to poll at each polling. The default value is 10. Use 0 or a negative number to set it as unlimited.",
+          "description": "Gets the maximum number of messages as a limit to poll at each polling. The default value is 10. Use 0 or a negative number to set it as unlimited.",
           "title": "Max Messages Per Poll",
           "required": false,
           "deprecated": false
@@ -34555,6 +34573,32 @@
           "title": "Lazy Start Producer",
           "required": false,
           "deprecated": false
+        },
+        "allowGlobCopySource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the copy operation accepts a source with glob pattern characters (asterisk, question mark, square bracket or curly brace), which DuckDB expands to all the matching files. Disabled by default, so copy loads a single file.",
+          "title": "Allow Glob Copy Source",
+          "required": false,
+          "deprecated": false
+        },
+        "allowUrlCopySource": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether the copy operation accepts a source that starts with a URL scheme (such as https:// or s3://), which DuckDB reads as a remote file. Disabled by default, so copy loads a local file only; enable it only when the source of the message body is trusted.",
+          "title": "Allow Url Copy Source",
+          "required": false,
+          "deprecated": false
+        },
+        "copyBaseDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "A directory that the local source of the copy operation must be inside, after resolving symbolic links. A relative source is resolved against this directory. For a glob pattern, the directory before the first glob character must be inside it. Not set by default, so copy loads a file from any directory.",
+          "title": "Copy Base Directory",
+          "required": false,
+          "deprecated": false
         }
       }
     },
@@ -36664,7 +36708,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -38499,7 +38543,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -39592,7 +39636,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -40648,7 +40692,7 @@
         "encoding": {
           "kind": "parameter",
           "type": "string",
-          "description": "To use the given encoding when getting a git commit file",
+          "description": "The charset of the content of the file for the getCommitFile producer (the default charset of the JVM if not set)",
           "title": "Encoding",
           "required": false,
           "deprecated": false
@@ -41397,7 +41441,7 @@
           "kind": "parameter",
           "type": "integer",
           "defaultValue": "10",
-          "description": "Max results to be returned",
+          "description": "Maximum number of events returned per Google Calendar API page. With syncFlow\u003dfalse and considerLastUpdate\u003dtrue, each poll reads all pages; otherwise each poll reads one page.",
           "title": "Max Results",
           "required": false,
           "deprecated": false
@@ -44850,7 +44894,7 @@
             "PROPAGATION",
             "DELEGATION"
           ],
-          "description": "This option specifies the top-level strategy for processing service requests and responses in streaming mode. If an aggregation strategy is selected, all requests will be accumulated in the list, then transferred to the flow, and the accumulated responses will be sent to the sender. If a propagation strategy is selected, request is sent to the stream, and the response will be immediately sent back to the sender. If a delegation strategy is selected, request is sent to the stream, but no response generated under the assumption that all necessary responses will be sent at another part of route. Delegation strategy always comes with routeControlledStreamObserver\u003dtrue to be able to achieve the assumption.",
+          "description": "This option specifies the top-level strategy for processing service requests and responses in streaming mode. If an aggregation strategy is selected, all requests will be accumulated in the list, then transferred to the flow, and the accumulated responses will be sent to the sender. If a propagation strategy is selected, request is sent to the stream, and the response will be immediately sent back to the sender. If a delegation strategy is selected, request is sent to the stream, but no response generated under the assumption that all necessary responses will be sent at another part of route. Delegation strategy always comes with routeControlledStreamObserver\u003dtrue to be able to achieve the assumption. With routeControlledStreamObserver\u003dtrue, the propagation strategy does not send responses either: it sends the requests to the route one at a time, and the route sends the responses.",
           "title": "Consumer Strategy",
           "required": false,
           "deprecated": false
@@ -46532,7 +46576,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "If set to true the whole Exchange will be transfered. If header or body contains not serializable objects, they will be skipped.",
+          "description": "If set to true the whole Exchange will be transfered. If header or body contains not serializable objects, they will be skipped. Set it on both the producer and the consumer: the producer puts the whole Exchange on the queue, and the consumer restores its headers and exchange properties. A consumer without it takes only the body.",
           "title": "Transfer Exchange",
           "required": false,
           "deprecated": false
@@ -67300,11 +67344,36 @@
           "required": false,
           "deprecated": false
         },
+        "certificateValidator": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A custom validator for the certificate of the OPC UA server. When set, it is used instead of the trust list configured with trustListDirectory. Endpoints share a connection only when they use the same validator instance.",
+          "title": "Certificate Validator",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
           "description": "The password for authentication. Use this instead of embedding credentials in the endpoint URI when the password contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
           "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to accept any certificate presented by the OPC UA server. This is insecure: the connection is encrypted, but the client does not authenticate the server it talks to. It only applies when neither certificateValidator nor trustListDirectory is configured.",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "trustListDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The directory holding the trust list used to validate the certificate of the OPC UA server, in the layout used by Eclipse Milo: trusted certificates in trusted/certs, CRLs of trusted certificates in trusted/crl, certificates of issuing CAs in issuer/certs and their CRLs in issuer/crl. The directories are created if they do not exist. Besides the chain of trust, the validity period, the revocation by a CRL of the trust list and the application URI of the server certificate are checked. A certificate issued by a CA is refused when the trust list holds no CRL of that CA; an empty CRL is enough. A server certificate that does not chain up to a trusted certificate is written to rejected/certs, from where it can be moved to trusted/certs once it has been checked.",
+          "title": "Trust List Directory",
           "required": false,
           "deprecated": false
         },
@@ -67631,11 +67700,36 @@
           "required": false,
           "deprecated": false
         },
+        "certificateValidator": {
+          "kind": "parameter",
+          "type": "object",
+          "description": "A custom validator for the certificate of the OPC UA server. When set, it is used instead of the trust list configured with trustListDirectory. Endpoints share a connection only when they use the same validator instance.",
+          "title": "Certificate Validator",
+          "required": false,
+          "deprecated": false
+        },
         "password": {
           "kind": "parameter",
           "type": "string",
           "description": "The password for authentication. Use this instead of embedding credentials in the endpoint URI when the password contains special characters (such as {code }, {code /}, {code }, {code \u0026}).",
           "title": "Password",
+          "required": false,
+          "deprecated": false
+        },
+        "trustAllCertificates": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether to accept any certificate presented by the OPC UA server. This is insecure: the connection is encrypted, but the client does not authenticate the server it talks to. It only applies when neither certificateValidator nor trustListDirectory is configured.",
+          "title": "Trust All Certificates",
+          "required": false,
+          "deprecated": false
+        },
+        "trustListDirectory": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The directory holding the trust list used to validate the certificate of the OPC UA server, in the layout used by Eclipse Milo: trusted certificates in trusted/certs, CRLs of trusted certificates in trusted/crl, certificates of issuing CAs in issuer/certs and their CRLs in issuer/crl. The directories are created if they do not exist. Besides the chain of trust, the validity period, the revocation by a CRL of the trust list and the application URI of the server certificate are checked. A certificate issued by a CA is refused when the trust list holds no CRL of that CA; an empty CRL is enough. A server certificate that does not chain up to a trusted certificate is written to rejected/certs, from where it can be moved to trusted/certs once it has been checked.",
+          "title": "Trust List Directory",
           "required": false,
           "deprecated": false
         },
@@ -68775,7 +68869,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -70893,7 +70987,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Specifies that all communication with MongoDB instances should use TLS. Supersedes the ssl option. Default: false",
+          "description": "Specifies that all communication with MongoDB instances should use TLS. Supersedes the ssl option. Applies to the client the endpoint creates when hosts is set. Default: false",
           "title": "Tls",
           "required": false,
           "deprecated": false
@@ -71985,6 +72079,15 @@
           "required": false,
           "deprecated": false
         },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to check that the certificate of the NATS server matches the host Camel connects to, when TLS is used. The client then keeps the host name of a server for TLS, and connects to the fastest of its IP addresses. A server that is given, or that the cluster announces, by its IP address needs a certificate that names that address. When disabled, any certificate trusted by the JVM, or by the sslContextParameters, is accepted, whatever host it was issued for.",
+          "title": "Hostname Verification",
+          "required": false,
+          "deprecated": false
+        },
         "secure": {
           "kind": "parameter",
           "type": "boolean",
@@ -72651,7 +72754,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level.",
+          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level. The connection headers (CamelNettyRemoteAddress, CamelNettyLocalAddress, CamelNettyChannelHandlerContext, CamelNettySSLSession and the CamelNettySSLClientCert headers) and the CamelNettyRemoteAddress and CamelNettyChannel exchange properties are always the ones of the receiving side: the connection it accepted is the source of truth, and these values are never taken from the transferred exchange.",
           "title": "Transfer Exchange",
           "required": false,
           "deprecated": false
@@ -73499,7 +73602,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level.",
+          "description": "Only used for TCP. You can transfer the exchange over the wire instead of just the body. The following fields are transferred: In body, Out body, fault body, In headers, Out headers, fault headers, exchange properties, exchange exception. This requires that the objects are serializable. Camel will exclude any non-serializable objects and log it at WARN level. The connection headers (CamelNettyRemoteAddress, CamelNettyLocalAddress, CamelNettyChannelHandlerContext, CamelNettySSLSession and the CamelNettySSLClientCert headers) and the CamelNettyRemoteAddress and CamelNettyChannel exchange properties are always the ones of the receiving side: the connection it accepted is the source of truth, and these values are never taken from the transferred exchange.",
           "title": "Transfer Exchange",
           "required": false,
           "deprecated": false
@@ -77508,7 +77611,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Sets whether to use manual acknowledgements for the client. By default, this is false and message will be automatically acknowledged upon received by Camel. If set to true, the acknowledgement is deferred to be acknowledged by Camel at the end of processing the message. This ensures that only successfully processed messages is acknowledged, and allows to rollback and retry the message in case of an error during routing in Camel.",
+          "description": "Sets whether to use manual acknowledgements for the client. By default, this is false and message will be automatically acknowledged upon received by Camel. If set to true, the acknowledgement is deferred to be acknowledged by Camel at the end of processing the message. This ensures that only successfully processed messages are acknowledged. When the processing of a QoS 1 message fails on a session that the broker keeps (cleanStart\u003dfalse and sessionExpiryInterval greater than 0), the consumer connects again so that the broker sends the message again. In all other cases the broker would never send it again (the client completes the QoS 2 flow on its own, and without sessionExpiryInterval the session ends with the connection), so the message is acknowledged.",
           "title": "Manual Acks Enabled",
           "required": false,
           "deprecated": false
@@ -81002,6 +81105,23 @@
           "defaultValue": "false",
           "description": "Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel\u0027s routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing.",
           "title": "Lazy Start Producer",
+          "required": false,
+          "deprecated": false
+        },
+        "hostnameVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether to check that the certificate of the broker matches the host Camel connects to, with pulsarssl://. When disabled, any certificate trusted by the client is accepted, whatever host it was issued for. Not used when a pulsarClient is given.",
+          "title": "Hostname Verification",
+          "required": false,
+          "deprecated": false
+        },
+        "tlsTrustCertsFilePath": {
+          "kind": "parameter",
+          "type": "string",
+          "description": "The path of a PEM file with the certificates of the certificate authorities to trust, for a broker on pulsarssl:// whose certificate is not signed by an authority that the JVM trusts. Not used when a pulsarClient is given.",
+          "title": "Tls Trust Certs File Path",
           "required": false,
           "deprecated": false
         }
@@ -85983,7 +86103,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -88407,7 +88527,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "true",
-          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete.",
+          "description": "Sets whether to eagerly add the filename to the idempotent repository or wait until the exchange is complete. Does not apply with an idempotent read lock (readLock\u003didempotent, idempotent-changed or idempotent-rename), which adds the filename when it acquires the lock.",
           "title": "Idempotent Eager",
           "required": false,
           "deprecated": false
@@ -88995,7 +89115,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Sessions can be lazily created to avoid exceptions, if the SMSC is not available when the Camel producer is started. Camel will check the in message headers \u0027CamelSmppSystemId\u0027 and \u0027CamelSmppPassword\u0027 of the first exchange. If they are present, Camel will use these data to connect to the SMSC.",
+          "description": "Sessions can be lazily created to avoid exceptions, if the SMSC is not available when the Camel producer is started. The session is then created when the first exchange is sent, with the systemId and password of the endpoint. See the allowSystemIdAndPasswordFromHeaders option to take them from the message headers instead.",
           "title": "Lazy Session Creation",
           "required": false,
           "deprecated": false
@@ -89299,6 +89419,15 @@
           "type": "object",
           "description": "These headers will be passed to the proxy server while establishing the connection.",
           "title": "Proxy Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "allowSystemIdAndPasswordFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a producer with lazySessionCreation\u003dtrue may take the system id and the password, with which it connects to the SMSC, from the \u0027CamelSmppSystemId\u0027 and \u0027CamelSmppPassword\u0027 headers of the first exchange. When both headers are present, the producer connects with them in place of the systemId and password of the endpoint, and keeps using them when it reconnects. This is disabled by default, and the headers are then ignored. Enable this only when the route sets these headers itself.",
+          "title": "Allow System Id And Password From Headers",
           "required": false,
           "deprecated": false
         },
@@ -89500,7 +89629,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Sessions can be lazily created to avoid exceptions, if the SMSC is not available when the Camel producer is started. Camel will check the in message headers \u0027CamelSmppSystemId\u0027 and \u0027CamelSmppPassword\u0027 of the first exchange. If they are present, Camel will use these data to connect to the SMSC.",
+          "description": "Sessions can be lazily created to avoid exceptions, if the SMSC is not available when the Camel producer is started. The session is then created when the first exchange is sent, with the systemId and password of the endpoint. See the allowSystemIdAndPasswordFromHeaders option to take them from the message headers instead.",
           "title": "Lazy Session Creation",
           "required": false,
           "deprecated": false
@@ -89804,6 +89933,15 @@
           "type": "object",
           "description": "These headers will be passed to the proxy server while establishing the connection.",
           "title": "Proxy Headers",
+          "required": false,
+          "deprecated": false
+        },
+        "allowSystemIdAndPasswordFromHeaders": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "false",
+          "description": "Whether a producer with lazySessionCreation\u003dtrue may take the system id and the password, with which it connects to the SMSC, from the \u0027CamelSmppSystemId\u0027 and \u0027CamelSmppPassword\u0027 headers of the first exchange. When both headers are present, the producer connects with them in place of the systemId and password of the endpoint, and keeps using them when it reconnects. This is disabled by default, and the headers are then ignored. Enable this only when the route sets these headers itself.",
+          "title": "Allow System Id And Password From Headers",
           "required": false,
           "deprecated": false
         },
@@ -94920,7 +95058,7 @@
           "kind": "parameter",
           "type": "boolean",
           "defaultValue": "false",
-          "description": "Specifies whether a connection to an unknown SSH server host key should fail. When false, host keys that are not present in the known_hosts resource are accepted.",
+          "description": "Specifies whether a connection to a server whose host has no entry without a marker in the known_hosts resource should fail. When false, such a server is accepted. A server whose host has entries without a marker is always rejected when it presents a key that none of them lists, and a key listed in a matching revoked entry is always rejected.",
           "title": "Fail On Unknown Host",
           "required": false,
           "deprecated": false
@@ -94952,7 +95090,7 @@
         "knownHostsResource": {
           "kind": "parameter",
           "type": "string",
-          "description": "Sets the resource path for a known_hosts file used to verify the SSH server host key. When not set, the client does not verify the server host key against a known_hosts file.",
+          "description": "Sets the resource path for a known_hosts file used to verify the SSH server host key. The file uses the OpenSSH known_hosts format, and its entries are matched against the host and port configured on the endpoint. A resource that cannot be read, or that has a line that cannot be read, makes every connection fail. When not set, the client does not verify the server host key against a known_hosts file.",
           "title": "Known Hosts Resource",
           "required": false,
           "deprecated": false
@@ -96408,6 +96546,15 @@
           "defaultValue": "10",
           "description": "The Thrift server consumer max thread pool size",
           "title": "Max Pool Size",
+          "required": false,
+          "deprecated": false
+        },
+        "muteException": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "If enabled and an Exchange failed processing on the consumer side, the Thrift client receives a generic error that does not contain the exception\u0027s message. An exception that the Thrift method declares in the IDL is still sent as it is.",
+          "title": "Mute Exception",
           "required": false,
           "deprecated": false
         },
@@ -100404,8 +100551,17 @@
         "webhookSecret": {
           "kind": "parameter",
           "type": "string",
-          "description": "The app secret used to verify the X-Hub-Signature-256 signature of inbound webhook event payloads (from the Meta/WhatsApp app dashboard). When set, event callbacks with a missing or invalid signature are rejected with HTTP 403; when not set, no signature verification is performed.",
+          "description": "The app secret used to verify the X-Hub-Signature-256 signature of inbound webhook event payloads (from the Meta/WhatsApp app dashboard). An event callback with a missing or invalid signature is rejected with HTTP 403. Required in webhook mode, unless webhookVerification is false.",
           "title": "Webhook Secret",
+          "required": false,
+          "deprecated": false
+        },
+        "webhookVerification": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Whether, in webhook mode, the X-Hub-Signature-256 signature of every event callback is verified with webhookSecret. When true, the webhook route fails to start without webhookSecret. Set it to false to accept event callbacks without verifying their signature, for example in development.",
+          "title": "Webhook Verification",
           "required": false,
           "deprecated": false
         },
@@ -100875,7 +101031,7 @@
         "saxonConfiguration": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a custom Saxon configuration",
+          "description": "To use a custom Saxon configuration. The secureProcessing option is applied to this configuration, which Saxon uses by reference, so endpoints that share the same configuration must use the same secureProcessing value.",
           "title": "Saxon Configuration",
           "required": false,
           "deprecated": false
@@ -100885,15 +101041,6 @@
           "type": "string",
           "description": "Allows you to use a custom net.sf.saxon.lib.ExtensionFunctionDefinition. You would need to add camel-saxon to the classpath. The function is looked up in the registry, where you can comma to separate multiple values to lookup.",
           "title": "Saxon Extension Functions",
-          "required": false,
-          "deprecated": false
-        },
-        "secureProcessing": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Feature for XML secure processing (see javax.xml.XMLConstants). This is enabled by default. However, when using Saxon Professional you may need to turn this off to allow Saxon to be able to use Java extension functions.",
-          "title": "Secure Processing",
           "required": false,
           "deprecated": false
         },
@@ -100943,6 +101090,15 @@
           "type": "object",
           "description": "A consumer to messages generated during XSLT transformations.",
           "title": "Xslt Message Logger",
+          "required": false,
+          "deprecated": false
+        },
+        "secureProcessing": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Feature for XML secure processing (see javax.xml.XMLConstants). This is enabled by default. However, when using Saxon Professional you may need to turn this off to allow Saxon to be able to use Java extension functions. Note that turning it off also restores the previous, unrestricted parsing of a Source message body that is still to be parsed, so only do so for trusted input. With a saxonConfiguration, the feature is set on that configuration, so endpoints that share the same configuration must use the same secureProcessing value.",
+          "title": "Secure Processing",
           "required": false,
           "deprecated": false
         }
@@ -102171,7 +102327,7 @@
         "saxonConfiguration": {
           "kind": "parameter",
           "type": "object",
-          "description": "To use a custom Saxon configuration",
+          "description": "To use a custom Saxon configuration. The secureProcessing option is applied to this configuration, which Saxon uses by reference, so endpoints that share the same configuration must use the same secureProcessing value.",
           "title": "Saxon Configuration",
           "required": false,
           "deprecated": false
@@ -102181,15 +102337,6 @@
           "type": "string",
           "description": "Allows you to use a custom net.sf.saxon.lib.ExtensionFunctionDefinition. You would need to add camel-saxon to the classpath. The function is looked up in the registry, where you can comma to separate multiple values to lookup.",
           "title": "Saxon Extension Functions",
-          "required": false,
-          "deprecated": false
-        },
-        "secureProcessing": {
-          "kind": "parameter",
-          "type": "boolean",
-          "defaultValue": "true",
-          "description": "Feature for XML secure processing (see javax.xml.XMLConstants). This is enabled by default. However, when using Saxon Professional you may need to turn this off to allow Saxon to be able to use Java extension functions.",
-          "title": "Secure Processing",
           "required": false,
           "deprecated": false
         },
@@ -102239,6 +102386,15 @@
           "type": "object",
           "description": "A consumer to messages generated during XSLT transformations.",
           "title": "Xslt Message Logger",
+          "required": false,
+          "deprecated": false
+        },
+        "secureProcessing": {
+          "kind": "parameter",
+          "type": "boolean",
+          "defaultValue": "true",
+          "description": "Feature for XML secure processing (see javax.xml.XMLConstants). This is enabled by default. However, when using Saxon Professional you may need to turn this off to allow Saxon to be able to use Java extension functions. Note that turning it off also restores the previous, unrestricted parsing of a Source message body that is still to be parsed, so only do so for trusted input. With a saxonConfiguration, the feature is set on that configuration, so endpoints that share the same configuration must use the same secureProcessing value.",
+          "title": "Secure Processing",
           "required": false,
           "deprecated": false
         }
